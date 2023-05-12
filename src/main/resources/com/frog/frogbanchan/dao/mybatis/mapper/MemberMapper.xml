@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.frog.frogbanchan.dao.mybatis.mapper.MemberMapper">
+    <cache />
+
+    <select id="findMembersByNickname" resultType="Member">
+        SELECT USERNAME,
+            PASSWORD,
+            NAME,
+            NICKNAME,
+            PHONE,
+            EMAIL,
+            RESIDENT_NO AS residentNo,
+            ADDRESS
+        FROM MEMBER
+        WHERE NICKNAME = #{nickname}
+    </select>
+
+    <select id="findUsernameList" resultType="java.lang.String">
+        SELECT USERNAME
+        FROM MEMBER
+    </select>
+
+</mapper>

@@ -1,6 +1,16 @@
 package com.frog.frogbanchan.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+@Getter @Setter @ToString
 public class Team {
+	@Id
 	private int teamId;
 	private String name;
 	private String creator;
@@ -12,31 +22,6 @@ public class Team {
 		this.teamId = teamId;
 		this.name = name;
 		this.creator = creator;
-		this.address = address;
-	}
-	
-	public int getTeamId() {
-		return teamId;
-	}
-	public void setTeamId(int teamId) {
-		this.teamId = teamId;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getCreator() {
-		return creator;
-	}
-	public void setCreator(String creator) {
-		this.creator = creator;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
 		this.address = address;
 	}
 
