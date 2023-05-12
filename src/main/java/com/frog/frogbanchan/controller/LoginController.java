@@ -6,16 +6,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/")
 public class LoginController {
 
 	@Autowired
 	private FrogBanchanImpl frogBanchan;
 
-	@RequestMapping("/")
+	@RequestMapping("/index")
 	public String handler() {
 		System.out.println(frogBanchan.findMembersByNickname("나메코"));
 		System.out.println(frogBanchan.findUsernameList());
-		return "index";
+		return "th/index";
+	}
+
+	@RequestMapping("/index/th")
+	public String handler3() {
+		return "th/test";
+	}
+
+	@RequestMapping("/index/login")
+	public String handler2() {
+		return "login";
 	}
 	
 }
