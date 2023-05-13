@@ -6,10 +6,12 @@ import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
 @Getter @Setter @ToString
-public class Team {
+@SuppressWarnings("serial")
+public class Team implements Serializable {
 	@Id
 	private int teamId;
 	private String name;

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.frog.frogbanchan.dao.mybatis.mapper.CommentsMapper">
+    <cache />
+
+    <select id="findCommentByCommentId" resultType="Comments">
+        SELECT COMMENT_ID AS commentId,
+            PARTY_ID AS partyId,
+            WRITER,
+            WRITTEN_DATE AS writtenDate,
+            CONTENT
+        FROM COMMENTS
+        WHERE COMMENT_ID = #{commentId}
+    </select>
+
+    <select id="findCommentsByPartyId" resultType="Comments">
+        SELECT COMMENT_ID AS commentId,
+            PARTY_ID AS partyId,
+            WRITER,
+            WRITTEN_DATE AS writtenDate,
+            CONTENT
+        FROM COMMENTS
+        WHERE PARTY_ID = #{partyId}
+        ORDER BY WRITTEN_DATE
+    </select>
+
+    <select id="findCommentList" resultType="Comments">
+        SELECT COMMENT_ID AS commentId,
+            PARTY_ID AS partyId,
+            WRITER,
+            WRITTEN_DATE AS writtenDate,
+            CONTENT
+        FROM COMMENTS
+    </select>
+
+    <insert id="insertComment" parameterType="Comments">
+        INSERT INTO COMMENTS (COMMENT_ID, PARTY_ID, WRITER, WRITTEN_DATE, CONTENT)
+        VALUES (SEQUENCE_Comments.nextval, #{partyId}, #{writer}, SYSDATE, #{content})
+    </insert>
+
+    <delete id="deleteComment">
+        DELETE FROM COMMENTS
+        WHERE COMMENT_ID = #{commentId}
+    </delete>
+
+    <delete id="deleteCommentsByPartyId">
+        DELETE FROM COMMENTS
+        WHERE PARTY_ID = #{partyId}
+    </delete>
+
+</mapper>
