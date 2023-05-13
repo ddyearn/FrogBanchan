@@ -4,6 +4,19 @@
 <mapper namespace="com.frog.frogbanchan.dao.mybatis.mapper.MemberMapper">
     <cache />
 
+    <select id="findMemberByUsername" resultType="Member">
+        SELECT USERNAME,
+            PASSWORD,
+            NAME,
+            NICKNAME,
+            PHONE,
+            EMAIL,
+            RESIDENT_NO AS residentNo,
+            ADDRESS
+        FROM MEMBER
+        WHERE USERNAME = #{username}
+    </select>
+
     <select id="findMembersByNickname" resultType="Member">
         SELECT USERNAME,
             PASSWORD,
@@ -21,5 +34,50 @@
         SELECT USERNAME
         FROM MEMBER
     </select>
+
+    <select id="findMembersByTeamId" resultType="Member">
+        SELECT USERNAME,
+            PASSWORD,
+            NAME,
+            NICKNAME,
+            PHONE,
+            EMAIL,
+            RESIDENT_NO AS residentNo,
+            ADDRESS
+        FROM MEMBER JOIN PARTICIPATION ON TEAM.TEAM_ID = PARTICIPATION.TEAM_ID
+        WHERE TEAM.TEAM_ID = #{teamId}
+    </select>
+
+    <select id="findTeamsByUsername" resultType="Team">
+        SELECT TEAM.TEAM_ID,
+            NAME,
+            CREATOR,
+            ADDRESS
+        FROM TEAM JOIN PARTICIPATION ON TEAM.TEAM_ID = PARTICIPATION.TEAM_ID
+        WHERE PARTICIPATION.USERNAME = #{username}
+    </select>
+
+
+    <insert id="insertMember" parameterType="Member">
+        INSERT INTO MEMBER (USERNAME, PASSWORD, NAME, PHONE, EMAIL, NICKNAME, RESIDENT_NO, ADDRESS)
+        VALUES (#{username}, #{password}, #{name}, #{phone}, #{email}, #{nickname}, #{residentNo}, #{address})
+    </insert>
+
+    <update id="updateMember" parameterType="Member">
+        UPDATE MEMBER
+        SET PASSWORD = #{password},
+            NAME = #{name},
+            PHONE = #{phone},
+            EMAIL = #{email},
+            NICKNAME = #{nickname},
+            RESIDENT_NO = #{residentNo},
+            ADDRESS = #{address}
+        WHERE USERNAME = #{username}
+    </update>
+
+    <delete id="deleteMember">
+        DELETE FROM MEMBER
+        WHERE USERNAME = #{username}
+    </delete>
 
 </mapper>
