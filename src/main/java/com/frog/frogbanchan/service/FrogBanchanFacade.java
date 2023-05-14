@@ -4,6 +4,7 @@ import java.util.List;
 import java.sql.Timestamp;
 
 import com.frog.frogbanchan.domain.Member;
+import com.frog.frogbanchan.domain.Party;
 import com.frog.frogbanchan.domain.Team;
 import com.frog.frogbanchan.domain.Comments;
 
@@ -99,13 +100,13 @@ public interface FrogBanchanFacade {
 //    public List<Member> findTeamMembers(int team_id);
 
 //    // PartyService
-//    public void insertParty(Party party);
-//
-//    public void deleteParty(int party_id);
-//
-//    public Party findParty(int party_id);
-//
-//    public List<Party> findPartyList();
+    public void insertParty(Party party);
+
+    public void deleteParty(int party_id);
+
+    public Party findParty(int party_id);
+
+    public List<Party> findPartyList();
 
     // CommentsService
     public void insertComment(Comments comments);
