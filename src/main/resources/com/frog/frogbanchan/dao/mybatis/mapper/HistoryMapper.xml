@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.frog.frogbanchan.dao.mybatis.mapper.HistoryMapper">
+    <cache />
+
+    <select id="findHistory" resultType="History">
+        SELECT HISTORY_ID AS historyId,
+               USERNAME,
+               SCORE,
+               PLACE_ID AS placeId,
+               RECORDED_DATE AS recordedDate,
+               MENU_ID
+        FROM HISTORY
+        WHERE HISTORY_ID = #{historyId}
+    </select>
+
+    <select id="findHistoryList" resultType="History">
+        SELECT HISTORY_ID AS historyId,
+               USERNAME,
+               SCORE,
+               PLACE_ID AS placeId,
+               RECORDED_DATE AS recordedDate,
+               MENU_ID
+        FROM HISTORY
+    </select>
+
+    <insert id="insertHistory" parameterType="History">
+        INSERT INTO HISTORY (HISTORY_ID, USERNAME, SCORE, PLACE_ID, RECORDED_DATE, MENU_ID)
+        VALUES (SEQUENCE_History.nextval, #{username}, #{score}, #{placeId}, #{recordedDate}, #{menuId})
+    </insert>
+
+    <update id="updateHistory" parameterType="History">
+        UPDATE HISTORY
+        SET SCORE = #{score},
+            MENU_ID = #{menuId}
+        WHERE HISTORY_ID = #{historyId}
+    </update>
+
+    <delete id="deleteHistory">
+        DELETE FROM HISTORY
+        WHERE HISTORY_ID = #{historyId}
+    </delete>
+
+</mapper>
