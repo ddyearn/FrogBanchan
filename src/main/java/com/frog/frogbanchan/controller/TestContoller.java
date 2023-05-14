@@ -1,8 +1,13 @@
 package com.frog.frogbanchan.controller;
 
-import com.frog.frogbanchan.domain.Comments;
 import com.frog.frogbanchan.domain.Member;
+import com.frog.frogbanchan.domain.Party;
+import com.frog.frogbanchan.domain.Comments;
 import com.frog.frogbanchan.service.FrogBanchanImpl;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +33,24 @@ public class TestContoller {
 
         System.out.println();
         return new ModelAndView("th/test");
+    }
+    
+    @RequestMapping("/test/party")
+    public ModelAndView partyTest() {
+    	System.out.println(frogBanchan.findParty(1001));
+    	System.out.println(frogBanchan.findPartyList());
+    	frogBanchan.deleteComment(1000);
+    	String time = "2023-05-31T18:15:00";
+        LocalDateTime ldt = LocalDateTime.parse(time);
+        Timestamp ts = Timestamp.valueOf(ldt);
+        Party party = new Party(1111, "naguri", ts, "toritori", "test1");
+        //frogBanchan.insertParty(party);
+        //party.setContent("test2");
+        //frogBanchan.updateParty(party);
+        //frogBanchan.deleteParty(1003);
+    	System.out.println(frogBanchan.findPartyList());
+    	
+    	return new ModelAndView("th/test");
     }
 
     @RequestMapping("/test/comments")

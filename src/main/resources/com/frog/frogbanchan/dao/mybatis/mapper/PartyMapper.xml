@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.frog.frogbanchan.dao.mybatis.mapper.PartyMapper">
+    <cache />
+
+    <select id="findParty" resultType="Party">
+    	SELECT PARTY_ID AS partyId, 
+    		CREATOR, 
+    		MEET_DATE AS meetDate, 
+    		PLACE_ID AS placeId, 
+    		CONTENT 
+    	FROM PARTY 
+    	WHERE PARTY_ID = #{partyId}
+    </select>
+
+    <select id="findPartyList" resultType="Party">
+        SELECT PARTY_ID AS partyId,
+        	CREATOR, 
+    		MEET_DATE AS meetDate, 
+    		PLACE_ID AS placeId	
+        FROM PARTY
+    </select>
+
+    <insert id="insertParty" parameterType="Party">
+        INSERT INTO PARTY (PARTY_ID, CREATOR, MEET_DATE, PLACE_ID, CONTENT)
+        VALUES (SEQUENCE_Party.nextval, #{creator}, #{meetDate}, #{placeId}, #{content})
+    </insert>
+
+    <update id="updateParty" parameterType="Party">
+        UPDATE PARTY
+        SET MEET_DATE = #{meetDate},
+        	PLACE_ID = #{placeId},
+        	CONTENT = #{content}
+        WHERE PARTY_ID = #{partyId}
+    </update>
+
+    <delete id="deleteParty">
+        DELETE FROM PARTY
+        WHERE PARTY_ID = #{partyId}
+    </delete>
+
+</mapper>

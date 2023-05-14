@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.frog.frogbanchan.dao.MemberDao;
+import com.frog.frogbanchan.dao.PartyDao;
 import com.frog.frogbanchan.dao.CommentsDao;
 import com.frog.frogbanchan.domain.Member;
 import com.frog.frogbanchan.domain.Team;
+import com.frog.frogbanchan.domain.Party;
 import com.frog.frogbanchan.domain.Comments;
 
 @Service
@@ -30,8 +32,8 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
 //    private HistoryDao historyDao;
 //    @Autowired
 //    private TeamDao teamDao;
-//    @Autowired
-//    private PartyDao partyDao;
+    @Autowired
+    private PartyDao partyDao;
     @Autowired
     private CommentsDao commentsDao;
 
@@ -213,22 +215,26 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
 //        return teamDao.findTeamMembers(team_id);
 //    }
 
-//    // PartyService
-//    public void insertParty(Party party) {
-//        partyDao.insertParty(party);
-//    }
-//
-//    public void deleteParty(int party_id) {
-//        partyDao.deleteParty(party_id);
-//    }
-//
-//    public Party findParty(int party_id) {
-//        return partyDao.findParty(party_id);
-//    }
-//
-//    public List<Party> findPartyList() {
-//        return partyDao.findPartyList();
-//    }
+    // PartyService
+    public void insertParty(Party party) {
+        partyDao.insertParty(party);
+    }
+
+    public void updateParty(Party party) {
+    	partyDao.updateParty(party);
+    }
+    
+    public void deleteParty(int party_id) {
+        partyDao.deleteParty(party_id);
+    }
+
+    public Party findParty(int party_id) {
+        return partyDao.findParty(party_id);
+    }
+
+    public List<Party> findPartyList() {
+        return partyDao.findPartyList();
+    }
 
     // CommentsService
     public void insertComment(Comments comments) {
