@@ -1,5 +1,6 @@
 package com.frog.frogbanchan.controller;
 
+import com.frog.frogbanchan.domain.History;
 import com.frog.frogbanchan.domain.Member;
 import com.frog.frogbanchan.domain.Party;
 import com.frog.frogbanchan.domain.Comments;
@@ -67,7 +68,23 @@ public class TestContoller {
         return new ModelAndView("th/test");
     }
 
+    @RequestMapping("/test/history")
+    public ModelAndView historyTest() {
+        System.out.println(frogBanchan.findHistory(30000));
+        System.out.println(frogBanchan.findHistoryList("yonzzang"));
+        //frogBanchan.deleteHistory(30000);
+        String time = "2023-05-31T18:15:00";
+        LocalDateTime ldt = LocalDateTime.parse(time);
+        Timestamp ts = Timestamp.valueOf(ldt);
+        //History history = new History(30001, "naguri", ts, 10000, "toritori", 4);
+        //frogBanchan.insertParty(party);
+        //party.setContent("test2");
+        //frogBanchan.updateParty(party);
+        //frogBanchan.deleteParty(1003);
+        System.out.println(frogBanchan.findHistoryList("yonzzang"));
 
+        return new ModelAndView("th/test");
+    }
 
 
 }

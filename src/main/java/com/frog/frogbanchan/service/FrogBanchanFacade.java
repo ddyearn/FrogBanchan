@@ -3,10 +3,7 @@ package com.frog.frogbanchan.service;
 import java.util.List;
 import java.sql.Timestamp;
 
-import com.frog.frogbanchan.domain.Member;
-import com.frog.frogbanchan.domain.Party;
-import com.frog.frogbanchan.domain.Team;
-import com.frog.frogbanchan.domain.Comments;
+import com.frog.frogbanchan.domain.*;
 
 public interface FrogBanchanFacade {
 
@@ -69,16 +66,16 @@ public interface FrogBanchanFacade {
 //
 //    public List<Place> findPlaceListByMenu(int menu_id);
 //
-//    // HistoryService
-//    public History findHistory(String username, Timestamp recorded_date);
-//
-//    public List<History> findHistoryListsByUsername(String username);
-//
-//    public void insertHistory(History history);
-//
-//    public void updateHistory(History history);
-//
-//    public void deleteHistory(String username, Timestamp recorded_date);
+    // HistoryService
+    public History findHistory(int historyId);
+
+    public List<History> findHistoryList(String username);
+
+    public void insertHistory(History history);
+
+    public void updateHistory(History history);
+
+    public void deleteHistory(int historyId);
 //
 //    // TeamService
 //    public void insertTeam(Team team);

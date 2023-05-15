@@ -3,6 +3,8 @@ package com.frog.frogbanchan.service;
 
 import java.util.List;
 
+import com.frog.frogbanchan.dao.HistoryDao;
+import com.frog.frogbanchan.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,10 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.frog.frogbanchan.dao.MemberDao;
 import com.frog.frogbanchan.dao.PartyDao;
 import com.frog.frogbanchan.dao.CommentsDao;
-import com.frog.frogbanchan.domain.Member;
-import com.frog.frogbanchan.domain.Team;
-import com.frog.frogbanchan.domain.Party;
-import com.frog.frogbanchan.domain.Comments;
 
 @Service
 @Transactional
@@ -28,8 +26,8 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
 //    private MenuDao menuDao;
 //    @Autowired
 //    private PlaceMenuDao placeMenuDao;
-//    @Autowired
-//    private HistoryDao historyDao;
+    @Autowired
+    private HistoryDao historyDao;
 //    @Autowired
 //    private TeamDao teamDao;
     @Autowired
@@ -157,26 +155,26 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
 //        placeMenuDao.deletePlaceMenu(place_menu_id);
 //    }
 //
-//    // HistoryService
-//    public History findHistory(String username, Timestamp recorded_date) {
-//        return historyDao.findHistory(username, recorded_date);
-//    }
-//
-//    public List<History> findHistoryListsByUsername(String username) {
-//        return historyDao.findHistoryListsByUsername(username);
-//    }
-//
-//    public void insertHistory(History history) {
-//        historyDao.insertHistory(history);
-//    }
-//
-//    public void updateHistory(History history) {
-//        historyDao.updateHistory(history);
-//    }
-//
-//    public void deleteHistory(String username, Timestamp recorded_date) {
-//        historyDao.deleteHistory(username, recorded_date);
-//    }
+    // HistoryService
+    public History findHistory(int historyId) {
+        return historyDao.findHistory(historyId);
+    }
+
+    public List<History> findHistoryList(String username) {
+        return historyDao.findHistoryList(username);
+    }
+
+    public void insertHistory(History history) {
+        historyDao.insertHistory(history);
+    }
+
+    public void updateHistory(History history) {
+        historyDao.updateHistory(history);
+    }
+
+    public void deleteHistory(int historyId) {
+        historyDao.deleteHistory(historyId);
+    }
 //
 //    // TeamService
 //    public void insertTeam(Team team) {
