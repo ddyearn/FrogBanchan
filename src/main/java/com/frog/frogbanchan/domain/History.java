@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @Setter
 @ToString
 @SuppressWarnings("serial")
-public class History {
+public class History implements Serializable {
     @Id
     private int historyId;
     private String username;
