@@ -14,8 +14,6 @@ public class LoginController {
 
 	@RequestMapping("/index")
 	public String handler() {
-		System.out.println(frogBanchan.findMembersByNickname("나메코"));
-		System.out.println(frogBanchan.findUsernameList());
 		return "th/index";
 	}
 
