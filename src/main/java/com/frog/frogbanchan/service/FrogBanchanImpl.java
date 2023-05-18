@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.frog.frogbanchan.dao.MemberDao;
+import com.frog.frogbanchan.dao.UsersDao;
 import com.frog.frogbanchan.dao.PartyDao;
 import com.frog.frogbanchan.dao.PlaceDao;
 import com.frog.frogbanchan.dao.CommentsDao;
@@ -19,7 +19,7 @@ import com.frog.frogbanchan.dao.CommentsDao;
 @Transactional
 public class FrogBanchanImpl implements FrogBanchanFacade {
     @Autowired
-    private MemberDao memberDao;
+    private UsersDao usersDao;
     @Autowired
     private PlaceDao placeDao;
     // @Autowired
@@ -41,37 +41,37 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     // Operation methods, implementing the PetStoreFacade interface
     // -------------------------------------------------------------------------
 
-    // MemberService
-    public void insertMember(Member member) {
-        memberDao.insertMember(member);
+    // UserService
+    public void insertUser(Users users) {
+        usersDao.insertUser(users);
     }
 
-    public void updateMember(Member member) {
-        memberDao.updateMember(member);
+    public void updateUser(Users users) {
+        usersDao.updateUser(users);
     }
 
-    public void deleteMember(String username) {
-        memberDao.deleteMember(username);
+    public void deleteUser(String username) {
+        usersDao.deleteUser(username);
     }
 
-    public Member findMemberByUsername(String username) {
-        return memberDao.findMemberByUsername(username);
+    public Users findUserByUsername(String username) {
+        return usersDao.findUserByUsername(username);
     }
 
-    public List<Member> findMembersByNickname(String nickname) {
-        return memberDao.findMembersByNickname(nickname);
+    public List<Users> findUsersByNickname(String nickname) {
+        return usersDao.findUsersByNickname(nickname);
     }
 
     public List<String> findUsernameList() {
-        return memberDao.findUsernameList();
+        return usersDao.findUsernameList();
     }
 
     public List<Team> findTeamsByUsername(String username) {
-        return memberDao.findTeamsByUsername(username);
+        return usersDao.findTeamsByUsername(username);
     }
 
-    public List<Member> findMembersByTeamId(int teamId) {
-        return memberDao.findMembersByTeamId(teamId);
+    public List<Users> findUsersByTeamId(int teamId) {
+        return usersDao.findUsersByTeamId(teamId);
     }
 
     // PlaceService

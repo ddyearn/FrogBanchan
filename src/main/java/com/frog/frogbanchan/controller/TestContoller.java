@@ -1,10 +1,7 @@
 package com.frog.frogbanchan.controller;
 
-import com.frog.frogbanchan.domain.History;
-import com.frog.frogbanchan.domain.Member;
-import com.frog.frogbanchan.domain.Party;
-import com.frog.frogbanchan.domain.Comments;
-import com.frog.frogbanchan.domain.Place;
+import com.frog.frogbanchan.domain.*;
+import com.frog.frogbanchan.domain.Users;
 import com.frog.frogbanchan.service.FrogBanchanImpl;
 
 import java.sql.Timestamp;
@@ -20,17 +17,17 @@ public class TestContoller {
     @Autowired
     private FrogBanchanImpl frogBanchan;
 
-    @RequestMapping("/test/member")
-    public ModelAndView memberTest() {
-        System.out.println(frogBanchan.findMembersByNickname("나메코"));
-        System.out.println(frogBanchan.findMemberByUsername("nameco"));
+    @RequestMapping("/test/user")
+    public ModelAndView userTest() {
+        System.out.println(frogBanchan.findUsersByNickname("나메코"));
+        System.out.println(frogBanchan.findUserByUsername("nameco"));
         System.out.println(frogBanchan.findTeamsByUsername("nameco"));
-        Member member = new Member("test", "test", "test", "test", "000-0000-0000", "test", "0000000", "test");
-        // frogBanchan.insertMember(member);
-        // member.setName("test1");
-        // frogBanchan.updateMember(member);
-        // System.out.println(frogBanchan.findMemberByUsername("test"));
-        // frogBanchan.deleteMember("test");
+        Users users = new Users("test", "test", "test", "test", "000-0000-0000", "test", "0000000", "test");
+        // frogBanchan.insertUser(user);
+        // user.setName("test1");
+        // frogBanchan.updateUser(user);
+        // System.out.println(frogBanchan.findUserByUsername("test"));
+        // frogBanchan.deleteUser("test");
         System.out.println(frogBanchan.findUsernameList());
 
         System.out.println();

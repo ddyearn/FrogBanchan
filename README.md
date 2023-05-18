@@ -14,7 +14,7 @@
 **6. Branch 삭제 (권장)**
 
     
-    - 브랜치명 예시) feature/member (권장)
+    - 브랜치명 예시) feature/users (권장)
     
     - 커밋 메시지 예시) [feat] login 구현 (권장)
     
