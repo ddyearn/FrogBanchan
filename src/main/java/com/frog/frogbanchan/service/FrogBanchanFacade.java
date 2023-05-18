@@ -7,22 +7,22 @@ import com.frog.frogbanchan.domain.*;
 
 public interface FrogBanchanFacade {
 
-    // MemberService
-    public void insertMember(Member member);
+    // UserService
+    public void insertUser(Users users);
 
-    public void updateMember(Member member);
+    public void updateUser(Users users);
 
-    public void deleteMember(String username);
+    public void deleteUser(String username);
 
-    public Member findMemberByUsername(String username);
+    public Users findUserByUsername(String username);
 
-    public List<Member> findMembersByNickname(String nickname);
+    public List<Users> findUsersByNickname(String nickname);
 
     public List<String> findUsernameList();
 
     public List<Team> findTeamsByUsername(String username);
 
-    public List<Member> findMembersByTeamId(int teamId);
+    public List<Users> findUsersByTeamId(int teamId);
 
     // PlaceService
     public void insertPlace(Place place);
