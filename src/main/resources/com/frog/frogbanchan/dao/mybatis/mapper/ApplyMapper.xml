@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.frog.frogbanchan.dao.mybatis.mapper.ApplyMapper">
+    <cache />
+
+    <select id="findApplyByApplyId" resultType="Apply">
+        SELECT APPLY_ID AS applyId,
+            PARTY_ID AS partyId,
+            WRITER,
+            WRITTEN_DATE AS writtenDate,
+            CONTENT
+        FROM APPLY
+        WHERE APPLY_ID = #{applyId}
+    </select>
+
+    <select id="findAppliesByPartyId" resultType="Apply">
+        SELECT APPLY_ID AS applyId,
+            PARTY_ID AS partyId,
+            WRITER,
+            WRITTEN_DATE AS writtenDate,
+            CONTENT
+        FROM APPLY
+        WHERE PARTY_ID = #{partyId}
+        ORDER BY WRITTEN_DATE
+    </select>
+
+    <select id="findApplyList" resultType="Apply">
+        SELECT APPLY_ID AS applyId,
+            PARTY_ID AS partyId,
+            WRITER,
+            WRITTEN_DATE AS writtenDate,
+            CONTENT
+        FROM APPLY
+    </select>
+
+    <insert id="insertApply" parameterType="Apply">
+        INSERT INTO APPLY (APPLY_ID, PARTY_ID, WRITER, WRITTEN_DATE, CONTENT)
+        VALUES (SEQUENCE_Apply.nextval, #{partyId}, #{writer}, SYSDATE, #{content})
+    </insert>
+
+    <delete id="deleteApply">
+        DELETE FROM APPLY
+        WHERE APPLY_ID = #{applyId}
+    </delete>
+
+    <delete id="deleteAppliesByPartyId">
+        DELETE FROM APPLY
+        WHERE PARTY_ID = #{partyId}
+    </delete>
+
+</mapper>

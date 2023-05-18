@@ -108,17 +108,17 @@ public interface FrogBanchanFacade {
 
     public List<Party> findPartyList();
 
-    // CommentsService
-    public void insertComment(Comments comments);
+    // ApplyService
+    public void insertApply(Apply apply);
 
-    public void deleteComment(int commentId);
+    public void deleteApply(int applyId);
 
-    public void deleteCommentsByPartyId(int partyId);
+    public void deleteAppliesByPartyId(int partyId);
 
-    public Comments findCommentByCommentId(int commentId);
+    public Apply findApplyByApplyId(int applyId);
 
-    public List<Comments> findCommentsByPartyId(int partyId);
+    public List<Apply> findAppliesByPartyId(int partyId);
 
-    public List<Comments> findCommentList();
+    public List<Apply> findApplyList();
 
 }

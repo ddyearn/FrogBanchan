@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.frog.frogbanchan.dao.UsersDao;
 import com.frog.frogbanchan.dao.PartyDao;
 import com.frog.frogbanchan.dao.PlaceDao;
-import com.frog.frogbanchan.dao.CommentsDao;
+import com.frog.frogbanchan.dao.ApplyDao;
 
 @Service
 @Transactional
@@ -35,7 +35,7 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     @Autowired
     private PartyDao partyDao;
     @Autowired
-    private CommentsDao commentsDao;
+    private ApplyDao applyDao;
 
     // -------------------------------------------------------------------------
     // Operation methods, implementing the PetStoreFacade interface
@@ -239,29 +239,29 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         return partyDao.findPartyList();
     }
 
-    // CommentsService
-    public void insertComment(Comments comments) {
-        commentsDao.insertComment(comments);
+    // ApplyService
+    public void insertApply(Apply apply) {
+        applyDao.insertApply(apply);
     }
 
-    public void deleteComment(int commentId) {
-        commentsDao.deleteComment(commentId);
+    public void deleteApply(int applyId) {
+        applyDao.deleteApply(applyId);
     }
 
-    public void deleteCommentsByPartyId(int partyId) {
-        commentsDao.deleteCommentsByPartyId(partyId);
+    public void deleteAppliesByPartyId(int partyId) {
+        applyDao.deleteAppliesByPartyId(partyId);
     }
 
-    public Comments findCommentByCommentId(int commentId) {
-        return commentsDao.findCommentByCommentId(commentId);
+    public Apply findApplyByApplyId(int applyId) {
+        return applyDao.findApplyByApplyId(applyId);
     }
 
-    public List<Comments> findCommentsByPartyId(int partyId) {
-        return commentsDao.findCommentsByPartyId(partyId);
+    public List<Apply> findAppliesByPartyId(int partyId) {
+        return applyDao.findAppliesByPartyId(partyId);
     }
 
-    public List<Comments> findCommentList() {
-        return commentsDao.findCommentList();
+    public List<Apply> findApplyList() {
+        return applyDao.findApplyList();
     }
 
 }
