@@ -4,6 +4,7 @@ import com.frog.frogbanchan.domain.History;
 import com.frog.frogbanchan.domain.Member;
 import com.frog.frogbanchan.domain.Party;
 import com.frog.frogbanchan.domain.Comments;
+import com.frog.frogbanchan.domain.Place;
 import com.frog.frogbanchan.service.FrogBanchanImpl;
 
 import java.sql.Timestamp;
@@ -24,34 +25,34 @@ public class TestContoller {
         System.out.println(frogBanchan.findMembersByNickname("나메코"));
         System.out.println(frogBanchan.findMemberByUsername("nameco"));
         System.out.println(frogBanchan.findTeamsByUsername("nameco"));
-        Member member = new Member("test", "test", "test","test","000-0000-0000","test","0000000","test");
-//        frogBanchan.insertMember(member);
-//        member.setName("test1");
-//        frogBanchan.updateMember(member);
-//        System.out.println(frogBanchan.findMemberByUsername("test"));
-//        frogBanchan.deleteMember("test");
+        Member member = new Member("test", "test", "test", "test", "000-0000-0000", "test", "0000000", "test");
+        // frogBanchan.insertMember(member);
+        // member.setName("test1");
+        // frogBanchan.updateMember(member);
+        // System.out.println(frogBanchan.findMemberByUsername("test"));
+        // frogBanchan.deleteMember("test");
         System.out.println(frogBanchan.findUsernameList());
 
         System.out.println();
         return new ModelAndView("th/test");
     }
-    
+
     @RequestMapping("/test/party")
     public ModelAndView partyTest() {
-    	System.out.println(frogBanchan.findParty(1001));
-    	System.out.println(frogBanchan.findPartyList());
-    	frogBanchan.deleteComment(1000);
-    	String time = "2023-05-31T18:15:00";
+        System.out.println(frogBanchan.findParty(1001));
+        System.out.println(frogBanchan.findPartyList());
+        frogBanchan.deleteComment(1000);
+        String time = "2023-05-31T18:15:00";
         LocalDateTime ldt = LocalDateTime.parse(time);
         Timestamp ts = Timestamp.valueOf(ldt);
         Party party = new Party(1111, "naguri", ts, "toritori", "test1");
-        //frogBanchan.insertParty(party);
-        //party.setContent("test2");
-        //frogBanchan.updateParty(party);
-        //frogBanchan.deleteParty(1003);
-    	System.out.println(frogBanchan.findPartyList());
-    	
-    	return new ModelAndView("th/test");
+        // frogBanchan.insertParty(party);
+        // party.setContent("test2");
+        // frogBanchan.updateParty(party);
+        // frogBanchan.deleteParty(1003);
+        System.out.println(frogBanchan.findPartyList());
+
+        return new ModelAndView("th/test");
     }
 
     @RequestMapping("/test/comments")
@@ -60,10 +61,9 @@ public class TestContoller {
         System.out.println(frogBanchan.findCommentList());
         System.out.println(frogBanchan.findCommentsByPartyId(1001));
         Comments comments = new Comments(1, 1001, "nameco", "test");
-//        frogBanchan.insertComment(comments);
+        // frogBanchan.insertComment(comments);
         frogBanchan.deleteComment(5002);
         System.out.println(frogBanchan.findCommentList());
-
 
         return new ModelAndView("th/test");
     }
@@ -72,19 +72,25 @@ public class TestContoller {
     public ModelAndView historyTest() {
         System.out.println(frogBanchan.findHistory(30000));
         System.out.println(frogBanchan.findHistoryList("yonzzang"));
-        //frogBanchan.deleteHistory(30000);
+        // frogBanchan.deleteHistory(30000);
         String time = "2023-05-31T18:15:00";
         LocalDateTime ldt = LocalDateTime.parse(time);
         Timestamp ts = Timestamp.valueOf(ldt);
-        //History history = new History(30001, "naguri", ts, 10000, "toritori", 4);
-        //frogBanchan.insertParty(party);
-        //party.setContent("test2");
-        //frogBanchan.updateParty(party);
-        //frogBanchan.deleteParty(1003);
+        // History history = new History(30001, "naguri", ts, 10000, "toritori", 4);
+        // frogBanchan.insertParty(party);
+        // party.setContent("test2");
+        // frogBanchan.updateParty(party);
+        // frogBanchan.deleteParty(1003);
         System.out.println(frogBanchan.findHistoryList("yonzzang"));
 
         return new ModelAndView("th/test");
     }
 
+    @RequestMapping("/test/place")
+    public ModelAndView placeTest() {
+        System.out.println(frogBanchan.findPlaceById("toritori"));
+
+        return new ModelAndView("th/test");
+    }
 
 }
