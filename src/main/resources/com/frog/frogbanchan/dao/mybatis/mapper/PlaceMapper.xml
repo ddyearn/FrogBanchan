@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.frog.frogbanchan.dao.mybatis.mapper.PlaceMapper">
+    <cache />
+
+    <select id="findPlaceById" resultType="Place">
+    	SELECT PLACE_ID AS placeId, 
+                PASSWORD,
+                NAME,
+                ADDRESS
+        FROM PLACE
+        WHERE PLACE_ID = #{placeId}
+    </select>
+
+    <insert id="insertPlace" parameterType="Place">
+        INSERT INTO Place(place_id, password, name, address)
+        VALUES (#{placeId}, #{password}, #{name}, #{address})
+    </insert>
+
+
+</mapper>
