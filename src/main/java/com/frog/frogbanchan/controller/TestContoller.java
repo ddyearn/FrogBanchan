@@ -1,7 +1,6 @@
 package com.frog.frogbanchan.controller;
 
 import com.frog.frogbanchan.domain.*;
-import com.frog.frogbanchan.domain.Users;
 import com.frog.frogbanchan.service.FrogBanchanImpl;
 
 import java.sql.Timestamp;
@@ -22,11 +21,11 @@ public class TestContoller {
         System.out.println(frogBanchan.findUsersByNickname("나메코"));
         System.out.println(frogBanchan.findUserByUsername("nameco"));
         System.out.println(frogBanchan.findTeamsByUsername("nameco"));
-        Users users = new Users("test", "test", "test", "test", "000-0000-0000", "test", "0000000", "test");
-        // frogBanchan.insertUser(user);
-        // user.setName("test1");
-        // frogBanchan.updateUser(user);
-        // System.out.println(frogBanchan.findUserByUsername("test"));
+//        Users user = new Users("test", "test", "test", "test", "000-0000-0000", "test", "0000000", "test");
+//         frogBanchan.insertUser(user);
+//         user.setName("test1");
+//         frogBanchan.updateUser(user);
+//         System.out.println(frogBanchan.findUserByUsername("test"));
         // frogBanchan.deleteUser("test");
         System.out.println(frogBanchan.findUsernameList());
 
@@ -38,7 +37,7 @@ public class TestContoller {
     public ModelAndView partyTest() {
         System.out.println(frogBanchan.findParty(1001));
         System.out.println(frogBanchan.findPartyList());
-        frogBanchan.deleteComment(1000);
+        frogBanchan.deleteAppliesByPartyId(1000);
         String time = "2023-05-31T18:15:00";
         LocalDateTime ldt = LocalDateTime.parse(time);
         Timestamp ts = Timestamp.valueOf(ldt);
@@ -52,15 +51,15 @@ public class TestContoller {
         return new ModelAndView("th/test");
     }
 
-    @RequestMapping("/test/comments")
-    public ModelAndView commentsTest() {
-        System.out.println(frogBanchan.findCommentByCommentId(5002));
-        System.out.println(frogBanchan.findCommentList());
-        System.out.println(frogBanchan.findCommentsByPartyId(1001));
-        Comments comments = new Comments(1, 1001, "nameco", "test");
-        // frogBanchan.insertComment(comments);
-        frogBanchan.deleteComment(5002);
-        System.out.println(frogBanchan.findCommentList());
+    @RequestMapping("/test/apply")
+    public ModelAndView ApplyTest() {
+        System.out.println(frogBanchan.findApplyByApplyId(5002));
+        System.out.println(frogBanchan.findApplyList());
+        System.out.println(frogBanchan.findAppliesByPartyId(1001));
+//        Apply apply = new Apply(1, 1001, "nameco", "test");
+//         frogBanchan.insertApply(apply);
+//        frogBanchan.deleteApply(5002);
+        System.out.println(frogBanchan.findApplyList());
 
         return new ModelAndView("th/test");
     }

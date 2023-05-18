@@ -12,27 +12,27 @@ import java.sql.Timestamp;
 @Entity
 @Getter  @Setter  @ToString
 @SuppressWarnings("serial")
-public class Comments implements Serializable {
+public class Apply implements Serializable {
 	@Id
-	private int commentId;
+	private int applyId;
 	private int partyId;
 	private String writer;
 	private Timestamp writtenDate;
 	private String content;
 	
-	public Comments() {
+	public Apply() {
 		
 	}
-	public Comments(int commentId, int partyId, String writer, String content) {
+	public Apply(int applyId, int partyId, String writer, String content) {
 		super();
-		this.commentId = commentId;
+		this.applyId = applyId;
 		this.partyId = partyId;
 		this.writer = writer;
 		this.content = content;
 	}
-	public Comments(int commentId, int partyId, String writer, Timestamp writtenDate, String content) {
+	public Apply(int applyId, int partyId, String writer, Timestamp writtenDate, String content) {
 		super();
-		this.commentId = commentId;
+		this.applyId = applyId;
 		this.partyId = partyId;
 		this.writer = writer;
 		this.writtenDate = writtenDate;
