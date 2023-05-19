@@ -27,7 +27,7 @@ public interface FrogBanchanFacade {
     // PlaceService
     public void insertPlace(Place place);
 
-    public Place updatePlace(Place place);
+    public void updatePlace(Place place);
 
     public void deletePlace(String placeId);
 

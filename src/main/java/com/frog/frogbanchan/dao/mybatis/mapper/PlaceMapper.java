@@ -13,7 +13,7 @@ public interface PlaceMapper {
     void insertPlace(Place place);
 
     // 가게수정 : 메뉴, 상호명, 주소 변경
-    Place updatePlace(Place place);
+    void updatePlace(Place place);
 
     // 가게 삭제
     void deletePlace(String placeId);

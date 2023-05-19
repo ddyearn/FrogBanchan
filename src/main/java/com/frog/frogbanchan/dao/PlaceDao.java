@@ -15,7 +15,7 @@ public interface PlaceDao {
      */
 
     // 가게수정 : 메뉴, 상호명, 주소 변경
-    Place updatePlace(Place place) throws DataAccessException;
+    void updatePlace(Place place) throws DataAccessException;
     /*
      * UPDATE Place
      * SET name = #{name}

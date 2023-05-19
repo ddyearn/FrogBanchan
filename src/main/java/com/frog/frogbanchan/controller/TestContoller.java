@@ -85,7 +85,8 @@ public class TestContoller {
     @RequestMapping("/test/place")
     public ModelAndView placeTest() {
         System.out.println(frogBanchan.findPlaceById("toritori"));
-
+        // frogBanchan.insertPlace(new Place("testtest", "test", "test", "test", 0));
+        frogBanchan.deletePlace("testtest");
         return new ModelAndView("th/test");
     }
 
