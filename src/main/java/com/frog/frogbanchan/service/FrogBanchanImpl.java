@@ -79,8 +79,8 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         placeDao.insertPlace(place);
     }
 
-    public Place updatePlace(Place place) {
-        return placeDao.updatePlace(place);
+    public void updatePlace(Place place) {
+        placeDao.updatePlace(place);
     }
 
     public void deletePlace(String placeId) {

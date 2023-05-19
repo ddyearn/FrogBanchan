@@ -23,8 +23,8 @@ public class MybatisPlaceDao implements PlaceDao {
     };
 
     // 가게수정 : 메뉴, 상호명, 주소 변경
-    public Place updatePlace(Place place) throws DataAccessException {
-        return placeMapper.updatePlace(place);
+    public void updatePlace(Place place) throws DataAccessException {
+        placeMapper.updatePlace(place);
     };
 
     // 가게 삭제
