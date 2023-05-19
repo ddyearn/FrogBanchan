@@ -14,12 +14,12 @@
     </select>
 
     <insert id="insertPlace" parameterType="Place">
-        INSERT INTO Place(place_id, password, name, address)
+        INSERT INTO PLACE(place_id, password, name, address)
         VALUES (#{placeId}, #{password}, #{name}, #{address})
     </insert>
 
     <update id="updatePlace" parameterType="Place">
-        UPDATE Place
+        UPDATE PLACE
         SET PASSWORD = #{password},
             NAME = #{name},
             ADDRESS = #{address}
