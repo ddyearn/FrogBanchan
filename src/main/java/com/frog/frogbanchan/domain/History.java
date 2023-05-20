@@ -19,18 +19,17 @@ public class History implements Serializable {
     private int historyId;
     private String username;
     private Timestamp recordedDate;
-    private int menuId;
+    private int placeMenuId;
     private String placeId;
     private int score;
 
     public History() {
     }
-    public History(int historyId, String username, Timestamp recordedDate, int menuId, String placeId, int score) {
+    public History(int historyId, String username, int placeMenuId, String placeId, int score) {
         super();
         this.historyId = historyId;
         this.username = username;
-        this.recordedDate = recordedDate;
-        this.menuId = menuId;
+        this.placeMenuId = placeMenuId;
         this.placeId = placeId;
         this.score = score;
     }
