@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Component
-public class SignonInterceptor implements HandlerInterceptor {
+public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
@@ -21,9 +21,9 @@ public class SignonInterceptor implements HandlerInterceptor {
             String query = request.getQueryString();
             ModelAndView modelAndView = new ModelAndView("login");
             if (query != null) {
-                modelAndView.addObject("signonForwardAction", url + "?" + query);
+                modelAndView.addObject("loginForwardAction", url + "?" + query);
             } else {
-                modelAndView.addObject("signonForwardAction", url);
+                modelAndView.addObject("loginForwardAction", url);
             } throw new ModelAndViewDefiningException(modelAndView);
         } else {
             return true;

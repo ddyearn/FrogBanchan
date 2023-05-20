@@ -14,4 +14,7 @@ public class UserSession implements Serializable {
         this.user = user;
     }
 
+    public Users getUser() {
+        return user;
+    }
 }
