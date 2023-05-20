@@ -12,12 +12,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Autowired
-    @Qualifier(value = "signonInterceptor")
+    @Qualifier(value = "loginInterceptor")
     private HandlerInterceptor interceptor;
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/index").setViewName("index");
-        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/user/login").setViewName("login");
     }
 
     public void addInterceptors(InterceptorRegistry registry) {
