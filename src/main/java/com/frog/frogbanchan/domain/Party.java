@@ -30,4 +30,17 @@ public class Party implements Serializable {
 		this.placeId = placeId;
 		this.content = content;
 	}
+	public Party(int partyId, String creator, Timestamp meetDate, String placeId) { //findPartyList
+		this.partyId = partyId;
+		this.creator = creator;
+		this.meetDate = meetDate;
+		this.placeId = placeId;
+	}
+	
+	public Party(int partyId, Timestamp meetDate, String placeId, String content) { //updateParty
+		this.partyId = partyId;
+		this.meetDate = meetDate;
+		this.placeId = placeId;
+		this.content = content;
+	}
 }
