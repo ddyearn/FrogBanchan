@@ -88,4 +88,9 @@ public class TestContoller {
         return new ModelAndView("th/test");
     }
 
+    @RequestMapping("/react")
+    public String reactTest() {
+        return "index.html";
+    }
+
 }
