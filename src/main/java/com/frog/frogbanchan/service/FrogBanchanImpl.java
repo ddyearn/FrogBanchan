@@ -3,6 +3,7 @@ package com.frog.frogbanchan.service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import com.frog.frogbanchan.dao.HistoryDao;
 import com.frog.frogbanchan.domain.*;
@@ -79,8 +80,8 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         placeDao.insertPlace(place);
     }
 
-    public Place updatePlace(Place place) {
-        return placeDao.updatePlace(place);
+    public void updatePlace(Place place) {
+        placeDao.updatePlace(place);
     }
 
     public void deletePlace(String placeId) {
@@ -91,7 +92,7 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         return placeDao.findPlaceById(placeId);
     }
 
-    public void insertAvailableTime(String placeId, List<Timestamp> availableTime) {
+    public void insertAvailableTime(String placeId, Timestamp availableTime) {
         placeDao.insertAvailableTime(placeId, availableTime);
     }
 

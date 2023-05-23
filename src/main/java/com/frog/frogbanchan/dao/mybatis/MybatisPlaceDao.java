@@ -2,6 +2,7 @@ package com.frog.frogbanchan.dao.mybatis;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -23,8 +24,8 @@ public class MybatisPlaceDao implements PlaceDao {
     };
 
     // 가게수정 : 메뉴, 상호명, 주소 변경
-    public Place updatePlace(Place place) throws DataAccessException {
-        return placeMapper.updatePlace(place);
+    public void updatePlace(Place place) throws DataAccessException {
+        placeMapper.updatePlace(place);
     };
 
     // 가게 삭제
@@ -38,7 +39,7 @@ public class MybatisPlaceDao implements PlaceDao {
     };
 
     // 예약 가능 시간 체크
-    public void insertAvailableTime(String placeId, List<Timestamp> availableTime) throws DataAccessException {
+    public void insertAvailableTime(String placeId, Timestamp availableTime) throws DataAccessException {
         placeMapper.insertAvailableTime(placeId, availableTime);
     };
 

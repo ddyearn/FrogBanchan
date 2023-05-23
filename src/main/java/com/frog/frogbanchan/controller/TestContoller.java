@@ -4,8 +4,16 @@ import com.frog.frogbanchan.domain.*;
 import com.frog.frogbanchan.service.FrogBanchanImpl;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +29,12 @@ public class TestContoller {
         System.out.println(frogBanchan.findUsersByNickname("나메코"));
         System.out.println(frogBanchan.findUserByUsername("nameco"));
         System.out.println(frogBanchan.findTeamsByUsername("nameco"));
-//        Users user = new Users("test", "test", "test", "test", "000-0000-0000", "test", "0000000", "test");
-//         frogBanchan.insertUser(user);
-//         user.setName("test1");
-//         frogBanchan.updateUser(user);
-//         System.out.println(frogBanchan.findUserByUsername("test"));
+        // Users user = new Users("test", "test", "test", "test", "000-0000-0000",
+        // "test", "0000000", "test");
+        // frogBanchan.insertUser(user);
+        // user.setName("test1");
+        // frogBanchan.updateUser(user);
+        // System.out.println(frogBanchan.findUserByUsername("test"));
         // frogBanchan.deleteUser("test");
         System.out.println(frogBanchan.findUsernameList());
 
@@ -56,9 +65,9 @@ public class TestContoller {
         System.out.println(frogBanchan.findApplyByApplyId(5002));
         System.out.println(frogBanchan.findApplyList());
         System.out.println(frogBanchan.findAppliesByPartyId(1001));
-//        Apply apply = new Apply(1, 1001, "nameco", "test");
-//         frogBanchan.insertApply(apply);
-//        frogBanchan.deleteApply(5002);
+        // Apply apply = new Apply(1, 1001, "nameco", "test");
+        // frogBanchan.insertApply(apply);
+        // frogBanchan.deleteApply(5002);
         System.out.println(frogBanchan.findApplyList());
 
         return new ModelAndView("th/test");
@@ -84,8 +93,20 @@ public class TestContoller {
 
     @RequestMapping("/test/place")
     public ModelAndView placeTest() {
-        System.out.println(frogBanchan.findPlaceById("toritori"));
+        // System.out.println(frogBanchan.findPlaceById("toritori"));
+        // Place place1 = new Place("testtest", "testt", "testt", "testt");
+        // frogBanchan.insertPlace(place1);
+        // Place place2 = new Place("testtest", "ud_test", "ud_test", "ud_test");
+        // frogBanchan.updatePlace(place2);
+        // frogBanchan.deletePlace("testtest");
 
+        // Date date = new Date();
+        // Timestamp timestamp = new Timestamp(date.getTime());
+        // Timestamp timestamp1 = new Timestamp(date.getTime());
+        // frogBanchan.insertAvailableTime("test1_id", timestamp);
+
+        List<Timestamp> list = frogBanchan.findCalendar("toritori");
+        System.out.println(list);
         return new ModelAndView("th/test");
     }
 
