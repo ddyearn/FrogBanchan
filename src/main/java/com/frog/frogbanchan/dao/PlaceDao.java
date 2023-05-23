@@ -1,6 +1,8 @@
 package com.frog.frogbanchan.dao;
 
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.dao.DataAccessException;
 import java.sql.Timestamp;
 import com.frog.frogbanchan.domain.Place;
@@ -39,7 +41,7 @@ public interface PlaceDao {
      */
 
     // 예약 가능 시간 체크
-    void insertAvailableTime(String placeId, List<Timestamp> availableTime) throws DataAccessException;
+    void insertAvailableTime(String placeId, Timestamp availableTime) throws DataAccessException;
     /*
      * insert into Place(place_id, available_time)
      * values (#{placeId}, #{availableime})

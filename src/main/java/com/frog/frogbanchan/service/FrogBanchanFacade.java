@@ -1,6 +1,7 @@
 package com.frog.frogbanchan.service;
 
 import java.util.List;
+import java.util.Map;
 import java.sql.Timestamp;
 
 import com.frog.frogbanchan.domain.*;
@@ -33,7 +34,7 @@ public interface FrogBanchanFacade {
 
     public Place findPlaceById(String placeId);
 
-    public void insertAvailableTime(String placeId, List<Timestamp> availableTime);
+    public void insertAvailableTime(String placeId, Timestamp availableTime);
 
     public List<Timestamp> findCalendar(String placeId);
 

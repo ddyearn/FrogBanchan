@@ -2,8 +2,11 @@ package com.frog.frogbanchan.dao.mybatis.mapper;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import com.frog.frogbanchan.domain.Place;
 
 @Mapper
@@ -22,7 +25,8 @@ public interface PlaceMapper {
     Place findPlaceById(String placeId);
 
     // 예약 가능 시간 체크
-    void insertAvailableTime(String placeId, List<Timestamp> availableTime);
+    void insertAvailableTime(@Param("placeId") String placeId,
+            @Param("availableTime") Timestamp availableTime);
 
     // 캘린더 가져오기
     List<Timestamp> findCalendar(String placeId);
