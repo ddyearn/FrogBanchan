@@ -77,22 +77,21 @@ public class TestContoller {
     public ModelAndView historyTest() {
         System.out.println(frogBanchan.findHistory(30000));
         System.out.println(frogBanchan.findHistoryList("yonzzang"));
-        // frogBanchan.deleteHistory(30000);
-        String time = "2023-05-31T18:15:00";
-        LocalDateTime ldt = LocalDateTime.parse(time);
-        Timestamp ts = Timestamp.valueOf(ldt);
-        // History history = new History(30001, "naguri", ts, 10000, "toritori", 4);
-        // frogBanchan.insertParty(party);
-        // party.setContent("test2");
-        // frogBanchan.updateParty(party);
-        // frogBanchan.deleteParty(1003);
-        System.out.println(frogBanchan.findHistoryList("yonzzang"));
+//        History history = new History(30022, "naguri", 50000, "toritori", 1);
+//        frogBanchan.insertHistory(history);
+//        System.out.println(frogBanchan.findHistoryList("naguri"));
+//        history.setScore(4);
+//        frogBanchan.updateHistory(history);
+//        System.out.println(frogBanchan.findHistoryList("naguri"));
+//        frogBanchan.deleteHistory(30022);
+//        System.out.println(frogBanchan.findHistoryList("naguri"));
 
         return new ModelAndView("th/test");
     }
 
     @RequestMapping("/test/place")
     public ModelAndView placeTest() {
+
         // System.out.println(frogBanchan.findPlaceById("toritori"));
         // Place place1 = new Place("testtest", "testt", "testt", "testt");
         // frogBanchan.insertPlace(place1);
@@ -107,7 +106,13 @@ public class TestContoller {
 
         List<Timestamp> list = frogBanchan.findCalendar("toritori");
         System.out.println(list);
+
         return new ModelAndView("th/test");
+    }
+
+    @RequestMapping("/react")
+    public String reactTest() {
+        return "redirect:/react/index.html";
     }
 
 }

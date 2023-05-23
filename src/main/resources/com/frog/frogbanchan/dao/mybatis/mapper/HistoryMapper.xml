@@ -10,7 +10,7 @@
                SCORE,
                PLACE_ID AS placeId,
                RECORDED_DATE AS recordedDate,
-               MENU_ID
+               PLACE_MENU_ID AS placeMenuId
         FROM HISTORY
         WHERE HISTORY_ID = #{historyId}
     </select>
@@ -21,19 +21,20 @@
                SCORE,
                PLACE_ID AS placeId,
                RECORDED_DATE AS recordedDate,
-               MENU_ID
+               PLACE_MENU_ID AS placeMenuId
         FROM HISTORY
+        WHERE USERNAME = #{username}
     </select>
 
     <insert id="insertHistory" parameterType="History">
-        INSERT INTO HISTORY (HISTORY_ID, USERNAME, SCORE, PLACE_ID, RECORDED_DATE, MENU_ID)
-        VALUES (SEQUENCE_History.nextval, #{username}, #{score}, #{placeId}, #{recordedDate}, #{menuId})
+        INSERT INTO HISTORY (HISTORY_ID, USERNAME, SCORE, PLACE_ID, RECORDED_DATE, PLACE_MENU_ID)
+        VALUES (SEQUENCE_History.nextval, #{username}, 0, #{placeId}, SYSDATE, NULL)
     </insert>
 
     <update id="updateHistory" parameterType="History">
         UPDATE HISTORY
         SET SCORE = #{score},
-            MENU_ID = #{menuId}
+            PLACE_MENU_ID = #{placeMenuId}
         WHERE HISTORY_ID = #{historyId}
     </update>
 

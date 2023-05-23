@@ -42,5 +42,27 @@
         WHERE PLACE_ID = #{placeId}
     </select>
 
+    <update id="updatePlace" parameterType="Place">
+        UPDATE PLACE
+        SET PASSWORD = #{password},
+            NAME = #{name},
+            ADDRESS = #{address}
+        WHERE PLACE_ID = #{placeId}
+    </update>
+
+    <delete id="deletePlace">
+        DELETE FROM PLACE
+        WHERE PLACE_ID = #{placeId}
+    </delete>
+<!-- 
+    <insert id="insertAvailableTime" paramterMap="List<Timestamp>">
+        INSERT INTO PLACE_AVAILABLE(place_id, available_time)
+        VALUES
+        <foreach collection="array" item="time" separator=",">
+            (#{placeId}, #{time})
+        </foreach>
+    </insert> -->
+
+
 
 </mapper>
