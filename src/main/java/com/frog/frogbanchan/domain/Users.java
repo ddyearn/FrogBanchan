@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Entity
 @Getter @Setter @ToString
 @SuppressWarnings("serial")
-public class Member implements Serializable {
+public class Users implements Serializable {
 	@Id
 	private String username;
 	private String password;
@@ -22,9 +22,9 @@ public class Member implements Serializable {
 	private String residentNo;
 	private String address;
 	
-	public Member() {
+	public Users() {
 	}
-	public Member(String username, String password, String name, String nickname, String phone, String email, String residentNo, String address) {
+	public Users(String username, String password, String name, String nickname, String phone, String email, String residentNo, String address) {
 		super();
 		this.username = username;
 		this.password = password;
