@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
+.mainbox{
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 1500px;
+  height: 800px;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  background: #FFFFFF;
+  border: 2px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  
+}
+
+.line {
+  width: 1500px;
+  height: 0px;
+  margin-top: 25%;
+
+  
+  border: 1px solid #000000;
+}
+
+.page {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 900px;
+  height: 500px;
+  top: 17%;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+}
+
+.logo {
+  float: left;
+}
+
+.mainimg {
+  position: absolute;
+
+  width: 350px;
+  height: 450px;
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
+.titleWrap {
+  margin-top: 1%;
+  margin-left: 50%;
+
+  text-align: center;
+  font-family: 'Poor Story';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 100px;
+  color: #262626;
+}
+
+.line2 {
+  border-left: 1px solid #000;
+  height:100%;
+
+  margin-top: -10px;
+  left: 50%;
+  position: absolute;
+}
+.contentWrap {
+  margin-top: 26px;
+  flex: 1;
+}
+
+.inputTitle {
+  margin-left: 55%;
+  margin-right: 30px;
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Poor Story';
+  font-weight: 600;
+  color: #262626;
+}
+
+.inputWrap {
+  display: flex;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
+  margin-left: 60%;
+  margin-bottom: 10px;
+  width: 250px;
+  background-color: white;
+  border: 1px solid gray;
+}
+
+.inputWrap:focus-within {
+  border: 1px solid green;
+}
+
+.input {
+  float:left;
+  
+  width: 100%;
+  outline: none;
+  border: none;
+  height: 17px;
+
+  font-family: 'Poor Story';
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.input::placeholder {
+  text-align: center;
+  font-size: 18px;
+
+  color: #dadada;
+}
+
+.errorMessageWrap {
+  margin-top: 8px;
+  color: #ef0000;
+  font-size: 12px;
+}
+
+.bttnWrapper {
+   display: flex;
+}
+
+.loginButton {  
+  display: inline-block;
+  margin-top: 3%;
+  margin-left: 60%;
+  
+  width: 15%;
+  height: 48px;
+  border: none;
+
+  font-size: 20px;
+  font-family: 'Poor Story';
+  font-weight: 700;
+  background-color: green;
+  border-radius: 64px;
+  color: white;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.loginButton:disabled {
+  background-color: #dadada;
+  color: white;
+}
+
+.joinButton {
+  margin-top: 3%;
+  
+  width: 15%;
+  height: 48px;
+  border: none;
+
+  font-size: 20px;
+  font-family: 'Poor Story';
+  font-weight: 700;
+  background-color: green;
+  border-radius: 64px;
+  color: white;
+  cursor: pointer;
+}
