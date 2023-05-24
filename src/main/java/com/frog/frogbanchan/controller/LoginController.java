@@ -1,5 +1,6 @@
 package com.frog.frogbanchan.controller;
 
+import com.frog.frogbanchan.domain.Place;
 import com.frog.frogbanchan.domain.Users;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@SessionAttributes("userSession")
-@RequestMapping("/user/login")
+@SessionAttributes({"userSession", "placeSession"})
+@RequestMapping("/login")
 public class LoginController {
 
 	private FrogBanchanFacade frogBanchan;
@@ -28,22 +29,31 @@ public class LoginController {
 	}
 
 	@PostMapping
-	public ModelAndView handleRequest1(HttpServletRequest request,
-									   @RequestParam("username") String username,
+	public ModelAndView handleRequest3(HttpServletRequest request,
+									   @RequestParam("id") String id,
 									   @RequestParam("password") String password,
 									   @RequestParam(value = "forwardAction", required = false) String forwardAction,
 									   Model model) throws Exception {
-		Users user = frogBanchan.findUserByUsername(username);
-		if (user == null || !password.equals(user.getPassword())) {
-			return new ModelAndView("login");
-		} else {
-			UserSession userSession = new UserSession(user);
+
+		Users users = frogBanchan.findUserByUsername(id);
+		Place place = frogBanchan.findPlaceById(id);
+		System.out.println(users);
+		System.out.println(place);
+
+		if (users != null && password.equals(users.getPassword())) {
+			UserSession userSession = new UserSession(users);
 			model.addAttribute("userSession", userSession);
-			if (forwardAction != null) {
-				return new ModelAndView("redirect:" + forwardAction);
-			} else {
-				return new ModelAndView("index");
-			}
+		} else if (place != null && password.equals(place.getPassword())) {
+			PlaceSession placeSession = new PlaceSession(place);
+			model.addAttribute("placeSession", placeSession);
+		} else {
+			return new ModelAndView("login");
+		}
+
+		if (forwardAction != null) {
+			return new ModelAndView("redirect:" + forwardAction);
+		} else {
+			return new ModelAndView("index");
 		}
 	}
 

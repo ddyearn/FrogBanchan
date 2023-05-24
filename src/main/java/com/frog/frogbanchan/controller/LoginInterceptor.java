@@ -16,7 +16,8 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object handler) throws Exception {
         UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-        if (userSession == null) {
+        PlaceSession placeSession = (PlaceSession) WebUtils.getSessionAttribute(request, "placeSession");
+        if (userSession == null && placeSession == null) {
             String url = request.getRequestURL().toString();
             String query = request.getQueryString();
             ModelAndView modelAndView = new ModelAndView("login");
