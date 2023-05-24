@@ -20,7 +20,7 @@
         </div>
         
         <div>
-        	<form action='<c:url value="/user/login"/>' method="POST">
+        	<form action='<c:url value="/login"/>' method="POST">
         		<div class="contentWrap">
           	  	<c:if test="${!empty loginForwardAction}">
                 <input type="hidden" name="forwardAction"
@@ -28,7 +28,7 @@
               	</c:if>
 	          	<div class="inputTitle">아이디</div>
 		         	<div class="inputWrap">
-		           	<input type="text" class="input" name="username" 
+		           	<input type="text" class="input" name="id"
 		             		placeholder="아이디를 입력하구리"
 		            	 	value=""
 		           	/>
