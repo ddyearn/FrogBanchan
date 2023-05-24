@@ -1,3 +1,5 @@
+<%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,6 +67,14 @@
     .button:hover {
       background-color: #52c34d;
     }
+
+    .transparent {
+      opacity: 0.5; /* 투명도 50% */
+    }
+  
+    .transparent-day {
+        opacity: 1; /* 투명도 100% */
+    }
   </style>
 </head>
 <body>
@@ -93,8 +103,7 @@
             <th>Sat</th>
         </tr>
 
-        <c:set var="calendar" value="${calendar}" />
-        <% 
+        <!-- <% 
             // 현재 년도와 월 구하기
             java.util.Calendar cal = java.util.Calendar.getInstance();
             int year = cal.get(java.util.Calendar.YEAR);
@@ -110,27 +119,38 @@
             // 달력 표시
             int day = 1;
             for (int i = 1; i <= 6; i++) { // 최대 6주까지 표시
-            out.println("<tr>");
-            for (int j = 1; j <= 7; j++) {
-                if ((i == 1 && j < startDay) || day > lastDay) {
-                out.println("<td>&nbsp;</td>");
-                } else {
-                out.println("<td>" + day + "</td>");
-                day++;
+                out.println("<tr>");
+                for (int j = 1; j <= 7; j++) {
+                    if ((i == 1 && j < startDay) || day > lastDay) {
+                        out.println("<td>&nbsp;</td>");
+                    } else {
+                        String transparentClass = "transparent";
+                        if (isInArray(Integer.toString(day), ${days})) {
+                            transparentClass = "transparent-day";
+                        }
+                        out.println("<td class=\"" + transparentClass + "\">" + day + "</td>");
+                        day++;
+                    }
+                }
+                out.println("</tr>");
+
+                if (day > lastDay) {
+                    break;
                 }
             }
-            out.println("</tr>");
-            
-            if (day > lastDay) {
-                break;
-            }
-            }
-        %>
+        %> -->
         </table>
     </div>
     <div class="button-container">
         <button class="button">select date</button>
         <button class="button">check reservation</button>
     </div>
+
+    <script>
+      // days 배열에 값이 있는지 확인하는 함수
+      function isInArray(value, array) {
+          return array.indexOf(value) > -1;
+      }
+  </script>
 </body>
 </html>

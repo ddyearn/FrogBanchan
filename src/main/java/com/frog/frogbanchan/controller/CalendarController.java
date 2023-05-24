@@ -1,6 +1,8 @@
 package com.frog.frogbanchan.controller;
 
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +32,27 @@ public class CalendarController {
     public ModelAndView handleRequest(HttpServletRequest request,
             Model model) throws Exception {
 
-        return new ModelAndView("calendar").addObject("calendar", frogBanchan.findCalendar("toritori"));
+        List<Timestamp> availableTimeList = frogBanchan.findCalendar("toritori");
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
+
+        String[] days = null;
+        int i = 0;
+        for (Timestamp timestamp : availableTimeList) {
+            String date = dateFormat.format(timestamp);
+            String month = monthFormat.format(timestamp);
+            String day = dayFormat.format(timestamp);
+            days[i++] = day;
+
+            System.out.println("Date: " + date);
+            System.out.println("Month: " + month);
+            System.out.println("Day: " + day);
+            System.out.println("---------");
+        }
+
+        return new ModelAndView("calendar").addObject("days", days);
     }
 
 }
