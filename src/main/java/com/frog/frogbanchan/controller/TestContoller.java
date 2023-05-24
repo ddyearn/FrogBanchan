@@ -3,7 +3,7 @@ package com.frog.frogbanchan.controller;
 import com.frog.frogbanchan.domain.History;
 import com.frog.frogbanchan.domain.Member;
 import com.frog.frogbanchan.domain.Party;
-import com.frog.frogbanchan.domain.Comments;
+import com.frog.frogbanchan.domain.Apply;
 import com.frog.frogbanchan.service.FrogBanchanImpl;
 
 import java.sql.Timestamp;
@@ -40,7 +40,7 @@ public class TestContoller {
     public ModelAndView partyTest() {
     	System.out.println(frogBanchan.findParty(1001));
     	System.out.println(frogBanchan.findPartyList());
-    	frogBanchan.deleteComment(1000);
+    	frogBanchan.deleteApply(1000);
     	String time = "2023-05-31T18:15:00";
         LocalDateTime ldt = LocalDateTime.parse(time);
         Timestamp ts = Timestamp.valueOf(ldt);
@@ -49,24 +49,19 @@ public class TestContoller {
         //party.setContent("test2");
         //frogBanchan.updateParty(party);
         //frogBanchan.deleteParty(1003);
+        
     	System.out.println(frogBanchan.findPartyList());
-    	
+    	System.out.println(frogBanchan.findApplyByApplyId(5002));
+        System.out.println(frogBanchan.findApplyList());
+        System.out.println(frogBanchan.findApplyByPartyId(1001));
+        Apply apply = new Apply(1, 1001, "nameco", "test");
+//        frogBanchan.insertApply(apply);
+        frogBanchan.deleteApply(5002);
+        System.out.println(frogBanchan.findApplyList());
+
     	return new ModelAndView("th/test");
     }
 
-    @RequestMapping("/test/comments")
-    public ModelAndView commentsTest() {
-        System.out.println(frogBanchan.findCommentByCommentId(5002));
-        System.out.println(frogBanchan.findCommentList());
-        System.out.println(frogBanchan.findCommentsByPartyId(1001));
-        Comments comments = new Comments(1, 1001, "nameco", "test");
-//        frogBanchan.insertComment(comments);
-        frogBanchan.deleteComment(5002);
-        System.out.println(frogBanchan.findCommentList());
-
-
-        return new ModelAndView("th/test");
-    }
 
     @RequestMapping("/test/history")
     public ModelAndView historyTest() {

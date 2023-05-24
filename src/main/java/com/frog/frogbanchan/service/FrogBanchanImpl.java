@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.frog.frogbanchan.dao.MemberDao;
 import com.frog.frogbanchan.dao.PartyDao;
-import com.frog.frogbanchan.dao.CommentsDao;
 
 @Service
 @Transactional
@@ -32,8 +31,6 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
 //    private TeamDao teamDao;
     @Autowired
     private PartyDao partyDao;
-    @Autowired
-    private CommentsDao commentsDao;
 
     // -------------------------------------------------------------------------
     // Operation methods, implementing the PetStoreFacade interface
@@ -234,29 +231,28 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         return partyDao.findPartyList();
     }
 
-    // CommentsService
-    public void insertComment(Comments comments) {
-        commentsDao.insertComment(comments);
+    public void insertApply(Apply apply) {
+        partyDao.insertApply(apply);
     }
 
-    public void deleteComment(int commentId) {
-        commentsDao.deleteComment(commentId);
+    public void deleteApply(int applyId) {
+        partyDao.deleteApply(applyId);
     }
 
-    public void deleteCommentsByPartyId(int partyId) {
-        commentsDao.deleteCommentsByPartyId(partyId);
+    public void deleteApplyByPartyId(int partyId) {
+        partyDao.deleteApplyByPartyId(partyId);
     }
 
-    public Comments findCommentByCommentId(int commentId) {
-        return commentsDao.findCommentByCommentId(commentId);
+    public Apply findApplyByApplyId(int applyId) {
+        return partyDao.findApplyByApplyId(applyId);
     }
 
-    public List<Comments> findCommentsByPartyId(int partyId) {
-        return commentsDao.findCommentsByPartyId(partyId);
+    public List<Apply> findApplyByPartyId(int partyId) {
+        return partyDao.findApplyByPartyId(partyId);
     }
 
-    public List<Comments> findCommentList() {
-        return commentsDao.findCommentList();
+    public List<Apply> findApplyList() {
+        return partyDao.findApplyList();
     }
 
 }

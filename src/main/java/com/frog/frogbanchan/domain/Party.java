@@ -31,6 +31,7 @@ public class Party implements Serializable {
 		this.content = content;
 	}
 	public Party(int partyId, String creator, Timestamp meetDate, String placeId) { //findPartyList
+		super();
 		this.partyId = partyId;
 		this.creator = creator;
 		this.meetDate = meetDate;
@@ -38,6 +39,7 @@ public class Party implements Serializable {
 	}
 	
 	public Party(int partyId, Timestamp meetDate, String placeId, String content) { //updateParty
+		super();
 		this.partyId = partyId;
 		this.meetDate = meetDate;
 		this.placeId = placeId;

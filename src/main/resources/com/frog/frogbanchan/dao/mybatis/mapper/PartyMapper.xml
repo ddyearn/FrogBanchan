@@ -18,7 +18,8 @@
         SELECT PARTY_ID AS partyId,
         	CREATOR, 
     		MEET_DATE AS meetDate, 
-    		PLACE_ID AS placeId	
+    		PLACE_ID AS placeId,
+    		CONTENT
         FROM PARTY
     </select>
 
@@ -40,4 +41,48 @@
         WHERE PARTY_ID = #{partyId}
     </delete>
 
+	<select id="findApplyByApplyId" resultType="Apply">
+        SELECT APPLY_ID AS applyId,
+            PARTY_ID AS partyId,
+            WRITER,
+            WRITTEN_DATE AS writtenDate,
+            CONTENT
+        FROM APPLY
+        WHERE APPLY_ID = #{applyId}
+    </select>
+
+    <select id="findApplyByPartyId" resultType="Apply">
+        SELECT APPLY_ID AS applyId,
+            PARTY_ID AS partyId,
+            WRITER,
+            WRITTEN_DATE AS writtenDate,
+            CONTENT
+        FROM APPLY
+        WHERE PARTY_ID = #{partyId}
+        ORDER BY WRITTEN_DATE
+    </select>
+
+    <select id="findApplyList" resultType="Apply">
+        SELECT APPLY_ID AS applyId,
+            PARTY_ID AS partyId,
+            WRITER,
+            WRITTEN_DATE AS writtenDate,
+            CONTENT
+        FROM APPLY
+    </select>
+
+    <insert id="insertApply" parameterType="Apply">
+        INSERT INTO APPLY (APPLY_ID, PARTY_ID, WRITER, WRITTEN_DATE, CONTENT)
+        VALUES (SEQUENCE_Apply.nextval, #{partyId}, #{writer}, SYSDATE, #{content})
+    </insert>
+
+    <delete id="deleteApply">
+        DELETE FROM APPLY
+        WHERE APPLY_ID = #{applyId}
+    </delete>
+
+    <delete id="deleteApplyByPartyId">
+        DELETE FROM APPLY
+        WHERE PARTY_ID = #{partyId}
+    </delete>
 </mapper>
