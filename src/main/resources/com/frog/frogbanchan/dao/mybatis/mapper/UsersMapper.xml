@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.frog.frogbanchan.dao.mybatis.mapper.MemberMapper">
+<mapper namespace="com.frog.frogbanchan.dao.mybatis.mapper.UsersMapper">
     <cache />
 
-    <select id="findMemberByUsername" resultType="Member">
+    <select id="findUserByUsername" resultType="Users">
         SELECT USERNAME,
             PASSWORD,
             NAME,
@@ -13,11 +13,11 @@
             EMAIL,
             RESIDENT_NO AS residentNo,
             ADDRESS
-        FROM MEMBER
+        FROM USERS
         WHERE USERNAME = #{username}
     </select>
 
-    <select id="findMembersByNickname" resultType="Member">
+    <select id="findUsersByNickname" resultType="Users">
         SELECT USERNAME,
             PASSWORD,
             NAME,
@@ -26,16 +26,16 @@
             EMAIL,
             RESIDENT_NO AS residentNo,
             ADDRESS
-        FROM MEMBER
+        FROM USERS
         WHERE NICKNAME = #{nickname}
     </select>
 
     <select id="findUsernameList" resultType="java.lang.String">
         SELECT USERNAME
-        FROM MEMBER
+        FROM USERS
     </select>
 
-    <select id="findMembersByTeamId" resultType="Member">
+    <select id="findUsersByTeamId" resultType="Users">
         SELECT USERNAME,
             PASSWORD,
             NAME,
@@ -44,7 +44,7 @@
             EMAIL,
             RESIDENT_NO AS residentNo,
             ADDRESS
-        FROM MEMBER JOIN PARTICIPATION ON TEAM.TEAM_ID = PARTICIPATION.TEAM_ID
+        FROM USERS JOIN PARTICIPATION ON TEAM.TEAM_ID = PARTICIPATION.TEAM_ID
         WHERE TEAM.TEAM_ID = #{teamId}
     </select>
 
@@ -58,13 +58,13 @@
     </select>
 
 
-    <insert id="insertMember" parameterType="Member">
-        INSERT INTO MEMBER (USERNAME, PASSWORD, NAME, PHONE, EMAIL, NICKNAME, RESIDENT_NO, ADDRESS)
+    <insert id="insertUser" parameterType="Users">
+        INSERT INTO USERS (USERNAME, PASSWORD, NAME, PHONE, EMAIL, NICKNAME, RESIDENT_NO, ADDRESS)
         VALUES (#{username}, #{password}, #{name}, #{phone}, #{email}, #{nickname}, #{residentNo}, #{address})
     </insert>
 
-    <update id="updateMember" parameterType="Member">
-        UPDATE MEMBER
+    <update id="updateUser" parameterType="Users">
+        UPDATE USERS
         SET PASSWORD = #{password},
             NAME = #{name},
             PHONE = #{phone},
@@ -75,8 +75,8 @@
         WHERE USERNAME = #{username}
     </update>
 
-    <delete id="deleteMember">
-        DELETE FROM MEMBER
+    <delete id="deleteUser">
+        DELETE FROM USERS
         WHERE USERNAME = #{username}
     </delete>
 

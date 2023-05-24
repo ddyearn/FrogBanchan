@@ -1,7 +1,9 @@
 
 package com.frog.frogbanchan.service;
 
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import com.frog.frogbanchan.dao.HistoryDao;
 import com.frog.frogbanchan.domain.*;
@@ -9,26 +11,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.frog.frogbanchan.dao.MemberDao;
+import com.frog.frogbanchan.dao.UsersDao;
 import com.frog.frogbanchan.dao.PartyDao;
+import com.frog.frogbanchan.dao.PlaceDao;
 
 @Service
 @Transactional
 public class FrogBanchanImpl implements FrogBanchanFacade {
     @Autowired
-    private MemberDao memberDao;
-//    @Autowired
-//    private PlaceDao placeDao;
-//    @Autowired
-//    private ReservationDao reservationDao;
-//    @Autowired
-//    private MenuDao menuDao;
-//    @Autowired
-//    private PlaceMenuDao placeMenuDao;
+    private UsersDao usersDao;
+    @Autowired
+    private PlaceDao placeDao;
+    // @Autowired
+    // private ReservationDao reservationDao;
+    // @Autowired
+    // private MenuDao menuDao;
+    // @Autowired
+    // private PlaceMenuDao placeMenuDao;
     @Autowired
     private HistoryDao historyDao;
-//    @Autowired
-//    private TeamDao teamDao;
+    // @Autowired
+    // private TeamDao teamDao;
     @Autowired
     private PartyDao partyDao;
 
@@ -36,122 +39,125 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     // Operation methods, implementing the PetStoreFacade interface
     // -------------------------------------------------------------------------
 
-    // MemberService
-    public void insertMember(Member member) {
-        memberDao.insertMember(member);
+    // UserService
+    public void insertUser(Users users) {
+        usersDao.insertUser(users);
     }
 
-    public void updateMember(Member member) {
-        memberDao.updateMember(member);
+    public void updateUser(Users users) {
+        usersDao.updateUser(users);
     }
 
-    public void deleteMember(String username) {
-        memberDao.deleteMember(username);
+    public void deleteUser(String username) {
+        usersDao.deleteUser(username);
     }
 
-    public Member findMemberByUsername(String username) {
-        return memberDao.findMemberByUsername(username);
+    public Users findUserByUsername(String username) {
+        return usersDao.findUserByUsername(username);
     }
 
-    public List<Member> findMembersByNickname(String nickname) {
-        return memberDao.findMembersByNickname(nickname);
+    public List<Users> findUsersByNickname(String nickname) {
+        return usersDao.findUsersByNickname(nickname);
     }
 
     public List<String> findUsernameList() {
-        return memberDao.findUsernameList();
+        return usersDao.findUsernameList();
     }
 
     public List<Team> findTeamsByUsername(String username) {
-        return memberDao.findTeamsByUsername(username);
+        return usersDao.findTeamsByUsername(username);
     }
 
-    public List<Member> findMembersByTeamId(int teamId) {
-        return memberDao.findMembersByTeamId(teamId);
+    public List<Users> findUsersByTeamId(int teamId) {
+        return usersDao.findUsersByTeamId(teamId);
     }
 
-//    // PlaceService
-//    public void insertPlace(Place place) {
-//        placeDao.insertPlace(place);
-//    }
-//
-//    public void updatePlace(Place place) {
-//        placeDao.updatePlace(place);
-//    }
-//
-//    public void deletePlace(String placeId) {
-//        placeDao.deletePlace(placeId);
-//    }
-//
-//    public Place findPlace(String placeId) {
-//        return placeDao.findPlaceById(placeId);
-//    }
-//
-//    public void insertAvailableTime(String placeId, List<Timestamp> availableTime) {
-//        placeDao.insertAvailableTime(placeId, availableTime);
-//    }
-//
-//    public List<Timestamp> findCalendar(String placeId) {
-//        return placeDao.findCalendar(placeId);
-//    }
-//
-//    // ReservationService
-//    public void insertReservation(Reservation reservation) {
-//        reservationDao.insertReservation(reservation);
-//    }
-//
-//    public Reservation findReservationByUsername(String placeId, String username) {
-//        return reservationDao.findReservationByUsername(placeId, username);
-//    }
-//
-//    public Reservation findReservationByDate(String placeId, Timestamp date) {
-//        return reservationDao.findReservationByDate(placeId, date);
-//    }
-//
-//    // MenuService
-//    public Menu findMenu(int menu_id) {
-//        return menuDao.findMenu(menu_id);
-//    }
-//
-//    public List<Menu> findMenuList() {
-//        return menuDao.findMenuList();
-//    }
-//
-//    public List<Menu> findMenuListByTagList(List<String> likeTagList, List<String> dislikeTagList) {
-//        return menuDao.findMenuListByTagList(likeTagList, dislikeTagList);
-//    }
-//
-//    public List<String> findMenuTags(int menu_id) {
-//        return menuDao.findMenuTags(menu_id);
-//    }
-//
-//    public List<String> findAllTag() {
-//        return menuDao.findAllTag();
-//    }
-//
-//    // PlaceMenuService
-//    public List<PlaceMenu> findMenuListByPlaceId(String place_id) {
-//        return placeMenuDao.findMenuListByPlaceId(place_id);
-//    }
-//
-//    public List<Place> findPlaceListByMenu(int menu_id) {
-//        return placeMenuDao.findPlaceListByMenu(menu_id);
-//    }
-//
-//    @Override
-//    public void insertPlaceMenu(PlaceMenu placeMenu) {
-//        placeMenuDao.insertPlaceMenu(placeMenu);
-//    }
-//
-//    @Override
-//    public void updatePlaceMenu(PlaceMenu placeMenu) {
-//        placeMenuDao.updatePlaceMenu(placeMenu);
-//    }
-//
-//    @Override
-//    public void deletePlaceMenu(int place_menu_id) {
-//        placeMenuDao.deletePlaceMenu(place_menu_id);
-//    }
-//
+    // PlaceService
+    public void insertPlace(Place place) {
+        placeDao.insertPlace(place);
+    }
+
+    public void updatePlace(Place place) {
+        placeDao.updatePlace(place);
+    }
+
+    public void deletePlace(String placeId) {
+        placeDao.deletePlace(placeId);
+    }
+
+    public Place findPlaceById(String placeId) {
+        return placeDao.findPlaceById(placeId);
+    }
+
+    public void insertAvailableTime(String placeId, Timestamp availableTime) {
+        placeDao.insertAvailableTime(placeId, availableTime);
+    }
+
+    public List<Timestamp> findCalendar(String placeId) {
+        return placeDao.findCalendar(placeId);
+    }
+
+    //
+    // // ReservationService
+    // public void insertReservation(Reservation reservation) {
+    // reservationDao.insertReservation(reservation);
+    // }
+    //
+    // public Reservation findReservationByUsername(String placeId, String username)
+    // {
+    // return reservationDao.findReservationByUsername(placeId, username);
+    // }
+    //
+    // public Reservation findReservationByDate(String placeId, Timestamp date) {
+    // return reservationDao.findReservationByDate(placeId, date);
+    // }
+    //
+    // // MenuService
+    // public Menu findMenu(int menu_id) {
+    // return menuDao.findMenu(menu_id);
+    // }
+    //
+    // public List<Menu> findMenuList() {
+    // return menuDao.findMenuList();
+    // }
+    //
+    // public List<Menu> findMenuListByTagList(List<String> likeTagList,
+    // List<String> dislikeTagList) {
+    // return menuDao.findMenuListByTagList(likeTagList, dislikeTagList);
+    // }
+    //
+    // public List<String> findMenuTags(int menu_id) {
+    // return menuDao.findMenuTags(menu_id);
+    // }
+    //
+    // public List<String> findAllTag() {
+    // return menuDao.findAllTag();
+    // }
+    //
+    // // PlaceMenuService
+    // public List<PlaceMenu> findMenuListByPlaceId(String place_id) {
+    // return placeMenuDao.findMenuListByPlaceId(place_id);
+    // }
+    //
+    // public List<Place> findPlaceListByMenu(int menu_id) {
+    // return placeMenuDao.findPlaceListByMenu(menu_id);
+    // }
+    //
+    // @Override
+    // public void insertPlaceMenu(PlaceMenu placeMenu) {
+    // placeMenuDao.insertPlaceMenu(placeMenu);
+    // }
+    //
+    // @Override
+    // public void updatePlaceMenu(PlaceMenu placeMenu) {
+    // placeMenuDao.updatePlaceMenu(placeMenu);
+    // }
+    //
+    // @Override
+    // public void deletePlaceMenu(int place_menu_id) {
+    // placeMenuDao.deletePlaceMenu(place_menu_id);
+    // }
+    //
     // HistoryService
     public History findHistory(int historyId) {
         return historyDao.findHistory(historyId);
@@ -172,43 +178,43 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     public void deleteHistory(int historyId) {
         historyDao.deleteHistory(historyId);
     }
-//
-//    // TeamService
-//    public void insertTeam(Team team) {
-//        teamDao.insertTeam(team);
-//    }
-//
-//    public void updateTeam(Team team) {
-//        teamDao.updateTeam(team);
-//    }
-//
-//    public void addTeamMember(int team_id, String username) {
-//        teamDao.addTeamMember(team_id, username);
-//    }
-//
-//    public void deleteTeam(int team_id) {
-//        teamDao.deleteTeam(team_id);
-//    }
-//
-//    public void deleteTeamMember(int team_id, String username) {
-//        teamDao.deleteTeamMember(team_id, username);
-//    }
-//
-//    public void quitTeam(int team_id) {
-//        teamDao.quitTeam(team_id);
-//    }
-//
-//    public Team findTeam(int team_id) {
-//        return teamDao.findTeam(team_id);
-//    }
-//
-//    public List<Team> findTeamList(String username) {
-//        return teamDao.findTeamList(username);
-//    }
-//
-//    public List<Member> findTeamMembers(int team_id) {
-//        return teamDao.findTeamMembers(team_id);
-//    }
+    //
+    // // TeamService
+    // public void insertTeam(Team team) {
+    // teamDao.insertTeam(team);
+    // }
+    //
+    // public void updateTeam(Team team) {
+    // teamDao.updateTeam(team);
+    // }
+    //
+    // public void addTeamMember(int team_id, String username) {
+    // teamDao.addTeamMember(team_id, username);
+    // }
+    //
+    // public void deleteTeam(int team_id) {
+    // teamDao.deleteTeam(team_id);
+    // }
+    //
+    // public void deleteTeamMember(int team_id, String username) {
+    // teamDao.deleteTeamMember(team_id, username);
+    // }
+    //
+    // public void quitTeam(int team_id) {
+    // teamDao.quitTeam(team_id);
+    // }
+    //
+    // public Team findTeam(int team_id) {
+    // return teamDao.findTeam(team_id);
+    // }
+    //
+    // public List<Team> findTeamList(String username) {
+    // return teamDao.findTeamList(username);
+    // }
+    //
+    // public List<Member> findTeamMembers(int team_id) {
+    // return teamDao.findTeamMembers(team_id);
+    // }
 
     // PartyService
     public void insertParty(Party party) {
@@ -216,9 +222,9 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     }
 
     public void updateParty(Party party) {
-    	partyDao.updateParty(party);
+        partyDao.updateParty(party);
     }
-    
+
     public void deleteParty(int party_id) {
         partyDao.deleteParty(party_id);
     }

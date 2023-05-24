@@ -14,7 +14,9 @@ public class LogoutController {
     private FrogBanchanImpl frogBanchan;
 
     @RequestMapping("/user/logout")
-    public String handleRequest(HttpSession session) {
+    public String handleRequest(HttpSession session) throws Exception {
+        session.removeAttribute("userSession");
+        session.invalidate();
         return "login";
     }
 

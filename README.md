@@ -6,15 +6,15 @@
 
 **[Rules]**
 
-**1. 작업 전 Pull (필수)**<br/>
+**1. 작업 전 Pull**<br/>
 **2. 각자 작업 단위별로 Branch 생성**<br/>
 **3. Error를 반드시 확인하고 Commit & Push**<br/>
 **4. Pull request 생성**<br/>
 **5. 충돌이 없으면 Merge**<br/>
-**6. Branch 삭제 (권장)**
+**6. Branch 삭제**
 
     
-    - 브랜치명 예시) feature/member (권장)
+    - 브랜치명 예시) feature/users (권장)
     
     - 커밋 메시지 예시) [feat] login 구현 (권장)
     

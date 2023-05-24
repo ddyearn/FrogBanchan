@@ -1,14 +1,19 @@
 package com.frog.frogbanchan.controller;
 
-import com.frog.frogbanchan.domain.History;
-import com.frog.frogbanchan.domain.Member;
-import com.frog.frogbanchan.domain.Party;
-import com.frog.frogbanchan.domain.Apply;
+import com.frog.frogbanchan.domain.*;
 import com.frog.frogbanchan.service.FrogBanchanImpl;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,23 +24,24 @@ public class TestContoller {
     @Autowired
     private FrogBanchanImpl frogBanchan;
 
-    @RequestMapping("/test/member")
-    public ModelAndView memberTest() {
-        System.out.println(frogBanchan.findMembersByNickname("나메코"));
-        System.out.println(frogBanchan.findMemberByUsername("nameco"));
+    @RequestMapping("/test/user")
+    public ModelAndView userTest() {
+        System.out.println(frogBanchan.findUsersByNickname("나메코"));
+        System.out.println(frogBanchan.findUserByUsername("nameco"));
         System.out.println(frogBanchan.findTeamsByUsername("nameco"));
-        Member member = new Member("test", "test", "test","test","000-0000-0000","test","0000000","test");
-//        frogBanchan.insertMember(member);
-//        member.setName("test1");
-//        frogBanchan.updateMember(member);
-//        System.out.println(frogBanchan.findMemberByUsername("test"));
-//        frogBanchan.deleteMember("test");
+        // Users user = new Users("test", "test", "test", "test", "000-0000-0000",
+        // "test", "0000000", "test");
+        // frogBanchan.insertUser(user);
+        // user.setName("test1");
+        // frogBanchan.updateUser(user);
+        // System.out.println(frogBanchan.findUserByUsername("test"));
+        // frogBanchan.deleteUser("test");
         System.out.println(frogBanchan.findUsernameList());
 
         System.out.println();
         return new ModelAndView("th/test");
     }
-    
+
     @RequestMapping("/test/party")
     public ModelAndView partyTest() {
     	System.out.println(frogBanchan.findParty(1001));
@@ -49,7 +55,7 @@ public class TestContoller {
         //party.setContent("test2");
         //frogBanchan.updateParty(party);
         //frogBanchan.deleteParty(1003);
-        
+  
     	System.out.println(frogBanchan.findPartyList());
     	System.out.println(frogBanchan.findApplyByApplyId(5002));
         System.out.println(frogBanchan.findApplyList());
@@ -62,24 +68,46 @@ public class TestContoller {
     	return new ModelAndView("th/test");
     }
 
-
     @RequestMapping("/test/history")
     public ModelAndView historyTest() {
         System.out.println(frogBanchan.findHistory(30000));
         System.out.println(frogBanchan.findHistoryList("yonzzang"));
-        //frogBanchan.deleteHistory(30000);
-        String time = "2023-05-31T18:15:00";
-        LocalDateTime ldt = LocalDateTime.parse(time);
-        Timestamp ts = Timestamp.valueOf(ldt);
-        //History history = new History(30001, "naguri", ts, 10000, "toritori", 4);
-        //frogBanchan.insertParty(party);
-        //party.setContent("test2");
-        //frogBanchan.updateParty(party);
-        //frogBanchan.deleteParty(1003);
-        System.out.println(frogBanchan.findHistoryList("yonzzang"));
+//        History history = new History(30022, "naguri", 50000, "toritori", 1);
+//        frogBanchan.insertHistory(history);
+//        System.out.println(frogBanchan.findHistoryList("naguri"));
+//        history.setScore(4);
+//        frogBanchan.updateHistory(history);
+//        System.out.println(frogBanchan.findHistoryList("naguri"));
+//        frogBanchan.deleteHistory(30022);
+//        System.out.println(frogBanchan.findHistoryList("naguri"));
 
         return new ModelAndView("th/test");
     }
 
+    @RequestMapping("/test/place")
+    public ModelAndView placeTest() {
+
+        // System.out.println(frogBanchan.findPlaceById("toritori"));
+        // Place place1 = new Place("testtest", "testt", "testt", "testt");
+        // frogBanchan.insertPlace(place1);
+        // Place place2 = new Place("testtest", "ud_test", "ud_test", "ud_test");
+        // frogBanchan.updatePlace(place2);
+        // frogBanchan.deletePlace("testtest");
+
+        // Date date = new Date();
+        // Timestamp timestamp = new Timestamp(date.getTime());
+        // Timestamp timestamp1 = new Timestamp(date.getTime());
+        // frogBanchan.insertAvailableTime("test1_id", timestamp);
+
+        List<Timestamp> list = frogBanchan.findCalendar("toritori");
+        System.out.println(list);
+
+        return new ModelAndView("th/test");
+    }
+
+    @RequestMapping("/react")
+    public String reactTest() {
+        return "redirect:/react/index.html";
+    }
 
 }
