@@ -80,25 +80,25 @@ public interface FrogBanchanFacade {
     public void updateHistory(History history);
 
     public void deleteHistory(int historyId);
-    //
-    // // TeamService
-    // public void insertTeam(Team team);
-    //
-    // public void updateTeam(Team team);
-    //
-    // public void addTeamMember(int team_id, String username);
-    //
-    // public void deleteTeam(int team_id);
-    //
-    // public void deleteTeamMember(int team_id, String username);
-    //
-    // public void quitTeam(int team_id);
-    //
-    // public Team findTeam(int team_id);
-    //
-    // public List<Team> findTeamList(String username);
-    //
-    // public List<Member> findTeamMembers(int team_id);
+ 
+    // TeamService
+    public void insertTeam(Team team);
+
+    public void updateTeam(Team team);
+    
+    public void addTeamMember(int teamId, String username);
+    
+    public void deleteTeam(int teamId);
+    
+    public void deleteTeamMember(int teamId, String username);
+    
+    public void quitTeam(int teamId);
+    
+    public Team findTeam(int teamId);
+    
+    public List<Team> findTeamList(String username);
+    
+    public List<Users> findTeamMembers(int teamId);
 
     //PartyService
     public void insertParty(Party party);

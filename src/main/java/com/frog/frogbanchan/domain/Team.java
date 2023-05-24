@@ -19,12 +19,12 @@ public class Team implements Serializable {
 	private String address;
 	
 	public Team() {}
-	public Team(int teamId, String name, String creator, String address) {
+	public Team(int teamId, String name, String address, String creator) {
 		super();
 		this.teamId = teamId;
 		this.name = name;
-		this.creator = creator;
 		this.address = address;
+		this.creator = creator;
 	}
 
 }

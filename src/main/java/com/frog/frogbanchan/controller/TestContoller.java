@@ -42,6 +42,29 @@ public class TestContoller {
         return new ModelAndView("th/test");
     }
 
+    @RequestMapping("/test/team")
+    public ModelAndView teamTest() {
+    	System.out.println(frogBanchan.findTeam(101));
+    	System.out.println(frogBanchan.findTeamList("naguri"));
+    	System.out.println(frogBanchan.findTeamMembers(100));
+    	//Team team = new Team(101, "나구리팀", "서울시 강남구 대치동", "naguri");
+    	//frogBanchan.insertTeam(team);
+    	//team.setName("나구리가지배한다");
+    	//frogBanchan.updateTeam(team);
+    	//System.out.println(frogBanchan.findTeam(126));
+    	
+    	//frogBanchan.addTeamMember(102, "naguri");
+    	//System.out.println(frogBanchan.findTeamMembers(102));
+    	//frogBanchan.quitTeam(102);
+    	//System.out.println(frogBanchan.findTeamMembers(102));
+    	//frogBanchan.deleteTeamMember(100, "naguri");
+    	//System.out.println(frogBanchan.findTeam(100));
+    	//System.out.println(frogBanchan.findTeamList("naguri"));
+    	//frogBanchan.deleteTeam(126);
+    	
+    	return new ModelAndView("th/test");
+    }
+    
     @RequestMapping("/test/party")
     public ModelAndView partyTest() {
     	System.out.println(frogBanchan.findParty(1001));
