@@ -4,16 +4,9 @@ import com.frog.frogbanchan.domain.*;
 import com.frog.frogbanchan.service.FrogBanchanImpl;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -95,14 +88,14 @@ public class TestContoller {
     public ModelAndView historyTest() {
         System.out.println(frogBanchan.findHistory(30000));
         System.out.println(frogBanchan.findHistoryList("yonzzang"));
-//        History history = new History(30022, "naguri", 50000, "toritori", 1);
-//        frogBanchan.insertHistory(history);
-//        System.out.println(frogBanchan.findHistoryList("naguri"));
-//        history.setScore(4);
-//        frogBanchan.updateHistory(history);
-//        System.out.println(frogBanchan.findHistoryList("naguri"));
-//        frogBanchan.deleteHistory(30022);
-//        System.out.println(frogBanchan.findHistoryList("naguri"));
+        // History history = new History(30022, "naguri", 50000, "toritori", 1);
+        // frogBanchan.insertHistory(history);
+        // System.out.println(frogBanchan.findHistoryList("naguri"));
+        // history.setScore(4);
+        // frogBanchan.updateHistory(history);
+        // System.out.println(frogBanchan.findHistoryList("naguri"));
+        // frogBanchan.deleteHistory(30022);
+        // System.out.println(frogBanchan.findHistoryList("naguri"));
 
         return new ModelAndView("th/test");
     }
