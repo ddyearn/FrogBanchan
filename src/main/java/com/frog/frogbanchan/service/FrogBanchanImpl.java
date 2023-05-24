@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.frog.frogbanchan.dao.UsersDao;
+import com.frog.frogbanchan.dao.TeamDao;
 import com.frog.frogbanchan.dao.PartyDao;
 import com.frog.frogbanchan.dao.PlaceDao;
 
@@ -30,8 +31,8 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     // private PlaceMenuDao placeMenuDao;
     @Autowired
     private HistoryDao historyDao;
-    // @Autowired
-    // private TeamDao teamDao;
+    @Autowired
+    private TeamDao teamDao;
     @Autowired
     private PartyDao partyDao;
 
@@ -178,43 +179,43 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     public void deleteHistory(int historyId) {
         historyDao.deleteHistory(historyId);
     }
-    //
-    // // TeamService
-    // public void insertTeam(Team team) {
-    // teamDao.insertTeam(team);
-    // }
-    //
-    // public void updateTeam(Team team) {
-    // teamDao.updateTeam(team);
-    // }
-    //
-    // public void addTeamMember(int team_id, String username) {
-    // teamDao.addTeamMember(team_id, username);
-    // }
-    //
-    // public void deleteTeam(int team_id) {
-    // teamDao.deleteTeam(team_id);
-    // }
-    //
-    // public void deleteTeamMember(int team_id, String username) {
-    // teamDao.deleteTeamMember(team_id, username);
-    // }
-    //
-    // public void quitTeam(int team_id) {
-    // teamDao.quitTeam(team_id);
-    // }
-    //
-    // public Team findTeam(int team_id) {
-    // return teamDao.findTeam(team_id);
-    // }
-    //
-    // public List<Team> findTeamList(String username) {
-    // return teamDao.findTeamList(username);
-    // }
-    //
-    // public List<Member> findTeamMembers(int team_id) {
-    // return teamDao.findTeamMembers(team_id);
-    // }
+    
+    // TeamService
+    public void insertTeam(Team team) {
+    	teamDao.insertTeam(team);
+    }
+   
+    public void updateTeam(Team team) {
+    	teamDao.updateTeam(team);
+    }
+    
+    public void addTeamMember(int teamId, String username) {
+    	teamDao.addTeamMember(teamId, username);
+    }
+    
+    public void deleteTeam(int teamId) {
+    	teamDao.deleteTeam(teamId);
+    }
+    
+    public void deleteTeamMember(int teamId, String username) {
+    	teamDao.deleteTeamMember(teamId, username);
+    }
+    
+    public void quitTeam(int teamId) {
+    	teamDao.quitTeam(teamId);
+    }
+    
+    public Team findTeam(int teamId) {
+    	return teamDao.findTeam(teamId);
+    }
+    
+    public List<Team> findTeamList(String username) {
+    	return teamDao.findTeamList(username);
+    }
+    
+    public List<Users> findTeamMembers(int teamId) {
+    	return teamDao.findTeamMembers(teamId);
+    }
 
     // PartyService
     public void insertParty(Party party) {
