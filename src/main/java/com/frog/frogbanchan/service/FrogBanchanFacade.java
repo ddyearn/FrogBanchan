@@ -102,6 +102,8 @@ public interface FrogBanchanFacade {
 
     //PartyService
     public void insertParty(Party party);
+    
+    public void updateParty(Party party);
 
     public void deleteParty(int partyId);
 
