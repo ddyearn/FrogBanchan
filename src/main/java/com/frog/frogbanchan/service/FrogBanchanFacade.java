@@ -100,25 +100,24 @@ public interface FrogBanchanFacade {
     //
     // public List<Member> findTeamMembers(int team_id);
 
-    // // PartyService
+    //PartyService
     public void insertParty(Party party);
 
-    public void deleteParty(int party_id);
+    public void deleteParty(int partyId);
 
-    public Party findParty(int party_id);
+    public Party findParty(int partyId);
 
     public List<Party> findPartyList();
 
-    // ApplyService
     public void insertApply(Apply apply);
 
     public void deleteApply(int applyId);
-
-    public void deleteAppliesByPartyId(int partyId);
+  
+    public void deleteApplyByPartyId(int partyId);
 
     public Apply findApplyByApplyId(int applyId);
 
-    public List<Apply> findAppliesByPartyId(int partyId);
+    public List<Apply> findApplyByPartyId(int partyId);
 
     public List<Apply> findApplyList();
 

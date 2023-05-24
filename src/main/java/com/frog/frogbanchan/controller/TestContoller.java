@@ -44,33 +44,28 @@ public class TestContoller {
 
     @RequestMapping("/test/party")
     public ModelAndView partyTest() {
-        System.out.println(frogBanchan.findParty(1001));
-        System.out.println(frogBanchan.findPartyList());
-        frogBanchan.deleteAppliesByPartyId(1000);
-        String time = "2023-05-31T18:15:00";
+    	System.out.println(frogBanchan.findParty(1001));
+    	System.out.println(frogBanchan.findPartyList());
+    	frogBanchan.deleteApply(1000);
+    	String time = "2023-05-31T18:15:00";
         LocalDateTime ldt = LocalDateTime.parse(time);
         Timestamp ts = Timestamp.valueOf(ldt);
         Party party = new Party(1111, "naguri", ts, "toritori", "test1");
-        // frogBanchan.insertParty(party);
-        // party.setContent("test2");
-        // frogBanchan.updateParty(party);
-        // frogBanchan.deleteParty(1003);
-        System.out.println(frogBanchan.findPartyList());
-
-        return new ModelAndView("th/test");
-    }
-
-    @RequestMapping("/test/apply")
-    public ModelAndView ApplyTest() {
-        System.out.println(frogBanchan.findApplyByApplyId(5002));
+        //frogBanchan.insertParty(party);
+        //party.setContent("test2");
+        //frogBanchan.updateParty(party);
+        //frogBanchan.deleteParty(1003);
+  
+    	System.out.println(frogBanchan.findPartyList());
+    	System.out.println(frogBanchan.findApplyByApplyId(5002));
         System.out.println(frogBanchan.findApplyList());
-        System.out.println(frogBanchan.findAppliesByPartyId(1001));
-        // Apply apply = new Apply(1, 1001, "nameco", "test");
-        // frogBanchan.insertApply(apply);
-        // frogBanchan.deleteApply(5002);
+        System.out.println(frogBanchan.findApplyByPartyId(1001));
+        Apply apply = new Apply(1, 1001, "nameco", "test");
+//        frogBanchan.insertApply(apply);
+        frogBanchan.deleteApply(5002);
         System.out.println(frogBanchan.findApplyList());
 
-        return new ModelAndView("th/test");
+    	return new ModelAndView("th/test");
     }
 
     @RequestMapping("/test/history")
