@@ -14,14 +14,14 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class Menu {
     @Id
-    private int menu_id;
+    private int menuId;
     private String name;
 
     public Menu() {
     }
-    public Menu(int menu_id, String name) {
+    public Menu(int menuId, String name) {
         super();
-        this.menu_id = menu_id;
+        this.menuId = menuId;
         this.name = name;
     }
 }

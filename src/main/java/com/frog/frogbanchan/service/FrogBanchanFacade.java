@@ -47,29 +47,28 @@ public interface FrogBanchanFacade {
     //
     // public Reservation findReservationByDate(String placeId, Timestamp date);
     //
-    // // MenuService
-    // public Menu findMenu(int menu_id);
-    //
-    // public List<Menu> findMenuList();
-    //
-    // public List<Menu> findMenuListByTagList(List<String> likeTagList,
-    // List<String> dislikeTagList);
-    //
-    // public List<String> findMenuTags(int menu_id);
-    //
-    // public List<String> findAllTag();
-    //
-    // // PlaceMenuService
-    // public void insertPlaceMenu(PlaceMenu placeMenu);
-    //
-    // public void updatePlaceMenu(PlaceMenu placeMenu);
-    //
-    // public void deletePlaceMenu(int place_menu_id);
-    //
-    // public List<PlaceMenu> findMenuListByPlaceId(String place_id);
-    //
-    // public List<Place> findPlaceListByMenu(int menu_id);
-    //
+     // MenuService
+     public Menu findMenu(int menuId);
+
+     public List<Menu> findMenuList();
+
+     public List<Menu> findMenuListByTagList(Map<String, List<String>> tagList);
+
+     public List<String> findMenuTagList(int menuId);
+
+     public List<String> findAllTagList();
+
+     // PlaceMenuService
+     public void insertPlaceMenu(PlaceMenu placeMenu);
+
+     public void updatePlaceMenu(PlaceMenu placeMenu);
+
+     public void deletePlaceMenu(int placeMenuId);
+
+     public List<PlaceMenu> findMenuListByPlaceId(String placeId);
+
+     public List<Place> findPlaceListByMenu(int menuId);
+
     // HistoryService
     public History findHistory(int historyId);
 
