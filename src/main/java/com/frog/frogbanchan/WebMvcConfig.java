@@ -19,7 +19,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/user/login").setViewName("login");
-        registry.addViewController("/place/calendar").setViewName("place/calendar");
     }
 
     public void addInterceptors(InterceptorRegistry registry) {
