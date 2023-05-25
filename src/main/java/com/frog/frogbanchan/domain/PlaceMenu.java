@@ -12,20 +12,20 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class PlaceMenu implements Serializable {
     @Id
-    private int place_menu_id;
-    private String place_id;
-    private int menu_id;
+    private int placeMenuId;
+    private String placeId;
+    private int menuId;
     private String name;
     private int price;
     private String description;
     public PlaceMenu() {
     }
 
-    public PlaceMenu(int place_menu_id, String place_id, int menu_id, String name, int price, String description) {
+    public PlaceMenu(int placeMenuId, String placeId, int menuId, String name, int price, String description) {
         super();
-        this.place_menu_id = place_menu_id;
-        this.place_id = place_id;
-        this.menu_id = menu_id;
+        this.placeMenuId = placeMenuId;
+        this.placeId = placeId;
+        this.menuId = menuId;
         this.name = name;
         this.price = price;
         this.description = description;

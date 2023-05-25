@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.frog.frogbanchan.dao.mybatis.mapper.PlaceMenuMapper">
+    <cache />
+
+    <select id="findMenuListByPlaceId" resultType="PlaceMenu">
+        SELECT PLACE_MENU_ID AS placeMenuId,
+               PLACE_ID AS placeId,
+               MENU_ID AS menuId,
+               PRICE,
+               DESCRIPTION,
+               NAME
+        FROM PLACE_MENU
+        WHERE PLACE_ID = #{placeId}
+    </select>
+
+    <select id="findPlaceListByMenu" resultType="Place">
+        SELECT PLACE_ID AS placeId,
+               PASSWORD,
+               NAME,
+               ADDRESS,
+               TOTAL_SCORE
+        FROM PLACE
+        WHERE PLACE_ID IN (
+            SELECT PLACE_ID FROM PLACE_MENU
+            WHERE MENU_ID = #{menuId})
+    </select>
+
+    <insert id="insertPlaceMenu" parameterType="PlaceMenu">
+        INSERT INTO PLACE_MENU (PLACE_MENU_ID, PLACE_ID, MENU_ID, NAME, PRICE, DESCRIPTION)
+        VALUES (SEQUENCE_PLACE_MENU.nextval, #{placeId}, #{menuId}, #{name}, #{price}, #{description})
+    </insert>
+
+    <update id="updatePlaceMenu" parameterType="PlaceMenu">
+        UPDATE PLACE_MENU
+        SET MENU_ID = #{menuId},
+            NAME = #{name},
+            PRICE = #{price},
+            DESCRIPTION = #{description}
+        WHERE PLACE_MENU_ID = #{placeMenuId}
+    </update>
+
+    <delete id="deletePlaceMenu">
+        DELETE FROM PLACE_MENU
+        WHERE PLACE_MENU_ID = #{placeMenuId}
+    </delete>
+
+</mapper>

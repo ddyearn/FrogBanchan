@@ -5,7 +5,10 @@ import com.frog.frogbanchan.service.FrogBanchanImpl;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -100,6 +103,41 @@ public class TestContoller {
         return new ModelAndView("th/test");
     }
 
+    @RequestMapping("/test/menu")
+    public ModelAndView menuTest() {
+        System.out.println(frogBanchan.findMenu(10000));
+        System.out.println(frogBanchan.findMenuList());
+        List<String> likelist = new ArrayList<>();
+        likelist.add("돼지고기");
+        List<String> hatelist = new ArrayList<>();
+        hatelist.add("치즈");
+        Map<String, List<String>> tagList = new HashMap<>();
+        tagList.put("like", likelist);
+        tagList.put("dislike", hatelist);
+        System.out.println(frogBanchan.findMenuListByTagList(tagList));
+        System.out.println(frogBanchan.findMenuTagList(10000));
+        System.out.println(frogBanchan.findAllTagList());
+
+        return new ModelAndView("th/test");
+    }
+    @RequestMapping("/test/placeMenu")
+    public ModelAndView placeMenuTest() {
+        System.out.println(frogBanchan.findMenuListByPlaceId("toritori"));
+        System.out.println(frogBanchan.findPlaceListByMenu(10000));
+        PlaceMenu placeMenu = new PlaceMenu(0, "spring123", 10000, "짱돈까스", 12000, "소켓주세요");
+//        frogBanchan.insertPlaceMenu(placeMenu);
+//        System.out.println(frogBanchan.findMenuListByPlaceId("spring123"));
+//        placeMenu.setDescription("소켓 내놓으라고");
+//        placeMenu.setPlaceMenuId(50020);
+//        frogBanchan.updatePlaceMenu(placeMenu);
+//        System.out.println(frogBanchan.findMenuListByPlaceId("spring123"));
+//        frogBanchan.deletePlaceMenu(50020);
+//        frogBanchan.deletePlaceMenu(50021);
+//        frogBanchan.deletePlaceMenu(50022);
+
+        return new ModelAndView("th/test");
+    }
+
     @RequestMapping("/test/place")
     public ModelAndView placeTest() {
 
@@ -120,6 +158,9 @@ public class TestContoller {
 
         return new ModelAndView("th/test");
     }
+
+    @RequestMapping("/test/map")
+    public ModelAndView mapTest() { return new ModelAndView("recommend/map");}
 
     @RequestMapping("/react")
     public String reactTest() {
