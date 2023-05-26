@@ -4,6 +4,10 @@
     font-family: 'Poor Story';
 }
 
+html, body {
+    height: 100%;
+}
+
 .frog {
     width: 200px;
     display: flex;
@@ -13,9 +17,6 @@
 
 .recommendBox1 {
     max-width: 800px;
-    display: flex;
-    position: relative;
-    margin-top: 100px;
     margin-left: 40%;
     white-space: nowrap;
 }
