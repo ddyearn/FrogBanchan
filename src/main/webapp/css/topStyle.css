@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
+* {
+    font-family: 'Poor Story';
+}
+
+.navBar {
+    width: 100%;
+    position: absolute;
+    margin-top: 5px;
+}
+
+.navBox1 {
+    float: right;
+    margin-right: 20px;
+}
+.navBox2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.navText1 {
+    float: left;
+    text-align: center;
+    text-decoration-line: underline;
+    vertical-align: middle;
+}
+.navText2 {
+    float: right;
+}
+
+.navLine {
+    width: 100%;
+	border-bottom: 1px solid #000;
+	line-height: 0.1em;
+    margin-top: 45px;
+}
