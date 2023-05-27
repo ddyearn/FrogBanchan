@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
+html, body {
+    height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.horizonLine {
+    width: 100%;
+    position: absolute;
+    margin-top: 400px;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    z-index: -1;
+}
+
+.memberSelectedBox2::-webkit-scrollbar {
+    display: none;
+}
+.memberScroll2::-webkit-scrollbar {
+    width: 10px;
+}
+.memberScroll2::-webkit-scrollbar-thumb {
+    background: #9FC93C;
+    border-radius: 20px;
+}
+.memberScroll2::-webkit-scrollbar-track {
+    background: #ddd;
+    border-radius: 20px;
+}
+
+.memberSelectBox {
+    max-width: 800px;
+    height: 140px;
+    position: absolute;
+    display: inline-block;
+    margin-top: 150px;
+    margin-left: 30%;
+    padding-left: 30px;
+    padding-right: 60px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.memberSelectTextBox {
+    width: 120px;
+    height: 50px;
+    border-radius: 20px;
+    position: absolute;
+    margin-top: 375px;
+    margin-left: 12%;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid black;
+}
+.memberSelectedBox1 {
+    width: 800px;
+    height: 140px;
+    position: absolute;
+    margin-top: 330px;
+    margin-left: 30%;
+
+    background: #fff;
+}
+.memberSelectedBox2 {
+    width: 800px;
+    height: 140px;
+    border-radius: 30px;
+    padding-left: 30px;
+    padding-bottom: 22px;
+    background: #fff;
+    border: 2px solid black;
+    overflow: auto;
+}
+.memberSelectText1 {
+    line-height: 2.4;
+    font-size: 20px;
+    text-align: center;
+}
+
+.memberCircle {
+    width: 90px;
+    height: 90px;
+    display: inline-block;
+    border-radius: 100px;
+    margin-left: 30px;
+    margin-top: 25px;
+    border: 1px solid black;
+    box-shadow: 0px 2px 5px 0px #aaaaaa;
+}
+.memberCircleText {
+    margin-top: -30px;
+    line-height: 5.5;
+    text-align: center;
+}
+
+.addBadge {
+    font-size: 20px;
+    margin-left: -7px;
+}
+.removeBadge {
+    font-size: 20px;
+    margin-left: -7px;
+}
+
+.hateListBox1 {
+    width: 800px;
+    height: 150px;
+    position: absolute;
+    margin-top: 570px;
+    margin-left: 30%;
+    background: #fff;
+}
+.hateListBox2 {
+    width: 800px;
+    height: 120px;
+    background: #fff;
+    border: 1px solid black;
+}
+.hateListBox3 {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+.hateTag {
+    font-size: 24px;
+    margin: 20px;
+    text-align: center;
+    text-decoration-line: underline;
+}
+.hateListText1 {
+    position: absolute;
+    margin-left: 35%;
+    margin-top: 545px;
+    padding: 10px;
+    background: #fff;
+    color: red;
+    font-size: 20px;
+    z-index: 1;
+}
+.hateListText2 {
+    font-size: 14px;
+    color: gray;
+    text-align: center;
+}
+
+.likeListBox1 {
+    width: 800px;
+    height: 150px;
+    position: absolute;
+    margin-top: 150px;
+    margin-left: 30%;
+    background: #fff;
+}
+.likeListBox2 {
+    width: 800px;
+    height: 120px;
+    background: #fff;
+    border: 1px solid black;
+}
+.likeListBox3 {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+.likeTag {
+    font-size: 24px;
+    margin: 20px;
+    text-align: center;
+    text-decoration-line: underline;
+}
+.likeListText1 {
+    position: absolute;
+    margin-left: 35%;
+    margin-top: 125px;
+    padding: 10px;
+    background: #fff;
+    color: blue;
+    font-size: 20px;
+    z-index: 1;
+}
+.likeListText2 {
+    font-size: 14px;
+    color: gray;
+    text-align: center;
+}
