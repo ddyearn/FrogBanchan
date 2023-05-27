@@ -4,28 +4,25 @@
 <mapper namespace="com.frog.frogbanchan.dao.mybatis.mapper.UsersMapper">
     <cache />
 
+    <sql id="BaseColumns">
+        USERS.USERNAME,
+        USERS.PASSWORD,
+        USERS.NAME,
+        USERS.NICKNAME,
+        USERS.PHONE,
+        USERS.EMAIL,
+        USERS.RESIDENT_NO AS residentNo,
+        USERS.ADDRESS
+    </sql>
+
     <select id="findUserByUsername" resultType="Users">
-        SELECT USERNAME,
-            PASSWORD,
-            NAME,
-            NICKNAME,
-            PHONE,
-            EMAIL,
-            RESIDENT_NO AS residentNo,
-            ADDRESS
+        SELECT <include refid="BaseColumns" />
         FROM USERS
         WHERE USERNAME = #{username}
     </select>
 
     <select id="findUsersByNickname" resultType="Users">
-        SELECT USERNAME,
-            PASSWORD,
-            NAME,
-            NICKNAME,
-            PHONE,
-            EMAIL,
-            RESIDENT_NO AS residentNo,
-            ADDRESS
+        SELECT <include refid="BaseColumns" />
         FROM USERS
         WHERE NICKNAME = #{nickname}
     </select>
@@ -33,19 +30,6 @@
     <select id="findUsernameList" resultType="java.lang.String">
         SELECT USERNAME
         FROM USERS
-    </select>
-
-    <select id="findUsersByTeamId" resultType="Users">
-        SELECT USERNAME,
-            PASSWORD,
-            NAME,
-            NICKNAME,
-            PHONE,
-            EMAIL,
-            RESIDENT_NO AS residentNo,
-            ADDRESS
-        FROM USERS JOIN PARTICIPATION ON TEAM.TEAM_ID = PARTICIPATION.TEAM_ID
-        WHERE TEAM.TEAM_ID = #{teamId}
     </select>
 
     <select id="findTeamsByUsername" resultType="Team">
@@ -57,6 +41,18 @@
         WHERE PARTICIPATION.USERNAME = #{username}
     </select>
 
+    <select id="findUsersByTeamId" resultType="Users">
+        SELECT <include refid="BaseColumns" />
+        FROM USERS JOIN PARTICIPATION ON USERS.USERNAME = PARTICIPATION.USERNAME
+        WHERE PARTICIPATION.TEAM_ID = #{teamId}
+    </select>
+
+    <select id="findTagsByUsername" resultType="java.lang.String">
+        SELECT TAG
+        FROM HATE_TAG
+        WHERE USERNAME = #{username}
+        ORDER BY TAG
+    </select>
 
     <insert id="insertUser" parameterType="Users">
         INSERT INTO USERS (USERNAME, PASSWORD, NAME, PHONE, EMAIL, NICKNAME, RESIDENT_NO, ADDRESS)
@@ -78,6 +74,16 @@
     <delete id="deleteUser">
         DELETE FROM USERS
         WHERE USERNAME = #{username}
+    </delete>
+
+    <insert id="insertHateTag">
+        INSERT INTO HATE_TAG (HATE_TAG_ID, USERNAME, TAG)
+        VALUES (Sequence_hate_tag.nextval, #{username}, #{tag})
+    </insert>
+
+    <delete id="deleteHateTag">
+        DELETE FROM HATE_TAG
+        WHERE HATE_TAG_ID = #{tagId}
     </delete>
 
 </mapper>

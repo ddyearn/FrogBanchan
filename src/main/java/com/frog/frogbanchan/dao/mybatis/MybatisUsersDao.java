@@ -28,6 +28,14 @@ public class MybatisUsersDao implements UsersDao {
         usersMapper.deleteUser(username);
     }
 
+    public void insertHateTag(String username, String tag) throws DataAccessException {
+        usersMapper.insertHateTag(username, tag);
+    }
+
+    public void deleteHateTag(int tagId) throws DataAccessException {
+        usersMapper.deleteHateTag(tagId);
+    }
+
     public Users findUserByUsername(String username) throws DataAccessException {
         return usersMapper.findUserByUsername(username);
     }
@@ -46,4 +54,9 @@ public class MybatisUsersDao implements UsersDao {
     public List<Team> findTeamsByUsername(String username) throws DataAccessException {
         return usersMapper.findTeamsByUsername(username);
     }
+
+    public List<String> findTagsByUsername(String username) throws DataAccessException {
+        return usersMapper.findTagsByUsername(username);
+    }
+
 }

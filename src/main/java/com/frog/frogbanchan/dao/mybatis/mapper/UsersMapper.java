@@ -3,6 +3,7 @@ package com.frog.frogbanchan.dao.mybatis.mapper;
 import com.frog.frogbanchan.domain.Users;
 import com.frog.frogbanchan.domain.Team;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 
@@ -16,6 +17,12 @@ public interface UsersMapper {
 
     // user 탈퇴
     void deleteUser(String username);
+
+    // hate tag 삽입
+    void insertHateTag(String username, String tag);
+
+    // hate tag 삭제
+    void deleteHateTag(int tagId);
 
     // ID로 user 객체 가져오기
     Users findUserByUsername(String username);
@@ -31,5 +38,8 @@ public interface UsersMapper {
 
     // 전체 user 가져오기
     List<String> findUsernameList();
+
+    // hate tag list 가져오기
+    List<String> findTagsByUsername(String username);
 
 }

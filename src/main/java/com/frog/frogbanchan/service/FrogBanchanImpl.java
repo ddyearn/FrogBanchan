@@ -8,6 +8,7 @@ import java.util.Map;
 import com.frog.frogbanchan.dao.*;
 import com.frog.frogbanchan.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,6 +49,14 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         usersDao.deleteUser(username);
     }
 
+    public void insertHateTag(String username, String tag) {
+        usersDao.insertHateTag(username, tag);
+    }
+
+    public void deleteHateTag(int tagId) {
+        usersDao.deleteHateTag(tagId);
+    }
+
     public Users findUserByUsername(String username) {
         return usersDao.findUserByUsername(username);
     }
@@ -66,6 +75,10 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
 
     public List<Users> findUsersByTeamId(int teamId) {
         return usersDao.findUsersByTeamId(teamId);
+    }
+
+    public List<String> findTagsByUsername(String username) {
+        return usersDao.findTagsByUsername(username);
     }
 
     // PlaceService
