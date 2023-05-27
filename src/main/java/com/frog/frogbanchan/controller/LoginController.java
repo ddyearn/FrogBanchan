@@ -40,28 +40,31 @@ public class LoginController {
 		System.out.println(users);
 		System.out.println(place);
 
+		String viewName;
 		if (users != null && password.equals(users.getPassword())) {
 			UserSession userSession = new UserSession(users);
 			model.addAttribute("userSession", userSession);
+			viewName = "/user/mainForCommon";
 		} else if (place != null && password.equals(place.getPassword())) {
 			PlaceSession placeSession = new PlaceSession(place);
 			model.addAttribute("placeSession", placeSession);
+			viewName = "/place/mainForPlace";
 		} else {
-			String errorMsg = "";
+			String errorMsg;
 			if (users == null && place == null) {
 				errorMsg = "아이디가 존재하지 않구리";
 			} else {
 				errorMsg = "비밀번호를 확인하구리";
 			}
+			viewName = "login";
 			model.addAttribute("errorMsg", errorMsg);
-			return new ModelAndView("login");
+			return new ModelAndView(viewName);
 		}
 
 		if (forwardAction != null) {
 			return new ModelAndView("redirect:" + forwardAction);
 		} else {
-			// common or place
-			return new ModelAndView("/user/mainForCommon");
+			return new ModelAndView(viewName);
 		}
 	}
 
@@ -71,14 +74,9 @@ public class LoginController {
 		return "th/index";
 	}
 
-//	@RequestMapping("/index/th")
-//	public String handler3() {
-//		return "th/test";
-//	}
-
-	@RequestMapping("/index/login")
-	public String handler2() {
-		return "login";
+	@RequestMapping("/index/th")
+	public String handler3() {
+		return "th/test";
 	}
 	*/
 }

@@ -24,6 +24,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(interceptor).addPathPatterns("/logout");
+        registry.addInterceptor(interceptor).addPathPatterns("/recommend/personal", "/recommend/team");
     }
 
     @Override
