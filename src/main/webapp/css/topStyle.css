@@ -5,22 +5,36 @@
 }
 
 .navBar {
-    position: fixed;
+    width: 100%;
+    position: absolute;
     margin-top: 5px;
-    margin-bottom: 5px;
+}
+
+.navBox1 {
+    float: right;
     margin-right: 20px;
 }
-
-.navSpan {
-    text-align: center;
-    text-decoration-line: underline;
+.navBox2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    margin-right: 10px;
 }
 
-.horizonLine {
+.navText1 {
+    float: left;
+    text-align: center;
+    text-decoration-line: underline;
+    vertical-align: middle;
+}
+.navText2 {
+    float: right;
+}
+
+.navLine {
     width: 100%;
-	text-align: center;
 	border-bottom: 1px solid #000;
-    position: absolute;
 	line-height: 0.1em;
-    margin-top: 50px;
+    margin-top: 45px;
 }
