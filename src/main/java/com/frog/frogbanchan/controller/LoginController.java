@@ -47,6 +47,13 @@ public class LoginController {
 			PlaceSession placeSession = new PlaceSession(place);
 			model.addAttribute("placeSession", placeSession);
 		} else {
+			String errorMsg = "";
+			if (users == null && place == null) {
+				errorMsg = "아이디가 존재하지 않구리";
+			} else {
+				errorMsg = "비밀번호를 확인하구리";
+			}
+			model.addAttribute("errorMsg", errorMsg);
 			return new ModelAndView("login");
 		}
 
