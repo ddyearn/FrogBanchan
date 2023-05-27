@@ -25,6 +25,7 @@ public class TestContoller {
         System.out.println(frogBanchan.findUsersByNickname("나메코"));
         System.out.println(frogBanchan.findUserByUsername("nameco"));
         System.out.println(frogBanchan.findTeamsByUsername("nameco"));
+        System.out.println(frogBanchan.findUsersByTeamId(100));
         // Users user = new Users("test", "test", "test", "test", "000-0000-0000",
         // "test", "0000000", "test");
         // frogBanchan.insertUser(user);
@@ -33,8 +34,11 @@ public class TestContoller {
         // System.out.println(frogBanchan.findUserByUsername("test"));
         // frogBanchan.deleteUser("test");
         System.out.println(frogBanchan.findUsernameList());
-
         System.out.println();
+//        frogBanchan.insertHateTag("nameco", "더덕");
+//        frogBanchan.insertHateTag("nameco", "더덕2");
+//        frogBanchan.deleteHateTag(100003);
+        System.out.println(frogBanchan.findTagsByUsername("nameco"));
         return new ModelAndView("th/test");
     }
 
