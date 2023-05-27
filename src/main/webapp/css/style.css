@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
 
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .mainbox{
   box-sizing: border-box;
 
@@ -76,7 +83,7 @@
   position: absolute;
 }
 .contentWrap {
-  margin-top: 26px;
+  margin-top: 10px;
   flex: 1;
 }
 
@@ -97,7 +104,7 @@
   margin-top: 8px;
   margin-left: 60%;
   margin-bottom: 10px;
-  width: 250px;
+  width: 280px;
   background-color: white;
   border: 1px solid gray;
 }
@@ -124,12 +131,6 @@
   font-size: 18px;
 
   color: #dadada;
-}
-
-.errorMessageWrap {
-  margin-top: 8px;
-  color: #ef0000;
-  font-size: 12px;
 }
 
 .bttnWrapper {
@@ -174,4 +175,14 @@
   border-radius: 64px;
   color: white;
   cursor: pointer;
+}
+
+.errorMessageWrap {
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 42%;
+  color: #ef0000;
+  font-size: 18px;
+  font-family: 'Poor Story';
+  z-index: 10;
 }

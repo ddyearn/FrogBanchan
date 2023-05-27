@@ -18,11 +18,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/index").setViewName("index");
-        registry.addViewController("/user/login").setViewName("login");
+        registry.addViewController("/login").setViewName("login");
     }
 
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(interceptor).addPathPatterns("/user/logout");
+        registry.addInterceptor(interceptor).addPathPatterns("/logout");
     }
 
     @Override
