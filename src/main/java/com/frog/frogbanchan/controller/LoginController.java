@@ -29,7 +29,7 @@ public class LoginController {
 	}
 
 	@PostMapping
-	public ModelAndView handleRequest3(HttpServletRequest request,
+	public ModelAndView handleRequest(HttpServletRequest request,
 									   @RequestParam("id") String id,
 									   @RequestParam("password") String password,
 									   @RequestParam(value = "forwardAction", required = false) String forwardAction,
