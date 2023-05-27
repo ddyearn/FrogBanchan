@@ -17,6 +17,15 @@ html, body {
     z-index: -1;
 }
 
+.horizonLine {
+    width: 100%;
+	text-align: center;
+	border-bottom: 1px solid #000;
+    position: absolute;
+	line-height: 0.1em;
+	margin-top: 300px;
+}
+
 .recommendBox1 {
     position: absolute;
     max-width: 800px;
@@ -104,15 +113,6 @@ html, body {
     color: black;
 }
 
-.horizonLine {
-    width: 100%;
-	text-align: center;
-	border-bottom: 1px solid #000;
-    position: absolute;
-	line-height: 0.1em;
-	margin-top: 300px;
-}
-
 .tagListBox {
     position: absolute;
     margin-top: 70px;
@@ -120,7 +120,6 @@ html, body {
     white-space: nowrap;
     z-index: 0;
 }
-
 .tagListText {
     margin-left: 150px;
     margin-top: 250px;
