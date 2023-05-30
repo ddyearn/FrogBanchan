@@ -48,7 +48,15 @@ public class TeamFormController {
     }
     
 	@GetMapping
-    public String showForm() {
+    public String showForm(HttpServletRequest request, HttpSession session, Model model) {
+		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+		Team team = new Team();
+		
+		//팀 생성을 진행하는 user(현재 UserSession)가 팀장으로 자동 지정되도록
+		String creator = userSession.getUser().getUsername();
+		team.setCreator(creator);
+		
+		model.addAttribute("team", team);
         return FORM_VIEW;
     }
 	
@@ -56,16 +64,12 @@ public class TeamFormController {
 	public String onSubmit(
 			HttpServletRequest request, HttpSession session,
 			@ModelAttribute("teamForm") TeamForm teamForm, BindingResult bindingResult, Model model) throws Exception {
-		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+		Team team = teamForm.getTeam();
 		
 		validator.validate(teamForm, bindingResult);
 		if (bindingResult.hasErrors()) {
 			return FORM_VIEW;
 		}
-		
-		String creator = userSession.getUser().getUsername();
-		Team team = teamForm.getTeam();
-		team.setCreator(creator);
         
 		frogBanchan.insertTeam(team);
 		model.addAttribute("team", team);
