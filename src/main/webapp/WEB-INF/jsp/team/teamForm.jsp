@@ -13,7 +13,7 @@
 
 <form:form modelAttribute="teamForm" method="post">
 <label for="teamId">팀아이디</label>: 
-<form:input path="team.teamId" value="${team.teamId}" readonly="true"/> <br/>
+자동생성<br/>
 
 <label for="name">팀명</label>: 
 <form:input path="team.name"/>

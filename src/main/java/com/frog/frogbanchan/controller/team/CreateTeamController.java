@@ -23,17 +23,19 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Controller
 @RequestMapping("/team/create")
-public class TeamFormController {
+public class CreateTeamController {
 	@Value("/team/teamForm")
 	private String FORM_VIEW;
 	@Value("/team/view")
 	private String RESULT_VIEW;
 
     private FrogBanchanFacade frogBanchan;
+	private TeamFormValidator validator;
 
     @Autowired
-    public void setFrogBanchan(FrogBanchanFacade frogBanchan) {
+    public CreateTeamController(FrogBanchanFacade frogBanchan, TeamFormValidator validator) {
         this.frogBanchan = frogBanchan;
+        this.validator = validator;
     }
 
 	@ModelAttribute("teamForm")
@@ -41,36 +43,25 @@ public class TeamFormController {
         return new TeamForm();
     }
 	
-	@Autowired
-    private TeamFormValidator validator;
-    public void setValidator(TeamFormValidator validator) {
-        this.validator = validator;
-    }
     
 	@GetMapping
-    public String showForm(HttpServletRequest request, HttpSession session, Model model) {
+    public String showForm(HttpServletRequest request, Model model) {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
-		Team team = new Team();
-		
-		//팀 생성을 진행하는 user(현재 UserSession)가 팀장으로 자동 지정되도록
-		String creator = userSession.getUser().getUsername();
-		team.setCreator(creator);
-		
-		model.addAttribute("team", team);
+		TeamForm teamForm = new TeamForm();
+	    teamForm.setCreator(userSession.getUser().getUsername());
+	    model.addAttribute("teamForm", teamForm);
         return FORM_VIEW;
     }
 	
 	@PostMapping
 	public String onSubmit(
-			HttpServletRequest request, HttpSession session,
-			@ModelAttribute("teamForm") TeamForm teamForm, BindingResult bindingResult, Model model) throws Exception {
-		Team team = teamForm.getTeam();
-		
-		validator.validate(teamForm, bindingResult);
+			@Valid @ModelAttribute("teamForm") TeamForm teamForm, BindingResult bindingResult, Model model) throws Exception {
 		if (bindingResult.hasErrors()) {
 			return FORM_VIEW;
 		}
-        
+		
+		Team team = teamForm.getTeam();
+       
 		frogBanchan.insertTeam(team);
 		model.addAttribute("team", team);
 		
