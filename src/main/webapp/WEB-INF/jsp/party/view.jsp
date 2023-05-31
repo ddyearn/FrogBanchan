@@ -16,8 +16,8 @@
         ${party.placeId} <br/>
         ${party.content} <br/>
         <br/>
-        <a href='<c:url value="/party/delete.do"><c:param name="partyId" value="${party.partyId}"/></c:url>'>식구 삭제</a>
-   		<a href='<c:url value="/party/update.do"><c:param name="partyId" value="${party.partyId}"/></c:url>'>식구 업뎃</a>
+        <a href='<c:url value="/party/delete"><c:param name="partyId" value="${party.partyId}"/></c:url>'>식구 삭제</a>
+   		<a href='<c:url value="/party/update"><c:param name="partyId" value="${party.partyId}"/></c:url>'>식구 업뎃</a>
    		
     </div>
 </body>

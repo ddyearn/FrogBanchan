@@ -18,7 +18,7 @@ public class DeleteTeamController {
 		this.frogBanchan = frogBanchan;
 	}
 
-	@RequestMapping("/team/delete.do")
+	@RequestMapping("/team/delete")
 	public String handleRequest(
 			@RequestParam("teamId") int teamId, 
 			ModelMap model) throws Exception {

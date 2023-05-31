@@ -21,7 +21,7 @@ public class ListTeamController {
 		this.frogbanchan = frogbanchan;
 	}
 
-	@RequestMapping("/team/list.do")
+	@RequestMapping("/team/list")
 	public ModelAndView handleRequest(
 			@ModelAttribute("userSession") UserSession userSession) throws Exception {
 		String username = userSession.getUser().getUsername();

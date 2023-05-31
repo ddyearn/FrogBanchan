@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-@RequestMapping("/team/update.do")
+@RequestMapping("/team/update")
 public class UpdateTeamController {
     private FrogBanchanFacade frogBanchan;
     @Autowired

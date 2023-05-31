@@ -16,8 +16,8 @@
         ${team.address} <br/>
         ${team.creator} <br/>
         <br/>
-        <a href='<c:url value="/team/delete.do"><c:param name="teamId" value="${team.teamId}"/></c:url>'>팀 삭제</a>
-   		<a href='<c:url value="/team/update.do"><c:param name="teamId" value="${team.teamId}"/></c:url>'>팀 업뎃</a>
+        <a href='<c:url value="/team/delete"><c:param name="teamId" value="${team.teamId}"/></c:url>'>팀 삭제</a>
+   		<a href='<c:url value="/team/update"><c:param name="teamId" value="${team.teamId}"/></c:url>'>팀 업뎃</a>
    		
     </div>
 </body>
