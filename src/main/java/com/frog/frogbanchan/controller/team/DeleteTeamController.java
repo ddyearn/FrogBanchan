@@ -15,18 +15,18 @@ import com.frog.frogbanchan.service.FrogBanchanFacade;
 @Controller
 public class DeleteTeamController { 
 
-	private FrogBanchanFacade frogbanchan;
+	private FrogBanchanFacade frogBanchan;
 
 	@Autowired
-	public void setFrogbanchan(FrogBanchanFacade frogbanchan) {
-		this.frogbanchan = frogbanchan;
+	public void setFrogbanchan(FrogBanchanFacade frogBanchan) {
+		this.frogBanchan = frogBanchan;
 	}
 
 	@RequestMapping("/team/delete.do")
 	public String handleRequest(
 			@RequestParam("teamId") int teamId, 
 			ModelMap model) throws Exception {
-		frogbanchan.deleteTeam(teamId);
+		frogBanchan.deleteTeam(teamId);
 		
 		return "/user/mainForCommon";
 	}
