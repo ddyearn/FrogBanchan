@@ -2,14 +2,13 @@ package com.frog.frogbanchan.domain;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+// import javax.persistence.Entity;
+// import javax.persistence.Id;
 
 // @Entity
 @Getter
