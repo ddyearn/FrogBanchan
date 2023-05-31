@@ -23,6 +23,7 @@ teamList 출력 test <br/>
 			<td>${team.name}</td>
 			<td>${team.address}</td>
 			<td>${team.creator}</td>
+			<td><a href='<c:url value="/team/view"><c:param name="teamId" value="${team.teamId}"/></c:url>'>보기</a></td>
 		</tr>
 	</c:forEach>
 </table>
