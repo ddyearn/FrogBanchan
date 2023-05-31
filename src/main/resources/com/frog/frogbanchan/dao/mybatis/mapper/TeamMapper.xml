@@ -25,6 +25,7 @@
     <select id="getNextId" resultType="int">
     	SELECT LAST_NUMBER FROM USER_SEQUENCES WHERE SEQUENCE_NAME='SEQUENCE_TEAM'
     </select>
+    
     <select id="findTeamMembers" resultType="Users">
         SELECT USERS.USERNAME,
     		USERS.PASSWORD,
