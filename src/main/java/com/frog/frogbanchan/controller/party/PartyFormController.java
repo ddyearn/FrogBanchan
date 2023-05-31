@@ -35,11 +35,13 @@ public class PartyFormController {
         this.frogBanchan = frogBanchan;
     }
 
+    //식구 리스트 조회
 	@RequestMapping("/party/list")
 	public ModelAndView handleRequest() throws Exception {
 		return new ModelAndView("/party/list", "partyList", frogBanchan.findPartyList());
 	}
 	
+	//식구 상세정보 조회
 	@GetMapping("/party/view")
 	@ModelAttribute("applyList")
 	public ModelAndView findParty(@RequestParam("partyId") int partyId, HttpSession session) {
@@ -64,6 +66,7 @@ public class PartyFormController {
         this.validator = validator;
     }
 
+    //식구 모집 생성
 	@GetMapping("/party/create.do")
 	public String showForm(HttpServletRequest request, HttpSession session, Model model) {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
@@ -77,6 +80,7 @@ public class PartyFormController {
         return FORM_VIEW;
     }
 
+	//식구 모집 생성 처리
 	@PostMapping("/party/create.do")
 	public String createParty(
 			HttpServletRequest request, HttpSession session,
@@ -95,6 +99,7 @@ public class PartyFormController {
 		return RESULT_VIEW;
 	}
  
+	//식구 모집 수정
 	@GetMapping("/party/update.do")
     public String showForm(@RequestParam(value="partyId") int partyId, Model model, @ModelAttribute("partyForm") PartyForm partyForm, HttpServletRequest request) {
 		Party party = frogBanchan.findParty(partyId);
@@ -105,8 +110,9 @@ public class PartyFormController {
 		model.addAttribute("party", party);
         return "/party/partyUpdateForm";
     }
-
-	@PostMapping("/party/update")
+	
+	//식구 모집 수정 처리
+	@PostMapping("/party/update.do")
 	public String updateParty(
 			HttpServletRequest request, HttpSession session,
 			@ModelAttribute("partyForm") PartyForm partyForm, BindingResult bindingResult, Model model) throws Exception {
@@ -123,6 +129,7 @@ public class PartyFormController {
 		return RESULT_VIEW;
 	}
 	
+	//식구 모집 삭제
 	@RequestMapping("/party/delete.do")
 	public String handleRequest(
 			@RequestParam("partyId") int partyId, 
