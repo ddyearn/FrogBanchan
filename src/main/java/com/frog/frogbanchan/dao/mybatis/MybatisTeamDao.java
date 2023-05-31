@@ -28,6 +28,10 @@ public class MybatisTeamDao implements TeamDao {
     	return teamMapper.findTeamMembers(teamId);
     }
 
+    public int getNextId() throws DataAccessException {
+    	return teamMapper.getNextId();
+    }
+
     public void insertTeam(Team team) throws DataAccessException {
     	teamMapper.insertTeam(team);
     }

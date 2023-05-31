@@ -1,4 +1,4 @@
-package com.frog.frogbanchan.validator;
+package com.frog.frogbanchan.service.validator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
