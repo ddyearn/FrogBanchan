@@ -2,11 +2,9 @@ package com.frog.frogbanchan.controller.team;
 import com.frog.frogbanchan.controller.UserSession;
 import com.frog.frogbanchan.domain.Team;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
-import com.frog.frogbanchan.service.FrogBanchanImpl;
 import com.frog.frogbanchan.service.validator.TeamFormValidator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,9 +40,12 @@ public class CreateTeamController {
 	@GetMapping
     public String showForm(HttpServletRequest request, HttpSession session, Model model) {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+		
+		//팀아이디 시퀀스 값 출력
 		Team team = new Team();
 		int teamId = frogBanchan.getNextId();
 		team.setTeamId(teamId);
+		
 		//팀 생성을 진행하는 user(현재 UserSession)가 팀장으로 자동 지정되도록
 		String creator = userSession.getUser().getUsername();
 		team.setCreator(creator);
