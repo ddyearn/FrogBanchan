@@ -67,7 +67,7 @@ public class PartyFormController {
     }
 
     //식구 모집 생성
-	@GetMapping("/party/create.do")
+	@GetMapping("/party/create")
 	public String showForm(HttpServletRequest request, HttpSession session, Model model) {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
 		Party party = new Party();
@@ -81,7 +81,7 @@ public class PartyFormController {
     }
 
 	//식구 모집 생성 처리
-	@PostMapping("/party/create.do")
+	@PostMapping("/party/create")
 	public String createParty(
 			HttpServletRequest request, HttpSession session,
 			@ModelAttribute("partyForm") PartyForm partyForm, BindingResult bindingResult, Model model) throws Exception {
@@ -100,7 +100,7 @@ public class PartyFormController {
 	}
  
 	//식구 모집 수정
-	@GetMapping("/party/update.do")
+	@GetMapping("/party/update")
     public String showForm(@RequestParam(value="partyId") int partyId, Model model, @ModelAttribute("partyForm") PartyForm partyForm, HttpServletRequest request) {
 		Party party = frogBanchan.findParty(partyId);
 		if (party == null) {
@@ -112,7 +112,7 @@ public class PartyFormController {
     }
 	
 	//식구 모집 수정 처리
-	@PostMapping("/party/update.do")
+	@PostMapping("/party/update")
 	public String updateParty(
 			HttpServletRequest request, HttpSession session,
 			@ModelAttribute("partyForm") PartyForm partyForm, BindingResult bindingResult, Model model) throws Exception {
@@ -130,7 +130,7 @@ public class PartyFormController {
 	}
 	
 	//식구 모집 삭제
-	@RequestMapping("/party/delete.do")
+	@RequestMapping("/party/delete")
 	public String handleRequest(
 			@RequestParam("partyId") int partyId, 
 			ModelMap model) throws Exception {
