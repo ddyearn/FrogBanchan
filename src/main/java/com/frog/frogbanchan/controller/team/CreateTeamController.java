@@ -3,6 +3,7 @@ import com.frog.frogbanchan.controller.UserSession;
 import com.frog.frogbanchan.domain.Team;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 import com.frog.frogbanchan.service.FrogBanchanImpl;
+import com.frog.frogbanchan.service.validator.TeamFormValidator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.frog.frogbanchan.validator.TeamFormValidator;
 import org.springframework.beans.factory.annotation.Value;
 @Controller
 @RequestMapping("/team/create")
@@ -43,7 +43,8 @@ public class CreateTeamController {
     public String showForm(HttpServletRequest request, HttpSession session, Model model) {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
 		Team team = new Team();
-
+		int teamId = frogBanchan.getNextId();
+		team.setTeamId(teamId);
 		//팀 생성을 진행하는 user(현재 UserSession)가 팀장으로 자동 지정되도록
 		String creator = userSession.getUser().getUsername();
 		team.setCreator(creator);
@@ -64,6 +65,7 @@ public class CreateTeamController {
 		}
 
 		frogBanchan.insertTeam(team);
+		team.setTeamId(team.getTeamId());
 		model.addAttribute("team", team);
 		
 		return RESULT_VIEW;

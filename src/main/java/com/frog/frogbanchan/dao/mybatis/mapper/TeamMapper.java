@@ -3,6 +3,7 @@ package com.frog.frogbanchan.dao.mybatis.mapper;
 import com.frog.frogbanchan.domain.Team;
 import com.frog.frogbanchan.domain.Users;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ public interface TeamMapper {
     public List<Team> findTeamList(String username);
 
     public List<Users> findTeamMembers(int teamId);
+    
+    public int getNextId();
 
     public void insertTeam(Team team);
 

@@ -104,6 +104,8 @@ public interface FrogBanchanFacade {
     
     public List<Team> findTeamList(String username);
     
+    public int getNextId();
+    
     public List<Users> findTeamMembers(int teamId);
 
     //PartyService

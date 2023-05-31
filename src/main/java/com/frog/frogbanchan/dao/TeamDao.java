@@ -16,6 +16,7 @@ public interface TeamDao {
     //팀원 리스트 조회
     List<Users> findTeamMembers(int teamId) throws DataAccessException;
 
+    int getNextId() throws DataAccessException;
     //팀 생성
     void insertTeam(Team team) throws DataAccessException;
 

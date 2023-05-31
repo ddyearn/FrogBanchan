@@ -224,6 +224,10 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     	return teamDao.findTeamMembers(teamId);
     }
 
+    public int getNextId() {
+    	return teamDao.getNextId();
+    }
+    
     // PartyService
     public void insertParty(Party party) {
         partyDao.insertParty(party);
