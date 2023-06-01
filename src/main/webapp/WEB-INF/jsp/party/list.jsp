@@ -24,6 +24,7 @@ partyList 출력 test <br/>
 			<td>${party.meetDate}</td>
 			<td>${party.placeId}</td>
 			<td>${party.content}</td>
+			<td><a href='<c:url value="/party/view"><c:param name="partyId" value="${party.partyId}"/></c:url>'>보기</a></td>
 		</tr>
 	</c:forEach>
 </table>

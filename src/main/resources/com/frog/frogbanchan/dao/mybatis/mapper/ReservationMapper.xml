@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.frog.frogbanchan.dao.mybatis.mapper.ReservationMapper">
+    <cache />
+
+    <select id="findReservation" resultType="Reservation">
+    	SELECT RESERVATION_ID AS reservationId,
+                USERNAME,
+                PLACE_ID AS placeId, 
+                RESERVATION_DATE AS reservationDate,
+                SEAT
+        FROM RESERVATION
+        WHERE PLACE_ID = #{placeId} AND USERNAME = #{username}
+    </select>
+
+    <insert id="insertReservation" parameterType="Reservation">
+        INSERT INTO RESERVATION(RESERVATION_ID, USERNAME, PLACE_ID, RESERVATION_DATE, SEAT)
+        VALUES (SEQUENCE_RESERVATION.nextval, #{username}, #{placeId}, #{reservationDate}, #{seat})
+    </insert>
+
+    <delete id="deleteReservation">
+        DELETE FROM RESERVATION 
+        WHERE RESERVATION_ID = #{reservationId}
+    </delete>
+
+</mapper>

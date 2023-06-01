@@ -2,11 +2,9 @@ package com.frog.frogbanchan.controller.team;
 import com.frog.frogbanchan.controller.UserSession;
 import com.frog.frogbanchan.domain.Team;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
-import com.frog.frogbanchan.service.FrogBanchanImpl;
 import com.frog.frogbanchan.service.validator.TeamFormValidator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.beans.factory.annotation.Value;
+
 
 @Controller
-@RequestMapping("/team/update.do")
+@RequestMapping("/team/update")
 public class UpdateTeamController {
     private FrogBanchanFacade frogBanchan;
     @Autowired

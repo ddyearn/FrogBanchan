@@ -19,12 +19,12 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     private UsersDao usersDao;
     @Autowired
     private PlaceDao placeDao;
-    // @Autowired
-    // private ReservationDao reservationDao;
-     @Autowired
-     private MenuDao menuDao;
-     @Autowired
-     private PlaceMenuDao placeMenuDao;
+    @Autowired
+    private ReservationDao reservationDao;
+    @Autowired
+    private MenuDao menuDao;
+    @Autowired
+    private PlaceMenuDao placeMenuDao;
     @Autowired
     private HistoryDao historyDao;
     @Autowired
@@ -106,65 +106,63 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         return placeDao.findCalendar(placeId);
     }
 
-    //
-    // // ReservationService
-    // public void insertReservation(Reservation reservation) {
-    // reservationDao.insertReservation(reservation);
-    // }
-    //
-    // public Reservation findReservationByUsername(String placeId, String username)
-    // {
-    // return reservationDao.findReservationByUsername(placeId, username);
-    // }
-    //
-    // public Reservation findReservationByDate(String placeId, Timestamp date) {
-    // return reservationDao.findReservationByDate(placeId, date);
-    // }
-    //
-     // MenuService
-     public Menu findMenu(int menuId) {
-     return menuDao.findMenu(menuId);
-     }
+    // ReservationService
+    public void insertReservation(Reservation reservation) {
+        reservationDao.insertReservation(reservation);
+    }
 
-     public List<Menu> findMenuList() {
-     return menuDao.findMenuList();
-     }
+    public void deleteReservation(int reservationId) {
+        reservationDao.deleteReservation(reservationId);
+    }
 
-     public List<Menu> findMenuListByTagList(Map<String, List<String>> tagList) {
-     return menuDao.findMenuListByTagList(tagList);
-     }
+    public Reservation findReservation(String placeId, String username) {
+        return reservationDao.findReservation(placeId, username);
+    }
 
-     public List<String> findMenuTagList(int menuId) {
-     return menuDao.findMenuTagList(menuId);
-     }
+    // MenuService
+    public Menu findMenu(int menuId) {
+        return menuDao.findMenu(menuId);
+    }
 
-     public List<String> findAllTagList() {
-     return menuDao.findAllTagList();
-     }
+    public List<Menu> findMenuList() {
+        return menuDao.findMenuList();
+    }
 
-     // PlaceMenuService
-     public List<PlaceMenu> findMenuListByPlaceId(String placeId) {
-     return placeMenuDao.findMenuListByPlaceId(placeId);
-     }
+    public List<Menu> findMenuListByTagList(Map<String, List<String>> tagList) {
+        return menuDao.findMenuListByTagList(tagList);
+    }
 
-     public List<Place> findPlaceListByMenu(int menuId) {
-     return placeMenuDao.findPlaceListByMenu(menuId);
-     }
+    public List<String> findMenuTagList(int menuId) {
+        return menuDao.findMenuTagList(menuId);
+    }
 
-     @Override
-     public void insertPlaceMenu(PlaceMenu placeMenu) {
-     placeMenuDao.insertPlaceMenu(placeMenu);
-     }
+    public List<String> findAllTagList() {
+        return menuDao.findAllTagList();
+    }
 
-     @Override
-     public void updatePlaceMenu(PlaceMenu placeMenu) {
-     placeMenuDao.updatePlaceMenu(placeMenu);
-     }
+    // PlaceMenuService
+    public List<PlaceMenu> findMenuListByPlaceId(String placeId) {
+        return placeMenuDao.findMenuListByPlaceId(placeId);
+    }
 
-     @Override
-     public void deletePlaceMenu(int placeMenuId) {
-     placeMenuDao.deletePlaceMenu(placeMenuId);
-     }
+    public List<Place> findPlaceListByMenu(int menuId) {
+        return placeMenuDao.findPlaceListByMenu(menuId);
+    }
+
+    @Override
+    public void insertPlaceMenu(PlaceMenu placeMenu) {
+        placeMenuDao.insertPlaceMenu(placeMenu);
+    }
+
+    @Override
+    public void updatePlaceMenu(PlaceMenu placeMenu) {
+        placeMenuDao.updatePlaceMenu(placeMenu);
+    }
+
+    @Override
+    public void deletePlaceMenu(int placeMenuId) {
+        placeMenuDao.deletePlaceMenu(placeMenuId);
+    }
 
     // HistoryService
     public History findHistory(int historyId) {
@@ -186,48 +184,48 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     public void deleteHistory(int historyId) {
         historyDao.deleteHistory(historyId);
     }
-    
+
     // TeamService
     public void insertTeam(Team team) {
-    	teamDao.insertTeam(team);
+        teamDao.insertTeam(team);
     }
-   
+
     public void updateTeam(Team team) {
-    	teamDao.updateTeam(team);
+        teamDao.updateTeam(team);
     }
-    
+
     public void addTeamMember(int teamId, String username) {
-    	teamDao.addTeamMember(teamId, username);
+        teamDao.addTeamMember(teamId, username);
     }
-    
+
     public void deleteTeam(int teamId) {
-    	teamDao.deleteTeam(teamId);
+        teamDao.deleteTeam(teamId);
     }
-    
+
     public void deleteTeamMember(int teamId, String username) {
-    	teamDao.deleteTeamMember(teamId, username);
+        teamDao.deleteTeamMember(teamId, username);
     }
-    
+
     public void quitTeam(int teamId) {
-    	teamDao.quitTeam(teamId);
+        teamDao.quitTeam(teamId);
     }
-    
+
     public Team findTeam(int teamId) {
-    	return teamDao.findTeam(teamId);
+        return teamDao.findTeam(teamId);
     }
-    
+
     public List<Team> findTeamList(String username) {
-    	return teamDao.findTeamList(username);
+        return teamDao.findTeamList(username);
     }
-    
+
     public List<Users> findTeamMembers(int teamId) {
-    	return teamDao.findTeamMembers(teamId);
+        return teamDao.findTeamMembers(teamId);
     }
 
     public int getNextId() {
-    	return teamDao.getNextId();
+        return teamDao.getNextId();
     }
-    
+
     // PartyService
     public void insertParty(Party party) {
         partyDao.insertParty(party);

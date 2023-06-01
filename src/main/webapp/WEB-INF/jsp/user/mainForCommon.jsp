@@ -22,7 +22,7 @@
 
 	<div class="recommendBox1">
 		<div class="recommendBox2">
-			<button class="recommendBtn">
+			<button class="recommendBtn" type="button" onClick="location.href='/recommend/personal'" >
 				<p class="recommendText">메뉴 추천<br/>바로가기</p>
 			</button>
 		</div>
