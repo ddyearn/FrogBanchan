@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/user/register")
-public class UserFormController {
+public class RegistUserController {
 
     @Value("/user/userJoinForm")
     private String FORM_VIEW;
