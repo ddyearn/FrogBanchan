@@ -5,7 +5,6 @@ import java.util.Map;
 import java.sql.Timestamp;
 
 import com.frog.frogbanchan.domain.*;
-import org.springframework.dao.DataAccessException;
 
 public interface FrogBanchanFacade {
 
