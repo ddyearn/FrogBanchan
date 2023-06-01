@@ -1,15 +1,17 @@
 package com.frog.frogbanchan.controller.recommend;
 
+import com.frog.frogbanchan.controller.TeamSession;
 import com.frog.frogbanchan.controller.UserSession;
 import com.frog.frogbanchan.domain.Team;
+import com.frog.frogbanchan.domain.Users;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 // recommend team, personal view 처리를 위한 임시 컨트롤러 (실제 구현 시 삭제 !!)
 @Controller
@@ -27,16 +29,29 @@ public class TestRecommendController {
     public ModelAndView test1(
             @ModelAttribute("userSession") UserSession userSession
             ) throws Exception {
-
         return new ModelAndView("/user/recommendPersonal");
+    }
+
+    @RequestMapping("/recommend/personal/test1")
+    public ModelAndView test3(
+            @ModelAttribute("userSession") UserSession userSession
+    ) throws Exception {
+        ModelAndView mav = new ModelAndView("/user/recommendTest1");
+        String user = userSession.getUser().getUsername();
+        List<String> hateList = frogBanchan.findTagsByUsername(user);
+        mav.addObject("hateList", hateList);
+        return mav;
     }
 
     @RequestMapping("/recommend/team")
     public ModelAndView test2(
             @ModelAttribute("userSession") UserSession userSession,
-            @RequestParam("teamId") int teamId
+            @SessionAttribute("teamSession") TeamSession teamSession
             ) throws Exception {
-        Team team = frogBanchan.findTeam(teamId);
+        Team team = teamSession.getTeam();
+
+        List<Users> selected = frogBanchan.findTeamMembers(team.getTeamId());
+        teamSession.setSelectedMember(selected);
 
         return new ModelAndView("/team/recommendTeam", "team", team);
     }
