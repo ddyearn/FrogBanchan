@@ -34,7 +34,6 @@ public class CalendarController {
             ModelMap model) throws Exception {
 
         List<Timestamp> availableTimeList = frogBanchan.findCalendar("toritori");
-        System.out.println("why");
         System.out.println("testest" + availableTimeList);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
