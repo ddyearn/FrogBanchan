@@ -61,7 +61,7 @@
                 <div class="bttnWrapper">
                   <button class="loginButton" type="submit" onClick={}>로그인</button>
                   &emsp;
-                  <button class="joinButton" type="button" onClick="location.href='/user/register'">회원가입</button>
+                  <button class="joinButton" type="button" onClick="location.href='/join'">회원가입</button>
                 </div>
 	       </form>
         </div>

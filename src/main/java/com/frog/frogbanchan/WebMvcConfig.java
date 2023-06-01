@@ -18,8 +18,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
     private HandlerInterceptor interceptor;
 
     public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("index");
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/join").setViewName("join");
     }
 
     public void addInterceptors(InterceptorRegistry registry) {
