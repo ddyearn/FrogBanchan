@@ -45,36 +45,34 @@ public interface FrogBanchanFacade {
 
     public List<Timestamp> findCalendar(String placeId);
 
-    //
-    // // ReservationService
-    // public void insertReservation(Reservation reservation);
-    //
-    // public Reservation findReservationByUsername(String placeId, String
-    // username);
-    //
-    // public Reservation findReservationByDate(String placeId, Timestamp date);
-    //
-     // MenuService
-     public Menu findMenu(int menuId);
+    // ReservationService
+    public void insertReservation(Reservation reservation);
 
-     public List<Menu> findMenuList();
+    public void deleteReservation(int reservationId);
 
-     public List<Menu> findMenuListByTagList(Map<String, List<String>> tagList);
+    public Reservation findReservation(String placeId, String username);
 
-     public List<String> findMenuTagList(int menuId);
+    // MenuService
+    public Menu findMenu(int menuId);
 
-     public List<String> findAllTagList();
+    public List<Menu> findMenuList();
 
-     // PlaceMenuService
-     public void insertPlaceMenu(PlaceMenu placeMenu);
+    public List<Menu> findMenuListByTagList(Map<String, List<String>> tagList);
 
-     public void updatePlaceMenu(PlaceMenu placeMenu);
+    public List<String> findMenuTagList(int menuId);
 
-     public void deletePlaceMenu(int placeMenuId);
+    public List<String> findAllTagList();
 
-     public List<PlaceMenu> findMenuListByPlaceId(String placeId);
+    // PlaceMenuService
+    public void insertPlaceMenu(PlaceMenu placeMenu);
 
-     public List<Place> findPlaceListByMenu(int menuId);
+    public void updatePlaceMenu(PlaceMenu placeMenu);
+
+    public void deletePlaceMenu(int placeMenuId);
+
+    public List<PlaceMenu> findMenuListByPlaceId(String placeId);
+
+    public List<Place> findPlaceListByMenu(int menuId);
 
     // HistoryService
     public History findHistory(int historyId);
@@ -86,31 +84,31 @@ public interface FrogBanchanFacade {
     public void updateHistory(History history);
 
     public void deleteHistory(int historyId);
- 
+
     // TeamService
     public void insertTeam(Team team);
 
     public void updateTeam(Team team);
-    
+
     public void addTeamMember(int teamId, String username);
-    
+
     public void deleteTeam(int teamId);
-    
+
     public void deleteTeamMember(int teamId, String username);
-    
+
     public void quitTeam(int teamId);
-    
+
     public Team findTeam(int teamId);
-    
+
     public List<Team> findTeamList(String username);
-    
+
     public int getNextId();
-    
+
     public List<Users> findTeamMembers(int teamId);
 
-    //PartyService
+    // PartyService
     public void insertParty(Party party);
-    
+
     public void updateParty(Party party);
 
     public void deleteParty(int partyId);
@@ -122,7 +120,7 @@ public interface FrogBanchanFacade {
     public void insertApply(Apply apply);
 
     public void deleteApply(int applyId);
-  
+
     public void deleteApplyByPartyId(int partyId);
 
     public Apply findApplyByApplyId(int applyId);

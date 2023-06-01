@@ -19,9 +19,9 @@ public class MybatisReservationDao implements ReservationDao {
         reservationMapper.insertReservation(reservation);
     };
 
-    // 예약취소(매개변수로 도메인 전부 써야해서 객체로 설정)
-    public void deleteReservation(Reservation reservation) throws DataAccessException {
-        reservationMapper.deleteReservation(reservation);
+    // 예약취소
+    public void deleteReservation(int reservationId) throws DataAccessException {
+        reservationMapper.deleteReservation(reservationId);
     };
 
     // 예약확인

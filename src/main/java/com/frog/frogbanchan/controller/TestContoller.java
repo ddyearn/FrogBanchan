@@ -6,6 +6,7 @@ import com.frog.frogbanchan.service.FrogBanchanImpl;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,60 +36,60 @@ public class TestContoller {
         // frogBanchan.deleteUser("test");
         System.out.println(frogBanchan.findUsernameList());
         System.out.println();
-//        frogBanchan.insertHateTag("nameco", "더덕");
-//        frogBanchan.insertHateTag("nameco", "더덕2");
-//        frogBanchan.deleteHateTag(100003);
+        // frogBanchan.insertHateTag("nameco", "더덕");
+        // frogBanchan.insertHateTag("nameco", "더덕2");
+        // frogBanchan.deleteHateTag(100003);
         System.out.println(frogBanchan.findTagsByUsername("nameco"));
         return new ModelAndView("th/test");
     }
 
     @RequestMapping("/test/team")
     public ModelAndView teamTest() {
-    	System.out.println(frogBanchan.findTeam(101));
-    	System.out.println(frogBanchan.findTeamList("naguri"));
-    	System.out.println(frogBanchan.findTeamMembers(100));
-    	//Team team = new Team(101, "나구리팀", "서울시 강남구 대치동", "naguri");
-    	//frogBanchan.insertTeam(team);
-    	//team.setName("나구리가지배한다");
-    	//frogBanchan.updateTeam(team);
-    	//System.out.println(frogBanchan.findTeam(126));
-    	
-    	//frogBanchan.addTeamMember(102, "naguri");
-    	//System.out.println(frogBanchan.findTeamMembers(102));
-    	//frogBanchan.quitTeam(102);
-    	//System.out.println(frogBanchan.findTeamMembers(102));
-    	//frogBanchan.deleteTeamMember(100, "naguri");
-    	//System.out.println(frogBanchan.findTeam(100));
-    	//System.out.println(frogBanchan.findTeamList("naguri"));
-    	//frogBanchan.deleteTeam(126);
-    	
-    	return new ModelAndView("th/test");
+        System.out.println(frogBanchan.findTeam(101));
+        System.out.println(frogBanchan.findTeamList("naguri"));
+        System.out.println(frogBanchan.findTeamMembers(100));
+        // Team team = new Team(101, "나구리팀", "서울시 강남구 대치동", "naguri");
+        // frogBanchan.insertTeam(team);
+        // team.setName("나구리가지배한다");
+        // frogBanchan.updateTeam(team);
+        // System.out.println(frogBanchan.findTeam(126));
+
+        // frogBanchan.addTeamMember(102, "naguri");
+        // System.out.println(frogBanchan.findTeamMembers(102));
+        // frogBanchan.quitTeam(102);
+        // System.out.println(frogBanchan.findTeamMembers(102));
+        // frogBanchan.deleteTeamMember(100, "naguri");
+        // System.out.println(frogBanchan.findTeam(100));
+        // System.out.println(frogBanchan.findTeamList("naguri"));
+        // frogBanchan.deleteTeam(126);
+
+        return new ModelAndView("th/test");
     }
-    
+
     @RequestMapping("/test/party")
     public ModelAndView partyTest() {
-    	System.out.println(frogBanchan.findParty(1001));
-    	System.out.println(frogBanchan.findPartyList());
-    	frogBanchan.deleteApply(1000);
-    	String time = "2023-05-31T18:15:00";
+        System.out.println(frogBanchan.findParty(1001));
+        System.out.println(frogBanchan.findPartyList());
+        frogBanchan.deleteApply(1000);
+        String time = "2023-05-31T18:15:00";
         LocalDateTime ldt = LocalDateTime.parse(time);
         Timestamp ts = Timestamp.valueOf(ldt);
         Party party = new Party(1111, "naguri", ts, "toritori", "test1");
-        //frogBanchan.insertParty(party);
-        //party.setContent("test2");
-        //frogBanchan.updateParty(party);
-        //frogBanchan.deleteParty(1003);
-  
-    	System.out.println(frogBanchan.findPartyList());
-    	System.out.println(frogBanchan.findApplyByApplyId(5002));
+        // frogBanchan.insertParty(party);
+        // party.setContent("test2");
+        // frogBanchan.updateParty(party);
+        // frogBanchan.deleteParty(1003);
+
+        System.out.println(frogBanchan.findPartyList());
+        System.out.println(frogBanchan.findApplyByApplyId(5002));
         System.out.println(frogBanchan.findApplyList());
         System.out.println(frogBanchan.findApplyByPartyId(1001));
         Apply apply = new Apply(1, 1001, "nameco", "test");
-//        frogBanchan.insertApply(apply);
+        // frogBanchan.insertApply(apply);
         frogBanchan.deleteApply(5002);
         System.out.println(frogBanchan.findApplyList());
 
-    	return new ModelAndView("th/test");
+        return new ModelAndView("th/test");
     }
 
     @RequestMapping("/test/history")
@@ -124,20 +125,21 @@ public class TestContoller {
 
         return new ModelAndView("th/test");
     }
+
     @RequestMapping("/test/placeMenu")
     public ModelAndView placeMenuTest() {
         System.out.println(frogBanchan.findMenuListByPlaceId("toritori"));
         System.out.println(frogBanchan.findPlaceListByMenu(10000));
         PlaceMenu placeMenu = new PlaceMenu(0, "spring123", 10000, "짱돈까스", 12000, "소켓주세요");
-//        frogBanchan.insertPlaceMenu(placeMenu);
-//        System.out.println(frogBanchan.findMenuListByPlaceId("spring123"));
-//        placeMenu.setDescription("소켓 내놓으라고");
-//        placeMenu.setPlaceMenuId(50020);
-//        frogBanchan.updatePlaceMenu(placeMenu);
-//        System.out.println(frogBanchan.findMenuListByPlaceId("spring123"));
-//        frogBanchan.deletePlaceMenu(50020);
-//        frogBanchan.deletePlaceMenu(50021);
-//        frogBanchan.deletePlaceMenu(50022);
+        // frogBanchan.insertPlaceMenu(placeMenu);
+        // System.out.println(frogBanchan.findMenuListByPlaceId("spring123"));
+        // placeMenu.setDescription("소켓 내놓으라고");
+        // placeMenu.setPlaceMenuId(50020);
+        // frogBanchan.updatePlaceMenu(placeMenu);
+        // System.out.println(frogBanchan.findMenuListByPlaceId("spring123"));
+        // frogBanchan.deletePlaceMenu(50020);
+        // frogBanchan.deletePlaceMenu(50021);
+        // frogBanchan.deletePlaceMenu(50022);
 
         return new ModelAndView("th/test");
     }
@@ -163,8 +165,44 @@ public class TestContoller {
         return new ModelAndView("th/test");
     }
 
+    @RequestMapping("/test/reservation")
+    public ModelAndView reservationTest() {
+
+        Date date = new Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+
+        Reservation rsv = new Reservation(0, "genin", "toritori", timestamp, 4);
+        frogBanchan.insertReservation(rsv);
+        // frogBanchan.insertPlace(place1);
+        // Place place2 = new Place("testtest", "ud_test", "ud_test", "ud_test");
+        // frogBanchan.updatePlace(place2);
+        // frogBanchan.deletePlace("testtest");
+
+        // Date date = new Date();
+        // Timestamp timestamp = new Timestamp(date.getTime());
+        // Timestamp timestamp1 = new Timestamp(date.getTime());
+        // frogBanchan.insertAvailableTime("test1_id", timestamp);
+
+        Reservation findRsv = frogBanchan.findReservation("toritori", "genin");
+        System.out.println(findRsv);
+
+        frogBanchan.deleteReservation(70000);
+
+        return new ModelAndView("th/test");
+    }
+
+    @RequestMapping("/test/teamPageUI")
+    public ModelAndView teamPageUiTest() {
+        ModelAndView mav = new ModelAndView("/team/teamPage");
+        // mav.addObject("days", days);
+
+        return mav;
+    }
+
     @RequestMapping("/test/map")
-    public ModelAndView mapTest() { return new ModelAndView("recommend/map");}
+    public ModelAndView mapTest() {
+        return new ModelAndView("recommend/map");
+    }
 
     @RequestMapping("/react")
     public String reactTest() {

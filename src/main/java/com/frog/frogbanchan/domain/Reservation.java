@@ -17,6 +17,7 @@ import lombok.ToString;
 @SuppressWarnings("serial")
 public class Reservation implements Serializable {
     // @Id
+    private int reservationId;
     private String username;
     private String placeId;
     private Timestamp reservationDate;
@@ -26,6 +27,14 @@ public class Reservation implements Serializable {
     }
 
     public Reservation(String username, String placeId, Timestamp reservationDate, int seat) {
+        this.username = username;
+        this.placeId = placeId;
+        this.reservationDate = reservationDate;
+        this.seat = seat;
+    }
+
+    public Reservation(int reservationId, String username, String placeId, Timestamp reservationDate, int seat) {
+        this.reservationId = reservationId;
         this.username = username;
         this.placeId = placeId;
         this.reservationDate = reservationDate;
