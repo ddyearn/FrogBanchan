@@ -115,7 +115,7 @@
     </script>
 </head>
 <body>
-    <div id="recommend" onclick="location.href='/recommend/team?teamId=101'">
+    <div id="recommend" onclick="location.href='/recommend/team'">
         추천하러가기
     </div>
 
