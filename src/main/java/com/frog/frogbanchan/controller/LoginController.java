@@ -44,11 +44,11 @@ public class LoginController {
 		if (users != null && password.equals(users.getPassword())) {
 			UserSession userSession = new UserSession(users);
 			model.addAttribute("userSession", userSession);
-			viewName = "/user/mainForCommon";
+			viewName = "/user/main";
 		} else if (place != null && password.equals(place.getPassword())) {
 			PlaceSession placeSession = new PlaceSession(place);
 			model.addAttribute("placeSession", placeSession);
-			viewName = "/place/mainForPlace";
+			viewName = "/place/main";
 		} else {
 			String errorMsg;
 			if (users == null && place == null) {
@@ -64,7 +64,7 @@ public class LoginController {
 		if (forwardAction != null) {
 			return new ModelAndView("redirect:" + forwardAction);
 		} else {
-			return new ModelAndView(viewName);
+			return new ModelAndView("redirect:" + viewName);
 		}
 	}
 
