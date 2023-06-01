@@ -32,20 +32,14 @@
 	  <div class="teamBox2">
 
 		<p class="teamBoxText">내가 속한 그룹</p>
+        <c:forEach var="team" items="${teamList}" varStatus="status">
+            <c:set var="teamId" value="${team.teamId}" />
+            <button class="btn btn-outline-success shadow-sm teamBtn" onClick="location.href='/team/main/${teamId}'">
+                <p class="teamName">${team.name}(${teamMap[teamId]})</p>
+            </button>
+        </c:forEach>
 
-		<button class="btn btn-outline-success shadow-sm teamBtn">
-			<p class="teamName">팀명(인원)</p>
-		</button>
-		<button class="btn btn-outline-success shadow-sm teamBtn">
-			<p class="teamName">개구리(4)</p>
-		</button>
-		<button class="btn btn-outline-success shadow-sm teamBtn">
-			<p class="teamName">마라모임(3)</p>
-		</button>
-		<button class="btn btn-outline-success shadow-sm teamBtn">
-			<p class="teamName">개발팀(7)</p>
-		</button>
-		<button class="btn btn-outline-success shadow-sm teamBtn">
+		<button class="btn btn-outline-success shadow-sm teamBtn" type="button" onClick="location.href='/team/create'">
 			<p class="teamCreateBtn">+</p>
 		</button>
 	  </div>

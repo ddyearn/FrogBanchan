@@ -33,7 +33,7 @@
     </select>
 
     <select id="findTeamsByUsername" resultType="Team">
-        SELECT TEAM.TEAM_ID,
+        SELECT TEAM.TEAM_ID AS teamId,
             NAME,
             CREATOR,
             ADDRESS
