@@ -24,9 +24,10 @@
 
 .navText1 {
     float: left;
+    vertical-align: middle;
     text-align: center;
     text-decoration-line: underline;
-    vertical-align: middle;
+    color: black;
 }
 .navText2 {
     float: right;
