@@ -55,6 +55,8 @@
         <p class="hateListText2">
             회원님의 불호 음식 목록은 추천 메뉴에서 제외된다구리
         </p>
+
+    <button type=button onClick="location.href='/recommend/personal/test1'">추천 go</button>
     </div>
 </body>
 </html>
