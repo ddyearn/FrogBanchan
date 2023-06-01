@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="placeNameBox">
-        <p class="placeNameText">봄의 정원 왕십리점</p>
+        <p class="placeNameText">${place.name}</p>
     </div>
 
     <a class="mngBox placeMng" href="#" data-text="가게 관리"></a>
