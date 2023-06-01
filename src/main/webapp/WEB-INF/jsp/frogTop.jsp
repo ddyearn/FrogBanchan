@@ -19,20 +19,19 @@
     <nav class="navBar sticky-top">
         <div class="navBox1 d-flex">
             <span class="navBox2">
-                <span class="navText1">
-                    <c:choose>
-                        <c:when test="${sessionScope.userSession ne null}">
-                            ${userSession.user.username}
-                        </c:when>
-                        <c:when test="${sessionScope.placeSession ne null}">
-                            ${placeSession.place.placeId}
-                        </c:when>
-                        <c:otherwise>
-                            <a href="/login">go to login</a>
-                        </c:otherwise>
-                    </c:choose>
-                </span>
-                <span class="navText2">&nbsp;님&nbsp;&nbsp;</span>
+                <c:choose>
+                    <c:when test="${sessionScope.userSession ne null}">
+                        <a class="navText1" href="/user/myPage">${userSession.user.username}</a>
+                        <span class="navText2">&nbsp;님&nbsp;&nbsp;</span>
+                    </c:when>
+                    <c:when test="${sessionScope.placeSession ne null}">
+                        <a class="navText1" href="/place/myPage">${placeSession.place.placeId}</a>
+                        <span class="navText2">&nbsp;님&nbsp;&nbsp;</span>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/login">login</a>
+                    </c:otherwise>
+                </c:choose>
             </span>
             <button class="btn btn-outline-danger" type="button" onClick="location.href='/logout'">
                 로그아웃

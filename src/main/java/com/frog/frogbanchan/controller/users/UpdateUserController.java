@@ -13,15 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.util.WebUtils;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
-@RequestMapping("/user/register")
-public class UserFormController {
-
-    @Value("/user/userJoinForm")
+@RequestMapping("/user/modify")
+public class UpdateUserController {
+    @Value("/user/userModify")
     private String FORM_VIEW;
-    @Value("/user/userRegistResult")
+    @Value("redirect:/user/myPage")
     private String RESULT_VIEW;
 
     private FrogBanchanFacade frogBanchan;
@@ -38,14 +35,11 @@ public class UserFormController {
     }
 
     @ModelAttribute("userForm")
-    public UserForm formBacking(HttpServletRequest request)
+    public UserForm formBacking(@SessionAttribute("userSession") UserSession userSession)
             throws Exception {
-        UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-        if (userSession != null) {
-            return new UserForm(userSession.getUser());
-        } else {
-            return new UserForm();
-        }
+        UserForm userForm = new UserForm(userSession.getUser());
+        userForm.setConfirmPassword(userSession.getUser().getPassword());
+        return userForm;
     }
 
     @GetMapping
@@ -56,8 +50,8 @@ public class UserFormController {
     @PostMapping
     public String onSubmit(
             /*@Valid*/ @ModelAttribute("userForm") UserForm userForm,
-            BindingResult bindingResult, Model model,
-            SessionStatus sessionStatus) {
+                       BindingResult bindingResult, Model model,
+                       SessionStatus sessionStatus) {
         System.out.println("command 객체: " + userForm);
 
         validator.validate(userForm, bindingResult);
@@ -67,12 +61,11 @@ public class UserFormController {
         }
 
         Users user = userForm.getUser();
-        frogBanchan.insertUser(user);
+        frogBanchan.updateUser(user);
         model.addAttribute("user", user);
-
-        sessionStatus.setComplete();
 
         return RESULT_VIEW;
     }
+
 
 }

@@ -28,11 +28,12 @@ public class MainUserController {
     }
 
     @RequestMapping("/user/main")
-    public ModelAndView handleRequest1(@SessionAttribute("userSession") UserSession userSession
-                                      ) throws Exception {
+    public ModelAndView handleRequest1(@SessionAttribute("userSession") UserSession userSession)
+            throws Exception {
         ModelAndView mav = new ModelAndView("/user/mainForCommon");
 
         String user = userSession.getUser().getUsername();
+
         List<Team> teamList = frogBanchan.findTeamList(user);
         Map<Integer, Integer> teamMap = new HashMap<>();
         for (Team team : teamList) {
@@ -40,16 +41,29 @@ public class MainUserController {
         }
         mav.addObject("teamList", teamList);
         mav.addObject("teamMap", teamMap);
+
         List<String> hateTagList = frogBanchan.findTagsByUsername(user);
         mav.addObject("hateTagList", hateTagList);
 
         return mav;
     }
 
+    @RequestMapping("/user/myPage")
+    public ModelAndView handleRequest2(@SessionAttribute("userSession") UserSession userSession)
+            throws Exception {
+        ModelAndView mav = new ModelAndView("/user/myPageForCommon");
+
+        String user = userSession.getUser().getUsername();
+        mav.addObject("user", userSession.getUser());
+        mav.addObject("history", frogBanchan.findHistoryList(user));
+//        mav.addObject("reservation", frogBanchan.findHistoryList(user));
+
+        return mav;
+    }
+
     @RequestMapping("/team/main/{teamId}")
-    public String handleRequest2(@PathVariable("teamId") int teamId,
-                                Model model
-                                ) throws Exception {
+    public String handleRequest3(@PathVariable("teamId") int teamId,
+                                Model model) throws Exception {
         model.addAttribute(new TeamSession(frogBanchan.findTeam(teamId)));
         return "/team/teamPage";
     }
