@@ -15,14 +15,14 @@ public class WithdrawalUserService {
 
     @Autowired
     private UsersDao usersDao;
-    @Autowired
-    private ReservationDao reservationDao;
-    @Autowired
-    private HistoryDao historyDao;
+//    @Autowired
+//    private ReservationDao reservationDao;
+//    @Autowired
+//    private HistoryDao historyDao;
     @Autowired
     private TeamDao teamDao;
-    @Autowired
-    private PartyDao partyDao;
+//    @Autowired
+//    private PartyDao partyDao;
 
     public void withdrawal(String username) {
         List<Team> teamList = teamDao.findTeamList(username);
