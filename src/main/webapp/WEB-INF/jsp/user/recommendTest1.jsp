@@ -9,8 +9,16 @@
 	<title>test</title>
 </head>
 <body>
+	like tags:
+	<br/>
+	<c:forEach var="tag" items="${likeList}" varStatus="status">
+	    <span>${tag}</span>
+	</c:forEach>
+	<br/>
+	hate tags:
+	<br/>
 	<c:forEach var="tag" items="${hateList}" varStatus="status">
-	    <p>${tag}</p><br/>
+	    <span>${tag}</span>
 	</c:forEach>
 </body>
 </html>
