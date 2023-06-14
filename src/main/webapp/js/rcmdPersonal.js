@@ -25,12 +25,12 @@ $(function() {
             return element === hateTag
         })) {
             hateTagList.push(hateTag);
-            $(".hateListBox3").append($("<span class='hateTag' id='" + hateTag + "'>" + hateTag + "</span>"));
+            $(".hateListBox3").append($("<span class='hateTag addedHate' id='" + hateTag + "'>" + hateTag + "</span>"));
         }
         $("input[name=hateAddTag]").val('');
     });
 
-    $(document).on("click",".hateTag", function() {
+    $(document).on("click",".hateTag.addedHate", function() {
         let tag = $(this).attr('id');
         hateTagList = hateTagList.filter((element) => element !== tag);
         $(this).remove();

@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>추천 | User</title>
-	<link rel="stylesheet" type="text/css" href="../../css/rcmdMainStyle.css">
+	<link rel="stylesheet" type="text/css" href="../../css/user/rcmdPersonalStyle.css">
     <script type="text/javascript" src="../../js/rcmdPersonal.js"></script>
 </head>
 <body>
