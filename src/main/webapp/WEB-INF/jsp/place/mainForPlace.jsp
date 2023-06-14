@@ -8,7 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>mainForPlace</title>
-	<link rel="stylesheet" type="text/css" href="../../css/mainPlaceStyle.css">
+	<link rel="stylesheet" type="text/css" href="../../css/place/mainPlaceStyle.css">
 </head>
 <body>
     <div class="placeNameBox">

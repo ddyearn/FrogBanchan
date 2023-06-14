@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
+html, body {
+    height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.horizonLine {
+    width: 100%;
+    position: absolute;
+    margin-top: 400px;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    z-index: -1;
+}
+
+.memberSelectedBox2::-webkit-scrollbar {
+    display: none;
+}
+.memberScroll2::-webkit-scrollbar {
+    width: 10px;
+}
+.memberScroll2::-webkit-scrollbar-thumb {
+    background: #9FC93C;
+    border-radius: 20px;
+}
+.memberScroll2::-webkit-scrollbar-track {
+    background: #ddd;
+    border-radius: 20px;
+}
+
+.likeListBox1 {
+    width: 800px;
+    height: 150px;
+    position: absolute;
+    margin-top: 150px;
+    margin-left: 100px;
+    background: #fff;
+}
+.likeListBox2 {
+    width: 800px;
+    height: 120px;
+    background: #fff;
+    border: 1px solid black;
+}
+.likeListBox3 {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    overflow-y: auto;
+    white-space: normal;
+}
+.likeTag {
+    font-size: 24px;
+    margin: 20px;
+    text-align: center;
+    text-decoration-line: underline;
+    white-space: nowrap;
+    z-index: 10;
+}
+.likeListText1 {
+    position: absolute;
+    margin-left: 250px;
+    margin-top: 125px;
+    padding: 10px;
+    background: #fff;
+    color: blue;
+    font-size: 20px;
+    z-index: 1;
+}
+.likeListText2 {
+    font-size: 14px;
+    color: gray;
+    text-align: center;
+}
+
+.likeAddBox1 {
+    width: 400px;
+    height: 150px;
+    position: absolute;
+    margin-top: 150px;
+    margin-left: 950px;
+    background: #fff;
+}
+.likeAddBox2 {
+    width: 400px;
+    height: 120px;
+    background: #fff;
+    border: 1px solid black;
+}
+.likeAddBox3 {
+    display: flex;
+    margin-top: 45px;
+    justify-content: center;
+}
+.likeAddText1 {
+    position: absolute;
+    margin-left: 1100px;
+    margin-top: 125px;
+    padding: 10px;
+    background: #fff;
+    font-size: 20px;
+    z-index: 1;
+}
+
+.hateListBox1 {
+    width: 800px;
+    height: 150px;
+    position: absolute;
+    margin-top: 570px;
+    margin-left: 100px;
+    background: #fff;
+}
+.hateListBox2 {
+    width: 800px;
+    height: 120px;
+    background: #fff;
+    border: 1px solid black;
+}
+.hateListBox3 {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+.hateTag {
+    font-size: 24px;
+    margin: 20px;
+    text-align: center;
+    text-decoration-line: underline;
+}
+.hateListText1 {
+    position: absolute;
+    margin-left: 250px;
+    margin-top: 545px;
+    padding: 10px;
+    background: #fff;
+    color: red;
+    font-size: 20px;
+    z-index: 1;
+}
+.hateListText2 {
+    font-size: 14px;
+    color: gray;
+    text-align: center;
+}
+
+.hateAddBox1 {
+    width: 400px;
+    height: 150px;
+    position: absolute;
+    margin-top: -157px;
+    margin-left: 850px;
+    background: #fff;
+}
+.hateAddBox2 {
+    width: 400px;
+    height: 120px;
+    background: #fff;
+    border: 1px solid black;
+}
+.hateAddBox3 {
+    display: flex;
+    margin-top: 45px;
+    justify-content: center;
+}
+.hateAddText1 {
+    position: absolute;
+    margin-top: -185px;
+    margin-left: 1000px;
+    padding: 10px;
+    background: #fff;
+    font-size: 20px;
+    z-index: 1;
+    white-space: nowrap;
+}
+
+.recommendBox {
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 390px;
+}
