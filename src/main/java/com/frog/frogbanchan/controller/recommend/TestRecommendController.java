@@ -58,12 +58,42 @@ public class TestRecommendController {
             @ModelAttribute("userSession") UserSession userSession,
             @SessionAttribute("teamSession") TeamSession teamSession
     ) throws Exception {
+        ModelAndView mav = new ModelAndView("/team/recommendTeam");
+
         Team team = teamSession.getTeam();
+        List<Users> memberList = frogBanchan.findTeamMembers(team.getTeamId());
+//        teamSession.setSelectedMember(memberList);
 
-        List<Users> selected = frogBanchan.findTeamMembers(team.getTeamId());
-        teamSession.setSelectedMember(selected);
+        mav.addObject("team", team);
+        mav.addObject("memberList", memberList);
 
-        return new ModelAndView("/team/recommendTeam", "team", team);
+        return mav;
+    }
+
+    @GetMapping("/recommend/team/list-tags/{user}")
+    @ResponseBody
+    public List<String> getHateList(
+            @PathVariable("user") String username
+    ) throws Exception {
+
+        List<String> hateTags = frogBanchan.findTagsByUsername(username);
+        System.out.println(hateTags);
+
+        return hateTags;
+    }
+
+    @RequestMapping("/recommend/team/test1")
+    public ModelAndView test5(
+            @ModelAttribute("userSession") UserSession userSession,
+            @SessionAttribute("teamSession") TeamSession teamSession,
+            @RequestParam("hateTags") String hateTags
+    ) throws Exception {
+        ModelAndView mav = new ModelAndView("/user/recommendTest2");
+
+        List<String> hateList = new ArrayList<>(Arrays.asList(hateTags.split(",")));
+        mav.addObject("hateList", hateList);
+
+        return mav;
     }
 
 }
