@@ -24,7 +24,7 @@ public class DeleteTeamController {
 			ModelMap model) throws Exception {
 		frogBanchan.deleteTeam(teamId);
 		
-		return "/user/mainForCommon";
+		return "redirect:/user/main";
 	}
 
 }
