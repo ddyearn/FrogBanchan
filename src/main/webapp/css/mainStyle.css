@@ -125,3 +125,16 @@ html, body {
     margin-top: 250px;
     font-size: 22px;
 }
+
+.partyListBox {
+    position: absolute;
+    margin-top: 70px;
+    margin-left: 450px;
+    white-space: nowrap;
+    z-index: 0;
+}
+.partyListText {
+    margin-left: 150px;
+    margin-top: 250px;
+    font-size: 22px;
+}
