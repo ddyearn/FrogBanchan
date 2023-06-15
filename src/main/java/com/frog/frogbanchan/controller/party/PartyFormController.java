@@ -136,6 +136,6 @@ public class PartyFormController {
 			ModelMap model) throws Exception {
 		frogBanchan.deleteParty(partyId);
 		
-		return "/user/mainForCommon";
+		return "redirect:/user/main";
 	}
 }
