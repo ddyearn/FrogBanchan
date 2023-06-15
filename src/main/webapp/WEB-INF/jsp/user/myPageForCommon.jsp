@@ -10,7 +10,7 @@
 <body>
     <br/> <br/> <br/>
     <button type="button" onClick="location.href='/user/modify'">내 정보 관리</button>
-    <button type="button" onClick="location.href='/user/history'">히스토리 관리</button>
+    <button type="button" onClick="location.href='/history/myHistory'">히스토리 관리</button>
     <button type="button" onClick="location.href='/user/reservation'">예약 관리</button>
     <br/>
     ${user.username} <br/>
