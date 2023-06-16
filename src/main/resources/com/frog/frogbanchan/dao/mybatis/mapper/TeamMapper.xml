@@ -68,6 +68,6 @@
 	
 	<delete id="quitTeam">
 		DELETE FROM PARTICIPATION
-		WHERE TEAM_ID = #{teamId}
+		WHERE TEAM_ID = #{teamId} AND USERNAME = #{username}
 	</delete>
 </mapper>
