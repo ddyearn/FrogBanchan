@@ -1,5 +1,6 @@
 package com.frog.frogbanchan.controller.party;
 
+import com.frog.frogbanchan.domain.Apply;
 import com.frog.frogbanchan.domain.Party;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,10 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -64,6 +68,14 @@ public class PartyFormController {
     private PartyFormValidator validator;
     public void setValidator(PartyFormValidator validator) {
         this.validator = validator;
+    }
+    
+    @ModelAttribute("partyForm")
+    public PartyForm formBacking(@RequestParam(value="partyId") int partyId){
+    	PartyForm partyForm = new PartyForm(frogBanchan.findParty(partyId));
+    	
+    	return partyForm;
+    	
     }
 
     //식구 모집 생성
@@ -130,7 +142,7 @@ public class PartyFormController {
 	}
 	
 	//식구 모집 삭제
-	@RequestMapping("/party/delete")
+	@RequestMapping("/party/apply/delete")
 	public String handleRequest(
 			@RequestParam("partyId") int partyId, 
 			ModelMap model) throws Exception {
@@ -138,4 +150,5 @@ public class PartyFormController {
 		
 		return "redirect:/user/main";
 	}
+
 }
