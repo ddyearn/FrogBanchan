@@ -1,6 +1,6 @@
 package com.frog.frogbanchan.controller.team;
-import com.frog.frogbanchan.controller.UserSession;
 import com.frog.frogbanchan.domain.Team;
+
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 import com.frog.frogbanchan.service.validator.TeamFormValidator;
 import javax.servlet.http.HttpServletRequest;
@@ -35,20 +35,16 @@ public class UpdateTeamController {
         this.validator = validator;
     }
 
+    @ModelAttribute("teamForm")
+    public TeamForm formBacking(@RequestParam(value="teamId") int teamId){
+    	TeamForm teamForm = new TeamForm(frogBanchan.findTeam(teamId));
+    	
+    	return teamForm;
+    	
+    }
 	@GetMapping
-    public String showForm(@RequestParam(value="teamId") int teamId, Model model, @ModelAttribute("teamForm") TeamForm teamForm, HttpServletRequest request) {
-		Team team = frogBanchan.findTeam(teamId);
-		if (team == null) {
-			return "redirect:/team/list";
-		}
-		
-		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
-		team.setTeamId(team.getTeamId());
-		String creator = userSession.getUser().getUsername();
-		team.setCreator(creator);
-
-		model.addAttribute("team", team);
-        return "/team/teamUpdateForm";
+    public String showForm() {
+		return "/team/teamUpdateForm";
     }
 
 	@PostMapping
