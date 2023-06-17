@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <button class="backBtn" type="button" onclick="history.back()">뒤로가기</button>
+    <button class="backBtn" type="button" onclick="location.href='/user/main'">뒤로가기</button>
 
   </div>
 </body>
