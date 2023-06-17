@@ -183,10 +183,14 @@ public class TestContoller {
         // Timestamp timestamp1 = new Timestamp(date.getTime());
         // frogBanchan.insertAvailableTime("test1_id", timestamp);
 
-        Reservation findRsv = frogBanchan.findReservation("toritori", "genin");
-        System.out.println(findRsv);
+        List<Reservation> rsv2 = frogBanchan.findReservationByUsername("genin");
+        List<Reservation> rsv3 = frogBanchan.findReservationByPlaceId("toritori");
+        List<Reservation> rsv4 = frogBanchan.findReservationByReservationId("70000");
 
-        frogBanchan.deleteReservation(70000);
+        // Reservation findRsv = frogBanchan.findReservation("toritori", "genin");
+        System.out.println("findReservationByUsername : " + rsv2);
+        System.out.println("findReservationByUsername : " + rsv3);
+        System.out.println("findReservationByUsername : " + rsv4);
 
         return new ModelAndView("th/test");
     }

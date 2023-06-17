@@ -8,6 +8,7 @@ import java.util.Map;
 import com.frog.frogbanchan.dao.*;
 import com.frog.frogbanchan.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -121,6 +122,22 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     public Reservation findReservation(String placeId, String username) {
         return reservationDao.findReservation(placeId, username);
     }
+
+    public List<Timestamp> findReservedTime(String placeId) {
+        return reservationDao.findReservedTime(placeId);
+    }
+
+    public List<Reservation> findReservationByUsername(String username) {
+        return reservationDao.findReservationByUsername(username);
+    };
+
+    public List<Reservation> findReservationByPlaceId(String placeId) {
+        return reservationDao.findReservationByPlaceId(placeId);
+    };
+
+    public List<Reservation> findReservationByReservationId(String reservationId) {
+        return reservationDao.findReservationByReservationId(reservationId);
+    };
 
     // MenuService
     public Menu findMenu(int menuId) {

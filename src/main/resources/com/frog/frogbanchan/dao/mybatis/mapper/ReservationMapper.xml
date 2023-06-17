@@ -24,4 +24,41 @@
         WHERE RESERVATION_ID = #{reservationId}
     </delete>
 
+    <select id="findReservedTime" resultType="java.sql.Timestamp">
+        SELECT RESERVATION_DATE
+        FROM RESERVATION
+        WHERE PLACE_ID = #{placeId}
+    </select>
+    
+    <select id="findReservationByUsername" resultType="Reservation">
+	    SELECT RESERVATION_ID AS reservationId,
+                USERNAME,
+                PLACE_ID AS placeId, 
+                RESERVATION_DATE AS reservationDate,
+                SEAT
+        FROM RESERVATION
+        WHERE USERNAME = #{username}
+    </select>
+
+    <select id="findReservationByPlaceId" resultType="Reservation">
+	    SELECT RESERVATION_ID AS reservationId,
+                USERNAME,
+                PLACE_ID AS placeId, 
+                RESERVATION_DATE AS reservationDate,
+                SEAT
+        FROM RESERVATION
+        WHERE PLACE_ID = #{placeId}
+    </select>
+
+    <select id="findReservationByReservationId" resultType="Reservation">
+	    SELECT RESERVATION_ID AS reservationId,
+                USERNAME,
+                PLACE_ID AS placeId, 
+                RESERVATION_DATE AS reservationDate,
+                SEAT
+        FROM RESERVATION
+        WHERE RESERVATION_ID = #{reservationId}
+    </select>
+
+
 </mapper>

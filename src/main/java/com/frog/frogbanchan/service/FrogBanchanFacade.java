@@ -53,6 +53,14 @@ public interface FrogBanchanFacade {
 
     public Reservation findReservation(String placeId, String username);
 
+    public List<Timestamp> findReservedTime(String placeId);
+
+    public List<Reservation> findReservationByUsername(String username);
+
+    public List<Reservation> findReservationByPlaceId(String placeId);
+
+    public List<Reservation> findReservationByReservationId(String reservationId);
+
     // MenuService
     public Menu findMenu(int menuId);
 

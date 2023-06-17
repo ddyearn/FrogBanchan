@@ -1,4 +1,4 @@
-package com.frog.frogbanchan.controller;
+package com.frog.frogbanchan.controller.reservation;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -29,10 +29,11 @@ public class CalendarController {
         this.frogBanchan = frogBanchan;
     }
 
-    @RequestMapping("/place/calendar")
+    @RequestMapping("/reservation/calendar")
     public ModelAndView handleRequest(HttpServletRequest request,
-            ModelMap model) throws Exception {
+            ModelMap model, String placeId) throws Exception {
 
+        model.addAttribute("placeId", "toritori");
         List<Timestamp> availableTimeList = frogBanchan.findCalendar("toritori");
         System.out.println("testest" + availableTimeList);
 
@@ -53,7 +54,7 @@ public class CalendarController {
             System.out.println("Day: " + day);
             System.out.println("---------");
         }
-        ModelAndView mav = new ModelAndView("/place/calendar");
+        ModelAndView mav = new ModelAndView("/reservation/calendar");
         mav.addObject("days", days);
 
         return mav;
