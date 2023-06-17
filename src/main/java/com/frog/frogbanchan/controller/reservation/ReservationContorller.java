@@ -51,7 +51,7 @@ public class ReservationContorller {
 
             times[i++] = time;
 
-            System.out.println("time: " + time);
+            System.out.println("time: " + time + "palceId" + placeId);
             System.out.println("---------");
         }
 

@@ -21,8 +21,19 @@ public class MainPlaceController {
 
     @RequestMapping("/place/main")
     public ModelAndView handleRequest1(@SessionAttribute("placeSession") PlaceSession placeSession)
-                                      throws Exception {
+            throws Exception {
         ModelAndView mav = new ModelAndView("/place/mainForPlace");
+
+        Place place = placeSession.getPlace();
+        mav.addObject("place", place);
+
+        return mav;
+    }
+
+    @RequestMapping("/place/myPage")
+    public ModelAndView handleMyPage(@SessionAttribute("placeSession") PlaceSession placeSession)
+            throws Exception {
+        ModelAndView mav = new ModelAndView("/place/myPageForPlace");
 
         Place place = placeSession.getPlace();
         mav.addObject("place", place);
