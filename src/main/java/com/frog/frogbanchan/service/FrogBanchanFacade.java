@@ -17,7 +17,9 @@ public interface FrogBanchanFacade {
 
     public void insertHateTag(String username, String tag);
 
-    public void deleteHateTag(int tagId);
+    public void deleteHateTagsByUsername(String username);
+
+    public void deleteHateTagByUsernameAndTag(String username, String tag);
 
     public Users findUserByUsername(String username);
 

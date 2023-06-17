@@ -21,7 +21,10 @@ public interface UsersMapper {
     void insertHateTag(String username, String tag);
 
     // hate tag 삭제
-    void deleteHateTag(int tagId);
+    void deleteHateTagsByUsername(String username);
+
+    // hate tag 삭제
+    void deleteHateTagByUsernameAndTag(String username, String tag);
 
     // ID로 user 객체 가져오기
     Users findUserByUsername(String username);

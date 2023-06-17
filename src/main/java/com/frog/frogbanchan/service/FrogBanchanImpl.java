@@ -52,8 +52,12 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         usersDao.insertHateTag(username, tag);
     }
 
-    public void deleteHateTag(int tagId) {
-        usersDao.deleteHateTag(tagId);
+    public void deleteHateTagsByUsername(String username) {
+        usersDao.deleteHateTagsByUsername(username);
+    }
+
+    public void deleteHateTagByUsernameAndTag(String username, String tag) {
+        usersDao.deleteHateTagByUsernameAndTag(username, tag);
     }
 
     public Users findUserByUsername(String username) {

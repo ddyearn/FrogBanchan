@@ -17,21 +17,6 @@ html, body {
     z-index: -1;
 }
 
-.memberSelectedBox2::-webkit-scrollbar {
-    display: none;
-}
-.memberScroll2::-webkit-scrollbar {
-    width: 10px;
-}
-.memberScroll2::-webkit-scrollbar-thumb {
-    background: #9FC93C;
-    border-radius: 20px;
-}
-.memberScroll2::-webkit-scrollbar-track {
-    background: #ddd;
-    border-radius: 20px;
-}
-
 .likeListBox1 {
     width: 800px;
     height: 150px;

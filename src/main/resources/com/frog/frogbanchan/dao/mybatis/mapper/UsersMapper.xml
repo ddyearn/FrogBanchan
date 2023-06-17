@@ -81,9 +81,14 @@
         VALUES (Sequence_hate_tag.nextval, #{username}, #{tag})
     </insert>
 
-    <delete id="deleteHateTag">
+    <delete id="deleteHateTagsByUsername">
         DELETE FROM HATE_TAG
-        WHERE HATE_TAG_ID = #{tagId}
+        WHERE USERNAME = #{username}
+    </delete>
+
+    <delete id="deleteHateTagByUsernameAndTag">
+        DELETE FROM HATE_TAG
+        WHERE USERNAME = #{username} AND TAG = #{tag}
     </delete>
 
 </mapper>
