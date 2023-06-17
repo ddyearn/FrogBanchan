@@ -8,51 +8,30 @@
 <head>
     <title>팀원 관리</title>
 	<link rel="stylesheet" type="text/css" href="../../css/team/teamPageStyle.css">
-    <script>
-        function showPopup() {
-            var popup = document.getElementById("popup");
-            popup.style.display = "block";
-        }
+    <script type="text/javascript" src="../../js/teamPage.js"></script>
 
-        function hidePopup() {
-            var popup = document.getElementById("popup");
-            popup.style.display = "none";
-        }
-
-        function deleteCircle() {
-            var circle = document.getElementById("circle");
-            circle.remove();
-            hidePopup();
-        }
-
-        function addCircle() {
-            var circleContainer = document.getElementById("circle-container");
-            var circleCount = circleContainer.childElementCount;
-            var circle = document.createElement("div");
-            circle.id = "circle";
-            circle.className = "circle";
-            circle.onclick = showPopup;
-            circle.style.left = circleCount * 110 + "px";
-            circleContainer.insertBefore(circle, circleContainer.lastElementChild);
-        }
-    </script>
 </head>
 <body>
     <div id="recommend" onclick="location.href='/recommend/team'">
         추천하러가기
     </div>
 
-    <div id="circle-container" class="circle-container">
+    <div class="circle-container">
         <c:forEach var="member" items="${memberList}" varStatus="status">
-            <div id="circle" class="circle" onclick="showPopup()">${member.nickname}</div>
+            <div id="circle" type="button" class="circle" onclick="showPopup()">${member.nickname}</div>
         </c:forEach>
-        <div id="add-button" class="add-button" onclick="addCircle()">+</div>
+        <div id="add-button" type="button" class="add-button" onclick="addCircle()">+</div>
     </div>
     
     <div id="popup" class="popup">
         <div class="delete-button">
-            <button onclick="deleteCircle()">삭제</button>
+            <button type="button" onclick="deleteCircle()">삭제</button>
         </div>
+    </div>
+
+    <div>
+        <button type="button" onclick="history.back()">뒤로가기</button>&nbsp;
+        <button type="button" onclick="location.href='/team/update?teamId=${team.teamId}'">팀 정보 수정</button>
     </div>
 </body>
 </html>
