@@ -30,6 +30,7 @@
         <div class="likeAddBox2">
             <div class="likeAddBox3">
                 <form id="likeAddForm">
+                    <input type="text" style="display:none;" />
                     <input type="text" name="likeAddTag" value="" />
                     <button id="addLikeBtn" type="button">추가</button>
                 </form>
@@ -62,6 +63,7 @@
             <div class="hateAddBox2">
                 <div class="hateAddBox3">
                     <form id="hateAddForm">
+                        <input type="text" style="display:none;" />
                         <input type="text" name="hateAddTag" value="" />
                         <button id="addHateBtn" type="button">추가</button>
                     </form>

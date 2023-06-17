@@ -22,6 +22,12 @@ $(function() {
         $(this).remove();
     });
 
+    $("input[type='text']").keydown(function() {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+        }
+    });
+
     document.getElementById("hateAddForm").addEventListener("submit", saveTags);
     function saveTags() {
         $("#hateAddForm").append($("<input type='hidden' name='hateTags' value='" + hateTagList + "' />"));
