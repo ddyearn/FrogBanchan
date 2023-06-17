@@ -27,6 +27,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(interceptor).addPathPatterns("/logout");
         registry.addInterceptor(interceptor).addPathPatterns("/user/main", "/user/myPage", "/user/tag");
         registry.addInterceptor(interceptor).addPathPatterns("/place/main", "/place/myPage");
+        registry.addInterceptor(interceptor).addPathPatterns("/placemenu/list", "/placemenu/create", "/placemenu/update", "/placemenu/delete");
         registry.addInterceptor(interceptor).addPathPatterns("/recommend/personal", "/recommend/team");
     }
 
