@@ -169,20 +169,21 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         return placeMenuDao.findPlaceListByMenu(menuId);
     }
 
-    @Override
+    public PlaceMenu findPlaceMenu(int placeMenuId) { return placeMenuDao.findPlaceMenu(placeMenuId); }
+
     public void insertPlaceMenu(PlaceMenu placeMenu) {
         placeMenuDao.insertPlaceMenu(placeMenu);
     }
 
-    @Override
     public void updatePlaceMenu(PlaceMenu placeMenu) {
         placeMenuDao.updatePlaceMenu(placeMenu);
     }
 
-    @Override
     public void deletePlaceMenu(int placeMenuId) {
         placeMenuDao.deletePlaceMenu(placeMenuId);
     }
+
+    public void deletePlaceMenuByPlaceId(String placeId) { placeMenuDao.deletePlaceMenuByPlaceId(placeId); }
 
     // HistoryService
     public History findHistory(int historyId) {
@@ -204,6 +205,8 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     public void deleteHistory(int historyId) {
         historyDao.deleteHistory(historyId);
     }
+
+    public void deleteHistoryByUsername(String username) { historyDao.deleteHistoryByUsername(username);}
 
     // TeamService
     public void insertTeam(Team team) {

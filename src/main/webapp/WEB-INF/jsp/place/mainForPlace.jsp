@@ -16,7 +16,7 @@
     </div>
 
     <a class="mngBox placeMng" href="#" data-text="가게 관리"></a>
-    <a class="mngBox menuMng" href="#" data-text="메뉴 관리"></a>
+    <a class="mngBox menuMng" href="/placemenu/list" data-text="메뉴 관리"></a>
 
     <div class="horizonLine">
     </div>

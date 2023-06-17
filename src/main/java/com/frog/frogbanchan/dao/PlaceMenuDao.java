@@ -21,6 +21,10 @@ public interface PlaceMenuDao {
     void deletePlaceMenu(int placeMenuId) throws DataAccessException;
     //[DELETE FROM PLACE_MENU WHERE PLACE_MENU_ID = ?]
 
+    //가게 메뉴 상세
+    PlaceMenu findPlaceMenu(int placeMenuId) throws DataAccessException;
+    //[SELECT * FROM PLACE_MENU WHERE PLACE_MENU_ID = ?]
+
     //가게 메뉴 리스트 조회
     List<PlaceMenu> findMenuListByPlaceId(String placeId) throws DataAccessException;
     //[SELECT * FROM PLACE_MENU
@@ -32,4 +36,8 @@ public interface PlaceMenuDao {
     // WHERE PLACE_ID IN (
     //      SELECT PLACE_ID FROM PLACE_MENU
     //      WHERE MENU_ID = ?) ]
+
+    //place 탈퇴 시 메뉴 삭제
+    void deletePlaceMenuByPlaceId(String placeId) throws DataAccessException;
+    //[DELETE * FROM PLACE_MENU WHERE PLACE_ID = ?]
 }

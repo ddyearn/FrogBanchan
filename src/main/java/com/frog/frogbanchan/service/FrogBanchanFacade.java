@@ -79,6 +79,10 @@ public interface FrogBanchanFacade {
 
     public void deletePlaceMenu(int placeMenuId);
 
+    public PlaceMenu findPlaceMenu(int placeMenuId);
+
+    public void deletePlaceMenuByPlaceId(String placeId);
+
     public List<PlaceMenu> findMenuListByPlaceId(String placeId);
 
     public List<Place> findPlaceListByMenu(int menuId);
@@ -93,6 +97,8 @@ public interface FrogBanchanFacade {
     public void updateHistory(History history);
 
     public void deleteHistory(int historyId);
+
+    public void deleteHistoryByUsername(String username);
 
     // TeamService
     public void insertTeam(Team team);
