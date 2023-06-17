@@ -15,7 +15,7 @@
         <p class="placeNameText">${place.name}</p>
     </div>
 
-    <a class="mngBox placeMng" href="#" data-text="가게 관리"></a>
+    <a class="mngBox placeMng" href="/place/myPage" data-text="가게 관리"></a>
     <a class="mngBox menuMng" href="#" data-text="메뉴 관리"></a>
 
     <div class="horizonLine">
