@@ -30,9 +30,7 @@ import com.frog.frogbanchan.service.validator.PartyFormValidator;
 public class PartyFormController { 
     @Value("/party/partyForm")
 	private String FORM_VIEW;
-	@Value("/party/view")
-	private String RESULT_VIEW;
-
+    
 	private FrogBanchanFacade frogBanchan;
     @Autowired
     public void setFrogBanchan(FrogBanchanFacade frogBanchan) {
@@ -87,7 +85,7 @@ public class PartyFormController {
 	
 		String creator = userSession.getUser().getUsername();
 		party.setCreator(creator);
-
+		
 		
 		model.addAttribute("party", party);
         return FORM_VIEW;
@@ -109,7 +107,7 @@ public class PartyFormController {
 		party.setPartyId(party.getPartyId());
 		model.addAttribute("party", party);
 		
-		return RESULT_VIEW;
+		return "redirect:/party/list";
 	}
  
 	//식구 모집 수정
@@ -147,9 +145,10 @@ public class PartyFormController {
 	public String handleRequest(
 			@RequestParam("partyId") int partyId, 
 			ModelMap model) throws Exception {
+		frogBanchan.deleteApplyByPartyId(partyId);
 		frogBanchan.deleteParty(partyId);
 		
-		return "redirect:/user/main";
+		return "redirect:/party/list";
 	}
 
 }
