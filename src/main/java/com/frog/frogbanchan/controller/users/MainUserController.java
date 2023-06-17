@@ -64,6 +64,7 @@ public class MainUserController {
                                 Model model) throws Exception {
         model.addAttribute(new TeamSession(frogBanchan.findTeam(teamId)));
         model.addAttribute("memberList", frogBanchan.findTeamMembers(teamId));
+        model.addAttribute("team", frogBanchan.findTeam(teamId));
 
         return "/team/teamPage";
     }

@@ -27,6 +27,17 @@
             WHERE MENU_ID = #{menuId})
     </select>
 
+    <select id="findPlaceMenu" resultType="PlaceMenu">
+        SELECT PLACE_MENU_ID AS placeMenuId,
+               PLACE_ID AS placeId,
+               MENU_ID AS menuId,
+               PRICE,
+               DESCRIPTION,
+               NAME
+        FROM PLACE_MENU
+        WHERE PLACE_MENU_ID = #{placeMenuId}
+    </select>
+
     <insert id="insertPlaceMenu" parameterType="PlaceMenu">
         INSERT INTO PLACE_MENU (PLACE_MENU_ID, PLACE_ID, MENU_ID, NAME, PRICE, DESCRIPTION)
         VALUES (SEQUENCE_PLACE_MENU.nextval, #{placeId}, #{menuId}, #{name}, #{price}, #{description})
@@ -46,4 +57,8 @@
         WHERE PLACE_MENU_ID = #{placeMenuId}
     </delete>
 
+    <delete id="deletePlaceMenuByPlaceId">
+        DELETE FROM PLACE_MENU
+        WHERE PLACE_ID = #{placeId}
+    </delete>
 </mapper>

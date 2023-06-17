@@ -32,6 +32,11 @@ public class MybatisPlaceMenuDao implements PlaceMenuDao {
     }
 
     @Override
+    public PlaceMenu findPlaceMenu(int placeMenuId) throws DataAccessException {
+        return placeMenuMapper.findPlaceMenu(placeMenuId);
+    }
+
+    @Override
     public List<PlaceMenu> findMenuListByPlaceId(String placeId) throws DataAccessException {
         return placeMenuMapper.findMenuListByPlaceId(placeId);
     }
@@ -39,5 +44,10 @@ public class MybatisPlaceMenuDao implements PlaceMenuDao {
     @Override
     public List<Place> findPlaceListByMenu(int menuId) throws DataAccessException {
         return placeMenuMapper.findPlaceListByMenu(menuId);
+    }
+
+    @Override
+    public void deletePlaceMenuByPlaceId(String placeId) throws DataAccessException {
+        placeMenuMapper.deletePlaceMenuByPlaceId(placeId);
     }
 }
