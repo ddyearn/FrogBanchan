@@ -138,11 +138,11 @@ public class PartyFormController {
 		frogBanchan.updateParty(party);
 		model.addAttribute("party", party);
 		
-		return RESULT_VIEW;
+		return "redirect:/party/view?=" + party.getPartyId();
 	}
 	
 	//식구 모집 삭제
-	@RequestMapping("/party/apply/delete")
+	@RequestMapping("/party/delete")
 	public String handleRequest(
 			@RequestParam("partyId") int partyId, 
 			ModelMap model) throws Exception {
