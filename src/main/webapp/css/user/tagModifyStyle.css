@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
+html, body {
+    height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.hateListBox1 {
+    width: 800px;
+    height: 150px;
+    position: absolute;
+    margin-top: 150px;
+    margin-left: 100px;
+    background: #fff;
+}
+.hateListBox2 {
+    width: 800px;
+    height: 120px;
+    background: #fff;
+    border: 1px solid black;
+}
+.hateListBox3 {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    overflow-y: auto;
+    white-space: normal;
+}
+.hateTag {
+    font-size: 24px;
+    margin: 20px;
+    text-align: center;
+    text-decoration-line: underline;
+    white-space: nowrap;
+    z-index: 10;
+}
+.hateListText1 {
+    position: absolute;
+    margin-left: 250px;
+    margin-top: 125px;
+    padding: 10px;
+    background: #fff;
+    color: blue;
+    font-size: 20px;
+    z-index: 1;
+}
+.hateListText2 {
+    font-size: 14px;
+    color: gray;
+    text-align: center;
+}
+
+.hateAddBox1 {
+    width: 400px;
+    height: 150px;
+    position: absolute;
+    margin-top: 150px;
+    margin-left: 950px;
+    background: #fff;
+}
+.hateAddBox2 {
+    width: 400px;
+    height: 120px;
+    background: #fff;
+    border: 1px solid black;
+}
+.hateAddBox3 {
+    display: flex;
+    margin-top: 45px;
+    justify-content: center;
+}
+.hateAddText1 {
+    position: absolute;
+    margin-left: 1100px;
+    margin-top: 125px;
+    padding: 10px;
+    background: #fff;
+    font-size: 20px;
+    z-index: 1;
+}
+
+.recommendBox {
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 390px;
+}
+
+.saveBtn {
+    position: absolute;
+    margin-left: 0px;
+    margin-top: 100px;
+}
+
+.backBtn {
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 300px;
+}

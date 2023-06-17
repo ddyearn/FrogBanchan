@@ -19,7 +19,10 @@ public interface UsersDao {
 	void insertHateTag(String username, String tag) throws DataAccessException;
 
 	// hate tag 삭제
-	void deleteHateTag(int tagId) throws DataAccessException;
+	void deleteHateTagsByUsername(String username) throws DataAccessException;
+
+	// hate tag 삭제
+	void deleteHateTagByUsernameAndTag(String username, String tag) throws DataAccessException;
 
 	// ID로 user 객체 가져오기
 	Users findUserByUsername(String username) throws DataAccessException;

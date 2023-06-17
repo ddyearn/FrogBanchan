@@ -50,11 +50,13 @@
 
   <div class="tagListBox">
 	<p class="tagListText">나의 불호 태그</p>
-	<!-- history include? -->
+	<button type="button" onClick="location.href='/user/tag'">태그 관리하기</button>
+	(list view 추가 예정)
   </div>
   <div class="partyListBox">
 	<p class="partyListText">파티</p>
 	<button type="button" onClick="location.href='/party/list'">파티 모집 보기</button>
+	(list view 추가 예정)
   </div>
 
 
