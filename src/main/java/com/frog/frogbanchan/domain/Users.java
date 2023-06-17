@@ -35,6 +35,14 @@ public class Users implements Serializable {
 		this.residentNo = residentNo;
 		this.address = address;
 	}
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Users) {
+			Users u = (Users)obj;
+			return this.getUsername().equals(u.getUsername());
+		}
+		return false;
+	}
 	
 }

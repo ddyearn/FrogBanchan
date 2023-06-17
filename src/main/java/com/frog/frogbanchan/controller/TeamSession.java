@@ -10,7 +10,8 @@ import java.util.List;
 public class TeamSession implements Serializable {
 
     private Team team;
-    private List<Users> selectedMember;
+    private List<Users> selectedMembers;
+    private List<String> selectedTags;
 
     public TeamSession(Team team) {
         this.team = team;
@@ -24,11 +25,18 @@ public class TeamSession implements Serializable {
         this.team = team;
     }
 
-    public List<Users> getSelectedMember() {
-        return selectedMember;
+    public List<Users> getSelectedMembers() {
+        return selectedMembers;
     }
-    public void setSelectedMember(List<Users> selectedMember) {
-        this.selectedMember = selectedMember;
+    public void setSelectedMembers(List<Users> selectedMembers) {
+        this.selectedMembers = selectedMembers;
+    }
+
+    public List<String> getSelectedTags() {
+        return selectedTags;
+    }
+    public void setSelectedTags(List<String> selectedTags) {
+        this.selectedTags = selectedTags;
     }
 
 }

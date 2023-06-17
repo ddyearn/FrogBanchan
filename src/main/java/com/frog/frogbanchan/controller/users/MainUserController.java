@@ -63,6 +63,8 @@ public class MainUserController {
     public String handleRequest3(@PathVariable("teamId") int teamId,
                                 Model model) throws Exception {
         model.addAttribute(new TeamSession(frogBanchan.findTeam(teamId)));
+        model.addAttribute("memberList", frogBanchan.findTeamMembers(teamId));
+
         return "/team/teamPage";
     }
 

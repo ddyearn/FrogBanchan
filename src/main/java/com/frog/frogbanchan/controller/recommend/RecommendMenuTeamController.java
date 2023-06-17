@@ -25,18 +25,28 @@ public class RecommendMenuTeamController {
     }
 
     @RequestMapping("/recommend/team")
-    public ModelAndView test2(
-            @ModelAttribute("userSession") UserSession userSession,
-            @SessionAttribute("teamSession") TeamSession teamSession
+    public ModelAndView test2(@SessionAttribute("teamSession") TeamSession teamSession
     ) throws Exception {
         ModelAndView mav = new ModelAndView("/team/recommendTeam");
 
         Team team = teamSession.getTeam();
         List<Users> memberList = frogBanchan.findTeamMembers(team.getTeamId());
-//        teamSession.setSelectedMember(memberList);
+        List<Users> selectedMembers = new ArrayList<>();
+        if (teamSession.getSelectedMembers() != null) {
+            selectedMembers.addAll(teamSession.getSelectedMembers());
+            for (Users member: selectedMembers) {
+                memberList.remove(member);
+            }
+        }
+        List<String> selectedTags = new ArrayList<>();
+        if (teamSession.getSelectedTags() != null) {
+            selectedTags.addAll(teamSession.getSelectedTags());
+        }
 
         mav.addObject("team", team);
         mav.addObject("memberList", memberList);
+        mav.addObject("selectedMembers", selectedMembers);
+        mav.addObject("selectedTags", selectedTags);
 
         return mav;
     }
@@ -55,14 +65,23 @@ public class RecommendMenuTeamController {
 
     @RequestMapping("/recommend/team/test1")
     public ModelAndView test5(
-            @ModelAttribute("userSession") UserSession userSession,
             @SessionAttribute("teamSession") TeamSession teamSession,
-            @RequestParam("hateTags") String hateTags
+            @RequestParam("hateTags") String hateTags,
+            @RequestParam("selectedMember") String selectedMember
     ) throws Exception {
-        ModelAndView mav = new ModelAndView("/user/recommendTest2");
+        ModelAndView mav = new ModelAndView("/team/recommendTest2");
 
         List<String> hateList = new ArrayList<>(Arrays.asList(hateTags.split(",")));
+        teamSession.setSelectedTags(hateList);
         mav.addObject("hateList", hateList);
+
+        List<String> members = new ArrayList<>(Arrays.asList(selectedMember.split(",")));
+        List<Users> memberList = new ArrayList<>();
+        for (String member : members) {
+            memberList.add(frogBanchan.findUserByUsername(member));
+        }
+        teamSession.setSelectedMembers(memberList);
+        mav.addObject("memberList", memberList);
 
         return mav;
     }
