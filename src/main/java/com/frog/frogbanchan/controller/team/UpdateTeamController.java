@@ -39,9 +39,9 @@ public class UpdateTeamController {
     public TeamForm formBacking(@RequestParam(value="teamId") int teamId){
     	TeamForm teamForm = new TeamForm(frogBanchan.findTeam(teamId));
     	
-    	return teamForm;
-    	
+    	return teamForm;	
     }
+    
 	@GetMapping
     public String showForm() {
 		return "/team/teamUpdateForm";

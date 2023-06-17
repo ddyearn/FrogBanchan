@@ -48,13 +48,14 @@ public class PartyFormController {
 	//식구 상세정보 조회
 	@GetMapping("/party/view")
 	@ModelAttribute("applyList")
-	public ModelAndView findParty(@RequestParam("partyId") int partyId, HttpSession session) {
+	public ModelAndView findParty(@ModelAttribute("applyForm") ApplyForm applyForm, @RequestParam("partyId") int partyId, HttpSession session) {
 		Party party = frogBanchan.findParty(partyId);
 		ModelAndView mav = new ModelAndView();
 		
 		mav.setViewName("/party/view");
 		mav.addObject("party", party);
 		mav.addObject("applyList", frogBanchan.findApplyByPartyId(partyId));
+		mav.addObject("applyForm", applyForm);
 		
 		return mav;
 	}
