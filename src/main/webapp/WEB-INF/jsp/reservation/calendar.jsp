@@ -1,16 +1,6 @@
 <%@ page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%!
-public boolean isInArray(String value, String[] array) {
-    for (String i : array) {
-        if (i.equals(value)) {
-            return true;
-        }
-    }
-    return false;
-}
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,11 +76,74 @@ public boolean isInArray(String value, String[] array) {
         .transparent-day {
             opacity: 1; /* 투명도 설정 */
         }
+
+         /* Styles for the selection window */
+         .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .popup-container .selection-window {
+            width: 300px;
+            height: 300px;
+            background-color: #eee;
+            padding: 20px;
+        }
+    
+        .popup-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        .popup-container th, .popup-container td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+    
+        .popup-container .reserved {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+    
+        .popup-container .selected {
+            background-color: green;
+            color: white;
+        }
+    
+        .popup-container .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    
+        .popup-container .button {
+            background-color: #49a03e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 0 10px;
+            cursor: pointer;
+        }    
     </style>
 </head>
 
 <body>
+
+<form action="/reservation/time" method="post">
 <div class="container">
+    <div class="button-container">
+        <button class="button" onclick="goToPreviousMonth()">&lt;&lt;</button>
+        <button class="button" onclick="goToNextMonth()">&gt;&gt;</button>
+    </div>    
     <h1>
         <% 
           // DB에서 name 가져오기
@@ -142,9 +195,9 @@ public boolean isInArray(String value, String[] array) {
                 int currentDay = cal.get(java.util.Calendar.DAY_OF_MONTH);
 
                 if (daysSet.contains(String.valueOf(currentDay))) {
-                    out.println("<td style='opacity: 1.0;'>" + currentDay + "</td>"); // Set transparency to 100%
+                    out.println("<td style='opacity: 1.0;' onclick='selectTime(this)'>" + currentDay + "</td>"); // Set transparency to 100%
                 } else {
-                    out.println("<td style='opacity: 0.5;'>" + currentDay + "</td>"); // Set transparency to 50%
+                    out.println("<td style='opacity: 0.5;' onclick='selectTime(this)'>" + currentDay + "</td>"); // Set transparency to 50%
                 }
 
                 cal.add(java.util.Calendar.DAY_OF_MONTH, 1); // Move to the next day
@@ -162,14 +215,31 @@ public boolean isInArray(String value, String[] array) {
 
     </table>
 </div>
+
+
 <div class="button-container">
-    <button class="button">예악 가능 날짜 선택</button>
-    <button class="button">신청된 예약 확인</button>
+    <input type="hidden" id="selectedDay" name="selectedDay" value="">
+    <input class="button" type="submit" value="날짜 선택">
 </div>
+
+</form>
+
+
 <script>
-    // days 배열에 값이 있는지 확인하는 함수
-    function isInArray(value, array) {
-        return array.indexOf(value) > -1;
+    // Function to select a time
+    function selectTime(element) {
+        // Reset the previously selected time
+        var selectedElement = document.querySelector('.selected');
+        if (selectedElement) {
+            selectedElement.classList.remove('selected');
+        }
+
+        // Set the new selected time
+        element.classList.add('selected');
+
+        // Update the hidden input field value
+        var selectedDay = element.innerText;
+        document.getElementById('selectedDay').value = selectedDay;
     }
 </script>
 </body>
