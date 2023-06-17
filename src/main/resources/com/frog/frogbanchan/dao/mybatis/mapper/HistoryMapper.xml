@@ -43,4 +43,9 @@
         WHERE HISTORY_ID = #{historyId}
     </delete>
 
+    <delete id="deleteHistoryByUsername">
+        DELETE FROM HISTORY
+        WHERE USERNAME = #{username}
+    </delete>
+
 </mapper>

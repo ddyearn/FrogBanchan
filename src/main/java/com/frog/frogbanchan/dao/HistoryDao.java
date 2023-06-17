@@ -19,7 +19,7 @@ public interface HistoryDao {
 
     //히스토리 삭제
     void deleteHistory(int historyId) throws DataAccessException;
-    // [DELETE FROME HISTORY WHERE USERNAME = ? AND RECORDED_DATE = ?]
+    // [DELETE FROM HISTORY WHERE HISTORY_ID = ?]
 
     //히스토리 조회
     History findHistory(int historyId) throws DataAccessException;
@@ -29,4 +29,7 @@ public interface HistoryDao {
     List<History> findHistoryList(String username) throws DataAccessException;
     // [SELECT * FROM HISTORY WHERE USERNAME = ?]
 
+    //탈퇴 시 히스토리 데이터 삭제
+    void deleteHistoryByUsername(String username) throws DataAccessException;
+    // [DELETE FROM HISTORY WHERE USERNAME = ?]
 }

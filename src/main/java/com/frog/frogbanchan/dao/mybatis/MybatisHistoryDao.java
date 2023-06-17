@@ -41,4 +41,8 @@ public class MybatisHistoryDao implements HistoryDao {
         return historyMapper.findHistoryList(username);
     }
 
+    @Override
+    public void deleteHistoryByUsername(String username) throws DataAccessException {
+        historyMapper.deleteHistoryByUsername(username);
+    }
 }

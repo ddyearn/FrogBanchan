@@ -105,6 +105,4 @@ public class HistoryController {
         return LIST_VIEW;
     }
 
-    //탈퇴 기록 삭제
-    //deleteHistoryByUsername
 }

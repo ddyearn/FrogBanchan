@@ -2,6 +2,7 @@ package com.frog.frogbanchan.dao.mybatis.mapper;
 
 import com.frog.frogbanchan.domain.History;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface HistoryMapper {
 
     List<History> findHistoryList(String username);
 
-
+    void deleteHistoryByUsername(String username);
 }
