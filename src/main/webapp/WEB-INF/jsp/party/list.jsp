@@ -28,5 +28,6 @@ partyList 출력 test <br/>
 		</tr>
 	</c:forEach>
 </table>
+<a href='<c:url value="/party/create"></c:url>'>파티 생성</a>
 </body>
 </html>
