@@ -32,7 +32,7 @@ public class ApplyFormController {
     }
 	
 	//식구 모집 신청
-    @PostMapping("/party/apply")
+    @PostMapping("/apply/create")
 	public String createApply(
 			HttpServletRequest request, HttpSession session,
 			@RequestParam("content") String content) throws Exception {
@@ -46,7 +46,7 @@ public class ApplyFormController {
 
 	//식구 모집 신청 삭제
 	@RequestMapping("/apply/delete")
-	public String handleRequest(
+	public String deleteApply(
 			@RequestParam("applyId") int applyId, 
 			ModelMap model) throws Exception {
 		frogBanchan.deleteApply(applyId);

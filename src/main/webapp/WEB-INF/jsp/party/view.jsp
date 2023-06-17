@@ -38,11 +38,11 @@
 				<td>${apply.writer}</td>
 				<td>${apply.content}</td>
 				<td>${apply.writtenDate}</td>
-				<td><a href='<c:url value="/party/apply/delete"><c:param name="applyId" value="${apply.applyId}"/></c:url>'>삭제</a></td>
+				<td><a href='<c:url value="/apply/delete"><c:param name="applyId" value="${apply.applyId}"/></c:url>'>삭제</a></td>
 			</tr>
 		</c:forEach>
 		</table>
-   		<form:form action="/party/apply" method="post">
+   		<form:form modelAttribute="applyForm" method="post">
 			<label for="content">식구 신청</label>: 
 			<form:input path="apply.content"/>
 			<form:errors path="apply.content"/>

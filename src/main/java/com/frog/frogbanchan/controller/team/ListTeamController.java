@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,5 +28,10 @@ public class ListTeamController {
 		String username = userSession.getUser().getUsername();
 		
 		return new ModelAndView("/team/list", "teamList", frogbanchan.findTeamList(username));
+	}
+	
+	@RequestMapping("/team/view")
+	public ModelAndView viewTeam(@RequestParam("teamId") int teamId) {		
+		return new ModelAndView("/team/view", "team", frogbanchan.findTeam(teamId));
 	}
 }
