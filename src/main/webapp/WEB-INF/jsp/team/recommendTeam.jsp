@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../frogTop.jsp"%>
 
 <!DOCTYPE html>
@@ -14,7 +15,7 @@
 <body>
     <div class="memberSelectBox memberScroll2">
         <c:forEach var="member" items="${memberList}" varStatus="status">
-            <div class="memberCircle">
+            <div class="memberCircle" id="${member.username}">
                 <div class="addBadge">
                     <button class="badge rounded-pill text-bg-primary selectBtn"
                             id="${member.username}" name="${member.nickname}" type="button">+</button>
@@ -22,6 +23,7 @@
                 <p class="memberCircleText">${member.nickname}</p>
             </div>
         </c:forEach>
+
     </div>
 
     <div class="memberSelectTextBox">
@@ -29,6 +31,17 @@
     </div>
     <div class="memberSelectedBox1">
         <div class="memberSelectedBox2">
+            <c:forEach var="member" items="${selectedMembers}" varStatus="status">
+                <c:if test="${not empty member}">
+                    <div class="memberCircle" id="${member.username}">
+                        <div class="removeBadge">
+                            <button class="badge rounded-pill text-bg-danger unselectBtn"
+                                    id="${member.username}" name="${member.nickname}" type="button">X</button>
+                        </div>
+                        <p class="memberCircleText">${member.nickname}</p>
+                    </div>
+                    </c:if>
+            </c:forEach>
         </div>
     </div>
 
@@ -40,6 +53,11 @@
     <div class="hateListBox1">
         <div class="hateListBox2">
             <div class="hateListBox3">
+                <c:forEach var="tag" items="${selectedTags}" varStatus="status">
+                    <c:if test="${not empty tag}">
+                        <span class="hateTag addedHate" id="${tag}">${tag}</span>
+                    </c:if>
+                </c:forEach>
             </div>
         </div>
         <p class="hateListText2">
@@ -49,9 +67,6 @@
 
     <div class="recommendBox">
         <form id="recommendForm" action="<c:url value='/recommend/team/test1' />" method="POST">
-            <c:forEach var="tag" items="${hateList}" varStatus="status">
-                <input type="hidden" name="hateTags" value="${tag}" />
-            </c:forEach>
             <button type="submit" >추천 go</button>
         </form>
     </div>

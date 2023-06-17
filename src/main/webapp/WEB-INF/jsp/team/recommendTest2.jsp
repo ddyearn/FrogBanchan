@@ -14,5 +14,11 @@
 	<c:forEach var="tag" items="${hateList}" varStatus="status">
 	    <span>${tag}</span>
 	</c:forEach>
+	<br/>
+	selected members:
+	<br/>
+	<c:forEach var="member" items="${memberList}" varStatus="status">
+	    <span>${member.name}</span>
+	</c:forEach>
 </body>
 </html>
