@@ -16,6 +16,7 @@
         $(document).ready(function() {
             $(".error").click(function() {
                 $(this).hide();
+                $(this).siblings(".input").focus();
             });
         });
     </script>
