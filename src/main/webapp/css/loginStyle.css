@@ -98,6 +98,7 @@ body {
 }
 
 .inputWrap {
+  text-align: center;
   display: flex;
   border-radius: 8px;
   padding: 16px;
@@ -120,7 +121,8 @@ body {
   outline: none;
   border: none;
   height: 17px;
-
+  text-align: center;
+  
   font-family: 'Poor Story';
   font-size: 18px;
   font-weight: 400;
