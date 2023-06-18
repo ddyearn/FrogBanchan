@@ -21,6 +21,5 @@
     ${user.email} <br/>
     ${user.residentNo} <br/>
     ${user.address} <br/>
-    <c:out value="${history}" />
 </body>
 </html>
