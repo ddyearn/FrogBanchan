@@ -215,3 +215,18 @@ body {
 	margin-bottom: 50px;
 	cursor: pointer;
 }
+
+.error {
+  float:left;
+  
+  width: 1000px;
+  outline: none;
+  border: none;
+  height: 30px;
+
+  text-align: left;  
+  font-family: 'Poor Story';
+  font-size: 20px;
+  font-weight: 400;
+  color: orange;
+}
