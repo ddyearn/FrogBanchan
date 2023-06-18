@@ -3,31 +3,56 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
 <html>
 <head>
-<title>TeamForm</title>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/team/teamFormStyle.css">
+    <title>TeamForm</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>팀 생성</h2>
-
-<form:form modelAttribute="teamForm" method="post">
-<label for="teamId">팀아이디</label>:
-<form:input path="team.teamId" value="${team.teamId}" readonly="true"/> <br/>
-
-<label for="name">팀명</label>: 
-<form:input path="team.name"/>
-<form:errors path="team.name"/> <br/>
-
-<label for="address">주소</label>: 
-<form:input path="team.address"/>
-<form:errors path="team.address"/> <br/>
-
-<label for="creator">팀장</label>: 
-<form:input path="team.creator" value="${team.creator}" readonly="true"/> <br/>
-
-<input type="submit" value="생성하기" />
-
-</form:form>
+    <div class="mainbox">
+      <hr class="line" />
+      <div class="page">
+        <div class="titleWrap">
+           팀 생성
+          <br/>
+        </div>
+        		<form:form modelAttribute="teamForm" method="post">
+        		<div class="contentWrap">
+	          	<label for="teamId" class="inputTitle">팀 아이디</label>
+	          		<div class="line2">- - - - -  - - -</div>
+		         	<div class="readonly">
+		           	<form:input path="team.teamId" class="readonlyInput" value="${team.teamId}" readonly="true"/><br/>
+		         	</div>
+	          	<label for="name" class="inputTitle">팀명</label>
+	          		<div class="line2">- - - - -  - - -</div>
+		         	<div class="inputWrap">
+		           	<form:input path="team.name" class="input"/>
+		           	<form:errors path="team.name" class="input"/><br/>
+		         	</div>
+		       <label for="address" class="inputTitle">주소</label>
+		       		<div class="line2">- - - - - - - -</div>
+		         	<div class="inputWrap">
+		           	<form:input path="team.address" class="input"/>
+		           	<form:errors path="team.address" class="input"/><br/>
+		         	</div>
+		        <label for="creator" class="inputTitle">팀장</label>
+		        	<div class="line2">- - - - - - - -</div>
+		         	<div class="readonly">
+		           	<form:input path="team.creator" class="readonlyInput" value="${team.creator}" readonly="true"/><br/>
+		         	</div>
+        		</div>
+        		<div class="bttnWrapper">
+                	<button class="backButton" type="button" onclick="history.back()">뒤로가기</button>
+                	&emsp;
+                	<button class="createButton" type="submit">생성하기</button>
+                </div>
+	       </form:form>
+        </div>
+      </div>
 </body>
 </html>

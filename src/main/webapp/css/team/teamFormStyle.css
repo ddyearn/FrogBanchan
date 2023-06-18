@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.mainbox{
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 1500px;
+  height: 800px;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  background: #FFFFFF;
+  border: 2px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  
+}
+
+.line {
+  width: 1500px;
+  height: 0px;
+  margin-top: 25%;
+
+  
+  border: 1px solid #000000;
+}
+
+.line2 {
+  float: left;
+  margin-top: 2%;
+  margin-left: 3%;
+  
+  text-align: center;
+  font-family: 'Poor Story';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 25px;
+  color: #262626;
+	
+}
+
+.page {
+  margin-top: -2%;
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 1000px;
+  height: 700px;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+}
+
+.titleWrap {
+  margin-top: 1%;
+  margin-bottom: 5%;
+  
+  text-align: center;
+  font-family: 'Poor Story';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 80px;
+  color: #262626;
+}
+
+.contentWrap {
+  margin-top: 15px;
+  flex: 1;
+}
+
+.inputTitle {
+  text-align: center;
+  margin-top: 1%;
+  margin-left: 5%;
+  margin-right: 30px;
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Poor Story';
+  font-weight: 600;
+  color: #262626;
+  
+  float: left;
+  width:30%;
+}
+
+.inputWrap {
+  display: flex;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  width: 200px;
+  background-color: white;
+  border: 1px solid gray;
+  
+  float: left;
+  margin-left: 5%;
+  width:30%;
+}
+
+.inputWrap:focus-within {
+  border: 1px solid green;
+}
+
+.readonly {
+  display: flex;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  width: 200px;
+  background-color: white;
+  border: 1px solid gray;
+  
+  float: left;
+  margin-left: 5%;
+  width:30%;
+  
+  background-color: gray;
+}
+
+.input {
+  float:left;
+  
+  width: 100%;
+  outline: none;
+  border: none;
+  height: 30px;
+
+  text-align: center;
+  
+  font-family: 'Poor Story';
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.readonlyInput {
+	float:left;
+	 
+	width: 100%;
+	outline: none;
+	border: none;
+	height: 30px;
+	text-align: center;
+	
+	font-family: 'Poor Story';
+	font-size: 30px;
+	font-weight: 400;
+	color: white;
+	background-color: gray;
+	
+}
+
+.bttnWrapper {
+   display: flex;
+}
+
+.backButton {  
+	box-sizing: border-box;
+
+	position: absolute;
+	width: 161px;
+	height: 69px;
+	left: 250px;
+	top: 570px;
+	
+	border: 1px solid #000000;
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	border-radius: 25px;
+	
+	font-size: 30px;
+	font-family: 'Poor Story';
+	font-weight: 700;
+	background-color: green;
+	border-radius: 64px;
+	color: white;
+	margin-left: 10px;
+	margin-bottom: 50px;
+	cursor: pointer;
+}
+
+.createButton {  
+	box-sizing: border-box;
+	
+	position: absolute;
+	width: 161px;
+	height: 69px;
+	left: 600px;
+	top: 570px;
+	
+	border: 1px solid #000000;
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	border-radius: 25px;
+	
+	font-size: 30px;
+	font-family: 'Poor Story';
+	font-weight: 700;
+	background-color: green;
+	border-radius: 64px;
+	color: white;
+	margin-left: 10px;
+	margin-bottom: 50px;
+	cursor: pointer;
+}
