@@ -26,6 +26,7 @@
     </div>
     <div class="historyBox">
         <c:import url="./history.jsp">
+            <c:param name="historyList" value="${historyList}" />
         </c:import>
     </div>
 </body>

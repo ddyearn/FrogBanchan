@@ -9,5 +9,15 @@ table, th, td {
 }
 
 .historyBox {
+    position: absolute;
+    width: 800px;
     margin-top: 50px;
+    margin-left: 20%;
+}
+.list-group-item::before {
+    display: none;
+}
+
+.historyItemBox {
+    font-size: 20px;
 }
