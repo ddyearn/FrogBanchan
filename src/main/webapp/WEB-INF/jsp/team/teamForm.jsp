@@ -6,16 +6,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../css/team/teamFormStyle.css">
     <title>TeamForm</title>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>
         $(document).ready(function() {
             $(".error").click(function() {
                 $(this).hide();
+                $(this).siblings(".input").focus();
             });
         });
     </script>
