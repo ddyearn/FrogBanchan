@@ -53,7 +53,7 @@
 		         	</div>
         		</div>
         		<div class="bttnWrapper">
-                	<button class="backButton" type="button" onclick="location.href ='/user/main'">뒤로가기</button>
+                	<button class="backButton" type="button" onclick="history.go(-1)">뒤로가기</button>
                 	&emsp;
                 	<button class="createButton" type="submit">수정하기</button>
                 </div>
