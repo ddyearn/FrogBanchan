@@ -12,6 +12,13 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+        $(document).ready(function() {
+            $(".error").click(function() {
+                $(this).hide();
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="mainbox">
@@ -32,13 +39,13 @@
 	          		<div class="line2">- - - - -  - - -</div>
 		         	<div class="inputWrap">
 		           	<form:input path="team.name" class="input"/>
-		           	<form:errors path="team.name" class="input"/><br/>
+		           	<form:errors path="team.name" class="error"/><br/>
 		         	</div>
 		       <label for="address" class="inputTitle">주소</label>
 		       		<div class="line2">- - - - - - - -</div>
 		         	<div class="inputWrap">
 		           	<form:input path="team.address" class="input"/>
-		           	<form:errors path="team.address" class="input"/><br/>
+		           	<form:errors path="team.address" class="error"/><br/>
 		         	</div>
 		        <label for="creator" class="inputTitle">팀장</label>
 		        	<div class="line2">- - - - - - - -</div>
