@@ -54,7 +54,7 @@
 		         	</div>
         		</div>
         		<div class="bttnWrapper">
-                	<button class="backButton" type="button" onclick="history.back()">뒤로가기</button>
+                	<button class="backButton" type="button" onclick="history.go(-1)">뒤로가기</button>
                 	&emsp;
                 	<button class="createButton" type="submit">생성하기</button>
                 </div>
