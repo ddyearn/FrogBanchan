@@ -69,5 +69,13 @@ public class MainUserController {
         return "/team/teamPage";
     }
 
+    @RequestMapping("/user/place/list")
+    public String handleRequest4(@RequestParam("menuId") int menuId,
+                                 Model model) throws Exception {
+        model.addAttribute("placeList", frogBanchan.findPlaceListByMenu(menuId));
+
+        return "/user/placeList";
+    }
+
 
 }
