@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../../../css/team/teamFormStyle.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/team/formStyle.css">
     <title>TeamForm</title>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
