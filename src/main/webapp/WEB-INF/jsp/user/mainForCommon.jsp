@@ -18,7 +18,7 @@
 </head>
 
 <body>
-	<img class="frogIcon" src="../../img/logo.png" />
+	<img class="frogLogoIcon" src="../../img/logo.jpg" />
 
 	<div class="recommendBox1">
 		<div class="recommendBox2">
@@ -35,6 +35,7 @@
         <c:forEach var="team" items="${teamList}" varStatus="status">
             <c:set var="teamId" value="${team.teamId}" />
             <button class="btn btn-outline-success shadow-sm teamBtn" onClick="location.href='/team/main/${teamId}'">
+                <img class="frogTeamIcon" src="../../img/frog.jpg" />
                 <p class="teamName">${team.name}(${teamMap[teamId]})</p>
             </button>
         </c:forEach>
