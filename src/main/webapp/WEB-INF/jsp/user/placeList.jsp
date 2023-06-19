@@ -12,7 +12,7 @@
         <div>
             ${place.placeId}&nbsp;
             ${place.name}&nbsp;
-            <button type="button" onClick="location.href='/reservation/...?placeId={place.placeId}'">이 가게 예약하러 가기</button>
+            <button type="button" onClick="location.href='/reservation/calendar?placeId=${place.placeId}'">이 가게 예약하러 가기</button>
         </div>
     </c:forEach>
     <br/>
