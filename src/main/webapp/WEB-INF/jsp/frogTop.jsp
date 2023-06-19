@@ -19,6 +19,7 @@
     <nav class="navBar sticky-top">
         <div class="navBox1 d-flex">
             <span class="navBox2">
+                <img class="spoonIcon" src="../../img/spoon.jpg" />&nbsp;
                 <c:choose>
                     <c:when test="${sessionScope.userSession ne null}">
                         <a class="navText1" href="/user/myPage">${userSession.user.username}</a>
