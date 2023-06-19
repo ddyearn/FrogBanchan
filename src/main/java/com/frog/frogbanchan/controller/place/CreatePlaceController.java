@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/place/create")
+@RequestMapping("/join/place")
 public class CreatePlaceController {
 
     @Value("/place/placeJoinForm")

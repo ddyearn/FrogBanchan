@@ -16,7 +16,7 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/user/register")
+@RequestMapping("/join/user")
 public class RegistUserController {
 
     @Value("/user/userJoinForm")
