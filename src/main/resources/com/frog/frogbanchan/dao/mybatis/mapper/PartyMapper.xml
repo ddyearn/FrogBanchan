@@ -21,6 +21,7 @@
     		PLACE_ID AS placeId,
     		CONTENT
         FROM PARTY
+        ORDER BY MEET_DATE
     </select>
 
     <insert id="insertParty" parameterType="Party">
