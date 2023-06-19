@@ -77,5 +77,11 @@ public class MainUserController {
         return "/user/placeList";
     }
 
+    //식구 리스트 조회
+    @RequestMapping("/party/list")
+    public ModelAndView handleRequest() throws Exception {
+        return new ModelAndView("/party/list", "partyList", frogBanchan.findPartyList());
+    }
+
 
 }
