@@ -46,6 +46,11 @@ public interface FrogBanchanFacade {
 
     public List<Timestamp> findCalendar(String placeId);
 
+    public List<String> findAllPlaceIdList();
+
+    public List<Place> findAllPlaceList();
+
+
     // ReservationService
     public void insertReservation(Reservation reservation);
 
