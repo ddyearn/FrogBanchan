@@ -2,6 +2,7 @@ package com.frog.frogbanchan.controller.team;
 import com.frog.frogbanchan.controller.UserSession;
 import com.frog.frogbanchan.domain.Team;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
+import com.frog.frogbanchan.service.ParticipationService;
 import com.frog.frogbanchan.service.validator.TeamFormValidator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,6 +27,9 @@ public class CreateTeamController {
     public void setFrogBanchan(FrogBanchanFacade frogBanchan) {
         this.frogBanchan = frogBanchan;
     }
+    
+	private ParticipationService participationService;
+
 	@ModelAttribute("teamForm")
     public TeamForm createTeamForm() {
         return new TeamForm();
@@ -64,9 +68,9 @@ public class CreateTeamController {
 		if (bindingResult.hasErrors()) {
 			return FORM_VIEW;
 		}
-
-		frogBanchan.insertTeam(team);
-		team.setTeamId(team.getTeamId());
+		
+		
+		participationService.createTeam(team, team.getCreator());
 		model.addAttribute("team", team);
 		
 		return RESULT_VIEW;

@@ -61,7 +61,7 @@ public class UpdateTeamController {
 		frogBanchan.updateTeam(team);
 		model.addAttribute("team", team);
 		
-		return "redirect:/team/view?teamId=" + team.getTeamId();
+		return "redirect:/team/main/" + team.getTeamId();
 	}
 	
 }
