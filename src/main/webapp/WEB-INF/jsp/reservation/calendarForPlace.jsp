@@ -35,11 +35,11 @@
         }
 
         th, td {
+            font-weight: bold;
             padding: 10px;
             text-align: center;
             border: 1px solid white;
             color: white;
-            font-weight: bold;
         }
 
         th {
@@ -77,40 +77,77 @@
         .transparent-day {
             opacity: 1; /* 투명도 설정 */
         }
+
+         /* Styles for the selection window */
+         .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     
-        .reserved {
+        .popup-container .selection-window {
+            width: 300px;
+            height: 300px;
+            background-color: #eee;
+            padding: 20px;
+        }
+    
+        .popup-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        .popup-container th, .popup-container td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+    
+        .popup-container .reserved {
             background-color: gray;
             cursor: not-allowed;
         }
     
         .selected {
-            background-color: green;
-            color: white;
+            background-color: green !important;
+            color: white !important;
+            opacity: 1.0 !important;
         }
-     
+    
+        .popup-container .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    
+        .popup-container .button {
+            background-color: #49a03e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 0 10px;
+            cursor: pointer;
+        }    
     </style>
 </head>
 
 <body>
 
-<form action="/reservation/time" method="post">
+<form action="/reservation/time/forplace" method="post">
 <div class="container">
     <div class="button-container">
         <button class="button" onclick="goToPreviousMonth()">&lt;&lt;</button>
         <button class="button" onclick="goToNextMonth()">&gt;&gt;</button>
     </div>    
     <h1>
-        <% 
-          // DB에서 name 가져오기
-          String placeName = "토리돈까스";
-          try {
-            // Place 테이블에서 name 필드 값 가져오기
-            // ...
-          } catch (Exception e) {
-            e.printStackTrace();
-          }
-          out.println(placeName);
-        %>
+        <%= request.getAttribute("placename") %>
     </h1>
     
     <table>
@@ -124,12 +161,12 @@
             <th>토</th>
         </tr>
         <%
-        String[] daysArray = (String[]) request.getAttribute("days"); // Get the 'days' array from the controller
+        String[] availableDays = (String[]) request.getAttribute("availableDays"); // Get the 'days' array from the controller
+        java.util.Set<String> availableDaysSet = new java.util.HashSet<>(java.util.Arrays.asList(availableDays)); 
+        String[] reservedDays = (String[]) request.getAttribute("reservedDays"); // Get the 'days' array from the controller
+        java.util.Set<String> reservedDaysSet = new java.util.HashSet<>(java.util.Arrays.asList(reservedDays)); 
 
-        // Assume 'daysArray' contains the dates as string values (e.g., ["1", "10", "15"])
-
-        java.util.Set<String> daysSet = new java.util.HashSet<>(java.util.Arrays.asList(daysArray)); // Convert array to set for efficient lookup
-
+        //달력 날짜 가져오기    
         java.util.Calendar cal = java.util.Calendar.getInstance();
         cal.set(java.util.Calendar.DAY_OF_MONTH, 1); // Set the starting day to the 1st of the current month
 
@@ -149,10 +186,15 @@
             for (int i = firstDayOfWeek; i <= 7; i++) {
                 int currentDay = cal.get(java.util.Calendar.DAY_OF_MONTH);
 
-                if (daysSet.contains(String.valueOf(currentDay))) {
-                    out.println("<td style='opacity: 1.0; color: red' onclick='selectTime(this)' value='" + currentDay + "'>" + currentDay + "</td>"); // Set transparency to 100%
-                } else {
-                    out.println("<td style='opacity: 0.4; pointer-events: none;' value='" + currentDay + "'>" + currentDay + "</td>"); // Set transparency to 50%
+                //예약이 된 날짜라면 동시에 사업자가 가능하다고 선택한 날짜
+                if(reservedDaysSet.contains(String.valueOf(currentDay))) {
+                    out.println("<td style='opacity: 1.0;background-color: lightgreen;color: red;' onclick='selectTime(this)'>" + currentDay + "</td>");
+                }
+                else if (availableDaysSet.contains(String.valueOf(currentDay))) {
+                    out.println("<td style='opacity: 1.0;color: red;' onclick='selectTime(this)'>" + currentDay + "</td>"); // Set transparency to 100%
+                }
+                else {
+                    out.println("<td style='opacity: 0.4;' onclick='selectTime(this)'>" + currentDay + "</td>"); // Set transparency to 50%
                 }
 
                 cal.add(java.util.Calendar.DAY_OF_MONTH, 1); // Move to the next day
@@ -173,17 +215,17 @@
 
 
 <div class="button-container">
-    <input type="hidden" id="selectedDay" name="selectedDay" value="">
-    <input class="button" type="submit" value="날짜 선택">
+    <input type="hidden" id="selectedDay" name="selectedDay" value=""> 
+    <!-- controller에서 받을때 name과 일치해야함 -->
+    <input class="button" type="submit" value="예약 가능 시간 선택(예약 확인)">
 </div>
 
 </form>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     // Function to select a time
     function selectTime(element) {
-        var selected = document.getElementsByTagName('td');
         // Reset the previously selected time
         var selectedElement = document.querySelector('.selected');
         if (selectedElement) {
@@ -197,22 +239,6 @@
         var selectedDay = element.innerText;
         document.getElementById('selectedDay').value = selectedDay;
     }
-
-    $(document).ready(function() {
-        // Example list received from the controller
-        //var listFromController = ${selectedDay};
-  
-        // Iterate over each <td> element
-            /*
-        $('td').each(function() {
-          var tdValue = $(this).text(); // Get the value inside the <td>
-          
-          // Check if the value is in the list
-          if (listFromController.includes(tdValue)) {
-            $(this).css('background-color', 'red'); // Set the background color to red
-          }
-        });*/
-    });
 </script>
 </body>
 </html>
