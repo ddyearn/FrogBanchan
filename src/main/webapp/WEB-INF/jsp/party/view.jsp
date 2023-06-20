@@ -1,54 +1,66 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ include file="../frogTop.jsp"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>식구 정보</title>
-<style>
-	table, th, td {
-	    border: 1px solid black;
-	    border-collapse: collapse;
-	    text-align: center;
-}
-</style>
+	<title>식구 모집 정보</title>
+	<link rel="stylesheet" type="text/css" href="../../css/party/viewStyle.css">
 </head>
 <body>
-    <div>
-        <p>식구 정보</p>
+        <div class="titleWrap">
+			모집 정보
+			<br/>
+		</div>
+        <table class="tb">
+        	<tr class="tr1">
+        		<td class="td1">모집자</td>
+        		<td><div class="div1">${party.creator}</div></td>
+        		<td class="td1">날짜</td>
+        		<td><div class="div1">${party.meetDate}</div></td>
+        	</tr>
+        	<tr class="tr1">
+        		<td class="td1">가게</td>
+        		<td><div class="div1">${party.placeId}</div></td>
+        		<td class="td1">인원</td>
+        		<td><div class="div1">4</div></td>
+        	</tr>
+        	<tr class="tr1">
+        		<td class="td1">내용</td>
+        		<td colspan="3" class="td3">${party.content}</td>
+        	</tr>
+        </table>
         <br/>
-        ${party.creator} <br/>
-        ${party.meetDate} <br/>
-        ${party.placeId} <br/>
-        ${party.content} <br/>
-        <br/>
-        <a href='<c:url value="/party/delete"><c:param name="partyId" value="${party.partyId}"/></c:url>'>식구 삭제</a>
-   		<a href='<c:url value="/party/update"><c:param name="partyId" value="${party.partyId}"/></c:url>'>식구 업뎃</a>
+   		<button class="updateButton" onclick="location.href='<c:url value='/party/update'><c:param name='partyId' value='${party.partyId}'/></c:url>'">모집 수정</button>
+		<button class="deleteButton" onclick="location.href='<c:url value='/party/delete'><c:param name='partyId' value='${party.partyId}'/></c:url>'">모집 취소</button>
    		<br/>
    		<br/>
    		<br/>
-   		<table style="width:70%">
-		<tr><th>신청자</th><th>내용</th><th>작성일자</th></tr>
+   		<hr class="line"/>
+   		<div class="titleWrap2">
+			댓글
+			<br/>
+		</div>
+   		<table class="tb2">
 		<c:forEach var="apply" items="${applyList}" varStatus="status">
-			<tr>
-				<td>${apply.writer}</td>
-				<td>${apply.content}</td>
-				<td>${apply.writtenDate}</td>
-				<td><a href='<c:url value="/apply/delete/${party.partyId}"><c:param name="applyId" value="${apply.applyId}"/></c:url>'>삭제</a></td>
+			<tr class="tr0">
+				<td class="td0">${apply.writer}</td>
+				<td class="td0">${apply.content}</td>
+				<td class="td0">${apply.writtenDate}</td>
+				<td class="td0"><a href='<c:url value="/apply/delete/${party.partyId}"><c:param name="applyId" value="${apply.applyId}"/></c:url>'>삭제</a></td>
 			</tr>
 		</c:forEach>
 		</table>
    		<form:form action="/apply/create/${party.partyId}" modelAttribute="applyForm" method="post">
-			<label for="content">식구 신청</label>: 
-			<form:input path="apply.content"/>
-			<form:errors path="apply.content"/>
+			<label for="content"></label>
+			<form:input path="apply.content" class="input"/>
+			<form:errors path="apply.content" class="error"/>
 		
-			<input type="submit" value="등록하기" />
+			<input class="createButton" type="submit" value="작성" />
 		</form:form>
-    </div>
 </body>
 </html>
