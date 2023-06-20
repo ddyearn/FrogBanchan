@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.frog.frogbanchan.domain.Place;
+import org.springframework.dao.DataAccessException;
 
 @Mapper
 public interface PlaceMapper {
@@ -30,5 +31,9 @@ public interface PlaceMapper {
 
     // 캘린더 가져오기
     List<Timestamp> findCalendar(String placeId);
+
+    List<String> findAllPlaceIdList();
+
+    List<Place> findAllPlaceList();
 
 }

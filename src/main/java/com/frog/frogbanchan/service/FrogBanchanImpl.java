@@ -110,6 +110,14 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         return placeDao.findCalendar(placeId);
     }
 
+    public List<String> findAllPlaceIdList() {
+        return placeDao.findAllPlaceIdList();
+    }
+
+    public List<Place> findAllPlaceList() {
+        return placeDao.findAllPlaceList();
+    }
+
     // ReservationService
     public void insertReservation(Reservation reservation) {
         reservationDao.insertReservation(reservation);
