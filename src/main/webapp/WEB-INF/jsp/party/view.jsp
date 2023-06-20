@@ -35,9 +35,12 @@
         	</tr>
         </table>
         <br/>
-   		<button class="updateButton" onclick="location.href='<c:url value='/party/update'><c:param name='partyId' value='${party.partyId}'/></c:url>'">모집 수정</button>
-		<button class="deleteButton" onclick="location.href='<c:url value='/party/delete'><c:param name='partyId' value='${party.partyId}'/></c:url>'">모집 취소</button>
-   		<br/>
+         <c:choose>
+            <c:when test="${party.creator eq sessionScope.userSession.user.username}">
+                <button class="updateButton" onclick="location.href='<c:url value='/party/update'><c:param name='partyId' value='${party.partyId}'/></c:url>'">모집 수정</button>
+				<button class="deleteButton" onclick="location.href='<c:url value='/party/delete'><c:param name='partyId' value='${party.partyId}'/></c:url>'">모집 취소</button>
+            </c:when>
+         </c:choose>
    		<br/>
    		<br/>
    		<hr class="line"/>
@@ -51,7 +54,14 @@
 				<td class="td0">${apply.writer}</td>
 				<td class="td0">${apply.content}</td>
 				<td class="td0">${apply.writtenDate}</td>
-				<td class="td0"><a href='<c:url value="/apply/delete/${party.partyId}"><c:param name="applyId" value="${apply.applyId}"/></c:url>'>삭제</a></td>
+				<c:choose>
+            		<c:when test="${apply.writer eq sessionScope.userSession.user.username}">
+            			<td class="td0"><a href='<c:url value="/apply/delete/${party.partyId}"><c:param name="applyId" value="${apply.applyId}"/></c:url>'>삭제</a></td>
+          			</c:when>
+          			<c:otherwise>
+          				<td class="td0"></td>
+          			</c:otherwise> 				
+         		</c:choose>
 			</tr>
 		</c:forEach>
 		</table>
