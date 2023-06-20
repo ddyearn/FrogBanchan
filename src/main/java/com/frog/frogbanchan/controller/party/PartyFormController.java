@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -98,24 +99,19 @@ public class PartyFormController {
 		
 		return "redirect:/party/view?partyId=" + party.getPartyId();
 	}
- 
+	
 	//식구 모집 수정
 	@GetMapping("/party/update")
-    public String showForm(@RequestParam(value="partyId") int partyId, Model model, @ModelAttribute("partyForm") PartyForm partyForm, HttpServletRequest request) {
-		Party party = frogBanchan.findParty(partyId);
-		if (party == null) {
-			return "redirect:/party/list";
-		}
-
-		model.addAttribute("party", party);
+    public String showForm(@RequestParam("partyId") int partyId, Model model) {
+		PartyForm partyForm = new PartyForm(frogBanchan.findParty(partyId));
+		model.addAttribute(partyForm);
+		
         return "/party/partyUpdateForm";
     }
 	
 	//식구 모집 수정 처리
 	@PostMapping("/party/update")
-	public String updateParty(
-			HttpServletRequest request, HttpSession session,
-			@ModelAttribute("partyForm") PartyForm partyForm, BindingResult bindingResult, Model model) throws Exception {
+	public String updateParty(@ModelAttribute("partyForm") PartyForm partyForm, HttpServletRequest request, HttpSession session, BindingResult bindingResult, Model model) throws Exception {
 		Party party = partyForm.getParty();
 
 		validator.validate(partyForm, bindingResult);
