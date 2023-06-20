@@ -17,6 +17,9 @@
 </head>
 <body>
     <nav class="navBar sticky-top">
+        <a class="navbar-brand ms-4" href="/user/main">
+            <img class="frogMainIcon" src="${request.getContextPath()}/img/logo2.jpg" />
+        </a>
         <div class="navBox1 d-flex">
             <span class="navBox2">
                 <img class="spoonIcon" src="../../img/spoon.jpg" />&nbsp;
