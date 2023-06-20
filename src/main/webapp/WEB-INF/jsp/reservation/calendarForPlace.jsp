@@ -146,7 +146,7 @@
         <button class="button" onclick="goToPreviousMonth()">&lt;&lt;</button>
         <button class="button" onclick="goToNextMonth()">&gt;&gt;</button>
     </div>    
-    <h1>
+    <h1 style="text-align: center">
         <%= request.getAttribute("placename") %>
     </h1>
     

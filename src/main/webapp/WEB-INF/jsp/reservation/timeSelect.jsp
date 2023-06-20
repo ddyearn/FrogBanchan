@@ -115,9 +115,9 @@
             cursor: not-allowed;
         }
     
-        .popup-container .selected {
-            background-color: green;
-            color: white;
+        .selected {
+            background-color: green !important;
+            color: white !important;
         }
     
         .popup-container .button-container {
@@ -143,25 +143,44 @@
 </head>
 
 <body>
-    <form action="/reservation/user" method="post">
+    <form action="/reservation/form?placeId=${placeId}" method="post">
     <div class="popup-container">
         <div class="selection-window">
             <h2>Time Selection</h2>
             <table>
+                <% 
+                String[] reservedTimes = (String[]) request.getAttribute("reservedTimes"); 
+                java.util.Set<String> reservedTimesSet = new java.util.HashSet<>(java.util.Arrays.asList(reservedTimes)); 
+                %>
                 <tr>
-                    <td onclick="selectTime(this)">12:00</td>
-                    <td onclick="selectTime(this)">13:00</td>
-                    <td onclick="selectTime(this)">14:00</td>
+                    <% 
+                    for(int i = 12; i <= 14; i++){
+                        if(reservedTimesSet.contains(String.valueOf(i))) {
+                            out.println("<td style='opacity: 40%;background-color: gray;pointer-events: none;'>" + i + ":00" + "</td>");
+                        } else {
+                            out.println("<td style='color: black;' onclick='selectTime(this)'>" + i + ":00" + "</td>"); 
+                        }                            
+                    } %>
+                </tr>    
+                <tr>
+                    <% 
+                    for(int i = 16; i <= 18; i++){
+                        if(reservedTimesSet.contains(String.valueOf(i))) {
+                            out.println("<td style='opacity: 40%;background-color: gray;pointer-events: none;'>" + i + ":00" + "</td>");
+                        } else {
+                            out.println("<td style='color: black;' onclick='selectTime(this)'>" + i + ":00" + "</td>"); 
+                        }                           
+                    } %>
                 </tr>
                 <tr>
-                    <td onclick="selectTime(this)">15:00</td>
-                    <td onclick="selectTime(this)">16:00</td>
-                    <td onclick="selectTime(this)">17:00</td>
-                </tr>
-                <tr>
-                    <td onclick="selectTime(this); timeIncludes(this, '18');">18:00</td>
-                    <td onclick="selectTime(this); timeIncludes(this, '19');">19:00</td>
-                    <td onclick="selectTime(this); timeIncludes(this, '20');">20:00</td>
+                    <% 
+                    for(int i = 19; i <= 21; i++){
+                        if(reservedTimesSet.contains(String.valueOf(i))) {
+                            out.println("<td style='opacity: 40%;background-color: gray;pointer-events: none;'>" + i + ":00" + "</td>");
+                        } else {
+                            out.println("<td style='color: black;' onclick='selectTime(this)'>" + i + ":00" + "</td>"); 
+                        }                            
+                    } %>
                 </tr>
             </table>          
             <div class="button-container">
@@ -175,14 +194,6 @@
     </form>
 
 <script>
-    /*    <!-- function timeIncludes(element, targetTime) {
-        var times = ${times};
-        if (times.includes(targetTime)) {
-          element.classList.add('reserved');
-        }
-        alert('Time includes: ' + times.includes(targetTime));
-    } -->
-    */
     // Function to open the pop-up window
     function openPopup() {
         document.querySelector('.popup-container').style.display = 'flex';

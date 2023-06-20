@@ -84,8 +84,8 @@
         }
     
         .selected {
-            background-color: green;
-            color: white;
+            background-color: green !important;
+            color: white !important;
         }
      
     </style>
@@ -93,24 +93,14 @@
 
 <body>
 
-<form action="/reservation/time" method="post">
+<form action="/reservation/time?placeId=${placeId}" method="post">
 <div class="container">
     <div class="button-container">
         <button class="button" onclick="goToPreviousMonth()">&lt;&lt;</button>
         <button class="button" onclick="goToNextMonth()">&gt;&gt;</button>
     </div>    
-    <h1>
-        <% 
-          // DB에서 name 가져오기
-          String placeName = "토리돈까스";
-          try {
-            // Place 테이블에서 name 필드 값 가져오기
-            // ...
-          } catch (Exception e) {
-            e.printStackTrace();
-          }
-          out.println(placeName);
-        %>
+    <h1 style="text-align: center">
+        <%= request.getAttribute("placename")%>
     </h1>
     
     <table>
@@ -125,9 +115,6 @@
         </tr>
         <%
         String[] daysArray = (String[]) request.getAttribute("days"); // Get the 'days' array from the controller
-
-        // Assume 'daysArray' contains the dates as string values (e.g., ["1", "10", "15"])
-
         java.util.Set<String> daysSet = new java.util.HashSet<>(java.util.Arrays.asList(daysArray)); // Convert array to set for efficient lookup
 
         java.util.Calendar cal = java.util.Calendar.getInstance();
@@ -150,7 +137,7 @@
                 int currentDay = cal.get(java.util.Calendar.DAY_OF_MONTH);
 
                 if (daysSet.contains(String.valueOf(currentDay))) {
-                    out.println("<td style='opacity: 1.0; color: red' onclick='selectTime(this)' value='" + currentDay + "'>" + currentDay + "</td>"); // Set transparency to 100%
+                    out.println("<td style='opacity: 1.0; background-color: lightgreen;' onclick='selectTime(this)' value='" + currentDay + "'>" + currentDay + "</td>"); // Set transparency to 100%
                 } else {
                     out.println("<td style='opacity: 0.4; pointer-events: none;' value='" + currentDay + "'>" + currentDay + "</td>"); // Set transparency to 50%
                 }
@@ -197,22 +184,6 @@
         var selectedDay = element.innerText;
         document.getElementById('selectedDay').value = selectedDay;
     }
-
-    $(document).ready(function() {
-        // Example list received from the controller
-        //var listFromController = ${selectedDay};
-  
-        // Iterate over each <td> element
-            /*
-        $('td').each(function() {
-          var tdValue = $(this).text(); // Get the value inside the <td>
-          
-          // Check if the value is in the list
-          if (listFromController.includes(tdValue)) {
-            $(this).css('background-color', 'red'); // Set the background color to red
-          }
-        });*/
-    });
 </script>
 </body>
 </html>

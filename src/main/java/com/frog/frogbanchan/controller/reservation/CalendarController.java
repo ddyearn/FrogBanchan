@@ -1,6 +1,5 @@
 package com.frog.frogbanchan.controller.reservation;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,16 +8,12 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +21,6 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frog.frogbanchan.controller.PlaceSession;
-import com.frog.frogbanchan.controller.UserSession;
 import com.frog.frogbanchan.domain.Reservation;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 
@@ -45,31 +39,25 @@ public class CalendarController {
 
     @RequestMapping("/reservation/calendar")
     public ModelAndView handleRequest(HttpServletRequest request,
-            ModelMap model, String placeId) throws Exception {
+            ModelMap model, @RequestParam("placeId") String placeId) throws Exception {
 
-        model.addAttribute("placeId", "toritori");
-        List<Timestamp> availableTimeList = frogBanchan.findCalendar("toritori");
-        System.out.println("testest" + availableTimeList);
+        model.addAttribute("placeId", placeId);
+        List<Timestamp> availableTimeList = frogBanchan.findCalendar(placeId);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
-        SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
         SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
 
         String[] days = new String[100];
         int i = 0;
         for (Timestamp timestamp : availableTimeList) {
-            String date = dateFormat.format(timestamp);
-            String month = monthFormat.format(timestamp);
             String day = dayFormat.format(timestamp);
             days[i++] = day;
 
-            System.out.println("Date: " + date);
-            System.out.println("Month: " + month);
             System.out.println("Day: " + day);
             System.out.println("---------");
         }
         ModelAndView mav = new ModelAndView("/reservation/calendar");
         mav.addObject("days", days);
+        mav.addObject("placename", frogBanchan.findPlaceById(placeId).getName());
 
         return mav;
     }
