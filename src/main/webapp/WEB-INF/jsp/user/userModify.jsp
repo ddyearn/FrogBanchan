@@ -117,7 +117,8 @@
 
         <div class="horizonLine">
         </div>
+
+        <button class="btn btn-outline-danger deleteBtn" type="button" onClick="location.href='/user/delete'">회원 탈퇴하기</button>
     </div>
-    <button type="button" onClick="location.href='/user/delete'">탈퇴하기</button>
 </body>
 </html>

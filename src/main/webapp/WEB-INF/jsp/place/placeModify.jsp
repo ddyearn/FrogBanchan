@@ -70,13 +70,15 @@
                 </br>
                 <div class="btnGroup">
                     <button class="btn btn-secondary backBtn me-5" type="button" onclick="location.href='/join'">취소하기</button>
-                    <button class="btn btn-success registBtn ms-5" type="submit">등록하기</button>
+                    <button class="btn btn-success registBtn ms-5" type="submit">수정하기</button>
                 </div>
             </form:form>
         </div>
 
         <div class="horizonLine">
         </div>
+
+        <button class="btn btn-outline-danger deleteBtn" type="button" onClick="location.href='/place/delete'">가게 삭제하기</button>
     </div>
 
 </body>

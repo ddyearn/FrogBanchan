@@ -148,3 +148,13 @@ html, body {
     --bs-btn-border-radius: 20px;
     font-size: 22px;
 }
+.btn.deleteBtn {
+    position: absolute;
+    margin-top: 730px;
+    font-size: 20px;
+    z-index: 5;
+}
+.btn-outline-danger.deleteBtn {
+    --bs-btn-color: black;
+    --bs-btn-border-color: black;
+}
