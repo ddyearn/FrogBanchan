@@ -60,5 +60,16 @@
         WHERE RESERVATION_ID = #{reservationId}
     </select>
 
+    <!-- <select id="findReservedTimeByTime" resultType="java.sql.Timestamp">
+        SELECT RESERVATION_ID AS reservationId,
+                USERNAME,
+                PLACE_ID AS placeId, 
+                RESERVATION_DATE AS reservationDate,
+                SEAT
+        FROM RESERVATION
+        WHERE DATE(timestamp) = #{date}
+        AND TIME(timestamp) = #{time}
+    </select> -->
+
 
 </mapper>

@@ -92,16 +92,10 @@
         <div class="button-container">
             <input type="hidden" name="selectedDay" value="<%= request.getAttribute("selectedDay") %>">
             <input type="hidden" name="selectedTime" value="<%= request.getAttribute("selectedTime") %>">
-            <button class="button">예약 하기</button>
-            <button class="button" onclick="goBack()">Back</button>
+            <input type="submit" class="button" valuye="예약하기"></button>
+            <button class="button" type="button" onclick="location.href='/reservation/time'">Back</button>
         </div>
     </div>
     </form>
-
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
 </body>
 </html>
