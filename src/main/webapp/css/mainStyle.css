@@ -9,7 +9,7 @@ html, body {
 }
 
 .frogLogoIcon {
-    width: 200px;
+    width: 230px;
     display: flex;
     position: absolute;
     margin-left: 150px;
@@ -112,6 +112,13 @@ html, body {
     --bs-btn-active-bg: #9FC93C;
     --bs-btn-active-border-color: #9FC93C;
 }
+.createTeamBtn {
+    border: 2px solid #A6A6A6;
+}
+.createTeamBtn.btn-outline-success {
+    --bs-btn-hover-bg: lightgray;
+}
+
 .teamName {
 	width: 100px;
     margin-top: 2px;
