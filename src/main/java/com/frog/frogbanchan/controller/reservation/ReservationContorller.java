@@ -40,12 +40,8 @@ public class ReservationContorller {
     private String FORM_VIEW;
     @Value("/reservation/reservationResult")
     private String RESULT_VIEW;
-    @Value("/reservation/timeSelectForPlace")
-    private String TIME_SELECT_VIEW_FORPLACE;
-    @Value("/reservation/reservationResultForPlace")
-    private String RESULT_VIEW_FORPLACE;
-    @Value("/reservation/calendarForPlace")
-    private String CALENDAR_FORPLACE;
+    @Value("/reservation/check")
+    private String RESERVATION_CHECK_VIEW;
 
     private FrogBanchanFacade frogBanchan;
 
@@ -55,38 +51,47 @@ public class ReservationContorller {
     }
 
     @RequestMapping("/reservation/time")
-    public String timeselectHandle(ModelMap modelMap, @ModelAttribute String placeId, String selectedDay) {
-        List<Timestamp> reservedTimeList = frogBanchan.findReservedTime("toritori"); // placeId 사용
+    public String timeselectHandle(ModelMap modelMap, @RequestParam("placeId") String placeId, @RequestParam String selectedDay) {
+        List<Timestamp> reservedTimeList = frogBanchan.findReservedTime(placeId); // placeId 사용
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH");
 
-        String[] times = new String[9];
+        String[] reservedTimes = new String[100];
         int i = 0;
         for (Timestamp timestamp : reservedTimeList) {
-            String time = timeFormat.format(timestamp);
+                Date date = new Date(timestamp.getTime());
 
-            times[i++] = time;
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
 
-            System.out.println("time: " + time + "placeId" + placeId);
-            System.out.println("---------");
+                // Format the Date object to the desired date and time format
+                String formattedDate = dateFormat.format(date);
+                if(formattedDate.equals(selectedDay)){
+                    String time = timeFormat.format(timestamp);
+
+                    reservedTimes[i++] = time;
+                }
         }
-
-        modelMap.addAttribute("times", times);
+        modelMap.addAttribute("placeId", placeId);
+        modelMap.addAttribute("reservedTimes", reservedTimes);
         modelMap.addAttribute("selectedDay", selectedDay);
+
         return TIME_SELECT_VIEW;
     }
 
-    @PostMapping("/reservation/user")
-    public String showForm(ModelMap modelMap, String selectedDay, String selectedTime) {
+    @PostMapping("/reservation/form")
+    public String showForm(ModelMap modelMap, @RequestParam("placeId") String placeId, @RequestParam String selectedDay, @RequestParam String selectedTime) {
 
+        modelMap.addAttribute("placeId", placeId);
         modelMap.addAttribute("selectedDay", selectedDay);
         modelMap.addAttribute("selectedTime", selectedTime);
         return FORM_VIEW;
     }
 
     @PostMapping("/reservation/result")
-    public String handleResult(ModelMap modelMap, String selectedDay, String selectedTime, int numReservations,
-            @SessionAttribute("userSession") UserSession userSession, @ModelAttribute String placeId) {
+    public String handleResult(ModelMap modelMap, @RequestParam("placeId") String placeId, 
+        @RequestParam String selectedDay, @RequestParam String selectedTime, @RequestParam int numReservations,
+            @SessionAttribute("userSession") UserSession userSession) {
 
+        modelMap.addAttribute("placeId", placeId);
         modelMap.addAttribute("selectedDay", selectedDay);
         modelMap.addAttribute("selectedTime", selectedTime);
         modelMap.addAttribute("selectedPeople", numReservations);
@@ -117,96 +122,51 @@ public class ReservationContorller {
         }
     }
 
-    // FOR PLACE
-    @RequestMapping("/reservation/time/forplace") // requestparam으로 input 태그 받기
-    public String timeselectHandleForPlace(HttpServletRequest request, ModelMap modelMap,
-            @SessionAttribute("placeSession") PlaceSession placeSession,
-            @RequestParam("selectedDay") Object selectedDay) {
-        List<Timestamp> reservedTimeList = frogBanchan.findReservedTime(placeSession.getPlace().getPlaceId()); // placeId 사용
-        List<Timestamp> availableTimeList = frogBanchan.findCalendar(placeSession.getPlace().getPlaceId()); // placeId 사용
-        SimpleDateFormat timeFormat = new SimpleDateFormat("HH");
+    @GetMapping("/reservation/check")
+    public String handleCheck(ModelMap modelMap, @RequestParam("placeId") String placeId, 
+            @RequestParam String reservationId,
+            @SessionAttribute("userSession") UserSession userSession) {
 
-        String[] availableTime = new String[100];
-        int i = 0;
-        for (Timestamp timestamp : availableTimeList) {
-            Date date = new Date(timestamp.getTime());
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
-            // Format the Date object to the desired date and time format
-            String formattedDate = dateFormat.format(date);
-            if(formattedDate.equals(selectedDay)){
-                String day = timeFormat.format(timestamp);
-                availableTime[i++] = day;
-
-                System.out.println("availableTimes: " + availableTime);
-                System.out.println("---------");
-            }
-            
+        //reservationId를 갖고와서 해당 reservation을 건네줘야함
+        List<Reservation> reservation = null;
+        try {
+            reservation = frogBanchan.findReservationByReservationId(reservationId);
+        } catch (Exception e) {
+            // Handle any parsing or conversion errors
+            e.printStackTrace();
+            return "error-page";
         }
 
-        String[] reservedTimes = new String[100];
-        i = 0;
-        for (Timestamp timestamp : reservedTimeList) {
-                Date date = new Date(timestamp.getTime());
+        Timestamp date = reservation.get(0).getReservationDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = dateFormat.format(date);
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        String formattedTime = timeFormat.format(date);
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
+        modelMap.addAttribute("placeId", placeId);
+        modelMap.addAttribute("date", formattedDate);
+        modelMap.addAttribute("time", formattedTime);
+        modelMap.addAttribute("seat", reservation.get(0).getSeat());
 
-                // Format the Date object to the desired date and time format
-                String formattedDate = dateFormat.format(date);
-                if(formattedDate.equals(selectedDay)){
-                    String time = timeFormat.format(timestamp);
-
-                    reservedTimes[i++] = time;
-                }
-        }
-
-        modelMap.addAttribute("availableTimes", availableTime);
-        modelMap.addAttribute("reservedTimes", reservedTimes);
-        modelMap.addAttribute("selectedDay", selectedDay);
-
-        return TIME_SELECT_VIEW_FORPLACE;
+        return RESERVATION_CHECK_VIEW;
     }
 
-    @RequestMapping("/reservation/result/forplace") // requestparam으로 input 태그 받기
-    public String resultHandleForPlace(HttpServletRequest request, ModelMap modelMap,
-            @SessionAttribute("placeSession") PlaceSession placeSession,
-            @RequestParam("selectedDay") String selectedDay,
-            @RequestParam("selectedTime") String selectedTime, @RequestParam("flag") String flag) {
+    @PostMapping("/reservation/check")
+    public String handleDeleteReservation(ModelMap modelMap, @RequestParam("placeId") String placeId, 
+            @RequestParam String reservationId,
+            @SessionAttribute("userSession") UserSession userSession) {
 
-        System.out.print(flag + "******************flag");
-        String reservedDay = null;
-        String reservedTime = null;
-        String username = null;
-        int seat = 0;
+        int rsvid = Integer.parseInt(reservationId);        
 
-        if (flag.equals("reservation")) {
-            List<Reservation> reservations = frogBanchan.findReservationByPlaceId(placeSession.getPlace().getPlaceId());
-            for (Reservation reservation : reservations) {
-                Timestamp timestamp = reservation.getReservationDate();
-
-                Date date = new Date(timestamp.getTime());
-
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
-                SimpleDateFormat timeFormat = new SimpleDateFormat("HH");
-
-                // Format the Date object to the desired date and time format
-                String formattedDate = dateFormat.format(date);
-                String formattedTime = timeFormat.format(date);
-
-                if (formattedDate.equals(selectedDay) && selectedTime.contains(formattedTime)) {
-                    reservedDay = formattedDate;
-                    reservedTime = formattedTime;
-                    username = reservation.getUsername();
-                    seat = reservation.getSeat();
-                }
-            }
+        try {
+            frogBanchan.deleteReservation(rsvid);
+        } catch (Exception e) {
+            // Handle any parsing or conversion errors
+            e.printStackTrace();
+            return "error-page";
         }
 
-        modelMap.addAttribute("reservedDay", reservedDay);
-        modelMap.addAttribute("reservedTime", reservedTime);
-        modelMap.addAttribute("username", username);
-        modelMap.addAttribute("seat", seat);
-
-        return RESULT_VIEW_FORPLACE;
+        //예약 확인 페이지로 return 해야함
     }
 }

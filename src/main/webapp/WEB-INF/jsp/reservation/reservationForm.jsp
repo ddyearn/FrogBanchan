@@ -63,7 +63,7 @@
 </head>
 
 <body>
-    <form action="/reservation/result" method="post">
+    <form action="/reservation/result?placeId=${placeId}" method="post">
     <div class="container">
         <h2>Reservation</h2>
         <div class="form-group">
@@ -90,10 +90,10 @@
             </select>
         </div>
         <div class="button-container">
-            <input type="hidden" name="selectedDay" value="<%= request.getAttribute("selectedDay") %>">
-            <input type="hidden" name="selectedTime" value="<%= request.getAttribute("selectedTime") %>">
-            <input type="submit" class="button" valuye="예약하기"></button>
-            <button class="button" type="button" onclick="location.href='/reservation/time'">Back</button>
+            <input type="hidden" name="selectedDay" value="${selectedDay}"">
+            <input type="hidden" name="selectedTime" value="${selectedTime}"">
+            <input type="submit" class="button" value="예약하기"></button>
+            <button class="button" type="button" onclick="location.href='/reservation/time?placeId=${placeId}'">Back</button>
         </div>
     </div>
     </form>
