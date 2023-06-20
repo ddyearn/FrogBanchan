@@ -94,7 +94,7 @@ public class TestContoller {
 
     @RequestMapping("/test/history")
     public ModelAndView historyTest() {
-        System.out.println(frogBanchan.findHistory(30000));
+        System.out.println(frogBanchan.findHistory(30060));
         System.out.println(frogBanchan.findHistoryList("yonzzang"));
         // History history = new History(30022, "naguri", 50000, "toritori", 1);
         // frogBanchan.insertHistory(history);
@@ -104,6 +104,7 @@ public class TestContoller {
         // System.out.println(frogBanchan.findHistoryList("naguri"));
         // frogBanchan.deleteHistory(30022);
         // System.out.println(frogBanchan.findHistoryList("naguri"));
+        System.out.println(frogBanchan.getHistoryMenu("yonzzang"));
 
         return new ModelAndView("th/test");
     }

@@ -21,4 +21,6 @@ public interface HistoryMapper {
     List<History> findHistoryList(String username);
 
     void deleteHistoryByUsername(String username);
+
+    int getHistoryMenu(String username);
 }

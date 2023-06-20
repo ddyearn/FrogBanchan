@@ -71,7 +71,7 @@
     <div>무슨 메뉴를 먹었는지 알려주시구리~!</div>
 
     <label for="placeMenuId">메뉴</label>:
-    <form:input path="history.placeMenuId" value="${history.placeMenuId}" readonly="true"/> <br/>
+    <form:input path="history.placeMenuId" value="${history.placeMenuId}" readonly="false"/> <br/>
 
     <input type="submit" value="수정하기" />
 

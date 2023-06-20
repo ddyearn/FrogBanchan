@@ -19,7 +19,7 @@
 
     <select id="findMenuListByTagList" resultType="Menu"  parameterType="java.util.Map">
         SELECT MENU.MENU_ID AS menuId,
-               MENU.Name
+               MENU.NAME
         FROM MENU JOIN MENU_TAG ON MENU.MENU_ID = MENU_TAG.MENU_ID
         <if test="like.size != 0">
             WHERE MENU_TAG.TAG IN
@@ -27,8 +27,12 @@
                 #{item}
             </foreach>
         </if>
+        minus
+        SELECT MENU.MENU_ID AS menuId,
+                MENU.NAME
+        FROM MENU JOIN MENU_TAG ON MENU.MENU_ID = MENU_TAG.MENU_ID
         <if test="dislike.size != 0">
-            AND MENU_TAG.TAG NOT IN
+            WHERE MENU_TAG.TAG IN
             <foreach collection="dislike" item="item" open="(" separator="," close=")">
                 #{item}
             </foreach>
@@ -44,6 +48,14 @@
     <select id="findAllTagList" resultType="string">
         SELECT DISTINCT TAG
         FROM MENU_TAG
+    </select>
+
+    <select id="findMenuByPlaceMenuId" resultType="string">
+        SELECT NAME
+        FROM MENU
+        WHERE MENU_ID = (SELECT MENU_ID
+                         FROM PLACE_MENU
+                         WHERE PLACE_MENU_ID = #{placeMenuId})
     </select>
 
 </mapper>
