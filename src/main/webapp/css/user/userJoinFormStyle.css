@@ -107,7 +107,7 @@ html, body {
   margin-left: 50px;
 }
 .inputResi {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid black;
 }
 #residentNo1 {
   width: 90px;
@@ -131,3 +131,20 @@ html, body {
   width: 200px;
 }
 
+.btnGroup {
+    margin-top: -24px;
+}
+
+.btn.backBtn {
+    --bs-btn-border-radius: 20px;
+    font-size: 22px;
+}
+.btn.resetBtn {
+    margin: 0px 50px 0px 50px;
+    --bs-btn-border-radius: 20px;
+    font-size: 22px;
+}
+.btn.registBtn {
+    --bs-btn-border-radius: 20px;
+    font-size: 22px;
+}

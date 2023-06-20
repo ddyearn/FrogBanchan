@@ -101,10 +101,9 @@
                     <span class="line col col-3">- - - - - - - - -</span>
                     <div class="inputBox col col-5">
                         <div class="inputResiBox">
-                            <input id="residentNo1" class="input inputResi" maxlength="6" pattern="\d{6}" />&nbsp;-&nbsp;
-                            <input id="residentNo2" class="input inputResi" minlength="1" maxlength="1" pattern="\d{1}" />******
+                            <form:input id="residentNo1" path="residentNo1" class="input inputResi" />&nbsp;-&nbsp;
+                            <form:input id="residentNo2" path="residentNo2" class="input inputResi" />******
                         </div>
-                        <form:hidden path="user.residentNo" id="residentNo" class="residentNo" />
                         <form:errors path="user.residentNo" class="error" />
                     </div>
                 </div>
@@ -120,14 +119,16 @@
                 <br/>
 
                 </br>
-                <button type="button" onclick="location.href='/join'">취소하기</button>
-                <button type="reset">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
-                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
-                    </svg>
-                </button>
-                <button type="submit">가입하기</button>
+                <div class="btnGroup">
+                    <button class="btn btn-secondary backBtn" type="button" onclick="location.href='/join'">취소하기</button>
+                    <button class="btn btn-light resetBtn" type="reset">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                            <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                        </svg>
+                    </button>
+                    <button class="btn btn-success registBtn" type="submit" onclick="return checkExists();">가입하기</button>
+                </div>
             </form:form>
         </div>
 
