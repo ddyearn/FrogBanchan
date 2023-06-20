@@ -12,7 +12,7 @@
     <button type="button" onClick="location.href='/user/modify'">내 정보 관리</button>
     <button type="button" onClick="location.href='/history/myHistory'">히스토리 관리</button>
     <button type="button" onClick="location.href='/user/reservation'">예약 관리</button>
-    <button type="button" onClick="location.href='/user/place/list?menuId=10000'">가게 목록 보기</button>
+    <button type="button" onClick="location.href='/user/place/list'">가게 목록 보기</button>
     <br/>
     ${user.username} <br/>
     ${user.password} <br/>
