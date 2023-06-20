@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class RecommendMenuUserController {
@@ -62,6 +60,14 @@ public class RecommendMenuUserController {
         
         
 
+        int placeMenuId = frogBanchan.getHistoryMenu(userSession.getUser().getUsername());
+        String historyMenu = frogBanchan.findMenuByPlaceMenuId(placeMenuId);
+        hateList.add(historyMenu);
+
+        Map<String, List<String>> tagList = new HashMap<>();
+        tagList.put("like", likeList);
+        tagList.put("dislike", hateList);
+        System.out.println(frogBanchan.findMenuListByTagList(tagList));
         return mav;
     }
 }

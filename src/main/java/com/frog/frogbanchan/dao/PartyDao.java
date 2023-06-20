@@ -22,6 +22,9 @@ public interface PartyDao {
     // 식구 모집 리스트 조회
     List<Party> findPartyList() throws DataAccessException; 
     
+    //식구 아이디 사전 조회
+    int getNextPartyId() throws DataAccessException;
+    
     // 식구 신청
  	void insertApply(Apply apply) throws DataAccessException;
  	

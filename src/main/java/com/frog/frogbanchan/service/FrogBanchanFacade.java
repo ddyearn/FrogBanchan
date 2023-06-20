@@ -72,6 +72,8 @@ public interface FrogBanchanFacade {
 
     public List<String> findAllTagList();
 
+    public String findMenuByPlaceMenuId(int placeMenuId);
+
     // PlaceMenuService
     public void insertPlaceMenu(PlaceMenu placeMenu);
 
@@ -99,6 +101,8 @@ public interface FrogBanchanFacade {
     public void deleteHistory(int historyId);
 
     public void deleteHistoryByUsername(String username);
+
+    public int getHistoryMenu(String username);
 
     // TeamService
     public void insertTeam(Team team);
@@ -143,5 +147,7 @@ public interface FrogBanchanFacade {
     public List<Apply> findApplyByPartyId(int partyId);
 
     public List<Apply> findApplyList();
+    
+    public int getNextPartyId();
 
 }

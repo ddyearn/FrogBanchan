@@ -14,6 +14,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/join/user")
@@ -67,6 +68,7 @@ public class RegistUserController {
         }
 
         Users user = userForm.getUser();
+        user.setResidentNo(userForm.getResidentNo1() + userForm.getResidentNo2());
         frogBanchan.insertUser(user);
         model.addAttribute("user", user);
 
@@ -74,5 +76,33 @@ public class RegistUserController {
 
         return RESULT_VIEW;
     }
+
+    @GetMapping("username/{username}")
+    @ResponseBody
+    public String isExistUsername(@PathVariable("username") String username) {
+        String result;
+        List<String> userList = frogBanchan.findUsernameList();
+        if (!userList.contains(username)) {
+            result = "true";
+        } else {
+            result = "false";
+        }
+        return result;
+    }
+
+    @GetMapping("nickname/{nickname}")
+    @ResponseBody
+    public String isExistNickname(@PathVariable("nickname") String nickname) {
+        String result;
+        List<Users> users = frogBanchan.findUsersByNickname(nickname);
+        if (users == null) {
+            result = "true";
+        } else {
+            result = "false";
+        }
+        return result;
+    }
+
+
 
 }

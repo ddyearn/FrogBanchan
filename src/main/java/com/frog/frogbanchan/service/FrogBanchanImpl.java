@@ -160,6 +160,8 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         return menuDao.findAllTagList();
     }
 
+    public String findMenuByPlaceMenuId(int placeMenuId) { return menuDao.findMenuByPlaceMenuId(placeMenuId); }
+
     // PlaceMenuService
     public List<PlaceMenu> findMenuListByPlaceId(String placeId) {
         return placeMenuDao.findMenuListByPlaceId(placeId);
@@ -207,6 +209,8 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     }
 
     public void deleteHistoryByUsername(String username) { historyDao.deleteHistoryByUsername(username);}
+
+    public int getHistoryMenu(String username) { return historyDao.getHistoryMenu(username); }
 
     // TeamService
     public void insertTeam(Team team) {
@@ -268,6 +272,10 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
 
     public List<Party> findPartyList() {
         return partyDao.findPartyList();
+    }
+    
+    public int getNextPartyId() {
+    	return partyDao.getNextPartyId();
     }
 
     public void insertApply(Apply apply) {

@@ -49,7 +49,7 @@
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <div class="d-flex justify-content-center dropdown-item">
-                                <button class="btn btn-outline-danger" type="button" onclick="location.href='/team/deleteTeamMember?username=${member.username}'">팀원 삭제</button>
+                                <button class="btn btn-outline-danger" type="button" onclick="location.href='/team/deleteTeamMember?teamId=${team.teamId}&username=${member.username}'">팀원 삭제</button>
                             </div>
                         </li>
                     </c:if>
