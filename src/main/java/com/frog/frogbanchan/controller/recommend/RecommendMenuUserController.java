@@ -1,6 +1,7 @@
 package com.frog.frogbanchan.controller.recommend;
 
 import com.frog.frogbanchan.controller.UserSession;
+import com.frog.frogbanchan.domain.Menu;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,19 +45,20 @@ public class RecommendMenuUserController {
     ) throws Exception {
 
         // test 결과 페이지(recommend 결과 페이지)
-        ModelAndView mav = new ModelAndView("/user/recommendTest1");
+        ModelAndView mav = new ModelAndView("/recommend/recommendMenu");
 
         // 선택된 싫어요, 좋아요 태그 목록을 List<String> 형태로 저장
         // 아직 얘네는 세션 처리를 안 해서 뒤로가기 누르면 거시기해지는 문제가..
         // ModelAndView에 넣은 이유: 값 확인용
+
         List<String> hateList = new ArrayList<>(Arrays.asList(hateTags.split(",")));
-        mav.addObject("hateList", hateList);
+//        mav.addObject("hateList", hateList);
         List<String> likeList = new ArrayList<>(Arrays.asList(likeTags.split(",")));
-        mav.addObject("likeList", likeList);
-        
+//        mav.addObject("likeList", likeList);
+        hateList.remove("");
+        likeList.remove("");
         // 여기에서 hateList, likeList 가지고 추천해주시믄 될가나
         // 아니믄 service 클래스에서 처리하게 호출해도 조코
-        
         
         
 
@@ -65,9 +67,23 @@ public class RecommendMenuUserController {
         hateList.add(historyMenu);
 
         Map<String, List<String>> tagList = new HashMap<>();
-        tagList.put("like", likeList);
-        tagList.put("dislike", hateList);
-        System.out.println(frogBanchan.findMenuListByTagList(tagList));
+
+        if(!hateList.isEmpty())
+            tagList.put("dislike", hateList);
+        else tagList.put("dislike", null);
+        if(!likeList.isEmpty())
+            tagList.put("like", likeList);
+        else tagList.put("like", null);
+
+        List<Menu> menu = frogBanchan.findMenuListByTagList(tagList);
+        System.out.println(menu);
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(menu.size());
+        System.out.println(menu.get(randomIndex));
+
+        mav.addObject(menu.get(randomIndex));
+
         return mav;
     }
 }

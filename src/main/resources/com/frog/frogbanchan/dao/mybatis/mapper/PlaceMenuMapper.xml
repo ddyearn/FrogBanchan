@@ -17,7 +17,6 @@
 
     <select id="findPlaceListByMenu" resultType="Place">
         SELECT PLACE_ID AS placeId,
-               PASSWORD,
                NAME,
                ADDRESS,
                TOTAL_SCORE
