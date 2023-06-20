@@ -1,6 +1,5 @@
 package com.frog.frogbanchan.controller.party;
 
-import com.frog.frogbanchan.domain.Apply;
 import com.frog.frogbanchan.domain.Party;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -90,18 +86,17 @@ public class PartyFormController {
 	public String createParty(
 			HttpServletRequest request, HttpSession session,
 			@ModelAttribute("partyForm") PartyForm partyForm, BindingResult bindingResult, Model model) throws Exception {
-		Party party = partyForm.getParty();
-
 		validator.validate(partyForm, bindingResult);
 		if (bindingResult.hasErrors()) {
 			return FORM_VIEW;
 		}
 
+		Party party = partyForm.getParty();
+
 		frogBanchan.insertParty(party);
-		party.setPartyId(party.getPartyId());
 		model.addAttribute("party", party);
 		
-		return "redirect:/party/list";
+		return "redirect:/party/view?partyId=" + party.getPartyId();
 	}
  
 	//식구 모집 수정
