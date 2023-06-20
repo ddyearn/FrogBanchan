@@ -2,6 +2,7 @@ package com.frog.frogbanchan.dao.mybatis.mapper;
 
 import com.frog.frogbanchan.domain.Menu;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 import java.util.Map;
@@ -18,4 +19,6 @@ public interface MenuMapper {
     List<String> findMenuTagList(int menuId);
 
     List<String> findAllTagList();
+
+    String findMenuByPlaceMenuId(int placeMenuId);
 }

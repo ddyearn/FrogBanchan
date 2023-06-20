@@ -46,6 +46,16 @@ public class MybatisPlaceDao implements PlaceDao {
     // 캘린더 가져오기
     public List<Timestamp> findCalendar(String placeId) throws DataAccessException {
         return placeMapper.findCalendar(placeId);
-    };
+    }
+
+    public List<String> findAllPlaceIdList() throws DataAccessException {
+        return placeMapper.findAllPlaceIdList();
+    }
+
+    public List<Place> findAllPlaceList() throws DataAccessException {
+        return placeMapper.findAllPlaceList();
+    }
+
+
 
 }

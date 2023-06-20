@@ -38,6 +38,8 @@ public class UpdateUserController {
             throws Exception {
         UserForm userForm = new UserForm(userSession.getUser());
         userForm.setConfirmPassword(userSession.getUser().getPassword());
+        userForm.setResidentNo1(userSession.getUser().getResidentNo().substring(0, 6));
+        userForm.setResidentNo2(userSession.getUser().getResidentNo().substring(6, 7));
         return userForm;
     }
 
@@ -60,6 +62,7 @@ public class UpdateUserController {
         }
 
         Users user = userForm.getUser();
+        user.setResidentNo(userForm.getResidentNo1() + userForm.getResidentNo2());
         frogBanchan.updateUser(user);
         model.addAttribute("user", user);
 

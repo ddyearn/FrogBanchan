@@ -15,6 +15,8 @@ public class UserForm implements Serializable {
 
 //    @NotEmpty
     private String confirmPassword;
+    private String residentNo1;
+    private String residentNo2;
 
     public UserForm() {
     }

@@ -99,8 +99,8 @@
 
         <div>
             <div id="actions">
-                <button id="modify-btn">정보 수정</button>
-                <button id="calendar-btn" onclick="location.href='/reservation/calendar/forplace'">예약 현황(캘린더)</button>
+                <button id="modify-btn" onclick="location.href='/place/modify'">정보 수정</button>
+                <button id="calendar-btn" onclick="location.href='/reservation/calendar'">예약 현황(캘린더)</button>
             </div>
         </div>
     </div>

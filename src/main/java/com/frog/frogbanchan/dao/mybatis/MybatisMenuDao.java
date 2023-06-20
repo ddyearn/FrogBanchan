@@ -39,4 +39,9 @@ public class MybatisMenuDao implements MenuDao {
     public List<String> findAllTagList() throws DataAccessException {
         return menuMapper.findAllTagList();
     }
+
+    @Override
+    public String findMenuByPlaceMenuId(int placeMenuId) throws DataAccessException {
+        return menuMapper.findMenuByPlaceMenuId(placeMenuId);
+    }
 }

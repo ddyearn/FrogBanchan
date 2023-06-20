@@ -6,23 +6,22 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.frog.frogbanchan.service.FrogBanchanFacade;
+import com.frog.frogbanchan.service.ParticipationService;
 
 @Controller
 public class DeleteTeamController { 
 
-	private FrogBanchanFacade frogBanchan;
-
+	private ParticipationService participationService;
 	@Autowired
-	public void setFrogbanchan(FrogBanchanFacade frogBanchan) {
-		this.frogBanchan = frogBanchan;
-	}
+	public void setParticipationService(ParticipationService participationService) {
+        this.participationService = participationService;
+    }
 
 	@RequestMapping("/team/delete")
 	public String handleRequest(
 			@RequestParam("teamId") int teamId, 
 			ModelMap model) throws Exception {
-		frogBanchan.deleteTeam(teamId);
+		participationService.deleteTeam(teamId);
 		
 		return "redirect:/user/main";
 	}

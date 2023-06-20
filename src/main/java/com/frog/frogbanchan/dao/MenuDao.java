@@ -30,4 +30,6 @@ public interface MenuDao {
     //모든 태그 리스트 조회
     List<String> findAllTagList() throws DataAccessException;
     //[SELECT DISTINCT TAG FROM MENU_TAG ]
+
+    String findMenuByPlaceMenuId(int placeMenuId) throws DataAccessException;
 }

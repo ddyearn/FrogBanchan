@@ -1,48 +1,49 @@
 package com.frog.frogbanchan.controller.team;
 
-import java.util.List;
-
 import com.frog.frogbanchan.domain.Team;
-import com.frog.frogbanchan.domain.Users;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import com.frog.frogbanchan.service.FrogBanchanFacade;
+import com.frog.frogbanchan.service.ParticipationService;
 
 @Controller
 public class TeamMemberController { 
 
-	private FrogBanchanFacade frogBanchan;
-    @Autowired
-    public void setFrogBanchan(FrogBanchanFacade frogBanchan) {
-        this.frogBanchan = frogBanchan;
+	private ParticipationService participationService;
+	@Autowired
+	public void setParticipationService(ParticipationService participationService) {
+        this.participationService = participationService;
     }
-    
-	
+
 	@RequestMapping("/team/addTeamMember")
 	public ModelAndView addTeamMember(
 			@RequestParam("username") String username,
-			@ModelAttribute("team") Team team) throws Exception {
-		List<Users> memberList = frogBanchan.findTeamMembers(team.getTeamId());
-		for (Users mem : memberList) {
-			if (mem.getUsername() == username) 
-				return new ModelAndView("Team", "team", team);
-		}
-		
-		frogBanchan.addTeamMember(team.getTeamId(), username);
+			@RequestParam("email") String email,
+			@RequestParam("teamId") int teamId) throws Exception {
+
+		ModelAndView mav = new ModelAndView("redirect:/team/main/" + teamId);
+		Team team = participationService.getParticipation(username, email, teamId);
+		mav.addObject("team", team);
+
+		return mav;
+	}
 	
-		return new ModelAndView("Team", "team", team);
+	@RequestMapping("/team/quitTeamMember")
+	public String quitTeam(@RequestParam("teamId") int teamId, @RequestParam("username") String username) throws Exception {
+		participationService.quitParticipation(teamId, username);
+		
+		return "redirect:/user/main";
 	}
 	
 	@RequestMapping("/team/deleteTeamMember")
-	public ModelAndView deleteTeamMember(
+	public String deleteTeamMember(
 			@RequestParam("username") String username,
-			@ModelAttribute("team") Team team
+			@RequestParam("teamId") int teamId
 		) throws Exception {
-		frogBanchan.deleteTeamMember(team.getTeamId(), username);
+		participationService.outParticipation(teamId, username);
 		
-		return new ModelAndView("Team", "team", team);
+		return "redirect:/team/main/" + teamId;
 	}
 }

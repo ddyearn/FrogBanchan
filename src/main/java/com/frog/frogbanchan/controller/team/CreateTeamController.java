@@ -2,6 +2,7 @@ package com.frog.frogbanchan.controller.team;
 import com.frog.frogbanchan.controller.UserSession;
 import com.frog.frogbanchan.domain.Team;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
+import com.frog.frogbanchan.service.ParticipationService;
 import com.frog.frogbanchan.service.validator.TeamFormValidator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,13 +20,19 @@ import org.springframework.beans.factory.annotation.Value;
 public class CreateTeamController {
 	@Value("/team/teamForm")
 	private String FORM_VIEW;
-	@Value("/team/view")
-	private String RESULT_VIEW;
+
     private FrogBanchanFacade frogBanchan;
     @Autowired
     public void setFrogBanchan(FrogBanchanFacade frogBanchan) {
         this.frogBanchan = frogBanchan;
     }
+    
+	private ParticipationService participationService;
+	@Autowired
+	public void setParticipationService(ParticipationService participationService) {
+        this.participationService = participationService;
+    }
+
 	@ModelAttribute("teamForm")
     public TeamForm createTeamForm() {
         return new TeamForm();
@@ -60,16 +67,16 @@ public class CreateTeamController {
 			@ModelAttribute("teamForm") TeamForm teamForm, BindingResult bindingResult, Model model) throws Exception {
 		Team team = teamForm.getTeam();
 
-		validator.validate(teamForm, bindingResult);
+		validator.validate(team, bindingResult);
 		if (bindingResult.hasErrors()) {
 			return FORM_VIEW;
 		}
-
-		frogBanchan.insertTeam(team);
-		team.setTeamId(team.getTeamId());
+		
+		
+		participationService.createTeam(team, team.getCreator());
 		model.addAttribute("team", team);
 		
-		return RESULT_VIEW;
+		return "redirect:/team/main/" + team.getTeamId();
 	}
 	
 }

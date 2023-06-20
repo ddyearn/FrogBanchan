@@ -19,6 +19,8 @@ public interface PartyMapper {
 
     public List<Party> findPartyList();
     
+    public int getNextPartyId();
+    
     //식구 신청
     public void insertApply(Apply apply);
 

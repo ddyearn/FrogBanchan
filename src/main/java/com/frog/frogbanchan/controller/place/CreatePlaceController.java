@@ -14,9 +14,10 @@ import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
-@RequestMapping("/place/create")
+@RequestMapping("/join/place")
 public class CreatePlaceController {
 
     @Value("/place/placeJoinForm")
@@ -68,6 +69,19 @@ public class CreatePlaceController {
         model.addAttribute("place", place);
 
         return RESULT_VIEW;
+    }
+
+    @GetMapping("placeId/{placeId}")
+    @ResponseBody
+    public String isExistUsername(@PathVariable("placeId") String placeId) {
+        String result;
+        List<String> placeList = frogBanchan.findAllPlaceIdList();
+        if (!placeList.contains(placeId)) {
+            result = "true";
+        } else {
+            result = "false";
+        }
+        return result;
     }
 
 

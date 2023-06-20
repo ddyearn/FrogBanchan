@@ -26,7 +26,7 @@
       <hr class="line" />
       <div class="page">
         <div class="logo">
-          <img class="mainimg" src="../../img/logo.png" />
+          <img class="mainimg" src="../../img/logo.jpg" />
         </div>
         <div class="titleWrap">
           <hr class="line2"/>

@@ -13,12 +13,30 @@
 	<link rel="stylesheet" type="text/css" href="../../css/topStyle.css">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <nav class="navBar sticky-top">
+        <c:choose>
+            <c:when test="${sessionScope.userSession ne null}">
+                <a class="navbar-brand ms-4" href="/user/main">
+                    <img class="frogMainIcon" src="${request.getContextPath()}/img/logo2.jpg" />
+                </a>
+            </c:when>
+            <c:when test="${sessionScope.placeSession ne null}">
+                <a class="navbar-brand ms-4" href="/place/main">
+                    <img class="frogMainIcon" src="${request.getContextPath()}/img/logo2.jpg" />
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a class="navbar-brand ms-4" href="/login">
+                    <img class="frogMainIcon" src="${request.getContextPath()}/img/logo2.jpg" />
+                </a>
+            </c:otherwise>
+        </c:choose>
         <div class="navBox1 d-flex">
             <span class="navBox2">
+                <img class="spoonIcon" src="../../img/spoon.jpg" />&nbsp;
                 <c:choose>
                     <c:when test="${sessionScope.userSession ne null}">
                         <a class="navText1" href="/user/myPage">${userSession.user.username}</a>
