@@ -273,6 +273,10 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     public List<Party> findPartyList() {
         return partyDao.findPartyList();
     }
+    
+    public int getNextPartyId() {
+    	return partyDao.getNextPartyId();
+    }
 
     public void insertApply(Apply apply) {
         partyDao.insertApply(apply);

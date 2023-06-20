@@ -72,10 +72,11 @@ public class PartyFormController {
 	public String showForm(HttpServletRequest request, HttpSession session, Model model) {
 		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
 		Party party = new Party();
-	
+		int partyId = frogBanchan.getNextPartyId();
+		party.setPartyId(partyId);
+		
 		String creator = userSession.getUser().getUsername();
 		party.setCreator(creator);
-		
 		
 		model.addAttribute("party", party);
         return FORM_VIEW;
@@ -86,13 +87,16 @@ public class PartyFormController {
 	public String createParty(
 			HttpServletRequest request, HttpSession session,
 			@ModelAttribute("partyForm") PartyForm partyForm, BindingResult bindingResult, Model model) throws Exception {
-		validator.validate(partyForm, bindingResult);
+		Party party = partyForm.getParty();
+		
+		validator.validate(party, bindingResult);
 		if (bindingResult.hasErrors()) {
 			return FORM_VIEW;
 		}
-
-		Party party = partyForm.getParty();
+		
 		frogBanchan.insertParty(party);
+		party.setPartyId(party.getPartyId());
+		
 		model.addAttribute("party", party);
 		
 		return "redirect:/party/view?partyId=" + party.getPartyId();
@@ -111,16 +115,18 @@ public class PartyFormController {
 	@PostMapping("/party/update")
 	public String updateParty(@ModelAttribute("partyForm") PartyForm partyForm, HttpServletRequest request, HttpSession session, BindingResult bindingResult, Model model) throws Exception {
 		Party party = partyForm.getParty();
-
+		
 		validator.validate(partyForm, bindingResult);
 		if (bindingResult.hasErrors()) {
 			return "/party/partyUpdateForm";
 		}
 
 		frogBanchan.updateParty(party);
+		party.setPartyId(party.getPartyId());
+		
 		model.addAttribute("party", party);
 		
-		return "redirect:/party/view?=" + party.getPartyId();
+		return "redirect:/party/view?partyId=" + party.getPartyId();
 	}
 	
 	//식구 모집 삭제

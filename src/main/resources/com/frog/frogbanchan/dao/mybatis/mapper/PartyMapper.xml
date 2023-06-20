@@ -13,6 +13,10 @@
     	FROM PARTY 
     	WHERE PARTY_ID = #{partyId}
     </select>
+    
+    <select id="getNextPartyId" resultType="int">
+    	SELECT LAST_NUMBER FROM USER_SEQUENCES WHERE SEQUENCE_NAME='SEQUENCE_PARTY'
+    </select>
 
     <select id="findPartyList" resultType="Party">
         SELECT PARTY_ID AS partyId,

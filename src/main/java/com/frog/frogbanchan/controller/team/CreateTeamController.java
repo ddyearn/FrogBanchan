@@ -20,8 +20,7 @@ import org.springframework.beans.factory.annotation.Value;
 public class CreateTeamController {
 	@Value("/team/teamForm")
 	private String FORM_VIEW;
-	@Value("/team/view")
-	private String RESULT_VIEW;
+
     private FrogBanchanFacade frogBanchan;
     @Autowired
     public void setFrogBanchan(FrogBanchanFacade frogBanchan) {
@@ -29,6 +28,10 @@ public class CreateTeamController {
     }
     
 	private ParticipationService participationService;
+	@Autowired
+	public void setParticipationService(ParticipationService participationService) {
+        this.participationService = participationService;
+    }
 
 	@ModelAttribute("teamForm")
     public TeamForm createTeamForm() {
@@ -64,7 +67,7 @@ public class CreateTeamController {
 			@ModelAttribute("teamForm") TeamForm teamForm, BindingResult bindingResult, Model model) throws Exception {
 		Team team = teamForm.getTeam();
 
-		validator.validate(teamForm, bindingResult);
+		validator.validate(team, bindingResult);
 		if (bindingResult.hasErrors()) {
 			return FORM_VIEW;
 		}
@@ -73,7 +76,7 @@ public class CreateTeamController {
 		participationService.createTeam(team, team.getCreator());
 		model.addAttribute("team", team);
 		
-		return RESULT_VIEW;
+		return "redirect:/team/main/" + team.getTeamId();
 	}
 	
 }
