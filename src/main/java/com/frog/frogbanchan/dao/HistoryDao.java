@@ -32,4 +32,11 @@ public interface HistoryDao {
     //탈퇴 시 히스토리 데이터 삭제
     void deleteHistoryByUsername(String username) throws DataAccessException;
     // [DELETE FROM HISTORY WHERE USERNAME = ?]
+
+    //추천에 사용하기 위한 가장 최근 히스토리 조회
+    int getHistoryMenu(String username) throws DataAccessException;
+    // SELECT *
+    //FROM HISTORY
+    //WHERE RECORDED_DATE = (SELECT MAX(RECORDED_DATE)
+    //                      FROM (SELECT * FROM HISTORY WHERE USERNAME = ?))
 }

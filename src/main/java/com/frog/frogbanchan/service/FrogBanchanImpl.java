@@ -8,6 +8,7 @@ import java.util.Map;
 import com.frog.frogbanchan.dao.*;
 import com.frog.frogbanchan.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -139,6 +140,8 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         return menuDao.findAllTagList();
     }
 
+    public String findMenuByPlaceMenuId(int placeMenuId) { return menuDao.findMenuByPlaceMenuId(placeMenuId); }
+
     // PlaceMenuService
     public List<PlaceMenu> findMenuListByPlaceId(String placeId) {
         return placeMenuDao.findMenuListByPlaceId(placeId);
@@ -186,6 +189,8 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
     }
 
     public void deleteHistoryByUsername(String username) { historyDao.deleteHistoryByUsername(username);}
+
+    public int getHistoryMenu(String username) { return historyDao.getHistoryMenu(username); }
 
     // TeamService
     public void insertTeam(Team team) {

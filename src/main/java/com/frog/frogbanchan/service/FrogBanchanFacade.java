@@ -5,6 +5,7 @@ import java.util.Map;
 import java.sql.Timestamp;
 
 import com.frog.frogbanchan.domain.*;
+import org.springframework.dao.DataAccessException;
 
 public interface FrogBanchanFacade {
 
@@ -62,6 +63,8 @@ public interface FrogBanchanFacade {
 
     public List<String> findAllTagList();
 
+    public String findMenuByPlaceMenuId(int placeMenuId);
+
     // PlaceMenuService
     public void insertPlaceMenu(PlaceMenu placeMenu);
 
@@ -89,6 +92,8 @@ public interface FrogBanchanFacade {
     public void deleteHistory(int historyId);
 
     public void deleteHistoryByUsername(String username);
+
+    public int getHistoryMenu(String username);
 
     // TeamService
     public void insertTeam(Team team);

@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @SessionAttributes("userSession")
@@ -49,6 +47,14 @@ public class RecommendMenuUserController {
         List<String> likeList = new ArrayList<>(Arrays.asList(likeTags.split(",")));
         mav.addObject("likeList", likeList);
 
+        int placeMenuId = frogBanchan.getHistoryMenu(userSession.getUser().getUsername());
+        String historyMenu = frogBanchan.findMenuByPlaceMenuId(placeMenuId);
+        hateList.add(historyMenu);
+
+        Map<String, List<String>> tagList = new HashMap<>();
+        tagList.put("like", likeList);
+        tagList.put("dislike", hateList);
+        System.out.println(frogBanchan.findMenuListByTagList(tagList));
         return mav;
     }
 }
