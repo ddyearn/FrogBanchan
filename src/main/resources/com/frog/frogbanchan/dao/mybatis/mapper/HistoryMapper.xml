@@ -48,4 +48,12 @@
         WHERE USERNAME = #{username}
     </delete>
 
+    <select id="getHistoryMenu" resultType="_int">
+        SELECT *
+        FROM (SELECT PLACE_MENU_ID AS placeMenuId
+              FROM HISTORY
+              WHERE USERNAME = #{username}
+              ORDER BY RECORDED_DATE DESC )
+        WHERE ROWNUM = 1
+    </select>
 </mapper>

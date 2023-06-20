@@ -69,5 +69,19 @@ public class MainUserController {
         return "/team/teamPage";
     }
 
+    @RequestMapping("/user/place/list")
+    public String handleRequest4(@RequestParam("menuId") int menuId,
+                                 Model model) throws Exception {
+        model.addAttribute("placeList", frogBanchan.findPlaceListByMenu(menuId));
+
+        return "/user/placeList";
+    }
+
+    //식구 리스트 조회
+    @RequestMapping("/party/list")
+    public ModelAndView handleRequest() throws Exception {
+        return new ModelAndView("/party/list", "partyList", frogBanchan.findPartyList());
+    }
+
 
 }

@@ -4,6 +4,11 @@
     font-family: 'Poor Story';
 }
 
+.spoonIcon {
+    width: 20px;
+    height: 26px;
+}
+
 .navBar {
     width: 100%;
     position: absolute;
