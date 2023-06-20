@@ -36,6 +36,10 @@ public class MybatisPartyDao implements PartyDao {
     	return partyMapper.findPartyList();
     }
     
+    public int getNextPartyId() throws DataAccessException {
+    	return partyMapper.getNextPartyId();
+    }
+    
  	public void insertApply(Apply apply) throws DataAccessException {
  		partyMapper.insertApply(apply);
  	}

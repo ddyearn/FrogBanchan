@@ -23,6 +23,7 @@
 		</div>
 			<form:form modelAttribute="partyForm" method="post">
 			<div class="contentWrap">
+			<form:hidden path="party.partyId" value="${party.partyId}"/>
 			<label for="creator" class="inputTitle">모집자</label>
 			<div class="line2">- - - - -  - - -</div>
 		    <div class="readonly">
