@@ -45,7 +45,7 @@
    		<br/>
    		<hr class="line"/>
    		<div class="titleWrap2">
-			댓글
+			신청
 			<br/>
 		</div>
    		<table class="tb2">
@@ -72,5 +72,10 @@
 		
 			<input class="createButton" type="submit" value="작성" />
 		</form:form>
+		<c:choose>
+            <c:when test="${party.creator eq sessionScope.userSession.user.username}">
+                <button class="acceptButton" onclick="location.href='<c:url value='/party/accept'><c:param name='partyId' value='${party.partyId}'/></c:url>'">수락하기</button>
+            </c:when>
+       </c:choose>
 </body>
 </html>

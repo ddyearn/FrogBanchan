@@ -233,3 +233,27 @@ th:last-child {border-top-right-radius: 50px;}
 	margin-bottom: 50px;
 	cursor: pointer;
 }
+
+.acceptButton {
+	box-sizing: border-box;
+
+	position: absolute;
+	width: 194px;
+	height: 69px;
+	left: 122px;
+	top: 627px;
+	
+	background: #80C63A;
+	border: 2px solid #000000;
+	border-radius: 50px;
+	
+	font-size: 30px;
+	font-family: 'Poor Story';
+	font-weight: 700;
+	background-color: green;
+	border-radius: 64px;
+	color: white;
+	margin-left: 10px;
+	margin-bottom: 50px;
+	cursor: pointer;
+}
