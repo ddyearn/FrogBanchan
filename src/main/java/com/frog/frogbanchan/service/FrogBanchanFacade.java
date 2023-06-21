@@ -33,6 +33,8 @@ public interface FrogBanchanFacade {
 
     public List<String> findTagsByUsername(String username);
 
+    public List<String> findTagsByTag(String tag);
+
     // PlaceService
     public void insertPlace(Place place);
 

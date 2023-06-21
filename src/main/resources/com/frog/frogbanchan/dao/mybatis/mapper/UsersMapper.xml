@@ -54,6 +54,15 @@
         ORDER BY TAG
     </select>
 
+    <select id="findTagsByTag" resultType="java.lang.String">
+        SELECT TAG
+        FROM (SELECT DISTINCT TAG FROM MENU_TAG
+            UNION
+            SELECT DISTINCT TAG FROM HATE_TAG)
+        WHERE TAG LIKE '%' || #{tag} || '%' AND ROWNUM &lt;= 10
+        ORDER BY TAG
+    </select>
+
     <insert id="insertUser" parameterType="Users">
         INSERT INTO USERS (USERNAME, PASSWORD, NAME, PHONE, EMAIL, NICKNAME, RESIDENT_NO, ADDRESS)
         VALUES (#{username}, #{password}, #{name}, #{phone}, #{email}, #{nickname}, #{residentNo}, #{address})

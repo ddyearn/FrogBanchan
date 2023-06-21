@@ -85,6 +85,10 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         return usersDao.findTagsByUsername(username);
     }
 
+    public List<String> findTagsByTag(String tag) {
+        return usersDao.findTagsByTag(tag);
+    }
+
     // PlaceService
     public void insertPlace(Place place) {
         placeDao.insertPlace(place);

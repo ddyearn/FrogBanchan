@@ -63,4 +63,8 @@ public class MybatisUsersDao implements UsersDao {
         return usersMapper.findTagsByUsername(username);
     }
 
+    public List<String> findTagsByTag(String tag) throws DataAccessException {
+        return usersMapper.findTagsByTag(tag);
+    }
+
 }
