@@ -2,6 +2,7 @@ package com.frog.frogbanchan.controller.party;
 
 import com.frog.frogbanchan.domain.Apply;
 import com.frog.frogbanchan.domain.Party;
+import com.frog.frogbanchan.domain.Place;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +44,12 @@ public class PartyFormController {
 	@ModelAttribute("applyList")
 	public ModelAndView findParty(@ModelAttribute("applyForm") ApplyForm applyForm, @RequestParam("partyId") int partyId, HttpSession session) {
 		Party party = frogBanchan.findParty(partyId);
+		Place place = frogBanchan.findPlaceById(party.getPlaceId());
 		ModelAndView mav = new ModelAndView();
 		
 		mav.setViewName("/party/view");
 		mav.addObject("party", party);
+		mav.addObject("place", place);
 		mav.addObject("applyList", frogBanchan.findApplyByPartyId(partyId));
 		mav.addObject("applyForm", applyForm);
 		
@@ -75,7 +78,9 @@ public class PartyFormController {
 		String creator = userSession.getUser().getUsername();
 		party.setCreator(creator);
 		
+		List<Place> placeList = frogBanchan.findAllPlaceList();
 		model.addAttribute("party", party);
+		model.addAttribute("placeList", placeList);
         return FORM_VIEW;
     }
 
@@ -113,6 +118,9 @@ public class PartyFormController {
     public String showForm(@RequestParam("partyId") int partyId, Model model) {
 		PartyForm partyForm = new PartyForm(frogBanchan.findParty(partyId));
 		model.addAttribute(partyForm);
+		
+		List<Place> placeList = frogBanchan.findAllPlaceList();
+		model.addAttribute("placeList", placeList);
 		
         return "/party/partyUpdateForm";
     }

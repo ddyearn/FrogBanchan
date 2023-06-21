@@ -35,12 +35,13 @@
 			<form:input path="party.meetDate" class="input"/>
 			<form:errors path="party.meetDate" class="error"/> <br/>
 			</div>
-			<label for="address" class="inputTitle">가게</label>
-			<div class="line2">- - - - - - - -</div>
-		    <div class="inputWrap">
-			<form:input path="party.placeId" class="input"/>
-			<form:errors path="party.placeId" class="error"/> <br/>
-			</div>
+			<label for="place" class="inputTitle">가게</label>
+			<select id="placeSelect" class="input">
+	        <option value="">-- 가게 선택 --</option>
+		        <c:forEach var="place" items="${placeList}">
+		            <option value="${place.placeId}">${place.name}</option>
+		        </c:forEach>
+	    	</select>
 			<label for="content" class="inputTitle">내용</label>
 			<div class="contentWrap2">
 			<form:textarea path="party.content" cols="20" rows="3" class="content"/>
