@@ -44,4 +44,7 @@ public interface UsersMapper {
     // hate tag list 가져오기
     List<String> findTagsByUsername(String username);
 
+    // 문자열로 tag list 가져오기
+    List<String> findTagsByTag(String tag);
+
 }

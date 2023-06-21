@@ -35,3 +35,20 @@ $(function() {
     }
 
 });
+
+function searchTag() {
+    const keyword = document.getElementById("hateAddTag").value;
+    if (keyword) {
+        $.ajax({
+            type: "GET",
+            url: "/user/tag/search?keyword=" + keyword,
+            contentType: "application/json",
+            success: function(data) {
+                    $(".searchResult").children().remove();
+                $.each(data, function(index, searched) {
+                    $(".searchResult").append($("<span class='btn btn-outline-warning searchedTag'>" + searched + "&nbsp;</span>"));
+                });
+            }
+        });
+    }
+}

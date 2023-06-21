@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-public class UpdateUserTagController {
+public class UserTagController {
 
     private FrogBanchanFacade frogBanchan;
 
@@ -43,6 +43,13 @@ public class UpdateUserTagController {
         }
 
         return "redirect:/user/tag";
+    }
+
+    @GetMapping("/user/tag/search")
+    @ResponseBody
+    public List<String> handleRequest3(@RequestParam("keyword") String keyword) {
+        System.out.println(frogBanchan.findTagsByTag(keyword));
+        return frogBanchan.findTagsByTag(keyword);
     }
 
 
