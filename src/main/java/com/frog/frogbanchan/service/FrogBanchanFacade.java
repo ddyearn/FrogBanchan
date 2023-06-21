@@ -109,7 +109,7 @@ public interface FrogBanchanFacade {
 
     public void deleteHistoryByUsername(String username);
 
-    public int getHistoryMenu(String username);
+    public Integer getHistoryMenu(String username);
 
     // TeamService
     public void insertTeam(Team team);

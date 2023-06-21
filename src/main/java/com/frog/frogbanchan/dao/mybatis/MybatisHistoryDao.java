@@ -47,7 +47,7 @@ public class MybatisHistoryDao implements HistoryDao {
     }
 
     @Override
-    public int getHistoryMenu(String username) throws DataAccessException {
+    public Integer getHistoryMenu(String username) throws DataAccessException {
         return historyMapper.getHistoryMenu(username);
     }
 }

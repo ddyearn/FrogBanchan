@@ -17,24 +17,25 @@
         FROM MENU
     </select>
 
-    <select id="findMenuListByTagList" resultType="Menu"  parameterType="java.util.Map">
+    <select id="findMenuListByTagList" resultType="Menu"  parameterType="java.util.HashMap">
         SELECT MENU.MENU_ID AS menuId,
-               MENU.NAME
+        MENU.NAME
         FROM MENU JOIN MENU_TAG ON MENU.MENU_ID = MENU_TAG.MENU_ID
-        <if test="like.size != 0">
-            WHERE MENU_TAG.TAG IN
+        WHERE MENU_TAG.TAG IS NOT NULL
+        <if test="like != null">
+            AND MENU_TAG.TAG IN
             <foreach collection="like" item="item" open="(" separator="," close=")">
-                #{item}
+                #{item, jdbcType=VARCHAR}
             </foreach>
         </if>
+        <if test="dislike != null">
         minus
         SELECT MENU.MENU_ID AS menuId,
                 MENU.NAME
         FROM MENU JOIN MENU_TAG ON MENU.MENU_ID = MENU_TAG.MENU_ID
-        <if test="dislike.size != 0">
             WHERE MENU_TAG.TAG IN
             <foreach collection="dislike" item="item" open="(" separator="," close=")">
-                #{item}
+                #{item, jdbcType=VARCHAR}
             </foreach>
         </if>
     </select>
