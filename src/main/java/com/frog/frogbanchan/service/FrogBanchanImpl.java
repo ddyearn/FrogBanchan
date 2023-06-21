@@ -85,6 +85,10 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         return usersDao.findTagsByUsername(username);
     }
 
+    public List<String> findTagsByTag(String tag) {
+        return usersDao.findTagsByTag(tag);
+    }
+
     // PlaceService
     public void insertPlace(Place place) {
         placeDao.insertPlace(place);
@@ -108,6 +112,14 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
 
     public List<Timestamp> findCalendar(String placeId) {
         return placeDao.findCalendar(placeId);
+    }
+
+    public List<String> findAllPlaceIdList() {
+        return placeDao.findAllPlaceIdList();
+    }
+
+    public List<Place> findAllPlaceList() {
+        return placeDao.findAllPlaceList();
     }
 
     // ReservationService
@@ -272,6 +284,10 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
 
     public List<Party> findPartyList() {
         return partyDao.findPartyList();
+    }
+    
+    public int getNextPartyId() {
+    	return partyDao.getNextPartyId();
     }
 
     public void insertApply(Apply apply) {

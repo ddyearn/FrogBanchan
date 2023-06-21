@@ -40,13 +40,14 @@ public class UserFormValidator implements Validator {
                 errors.rejectValue("user.phone", "invalidFormat");
         }
 
-        String residentNo = userForm.getUser().getResidentNo();
+        String residentNo = userForm.getResidentNo1() + userForm.getResidentNo2();
         if (residentNo == null || residentNo.trim().isEmpty()) {
             errors.rejectValue("user.residentNo", "required");
         }
         else {
-            if (!residentNo.matches("\\d{7}"))
+            if (!residentNo.matches("\\d{7}")) {
                 errors.rejectValue("user.residentNo", "invalidFormat");
+            }
         }
 
     }

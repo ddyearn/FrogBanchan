@@ -60,5 +60,4 @@
         WHERE RESERVATION_ID = #{reservationId}
     </select>
 
-
 </mapper>

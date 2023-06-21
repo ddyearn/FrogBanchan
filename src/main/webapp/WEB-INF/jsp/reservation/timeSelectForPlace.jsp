@@ -101,6 +101,7 @@
         .popup-container table {
             width: 100%;
             border-collapse: collapse;
+            background-color: white;
         }
     
         .popup-container th, .popup-container td {
@@ -109,13 +110,8 @@
             border: 1px solid #ccc;
             cursor: pointer;
         }
-    
-        .popup-container .reserved {
-            background-color: gray;
-            cursor: not-allowed;
-        }
-    
-        .selected {
+
+        .popup-container .selected {
             background-color: green !important;
             color: white !important;
         }
@@ -143,22 +139,28 @@
 </head>
 
 <body>
-    <form action="/reservation/form?placeId=${placeId}" method="post">
+    <form id="form" action="" method="post">
     <div class="popup-container">
         <div class="selection-window">
             <h2>Time Selection</h2>
             <table>
                 <% 
-                String[] reservedTimes = (String[]) request.getAttribute("reservedTimes"); 
+                String[] availableTimes = (String[]) request.getAttribute("availableTimes"); // Get the 'days' array from the controller
+                java.util.Set<String> availableTimesSet = new java.util.HashSet<>(java.util.Arrays.asList(availableTimes)); 
+                String[] reservedTimes = (String[]) request.getAttribute("reservedTimes"); // Get the 'days' array from the controller
                 java.util.Set<String> reservedTimesSet = new java.util.HashSet<>(java.util.Arrays.asList(reservedTimes)); 
                 %>
                 <tr>
                     <% 
                     for(int i = 12; i <= 14; i++){
                         if(reservedTimesSet.contains(String.valueOf(i))) {
-                            out.println("<td style='opacity: 40%;background-color: gray;pointer-events: none;'>" + i + ":00" + "</td>");
-                        } else {
-                            out.println("<td style='color: black;' onclick='selectTime(this)'>" + i + ":00" + "</td>"); 
+                            out.println("<td style='background-color: lightgreen;color: red;' onclick='selectTime(this, \"r\")'>" + i + ":00" + "</td>");
+                        }
+                        else if (availableTimesSet.contains(String.valueOf(i))) {
+                            out.println("<td style='color: red;' onclick='selectTime(this, \"a\")'>" + i  + ":00" + "</td>"); 
+                        }
+                        else {
+                            out.println("<td style='color: black;' onclick='selectTime(this, \"n\")'>" + i + ":00" + "</td>"); 
                         }                            
                     } %>
                 </tr>    
@@ -166,28 +168,38 @@
                     <% 
                     for(int i = 16; i <= 18; i++){
                         if(reservedTimesSet.contains(String.valueOf(i))) {
-                            out.println("<td style='opacity: 40%;background-color: gray;pointer-events: none;'>" + i + ":00" + "</td>");
-                        } else {
-                            out.println("<td style='color: black;' onclick='selectTime(this)'>" + i + ":00" + "</td>"); 
-                        }                           
+                            out.println("<td style='background-color: lightgreen;color: red;' onclick='selectTime(this, \"r\")'>" + i + ":00" + "</td>");
+                        }
+                        else if (availableTimesSet.contains(String.valueOf(i))) {
+                            out.println("<td style='color: red;' onclick='selectTime(this, \"a\")'>" + i  + ":00" + "</td>"); 
+                        }
+                        else {
+                            out.println("<td style='color: black;' onclick='selectTime(this, \"n\")'>" + i + ":00" + "</td>"); 
+                        }                            
                     } %>
                 </tr>
                 <tr>
                     <% 
                     for(int i = 19; i <= 21; i++){
                         if(reservedTimesSet.contains(String.valueOf(i))) {
-                            out.println("<td style='opacity: 40%;background-color: gray;pointer-events: none;'>" + i + ":00" + "</td>");
-                        } else {
-                            out.println("<td style='color: black;' onclick='selectTime(this)'>" + i + ":00" + "</td>"); 
+                            out.println("<td style='background-color: lightgreen;color: red;' onclick='selectTime(this, \"r\")'>" + i + ":00" + "</td>");
+                        }
+                        else if (availableTimesSet.contains(String.valueOf(i))) {
+                            out.println("<td style='color: red;' onclick='selectTime(this, \"a\")'>" + i  + ":00" + "</td>"); 
+                        }
+                        else {
+                            out.println("<td style='color: black' onclick='selectTime(this, \"n\")'>" + i + ":00" + "</td>"); 
                         }                            
                     } %>
                 </tr>
             </table>          
             <div class="button-container">
+                <% String selectedDay = (String) request.getAttribute("selectedDay"); %>
                 <input type="hidden" id="selectedDay" name="selectedDay" value="${selectedDay}">
                 <input type="hidden" id="selectedTime" name="selectedTime" value="">
-                <input class="button" type="submit">
-                <button class="button" type="button" onclick="goBack()">Close</button>
+                <input type="hidden" id="flag" name="flag" value="">
+                <input class="button" type="submit" value="선택">
+                <button class="button" type="button" onclick="goBack();">Close</button>
             </div>
         </div>
     </div>
@@ -205,11 +217,15 @@
     }
 
     function goBack() {
-        window.history.back();
+        var previousPageUrl = "/reservation/calendar/forplace"; // Replace with the desired URL of the previous page
+        window.location.href = previousPageUrl;
     }
 
+    function invalidate() {
+        window.location.href = window.location.href;
+    }
     // Function to select a time
-    function selectTime(element) {
+    function selectTime(element, flag) {
         // Reset the previously selected time
         var selectedElement = document.querySelector('.selected');
         if (selectedElement) {
@@ -222,6 +238,15 @@
         // Update the hidden input field value
         var selectedTime = element.innerText;
         document.getElementById('selectedTime').value = selectedTime;
+
+        if(flag.includes("r")) {
+            document.getElementById('flag').value = 'reservation';
+            document.getElementById('form').action = '/reservation/result/forplace';
+        }
+        if(flag.includes("n")) {
+            document.getElementById('flag').value = 'none';
+            document.getElementById('form').action = '/reservation/calendar/forplace';
+        }
     }
 
 </script>

@@ -1,8 +1,16 @@
 package com.frog.frogbanchan.controller.reservation;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
@@ -14,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.util.WebUtils;
 
@@ -31,6 +40,8 @@ public class ReservationContorller {
     private String FORM_VIEW;
     @Value("/reservation/reservationResult")
     private String RESULT_VIEW;
+    @Value("/reservation/check")
+    private String RESERVATION_CHECK_VIEW;
 
     private FrogBanchanFacade frogBanchan;
 
@@ -39,39 +50,48 @@ public class ReservationContorller {
         this.frogBanchan = frogBanchan;
     }
 
-    @PostMapping("/reservation/time")
-    public String timeselectHandle(ModelMap modelMap, @ModelAttribute String placeId, String selectedDay) {
-        List<Timestamp> reservedTimeList = frogBanchan.findReservedTime(placeId);
+    @RequestMapping("/reservation/time")
+    public String timeselectHandle(ModelMap modelMap, @RequestParam("placeId") String placeId, @RequestParam String selectedDay) {
+        List<Timestamp> reservedTimeList = frogBanchan.findReservedTime(placeId); // placeId 사용
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH");
 
-        String[] times = new String[9];
+        String[] reservedTimes = new String[100];
         int i = 0;
         for (Timestamp timestamp : reservedTimeList) {
-            String time = timeFormat.format(timestamp);
+                Date date = new Date(timestamp.getTime());
 
-            times[i++] = time;
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
 
-            System.out.println("time: " + time + "palceId" + placeId);
-            System.out.println("---------");
+                // Format the Date object to the desired date and time format
+                String formattedDate = dateFormat.format(date);
+                if(formattedDate.equals(selectedDay)){
+                    String time = timeFormat.format(timestamp);
+
+                    reservedTimes[i++] = time;
+                }
         }
-
-        modelMap.addAttribute("reservatedTimes", times);
+        modelMap.addAttribute("placeId", placeId);
+        modelMap.addAttribute("reservedTimes", reservedTimes);
         modelMap.addAttribute("selectedDay", selectedDay);
+
         return TIME_SELECT_VIEW;
     }
 
-    @PostMapping("/reservation/user")
-    public String showForm(ModelMap modelMap, String selectedDay, String selectedTime) {
+    @PostMapping("/reservation/form")
+    public String showForm(ModelMap modelMap, @RequestParam("placeId") String placeId, @RequestParam String selectedDay, @RequestParam String selectedTime) {
 
+        modelMap.addAttribute("placeId", placeId);
         modelMap.addAttribute("selectedDay", selectedDay);
         modelMap.addAttribute("selectedTime", selectedTime);
         return FORM_VIEW;
     }
 
     @PostMapping("/reservation/result")
-    public String handleResult(ModelMap modelMap, String selectedDay, String selectedTime, int numReservations,
-            @SessionAttribute("userSession") UserSession userSession, @ModelAttribute String placeId) {
+    public String handleResult(ModelMap modelMap, @RequestParam("placeId") String placeId, 
+        @RequestParam String selectedDay, @RequestParam String selectedTime, @RequestParam int numReservations,
+            @SessionAttribute("userSession") UserSession userSession) {
 
+        modelMap.addAttribute("placeId", placeId);
         modelMap.addAttribute("selectedDay", selectedDay);
         modelMap.addAttribute("selectedTime", selectedTime);
         modelMap.addAttribute("selectedPeople", numReservations);
@@ -100,5 +120,54 @@ public class ReservationContorller {
             e.printStackTrace();
             return "error-page";
         }
+    }
+
+    @GetMapping("/reservation/check")
+    public String handleCheck(ModelMap modelMap, @RequestParam("placeId") String placeId, 
+            @RequestParam String reservationId,
+            @SessionAttribute("userSession") UserSession userSession) {
+
+
+        //reservationId를 갖고와서 해당 reservation을 건네줘야함
+        List<Reservation> reservation = null;
+        try {
+            reservation = frogBanchan.findReservationByReservationId(reservationId);
+        } catch (Exception e) {
+            // Handle any parsing or conversion errors
+            e.printStackTrace();
+            return "error-page";
+        }
+
+        Timestamp date = reservation.get(0).getReservationDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = dateFormat.format(date);
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        String formattedTime = timeFormat.format(date);
+
+        modelMap.addAttribute("placeId", placeId);
+        modelMap.addAttribute("date", formattedDate);
+        modelMap.addAttribute("time", formattedTime);
+        modelMap.addAttribute("seat", reservation.get(0).getSeat());
+
+        return RESERVATION_CHECK_VIEW;
+    }
+
+    @PostMapping("/reservation/check")
+    public String handleDeleteReservation(ModelMap modelMap, @RequestParam("placeId") String placeId, 
+            @RequestParam String reservationId,
+            @SessionAttribute("userSession") UserSession userSession) {
+
+        int rsvid = Integer.parseInt(reservationId);        
+
+        try {
+            frogBanchan.deleteReservation(rsvid);
+        } catch (Exception e) {
+            // Handle any parsing or conversion errors
+            e.printStackTrace();
+            return "error-page";
+        }
+
+        //예약 확인 페이지로 return 해야함
+        return "";
     }
 }

@@ -5,7 +5,6 @@ import java.util.Map;
 import java.sql.Timestamp;
 
 import com.frog.frogbanchan.domain.*;
-import org.springframework.dao.DataAccessException;
 
 public interface FrogBanchanFacade {
 
@@ -34,6 +33,8 @@ public interface FrogBanchanFacade {
 
     public List<String> findTagsByUsername(String username);
 
+    public List<String> findTagsByTag(String tag);
+
     // PlaceService
     public void insertPlace(Place place);
 
@@ -46,6 +47,11 @@ public interface FrogBanchanFacade {
     public void insertAvailableTime(String placeId, Timestamp availableTime);
 
     public List<Timestamp> findCalendar(String placeId);
+
+    public List<String> findAllPlaceIdList();
+
+    public List<Place> findAllPlaceList();
+
 
     // ReservationService
     public void insertReservation(Reservation reservation);
@@ -148,5 +154,7 @@ public interface FrogBanchanFacade {
     public List<Apply> findApplyByPartyId(int partyId);
 
     public List<Apply> findApplyList();
+    
+    public int getNextPartyId();
 
 }

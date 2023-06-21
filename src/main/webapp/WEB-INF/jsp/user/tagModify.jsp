@@ -34,7 +34,7 @@
         <div class="hateAddBox2">
             <div class="hateAddBox3">
                 <form id="hateAddForm" action="/user/tag" method="POST">
-                    <input type="text" name="hateAddTag" value="" />
+                    <input type="text" id="hateAddTag" value="" oninput="searchTag()" />
                     <button id="addHateBtn" type="button">추가</button>
                     <button class="btn btn-outline-warning shadow-sm saveBtn" type="submit">
                         태그 저장
@@ -45,6 +45,10 @@
     </div>
 
     <button class="backBtn" type="button" onclick="location.href='/user/main'">뒤로가기</button>
+
+    <div class="searchBox">
+        <div class="searchResult" ></div>
+    </div>
 
   </div>
 </body>

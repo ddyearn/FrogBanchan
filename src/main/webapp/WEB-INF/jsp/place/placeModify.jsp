@@ -3,36 +3,83 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ include file="../frogTop.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>정보 수정</title>
+	<link rel="stylesheet" type="text/css" href="../css/place/placeFormStyle.css">
+    <script type="text/javascript" src="../js/placeJoinForm.js"></script>
+    </script>
 </head>
 <body>
-    <form:form modelAttribute="placeForm" method="post">
-        <label for="placeId">아이디</label>:
-        <form:input path="place.placeId" readonly="true" />
-        <br/>
-        <label for="password">비밀번호</label>:
-        <form:password path="place.password" showPassword="true"/>
-        <form:errors path="place.password"/>
-        <br/>
-        <label for="confirmPassword">비밀번호 확인</label>:
-        <form:password path="confirmPassword" showPassword="true"/>
-        <form:errors path="confirmPassword"/>
-        <br/>
-        <label for="name">가게명</label>:
-        <form:input path="place.name" />
-        <form:errors path="place.name"/>
-        <br/>
-        <label for="address">주소</label>:
-        <form:input path="place.address" />
-        <form:errors path="place.address"/>
-        <br/>
+    <div class="joinFormBox1">
+        <div class="titleBox">
+            가게정보 수정
+        </div>
+        <div class="joinFormBox2 text-center placeForm">
+            <form:form modelAttribute="placeForm" method="post">
+                <div class="row">
+                    <label for="placeId" class="col col-3">아이디</label>
+                    <span class="line col col-3">- - - - - - - - -</span>
+                    <div class="inputBox col col-5">
+                        <form:input path="place.placeId" id="placeId" class="input" readonly="true" />
+                        <form:errors path="place.placeId" class="error error2"/>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <label for="password" class="col col-3">비밀번호</label>
+                    <span class="line col col-3">- - - - - - - - -</span>
+                    <div class="inputBox col col-5">
+                        <form:password path="place.password" id="password" class="input" />
+                        <form:errors path="place.password" class="error" />
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <label for="confirmPassword" class="col col-3">비밀번호 확인</label>
+                    <span class="line col col-3">- - - - - - - - -</span>
+                    <div class="inputBox col col-5">
+                        <form:password path="confirmPassword" id="confirmPassword" class="input" />
+                        <form:errors path="confirmPassword" class="error" />
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <label for="name" class="col col-3">가게 상호명</label>
+                    <span class="line col col-3">- - - - - - - - -</span>
+                    <div class="inputBox col col-5">
+                        <form:input path="place.name" id="name" class="input" />
+                        <form:errors path="place.name" class="error" />
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <label for="address" class="col col-3">주소</label>
+                    <span class="line col col-3">- - - - - - - - -</span>
+                    <div class="inputBox col col-5">
+                        <form:input path="place.address" id="address" class="input" />
+                        <form:errors path="place.address" class="error" />
+                    </div>
+                </div>
+                <br/>
 
-        </br>
-        <input type="submit" value="수정하기" />
-    </form:form>
-    <button type="button" onClick="location.href='/place/delete'">탈퇴하기</button>
+                </br>
+                <div class="btnGroup">
+                    <button class="btn btn-secondary backBtn me-5" type="button" onclick="location.href='/join'">취소하기</button>
+                    <button class="btn btn-success registBtn ms-5" type="submit">수정하기</button>
+                </div>
+            </form:form>
+        </div>
+
+        <div class="horizonLine">
+        </div>
+
+        <button class="btn btn-outline-danger deleteBtn" type="button" onClick="location.href='/place/delete'">가게 삭제하기</button>
+    </div>
+
 </body>
 </html>

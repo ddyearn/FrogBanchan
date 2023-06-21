@@ -54,4 +54,10 @@ public interface PlaceDao {
      * WHERE place_id = #{placeId}
      */
 
+    // 사업자 아이디 목록
+    List<String> findAllPlaceIdList() throws DataAccessException;
+
+    // 모든 가게 찾기
+    List<Place> findAllPlaceList() throws DataAccessException;
+
 }

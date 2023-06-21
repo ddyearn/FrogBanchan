@@ -42,4 +42,18 @@
         WHERE PLACE_ID = #{placeId}
     </select>
 
+    <select id="findAllPlaceIdList" resultType="java.lang.String">
+        SELECT PLACE_ID AS placeId
+        FROM PLACE
+    </select>
+
+    <select id="findAllPlaceList" resultType="Place">
+        SELECT PLACE_ID AS placeId,
+                PASSWORD,
+                NAME,
+                ADDRESS
+        FROM PLACE
+    </select>
+
+
 </mapper>

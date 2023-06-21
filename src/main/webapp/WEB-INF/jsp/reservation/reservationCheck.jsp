@@ -63,15 +63,17 @@
 </head>
 
 <body>
+    <form action="" method="post">
+    <!-- 예약확인페이지를 action에 넣기 -->
     <div class="container">
         <h2>Result</h2>
         <div class="form-group">
             <label>Date:</label>
-            <span><%= request.getAttribute("selectedDay") %></span>
+            <span><%= request.getAttribute("date") %></span>
         </div>
         <div class="form-group">
             <label>Time:</label>
-            <span><%= request.getAttribute("selectedTime") %></span>
+            <span><%= request.getAttribute("time") %></span>
         </div>
         <div class="form-group">
             <label>Name:</label>
@@ -79,12 +81,15 @@
         </div>
         <div class="form-group">
             <label>인원 수:</label>
-            <span><%= request.getAttribute("selectedPeople") %></span>
+            <span><%= request.getAttribute("seat") %></span>
         </div>
         <div class="button-container">
-            <button class="button" type="button" onclick="location.href='/reservation/calendar?placeId=${placeId}'">닫기</button>
+            <input class="button" type="submit" value="예약 취소">
+            <button class="button" type="button" onclick="location.href='/reservation/calendar?placeId=${placeId}'">닫기</button> 
+            <!-- 예약 확인 페이지를 location.href 에 넣기 -->
         </div>
     </div>
+    </form>
 
     <script>
         function goBack() {

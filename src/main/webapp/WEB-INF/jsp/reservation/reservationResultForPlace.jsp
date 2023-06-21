@@ -67,30 +67,23 @@
         <h2>Result</h2>
         <div class="form-group">
             <label>Date:</label>
-            <span><%= request.getAttribute("selectedDay") %></span>
+            <span><%= request.getAttribute("reservedDay") %></span>
         </div>
         <div class="form-group">
             <label>Time:</label>
-            <span><%= request.getAttribute("selectedTime") %></span>
+            <span><%= request.getAttribute("reservedTime") %></span>
         </div>
         <div class="form-group">
             <label>Name:</label>
-            <span>${userSession.user.username}</span>
+            <span><%= request.getAttribute("username") %></span>
         </div>
         <div class="form-group">
             <label>인원 수:</label>
-            <span><%= request.getAttribute("selectedPeople") %></span>
+            <span><%= request.getAttribute("seat") %></span>
         </div>
         <div class="button-container">
-            <button class="button" type="button" onclick="location.href='/reservation/calendar?placeId=${placeId}'">닫기</button>
+            <button class="button" type="button" onclick="location.href='/reservation/calendar/forplace'">닫기</button>
         </div>
     </div>
-
-    <script>
-        function goBack() {
-            var previousPageUrl = "/reservation/calendar?placeId=${placeId}"; // Replace with the desired URL of the previous page
-            window.location.href = previousPageUrl;
-        }
-    </script>
 </body>
 </html>

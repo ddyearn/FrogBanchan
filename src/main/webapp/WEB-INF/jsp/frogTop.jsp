@@ -17,6 +17,23 @@
 </head>
 <body>
     <nav class="navBar sticky-top">
+        <c:choose>
+            <c:when test="${sessionScope.userSession ne null}">
+                <a class="navbar-brand ms-4" href="/user/main">
+                    <img class="frogMainIcon" src="${request.getContextPath()}/img/logo2.jpg" />
+                </a>
+            </c:when>
+            <c:when test="${sessionScope.placeSession ne null}">
+                <a class="navbar-brand ms-4" href="/place/main">
+                    <img class="frogMainIcon" src="${request.getContextPath()}/img/logo2.jpg" />
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a class="navbar-brand ms-4" href="/login">
+                    <img class="frogMainIcon" src="${request.getContextPath()}/img/logo2.jpg" />
+                </a>
+            </c:otherwise>
+        </c:choose>
         <div class="navBox1 d-flex">
             <span class="navBox2">
                 <img class="spoonIcon" src="../../img/spoon.jpg" />&nbsp;

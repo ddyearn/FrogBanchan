@@ -40,4 +40,6 @@ public interface UsersDao {
 
 	List<String> findTagsByUsername(String username) throws DataAccessException;
 
+	List<String> findTagsByTag(String tag) throws DataAccessException;
+
 }
