@@ -47,10 +47,10 @@ public class RecommendPlaceController {
             @RequestParam(value="placeId") String placeId,
             ModelMap model
     ) throws Exception {
-        ModelAndView mav = new ModelAndView("/history/recommendResult");
+        ModelAndView mav = new ModelAndView("/recommend/recommendResult");
 
-
-        mav.addObject("placeId", placeId);
+        String placeName = frogBanchan.findPlaceById(placeId).getName();
+        mav.addObject("placeName", placeName);
         return mav;
     }
     //@RequestParam(value="placeId") String placeId,

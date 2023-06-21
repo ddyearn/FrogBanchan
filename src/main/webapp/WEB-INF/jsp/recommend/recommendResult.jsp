@@ -10,8 +10,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../../../css/recommend/recommendMenuStyle.css">
-    <title>recommendMenu</title>
+    <link rel="stylesheet" type="text/css" href="../../../css/recommend/recommendResultStyle.css">
+    <title>recommendResult</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
@@ -27,19 +27,24 @@
 <div class="mainbox">
     <hr class="line" />
     <div class="page">
-        <div class="descriptionWrap">
-            <br/>
-            오늘은
-            <br/>
-            <span class="menuWrap">${menu.name}</span>
-            <br/>
-            어때구리?
+        <div class="titleWrap">
+            맛있게 냠냠구리~!
             <img class="frogIcon" src="${request.getContextPath()}/img/frog_happy.jpg" />
             <br/>
         </div>
+        <div class="descriptionWrap">
+            <span>${placeName}</span>
+            <br/>
+        </div>
+        <div class="description">
+
+            의 음식은 어떠셨냐구리?
+            <br/>
+            다음 추천을 위해 오늘 먹은 메뉴 저장 잊지 마시구리!
+        </div>
         <div class="bttnWrapper">
-            <button class="backButton" type="button" onclick="location.reload()">다시 추천해줘!</button>
-            <button class="selectButton" type="button" onclick="location.href ='/recommend/map?menuName=${menu.name}&menuId=${menu.menuId}'">좋아!</button>
+            <button class="goToMainButton" type="button" onclick="location.href='/user/main'">다음에 저장하기</button>
+            <button class="goToHistoryButton" type="button" onclick="location.href='/history/list'">저장하러 가기</button>
         </div>
     </div>
 </div>

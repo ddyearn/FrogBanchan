@@ -57,7 +57,7 @@ public class HistoryController {
 
         History history = new History();
 
-        if(teamSession.getSelectedMembers()!=null) {
+        if(teamSession!=null && teamSession.getSelectedMembers()!=null) {
             List<Users> memberList = teamSession.getSelectedMembers();
             for (Users member : memberList) {
                 history.setUsername(member.getUsername());
