@@ -25,7 +25,7 @@
         	</tr>
         	<tr class="tr1">
         		<td class="td1">가게</td>
-        		<td><div class="div1">${party.placeId}</div></td>
+        		<td><div class="div1">${place.name}</div></td>
         		<td class="td1">인원</td>
         		<td><div class="div1">4</div></td>
         	</tr>
