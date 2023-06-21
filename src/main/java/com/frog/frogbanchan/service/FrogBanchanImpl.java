@@ -222,7 +222,7 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
 
     public void deleteHistoryByUsername(String username) { historyDao.deleteHistoryByUsername(username);}
 
-    public int getHistoryMenu(String username) { return historyDao.getHistoryMenu(username); }
+    public Integer getHistoryMenu(String username) { return historyDao.getHistoryMenu(username); }
 
     // TeamService
     public void insertTeam(Team team) {

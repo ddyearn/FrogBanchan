@@ -22,5 +22,5 @@ public interface HistoryMapper {
 
     void deleteHistoryByUsername(String username);
 
-    int getHistoryMenu(String username);
+    Integer getHistoryMenu(String username);
 }

@@ -21,11 +21,8 @@ public class HistoryController {
 
     @Value("/history/historyForm")
     private String FORM_VIEW;
-    @Value("/history/myHistory")
+    @Value("/history/list")
     private String LIST_VIEW;
-    @Value("/history/recommendResult")
-    private String RESULT_VIEW;
-
 
     private FrogBanchanFacade frogBanchan;
     @Autowired
@@ -34,7 +31,7 @@ public class HistoryController {
     }
 
     //기록 리스트 조회
-    @RequestMapping("/history/myHistory")
+    @RequestMapping("/history/list")
     public ModelAndView handleRequest(
             @SessionAttribute("userSession") UserSession userSession) throws Exception {
         String username = userSession.getUser().getUsername();
@@ -66,12 +63,12 @@ public class HistoryController {
         // 팀원 다 history 생성?
 
         model.addAttribute("history", history);
-        return RESULT_VIEW;
+        return "redirect:/recommend/result";
     }
 
     //기록 수정
     @GetMapping("/history/update")
-    public String showForm(@RequestParam(value="historyId") int historyId, Model model, @ModelAttribute("historyForm") HistoryForm historyForm, HttpServletRequest request) {
+    public String showForm(@RequestParam(value="historyId") int historyId, Model model, @ModelAttribute("historyForm") HistoryForm historyForm) {
         History history = frogBanchan.findHistory(historyId);
         if (history == null) {
             return LIST_VIEW;
@@ -92,7 +89,7 @@ public class HistoryController {
         model.addAttribute("history", history);
 
 
-        return "redirect:/history/myHistory";
+        return "redirect:/history/list";
     }
 
     //기록 삭제
@@ -102,7 +99,7 @@ public class HistoryController {
             ModelMap model) throws Exception {
         frogBanchan.deleteHistory(historyId);
 
-        return LIST_VIEW;
+        return "redirect:/history/list";
     }
 
 }

@@ -66,7 +66,7 @@
     </div>
 
     <div class="recommendBox">
-        <form id="recommendForm" action="<c:url value='/recommend/team/test1' />" method="POST">
+        <form id="recommendForm" action="<c:url value='/recommend/team/recommendMenu' />" method="POST">
             <button type="submit" >추천 go</button>
         </form>
     </div>

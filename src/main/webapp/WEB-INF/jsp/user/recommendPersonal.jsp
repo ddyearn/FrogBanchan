@@ -73,7 +73,7 @@
     </div>
 
     <div class="recommendBox">
-        <form id="recommendForm" action="<c:url value='/recommend/personal/test1' />" method="POST">
+        <form id="recommendForm" action="<c:url value='/recommend/personal/recommendMenu' />" method="POST">
             <c:forEach var="tag" items="${hateList}" varStatus="status">
                 <input type="hidden" name="hateTags" value="${tag}" />
             </c:forEach>

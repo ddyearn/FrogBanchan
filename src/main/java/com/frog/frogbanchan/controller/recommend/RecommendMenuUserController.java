@@ -37,7 +37,7 @@ public class RecommendMenuUserController {
 
     // 추천go 버튼 -> 선택 결과 페이지
     // request url: user/recommendPersonal.jsp의 form action 값
-    @RequestMapping("/recommend/personal/test1")
+    @RequestMapping("/recommend/personal/recommendMenu")
     public ModelAndView recommendPersonal(
             @SessionAttribute("userSession") UserSession userSession,
             @RequestParam("likeTags") String likeTags,
@@ -50,21 +50,17 @@ public class RecommendMenuUserController {
         // 선택된 싫어요, 좋아요 태그 목록을 List<String> 형태로 저장
         // 아직 얘네는 세션 처리를 안 해서 뒤로가기 누르면 거시기해지는 문제가..
         // ModelAndView에 넣은 이유: 값 확인용
+        //        mav.addObject("hateList", hateList);
+        //        mav.addObject("likeList", likeList);
 
         List<String> hateList = new ArrayList<>(Arrays.asList(hateTags.split(",")));
-//        mav.addObject("hateList", hateList);
         List<String> likeList = new ArrayList<>(Arrays.asList(likeTags.split(",")));
-//        mav.addObject("likeList", likeList);
         hateList.remove("");
         likeList.remove("");
-        // 여기에서 hateList, likeList 가지고 추천해주시믄 될가나
-        // 아니믄 service 클래스에서 처리하게 호출해도 조코
-        
-        
 
-        int placeMenuId = frogBanchan.getHistoryMenu(userSession.getUser().getUsername());
-        String historyMenu = frogBanchan.findMenuByPlaceMenuId(placeMenuId);
-        hateList.add(historyMenu);
+        Integer placeMenuId = frogBanchan.getHistoryMenu(userSession.getUser().getUsername());
+        if(placeMenuId!=null)
+            hateList.add(frogBanchan.findMenuByPlaceMenuId(placeMenuId));
 
         Map<String, List<String>> tagList = new HashMap<>();
 
