@@ -34,7 +34,7 @@
 <br>
 <div style="text-align: center;">
     <button style="height: 50px;width: 15%;border: 1px solid #000000;border-radius: 15px;font-size: 30px;background-color: white"
-            type="button" onClick="">다른 메뉴 추천해줘!</button></div>
+            type="button" onClick="history.back()">다른 메뉴 추천해줘!</button></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1edbbc68addc788e67cef306ea562f13"></script>
 <script>
