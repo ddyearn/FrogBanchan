@@ -1,6 +1,10 @@
 package com.frog.frogbanchan.controller.party;
 
+import com.frog.frogbanchan.domain.Apply;
 import com.frog.frogbanchan.domain.Party;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frog.frogbanchan.controller.UserSession;
+import com.frog.frogbanchan.service.AcceptPartyService;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 import com.frog.frogbanchan.service.validator.PartyFormValidator;
 
@@ -58,14 +63,6 @@ public class PartyFormController {
     public void setValidator(PartyFormValidator validator) {
         this.validator = validator;
     }
-    
-    @ModelAttribute("partyForm")
-    public PartyForm formBacking(@RequestParam(value="partyId") int partyId){
-    	PartyForm partyForm = new PartyForm(frogBanchan.findParty(partyId));
-    	
-    	return partyForm;
-    	
-    }
 
     //식구 모집 생성
 	@GetMapping("/party/create")
@@ -102,6 +99,15 @@ public class PartyFormController {
 		return "redirect:/party/view?partyId=" + party.getPartyId();
 	}
 	
+	@RequestMapping("/party/update")
+	@ModelAttribute("partyForm")
+    public PartyForm formBacking(@RequestParam(value="partyId") int partyId){
+    	PartyForm partyForm = new PartyForm(frogBanchan.findParty(partyId));
+    	
+    	return partyForm;
+    	
+    }
+	
 	//식구 모집 수정
 	@GetMapping("/party/update")
     public String showForm(@RequestParam("partyId") int partyId, Model model) {
@@ -127,6 +133,29 @@ public class PartyFormController {
 		model.addAttribute("party", party);
 		
 		return "redirect:/party/view?partyId=" + party.getPartyId();
+	}
+	
+	private AcceptPartyService acceptPartyService;
+	@Autowired
+	public void setAcceptPartyService(AcceptPartyService acceptPartyService) {
+		this.acceptPartyService = acceptPartyService;
+	}
+	
+	@RequestMapping("party/accept")
+	public String acceptParty(@RequestParam("partyId") int partyId) {
+		Party party = frogBanchan.findParty(partyId);
+		List<Apply> applyList = frogBanchan.findApplyByPartyId(party.getPartyId());
+		List<String> partyMembers = new ArrayList<String>();
+		for (Apply apply : applyList) {
+			partyMembers.add(apply.getWriter());
+		}
+		
+		int teamId = acceptPartyService.acceptParty(party, partyMembers);
+		if (teamId == 0) {
+			return "redirect:/party/view?partyId=" + party.getPartyId();
+		}
+		
+		return "redirect:/team/main/" + teamId;
 	}
 	
 	//식구 모집 삭제
