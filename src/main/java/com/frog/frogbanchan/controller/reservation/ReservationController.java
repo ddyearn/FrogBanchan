@@ -3,6 +3,7 @@ package com.frog.frogbanchan.controller.reservation;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Date;
@@ -40,7 +41,7 @@ public class ReservationController {
     private String FORM_VIEW;
     @Value("/reservation/reservationResult")
     private String RESULT_VIEW;
-    @Value("/reservation/check")
+    @Value("/reservation/reservationCheck")
     private String RESERVATION_CHECK_VIEW;
 
     private FrogBanchanFacade frogBanchan;
@@ -111,7 +112,7 @@ public class ReservationController {
             Timestamp timestamp = new Timestamp(parsedDate.getTime());
 
             System.out.println(userSession.getUser().getUsername() + placeId + timestamp + numReservations);
-            Reservation reservation = new Reservation(userSession.getUser().getUsername(), "toritori", timestamp,
+            Reservation reservation = new Reservation(userSession.getUser().getUsername(), placeId, timestamp,
                     numReservations);
             frogBanchan.insertReservation(reservation);
             System.out.println(reservation);
@@ -125,16 +126,17 @@ public class ReservationController {
     }
 
     @GetMapping("/reservation/check")
-    public String handleCheck(ModelMap modelMap, @RequestParam("placeId") String placeId,
-            @RequestParam String reservationId,
+    public String handleCheck(ModelMap modelMap,
+            @RequestParam("rsvId") String reservationId,
             @SessionAttribute("userSession") UserSession userSession) {
 
         // reservationId를 갖고와서 해당 reservation을 건네줘야함
-        List<Reservation> reservation = null;
+        List<Reservation> reservation = new ArrayList<Reservation>();
+        String placeId = null;
         try {
             reservation = frogBanchan.findReservationByReservationId(reservationId);
+            placeId = reservation.get(0).getPlaceId();
         } catch (Exception e) {
-            // Handle any parsing or conversion errors
             e.printStackTrace();
             return "error-page";
         }
@@ -146,6 +148,8 @@ public class ReservationController {
         String formattedTime = timeFormat.format(date);
 
         modelMap.addAttribute("placeId", placeId);
+        modelMap.addAttribute("placeName", frogBanchan.findPlaceById(placeId).getName());
+        modelMap.addAttribute("reservationId", reservationId);
         modelMap.addAttribute("date", formattedDate);
         modelMap.addAttribute("time", formattedTime);
         modelMap.addAttribute("seat", reservation.get(0).getSeat());
@@ -153,9 +157,9 @@ public class ReservationController {
         return RESERVATION_CHECK_VIEW;
     }
 
-    @PostMapping("/reservation/check")
-    public String handleDeleteReservation(ModelMap modelMap, @RequestParam("placeId") String placeId,
-            @RequestParam String reservationId,
+    @PostMapping("/user/reservation")
+    public String handleDeleteReservation(ModelMap modelMap,
+            @RequestParam("rsvId") String reservationId,
             @SessionAttribute("userSession") UserSession userSession) {
 
         int rsvid = Integer.parseInt(reservationId);
@@ -168,7 +172,6 @@ public class ReservationController {
             return "error-page";
         }
 
-        // 예약 확인 페이지로 return 해야함
-        return "";
+        return "redirect:/user/reservation";
     }
 }

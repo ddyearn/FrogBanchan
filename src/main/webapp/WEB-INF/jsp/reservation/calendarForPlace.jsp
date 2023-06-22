@@ -149,6 +149,9 @@
     <h1 style="text-align: center">
         <%= request.getAttribute("placename") %>
     </h1>
+    <h2 style="text-align: center">
+        ${month}월
+    </h2>
     
     <table>
         <tr>

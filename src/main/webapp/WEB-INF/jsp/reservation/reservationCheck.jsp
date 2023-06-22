@@ -63,10 +63,14 @@
 </head>
 
 <body>
-    <form action="" method="post">
+    <form action="/user/reservation?rsvId=${reservationId}" method="post">
     <!-- 예약확인페이지를 action에 넣기 -->
     <div class="container">
-        <h2>Result</h2>
+        <h2>예약 확인</h2>
+        <div class="form-group">
+            <label>가게 명</label>
+            <span><%= request.getAttribute("placeName") %></span>
+        </div>
         <div class="form-group">
             <label>Date:</label>
             <span><%= request.getAttribute("date") %></span>
@@ -85,7 +89,7 @@
         </div>
         <div class="button-container">
             <input class="button" type="submit" value="예약 취소">
-            <button class="button" type="button" onclick="location.href='/reservation/calendar?placeId=${placeId}'">닫기</button> 
+            <button class="button" type="button" onclick="location.href='/user/reservation'">닫기</button> 
             <!-- 예약 확인 페이지를 location.href 에 넣기 -->
         </div>
     </div>
@@ -93,7 +97,7 @@
 
     <script>
         function goBack() {
-            var previousPageUrl = "/reservation/calendar?placeId=${placeId}"; // Replace with the desired URL of the previous page
+            var previousPageUrl = "/user/reservation"; // Replace with the desired URL of the previous page
             window.location.href = previousPageUrl;
         }
     </script>
