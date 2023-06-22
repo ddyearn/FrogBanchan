@@ -55,9 +55,14 @@ public class CalendarController {
             System.out.println("Day: " + day);
             System.out.println("---------");
         }
+
+        Calendar cal = java.util.Calendar.getInstance();
+        int currentMonth = cal.get(java.util.Calendar.MONTH);
+
         ModelAndView mav = new ModelAndView("/reservation/calendar");
         mav.addObject("days", days);
         mav.addObject("placename", frogBanchan.findPlaceById(placeId).getName());
+        mav.addObject("month", currentMonth + 1);
 
         return mav;
     }
@@ -95,10 +100,14 @@ public class CalendarController {
 
         String[] selectedDays = new String[100];
 
+        Calendar cal = java.util.Calendar.getInstance();
+        int currentMonth = cal.get(java.util.Calendar.MONTH);
+
         ModelAndView mav = new ModelAndView("/reservation/calendarForPlace");
         model.addAttribute("placename", placeSession.getPlace().getName());
         mav.addObject("availableDays", availableDays);
         mav.addObject("reservedDays", reservedDays);
+        mav.addObject("month", currentMonth + 1);
         // mav.addObject("selectedDays", selectedDays);
 
         return mav;

@@ -1,6 +1,7 @@
 <%@ page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.Calendar" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,6 +103,9 @@
     <h1 style="text-align: center">
         <%= request.getAttribute("placename")%>
     </h1>
+    <h2 style="text-align: center">
+        ${month}월
+    </h2>
     
     <table>
         <tr>

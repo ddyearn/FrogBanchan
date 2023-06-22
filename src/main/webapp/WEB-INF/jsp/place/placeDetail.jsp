@@ -19,7 +19,7 @@
         가게 주소 : ${place.address}
         <br/>
         <button type="button" onclick="location.href='/history/create?placeId=${place.placeId}'">이 가게 방문하기</button>
-        <button type="button" onClick="location.href=''">이 가게 예약하러 가기</button>
+        <button type="button" onclick="location.href='/reservation/calendar?placeId=${place.placeId}'">이 가게 예약하러 가기</button>
     </div>
     <br/>
     <button type="button" onClick="history.go(-1)">뒤로가기</button>
