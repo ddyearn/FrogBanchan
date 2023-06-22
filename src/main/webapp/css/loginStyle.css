@@ -137,7 +137,7 @@ body {
    display: flex;
 }
 
-.loginButton {  
+.joinButton {
   display: inline-block;
   margin-top: 3%;
   margin-left: 60%;
@@ -156,12 +156,12 @@ body {
   cursor: pointer;
 }
 
-.loginButton:disabled {
+.joinButton:disabled {
   background-color: #dadada;
   color: white;
 }
 
-.joinButton {
+.loginButton {
   margin-top: 3%;
   
   width: 15%;
