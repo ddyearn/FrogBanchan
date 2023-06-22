@@ -48,6 +48,7 @@ public class MainPlaceController {
         ModelAndView mav = new ModelAndView("/place/placeDetail");
 
         mav.addObject("place", frogBanchan.findPlaceById(placeId));
+        mav.addObject("menuList", frogBanchan.findMenuListByPlaceId(placeId));
 
         return mav;
     }

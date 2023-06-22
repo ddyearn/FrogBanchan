@@ -54,7 +54,6 @@
             </div>
 
             <div class="historyBox">
-                <c:out value="${history}" />
                 <div class="row">
                     <div class="col historyBox2">
                         <c:import url="${request.getContextPath()}/WEB-INF/jsp/history/history.jsp" >
