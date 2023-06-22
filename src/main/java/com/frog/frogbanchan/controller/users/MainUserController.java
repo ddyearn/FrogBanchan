@@ -59,8 +59,8 @@ public class MainUserController {
 
         String user = userSession.getUser().getUsername();
         mav.addObject("user", userSession.getUser());
-        mav.addObject("history", frogBanchan.findHistoryList(user));
-        // mav.addObject("reservation", frogBanchan.findHistoryList(user));
+        mav.addObject("historyList", frogBanchan.findHistoryList(user));
+        mav.addObject("reservationList", frogBanchan.findReservationByUsername(user));
 
         return mav;
     }
@@ -90,10 +90,7 @@ public class MainUserController {
         }
         mav.addObject("reservationDateList", reservationDateList);
         mav.addObject("reservationNameList", reservationNameList);
-        mav.addObject("reservationIDList", reservationIDList);
-      
-        mav.addObject("historyList", frogBanchan.findHistoryList(user));
-        mav.addObject("reservationList", frogBanchan.findHistoryList(user));
+        mav.addObject("reservationIDList", reservationIDList);;
 
         return mav;
     }
