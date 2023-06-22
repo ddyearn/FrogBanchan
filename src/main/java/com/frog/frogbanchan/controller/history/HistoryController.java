@@ -5,6 +5,8 @@ import javax.servlet.http.HttpSession;
 
 import com.frog.frogbanchan.controller.TeamSession;
 import com.frog.frogbanchan.domain.History;
+import com.frog.frogbanchan.domain.Place;
+import com.frog.frogbanchan.domain.PlaceMenu;
 import com.frog.frogbanchan.domain.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -77,7 +79,8 @@ public class HistoryController {
         }
 
         // 팀 or 개인 여부
-        // 팀원 다 history 생성?
+        // 팀원 다 history 생성
+
         model.addAttribute(placeId);
 
         model.addAttribute("history", history);
@@ -91,7 +94,9 @@ public class HistoryController {
         if (history == null) {
             return LIST_VIEW;
         }
-
+        String placeId = history.getPlaceId();
+        List<PlaceMenu> placeMenuList = frogBanchan.findMenuListByPlaceId(placeId);
+        model.addAttribute("placeMenuList", placeMenuList);
         model.addAttribute("history", history);
         return FORM_VIEW;
     }

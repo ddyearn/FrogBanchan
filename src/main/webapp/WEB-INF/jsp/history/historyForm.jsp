@@ -1,85 +1,87 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" />
+<%@ include file="../frogTop.jsp"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>HistoryForm</title>
-    <style>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../../css/history/historyFormStyle.css">
+    <title>historyForm</title>
 
-        .star {
-            position: relative;
-            font-size: 32px;
-            color: #ddd;
-        }
-
-        .star input {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            opacity: 0;
-        }
-
-        .star span {
-            width: 0;
-            position: absolute;
-            left: 0;
-            color: red;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .rate { display: inline-block;border: 0;margin-right: 15px;}
-        .rate > input {display: none;}
-        .rate > label {float: right;color: #ddd}
-        .rate > label:before {display: inline-block;font-size: 1rem;padding: .3rem .2rem;margin: 0;cursor: pointer;font-family: FontAwesome;content: "\f005 ";}
-        .rate .half:before {content: "\f089 "; position: absolute;padding-right: 0;}
-        .rate input:checked ~ label,
-        .rate label:hover,.rate label:hover ~ label { color: #f73c32 !important;  }
-        .rate input:checked + .rate label:hover,
-        .rate input input:checked ~ label:hover,
-        .rate input:checked ~ .rate label:hover ~ label,
-        .rate label:hover ~ input:checked ~ label { color: #f73c32 !important;  }
-    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".error").click(function() {
+                $(this).hide();
+                $(this).siblings(".input").focus();
+            });
+        });
+    </script>
 </head>
 <body>
-<h2>기록 수정</h2>
+<div class="mainbox">
+    <hr class="line" />
+    <div class="page">
+        <form:form modelAttribute="historyForm" method="post">
+            <div class="titleWrap">${history.placeId}</div> <!--장소 아이디 -> 장소이름으로 바꾸기-->
+            <div class="contentWrap">
+                <div>의 음식은 어떠셨나구리? 별점을 남겨주시구리~!</div>
+                <label for="score">별점</label>:
+                <form:input path="history.score" value="${history.score}" readonly="false"/> <br/>
+                <div class="starpoint_wrap">
+                    <div class="starpoint_box">
+                        <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5점</span></label>
+                        <label for="starpoint_2" class="label_star" title="1"><span class="blind">1점</span></label>
+                        <label for="starpoint_3" class="label_star" title="1.5"><span class="blind">1.5점</span></label>
+                        <label for="starpoint_4" class="label_star" title="2"><span class="blind">2점</span></label>
+                        <label for="starpoint_5" class="label_star" title="2.5"><span class="blind">2.5점</span></label>
+                        <label for="starpoint_6" class="label_star" title="3"><span class="blind">3점</span></label>
+                        <label for="starpoint_7" class="label_star" title="3.5"><span class="blind">3.5점</span></label>
+                        <label for="starpoint_8" class="label_star" title="4"><span class="blind">4점</span></label>
+                        <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
+                        <label for="starpoint_10" class="label_star" title="5"><span class="blind">5점</span></label>
+                        <input type="radio" name="starpoint" id="starpoint_1" class="star_radio">
+                        <input type="radio" name="starpoint" id="starpoint_2" class="star_radio">
+                        <input type="radio" name="starpoint" id="starpoint_3" class="star_radio">
+                        <input type="radio" name="starpoint" id="starpoint_4" class="star_radio">
+                        <input type="radio" name="starpoint" id="starpoint_5" class="star_radio">
+                        <input type="radio" name="starpoint" id="starpoint_6" class="star_radio">
+                        <input type="radio" name="starpoint" id="starpoint_7" class="star_radio">
+                        <input type="radio" name="starpoint" id="starpoint_8" class="star_radio">
+                        <input type="radio" name="starpoint" id="starpoint_9" class="star_radio">
+                        <input type="radio" name="starpoint" id="starpoint_10" class="star_radio">
+                        <span class="starpoint_bg"></span>
+                    </div>
+                </div>
 
-<form:form modelAttribute="historyForm" method="post">
-    <div>${history.placeId}</div> <!--장소 아이디 -> 장소이름으로 바꾸기-->
+                <div>무슨 메뉴를 먹었는지 알려주시구리~!</div>
 
-    <div>의 음식은 어떠셨나구리? 별점을 남겨주시구리~!</div>
-    <label for="score">별점</label>:
-<%--    <fieldset class="rate">--%>
-<%--        <input type="radio" id="rating10" name="rating" value="10"><label for="rating10" title="5점"></label>--%>
-<%--        <input type="radio" id="rating9" name="rating" value="9"><label class="half" for="rating9" title="4.5점"></label>--%>
-<%--        <input type="radio" id="rating8" name="rating" value="8"><label for="rating8" title="4점"></label>--%>
-<%--        <input type="radio" id="rating7" name="rating" value="7"><label class="half" for="rating7" title="3.5점"></label>--%>
-<%--        <input type="radio" id="rating6" name="rating" value="6"><label for="rating6" title="3점"></label>--%>
-<%--        <input type="radio" id="rating5" name="rating" value="5"><label class="half" for="rating5" title="2.5점"></label>--%>
-<%--        <input type="radio" id="rating4" name="rating" value="4"><label for="rating4" title="2점"></label>--%>
-<%--        <input type="radio" id="rating3" name="rating" value="3"><label class="half" for="rating3" title="1.5점"></label>--%>
-<%--        <input type="radio" id="rating2" name="rating" value="2"><label for="rating2" title="1점"></label>--%>
-<%--        <input type="radio" id="rating1" name="rating" value="1"><label class="half" for="rating1" title="0.5점"></label>--%>
-<%--    </fieldset>--%>
-    <form:input path="history.score" value="${history.score}" readonly="false"/> <br/>
+                <form:label path="history.placeMenuId">메뉴</form:label>:
+                <c:forEach var="placeMenu" items="${placeMenuList}" varStatus="status">
+                <label class="btn btn-outline-success form-check">
+                    <form:radiobutton path="history.placeMenuId" name="history.placeMenuId" value="${placeMenu.placeMenuId}" label="${placeMenu.name}" class="btn-check"  autocomplete="off"/>
+                </label>
+                            <%--                    <form:label path="history.placeMenuId" class="" for="${placeMenu.placeMenuId}">${placeMenu.name}</form:label>id="${placeMenu.placeMenuId}"--%>
+                </c:forEach>
+<%--                <form:input path="history.placeMenuId" value="${history.placeMenuId}" readonly="false" type="hidden" id="${history.placeMenuId}" name="${history.placeMenuId}"/>--%>
 
-    <div>무슨 메뉴를 먹었는지 알려주시구리~!</div>
 
-    <label for="placeMenuId">메뉴</label>:
-    <form:input path="history.placeMenuId" value="${history.placeMenuId}" readonly="false"/> <br/>
 
-    <input type="submit" value="수정하기" />
-
-</form:form>
-<script>
-    const drawStar = (target) => {
-        document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
-    }
-</script>
+                <br/>
+            </div>
+            <div class="bttnWrapper">
+                <!--폼 입력받는 부분에서는 history.back이나 history.go(-1) 동작 이상 있을 수 있음-->
+                <button class="backButton" type="button" onclick="location.href ='/history/list'">뒤로가기</button>
+                <button class="createButton" type="submit">저장하기</button>
+                <button class="deleteButton" type="button" onclick="location.href='/placemenu/delete?placeMenuId=${placeMenuId}'">삭제하기</button>
+            </div>
+        </form:form>
+    </div>
+</div>
 </body>
 </html>
