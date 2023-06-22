@@ -38,7 +38,7 @@ public class CalendarController {
     }
 
     @RequestMapping("/reservation/calendar")
-    public ModelAndView handleRequest(HttpServletRequest request,
+    public ModelAndView handleCalendar(HttpServletRequest request,
             ModelMap model, @RequestParam("placeId") String placeId) throws Exception {
 
         model.addAttribute("placeId", placeId);
@@ -63,7 +63,7 @@ public class CalendarController {
     }
 
     @GetMapping("/reservation/calendar/forplace")
-    public ModelAndView handleRequestForBusiness(HttpServletRequest request, ModelMap model,
+    public ModelAndView handleCalendarForPlace(HttpServletRequest request, ModelMap model,
             @SessionAttribute("placeSession") PlaceSession placeSession) throws Exception {
         List<Timestamp> availableTimeList = frogBanchan.findCalendar(placeSession.getPlace().getPlaceId());
 
@@ -105,7 +105,7 @@ public class CalendarController {
     }
 
     @PostMapping("/reservation/calendar/forplace")
-    public String handleRequestForBusiness2(HttpServletRequest request, ModelMap model,
+    public String handleAvilableTimeForPlace(HttpServletRequest request, ModelMap model,
             @SessionAttribute("placeSession") PlaceSession placeSession,
             @RequestParam Object selectedDay, @RequestParam String selectedTime, @RequestParam String flag)
             throws Exception {
@@ -136,7 +136,7 @@ public class CalendarController {
         List<Timestamp> availableTimeList = frogBanchan.findCalendar(placeSession.getPlace().getPlaceId());
 
         SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
-        
+
         String[] availableDays = new String[100];
         int i = 0;
         for (Timestamp timestamp : availableTimeList) {
@@ -164,7 +164,7 @@ public class CalendarController {
         model.addAttribute("placename", placeSession.getPlace().getName());
         model.addAttribute("availableDays", availableDays);
         model.addAttribute("reservedDays", reservedDays);
-        return CALENDAR_FORPLACE;
+        return "redirect:/reservation/calendar/forplace";
 
     }
 

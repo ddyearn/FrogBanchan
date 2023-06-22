@@ -45,5 +45,13 @@
       </div>
      </div>
     </div>
+
+    <script>
+        function goBack() {
+            var previousPageUrl = "redirect:/user/reservation/list"; // Replace with the desired URL of the previous page
+            window.location.href = previousPageUrl;
+        }
+    </script>
+
 </body>
 </html>

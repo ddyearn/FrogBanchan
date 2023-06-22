@@ -32,7 +32,7 @@ import com.frog.frogbanchan.domain.Reservation;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 
 @Controller
-public class ReservationContorller {
+public class ReservationController {
 
     @Value("/reservation/timeSelect")
     private String TIME_SELECT_VIEW;
@@ -51,24 +51,25 @@ public class ReservationContorller {
     }
 
     @RequestMapping("/reservation/time")
-    public String timeselectHandle(ModelMap modelMap, @RequestParam("placeId") String placeId, @RequestParam String selectedDay) {
+    public String timeselectHandle(ModelMap modelMap, @RequestParam("placeId") String placeId,
+            @RequestParam String selectedDay) {
         List<Timestamp> reservedTimeList = frogBanchan.findReservedTime(placeId); // placeId 사용
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH");
 
         String[] reservedTimes = new String[100];
         int i = 0;
         for (Timestamp timestamp : reservedTimeList) {
-                Date date = new Date(timestamp.getTime());
+            Date date = new Date(timestamp.getTime());
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
 
-                // Format the Date object to the desired date and time format
-                String formattedDate = dateFormat.format(date);
-                if(formattedDate.equals(selectedDay)){
-                    String time = timeFormat.format(timestamp);
+            // Format the Date object to the desired date and time format
+            String formattedDate = dateFormat.format(date);
+            if (formattedDate.equals(selectedDay)) {
+                String time = timeFormat.format(timestamp);
 
-                    reservedTimes[i++] = time;
-                }
+                reservedTimes[i++] = time;
+            }
         }
         modelMap.addAttribute("placeId", placeId);
         modelMap.addAttribute("reservedTimes", reservedTimes);
@@ -78,7 +79,8 @@ public class ReservationContorller {
     }
 
     @PostMapping("/reservation/form")
-    public String showForm(ModelMap modelMap, @RequestParam("placeId") String placeId, @RequestParam String selectedDay, @RequestParam String selectedTime) {
+    public String showForm(ModelMap modelMap, @RequestParam("placeId") String placeId, @RequestParam String selectedDay,
+            @RequestParam String selectedTime) {
 
         modelMap.addAttribute("placeId", placeId);
         modelMap.addAttribute("selectedDay", selectedDay);
@@ -87,8 +89,8 @@ public class ReservationContorller {
     }
 
     @PostMapping("/reservation/result")
-    public String handleResult(ModelMap modelMap, @RequestParam("placeId") String placeId, 
-        @RequestParam String selectedDay, @RequestParam String selectedTime, @RequestParam int numReservations,
+    public String handleResult(ModelMap modelMap, @RequestParam("placeId") String placeId,
+            @RequestParam String selectedDay, @RequestParam String selectedTime, @RequestParam int numReservations,
             @SessionAttribute("userSession") UserSession userSession) {
 
         modelMap.addAttribute("placeId", placeId);
@@ -123,12 +125,11 @@ public class ReservationContorller {
     }
 
     @GetMapping("/reservation/check")
-    public String handleCheck(ModelMap modelMap, @RequestParam("placeId") String placeId, 
+    public String handleCheck(ModelMap modelMap, @RequestParam("placeId") String placeId,
             @RequestParam String reservationId,
             @SessionAttribute("userSession") UserSession userSession) {
 
-
-        //reservationId를 갖고와서 해당 reservation을 건네줘야함
+        // reservationId를 갖고와서 해당 reservation을 건네줘야함
         List<Reservation> reservation = null;
         try {
             reservation = frogBanchan.findReservationByReservationId(reservationId);
@@ -153,11 +154,11 @@ public class ReservationContorller {
     }
 
     @PostMapping("/reservation/check")
-    public String handleDeleteReservation(ModelMap modelMap, @RequestParam("placeId") String placeId, 
+    public String handleDeleteReservation(ModelMap modelMap, @RequestParam("placeId") String placeId,
             @RequestParam String reservationId,
             @SessionAttribute("userSession") UserSession userSession) {
 
-        int rsvid = Integer.parseInt(reservationId);        
+        int rsvid = Integer.parseInt(reservationId);
 
         try {
             frogBanchan.deleteReservation(rsvid);
@@ -167,7 +168,7 @@ public class ReservationContorller {
             return "error-page";
         }
 
-        //예약 확인 페이지로 return 해야함
+        // 예약 확인 페이지로 return 해야함
         return "";
     }
 }

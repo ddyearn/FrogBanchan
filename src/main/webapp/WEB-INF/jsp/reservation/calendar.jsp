@@ -96,8 +96,8 @@
 <form action="/reservation/time?placeId=${placeId}" method="post">
 <div class="container">
     <div class="button-container">
-        <button class="button" onclick="goToPreviousMonth()">&lt;&lt;</button>
-        <button class="button" onclick="goToNextMonth()">&gt;&gt;</button>
+        <!-- <button class="button" onclick="goToPreviousMonth()">&lt;&lt;</button>
+        <button class="button" onclick="goToNextMonth()">&gt;&gt;</button> -->
     </div>    
     <h1 style="text-align: center">
         <%= request.getAttribute("placename")%>
