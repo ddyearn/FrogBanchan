@@ -14,8 +14,8 @@
     </select>
 
     <insert id="insertPlace" parameterType="Place">
-        INSERT INTO PLACE(place_id, password, name, address)
-        VALUES (#{placeId}, #{password}, #{name}, #{address})
+        INSERT INTO PLACE(place_id, password, name, address, total_score)
+        VALUES (#{placeId}, #{password}, #{name}, #{address}, 0)
     </insert>
     
     <update id="updatePlace" parameterType="Place">
