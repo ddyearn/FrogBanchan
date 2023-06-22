@@ -88,7 +88,7 @@
 
     <script>
         function goBack() {
-            var previousPageUrl = "/reservation/calendar?placeId=${placeId}"; // Replace with the desired URL of the previous page
+            var previousPageUrl = "redirect:/user/reservation/list"; // Replace with the desired URL of the previous page
             window.location.href = previousPageUrl;
         }
     </script>
