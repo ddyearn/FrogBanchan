@@ -10,6 +10,24 @@
     <link rel="stylesheet" type="text/css" href="../../css/placemenu/placeMenuListStyle.css">
 </head>
 <body>
+    <%!
+        String getMenuName(String description) {
+            return description.split("&AND&")[0];
+        }
+
+        String getTagList(String description) {
+            return description.split("&AND&")[1];
+        }
+
+        String getDescription(String description) {
+            String[] str = description.split("&AND&");
+            if (str.length == 2) {
+                return "-";
+            } else {
+                return str[2];
+            }
+        }
+    %>
     <div class="menuListBox1">
         <div class="titleBox">
             가게 메뉴
@@ -17,6 +35,7 @@
         <div class="menuListBox2">
             <div class="menuListBox3 accordion" id="menuListBox3">
                 <c:forEach var="placemenu" items="${placemenuList}" varStatus="status">
+                    <c:set value="${placemenu.description}" var="description" />
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed row" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#${placemenu.placeMenuId}" aria-controls="${placemenu.placeMenuId}">
@@ -27,9 +46,9 @@
                         <div id="${placemenu.placeMenuId}" class="accordion-collapse collapse" data-bs-parent="#menuListBox3">
                             <div class="accordion-body menuInfoBox">
                                 <div class="menuInfo">
-                                    <p>분류 : ${placemenu.menuId}</p>
-                                    <p>설명 : ${placemenu.description}</p>
-                                    <p>태그 : </p>
+                                    <p>분류 : <%= getMenuName(pageContext.getAttribute("description").toString()) %></p>
+                                    <p>설명 : <%= getDescription(pageContext.getAttribute("description").toString()) %></p>
+                                    <p>태그 : <%= getTagList(pageContext.getAttribute("description").toString()) %></p>
                                 </div>
                                 <button class="btn btn-outline-success updateBtn" type="button" onclick="location.href='/placemenu/update?placeMenuId=${placemenu.placeMenuId}'">
                                     수정
