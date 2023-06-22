@@ -84,7 +84,7 @@ html, body {
     height: 550px;
     border-radius: 30px;
     background: #fff;
-    border: 2px solid black;
+    border: 3px solid black;
     overflow: auto;
 }
 .teamBoxText {
@@ -130,25 +130,57 @@ html, body {
 .placeListBox {
     position: absolute;
     margin-top: 70px;
-    margin-left: 50px;
+    margin-left: 10%;
     white-space: nowrap;
-    z-index: 0;
 }
 .placeListText {
+    position: absolute;
     margin-left: 150px;
-    margin-top: 250px;
+    margin-top: 260px;
     font-size: 22px;
+}
+.placeBox {
+    position: absolute;
+    width: 350px;
+    margin-left: 30px;
+    margin-top: 330px;
+    border: 3px solid black;
+    border-radius: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.placeBox2 {
+    height: 300px;
+    overflow: hidden;
 }
 
 .partyListBox {
     position: absolute;
-    margin-top: 70px;
-    margin-left: 450px;
+    margin-left: 400px;
     white-space: nowrap;
     z-index: 0;
 }
 .partyListText {
-    margin-left: 150px;
-    margin-top: 250px;
+    position: absolute;
+    margin-left: 170px;
+    margin-top: 260px;
     font-size: 22px;
+}
+.partyBox {
+    position: absolute;
+    width: 350px;
+    margin-left: 50px;
+    margin-top: 330px;
+    border: 3px solid black;
+    border-radius: 20px;
+    overflow: hidden;
+    position: absolute;
+}
+.partyBox2 {
+    height: 300px;
+    overflow: hidden;
+}
+
+.list-group-item::before {
+    display: none;
 }
