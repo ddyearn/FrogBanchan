@@ -2,6 +2,8 @@ package com.frog.frogbanchan.controller.users;
 
 import com.frog.frogbanchan.controller.TeamSession;
 import com.frog.frogbanchan.controller.UserSession;
+import com.frog.frogbanchan.domain.Party;
+import com.frog.frogbanchan.domain.Place;
 import com.frog.frogbanchan.domain.Team;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +81,14 @@ public class MainUserController {
     //식구 리스트 조회
     @RequestMapping("/party/list")
     public ModelAndView handleRequest() throws Exception {
-        return new ModelAndView("/party/list", "partyList", frogBanchan.findPartyList());
+    	List<Place> places = frogBanchan.findAllPlaceList();
+        List<Party> partyList = frogBanchan.findPartyList(); 
+
+        ModelAndView mav = new ModelAndView("/party/list");
+        mav.addObject("partyList", partyList);
+        mav.addObject("places", places);
+
+        return mav;
     }
 
 

@@ -3,7 +3,9 @@ package com.frog.frogbanchan.controller.history;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.frog.frogbanchan.controller.TeamSession;
 import com.frog.frogbanchan.domain.History;
+import com.frog.frogbanchan.domain.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -16,16 +18,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.frog.frogbanchan.controller.UserSession;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 
+import java.util.List;
+
 @Controller
 public class HistoryController {
 
     @Value("/history/historyForm")
     private String FORM_VIEW;
-    @Value("/history/myHistory")
+    @Value("/history/list")
     private String LIST_VIEW;
-    @Value("/history/recommendResult")
-    private String RESULT_VIEW;
-
 
     private FrogBanchanFacade frogBanchan;
     @Autowired
@@ -34,7 +35,7 @@ public class HistoryController {
     }
 
     //기록 리스트 조회
-    @RequestMapping("/history/myHistory")
+    @RequestMapping("/history/list")
     public ModelAndView handleRequest(
             @SessionAttribute("userSession") UserSession userSession) throws Exception {
         String username = userSession.getUser().getUsername();
@@ -52,26 +53,40 @@ public class HistoryController {
     @GetMapping("/history/create")
     public String createHistory(HttpServletRequest request, HttpSession session, @RequestParam(value="placeId") String placeId, Model model) {
         UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+        TeamSession teamSession = (TeamSession) request.getSession().getAttribute("teamSession");
 
         History history = new History();
 
-        String username = userSession.getUser().getUsername();
-        history.setUsername(username);
+        if(teamSession!=null && teamSession.getSelectedMembers()!=null) {
+            List<Users> memberList = teamSession.getSelectedMembers();
+            for (Users member : memberList) {
+                history.setUsername(member.getUsername());
 
-        history.setPlaceId(placeId);
+                history.setPlaceId(placeId);
 
-        frogBanchan.insertHistory(history);
+                frogBanchan.insertHistory(history);
+            }
+        }
+        else {
+            String username = userSession.getUser().getUsername();
+            history.setUsername(username);
+
+            history.setPlaceId(placeId);
+
+            frogBanchan.insertHistory(history);
+        }
 
         // 팀 or 개인 여부
         // 팀원 다 history 생성?
+        model.addAttribute(placeId);
 
         model.addAttribute("history", history);
-        return RESULT_VIEW;
+        return "redirect:/recommend/result?placeId="+placeId;
     }
 
     //기록 수정
     @GetMapping("/history/update")
-    public String showForm(@RequestParam(value="historyId") int historyId, Model model, @ModelAttribute("historyForm") HistoryForm historyForm, HttpServletRequest request) {
+    public String showForm(@RequestParam(value="historyId") int historyId, Model model, @ModelAttribute("historyForm") HistoryForm historyForm) {
         History history = frogBanchan.findHistory(historyId);
         if (history == null) {
             return LIST_VIEW;
@@ -92,7 +107,7 @@ public class HistoryController {
         model.addAttribute("history", history);
 
 
-        return "redirect:/history/myHistory";
+        return "redirect:/history/list";
     }
 
     //기록 삭제
@@ -102,7 +117,7 @@ public class HistoryController {
             ModelMap model) throws Exception {
         frogBanchan.deleteHistory(historyId);
 
-        return LIST_VIEW;
+        return "redirect:/history/list";
     }
 
 }

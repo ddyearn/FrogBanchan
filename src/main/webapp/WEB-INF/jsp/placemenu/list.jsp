@@ -26,7 +26,7 @@ placemenuList 출력 test <br/>
         </tr>
     </c:forEach>
 </table>
-<button value="뒤로가기" onclick="history.back()">뒤로가기</button>
+<button value="뒤로가기" onclick="location.href='/place/main'">뒤로가기</button>
 <button value="추가하기" onclick="location.href='/placemenu/create'">추가하기</button>
 </body>
 </html>

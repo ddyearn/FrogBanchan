@@ -2,6 +2,7 @@ package com.frog.frogbanchan.controller.recommend;
 
 import com.frog.frogbanchan.controller.TeamSession;
 import com.frog.frogbanchan.controller.UserSession;
+import com.frog.frogbanchan.domain.Menu;
 import com.frog.frogbanchan.domain.Team;
 import com.frog.frogbanchan.domain.Users;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
@@ -10,9 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class RecommendMenuTeamController {
@@ -72,7 +71,7 @@ public class RecommendMenuTeamController {
 
     // 추천go 버튼 -> 선택 결과 페이지
     // request url: user/recommendTeam.jsp의 form action 값
-    @RequestMapping("/recommend/team/test1")
+    @RequestMapping("/recommend/team/recommendMenu")
     public ModelAndView recommendTeam(
             @SessionAttribute("teamSession") TeamSession teamSession,
             @RequestParam("hateTags") String hateTags,
@@ -80,31 +79,52 @@ public class RecommendMenuTeamController {
     ) throws Exception {
         
         // test 결과 페이지, 구현 시 recommend 결과 페이지로
-        ModelAndView mav = new ModelAndView("/team/recommendTest2");
+        ModelAndView mav = new ModelAndView("/recommend/recommendMenu");
 
         // 선택된 싫어요, 좋아요 태그 목록을 List<String> 형태로 저장
         // 세션 처리 ok, 뒤로가기 ok
         // ModelAndView에 넣은 이유: 값 확인용
-        List<String> hateList = new ArrayList<>(Arrays.asList(hateTags.split(",")));
-        teamSession.setSelectedTags(hateList);
-        mav.addObject("hateList", hateList);
+
+        //mav.addObject("hateList", hateList);
+        //mav.addObject("memberList", memberList);
 
         // 선택된 팀원 목록을 List<Users> 형태로 세션에 저장
         // 세션 처리 ok, 뒤로가기 ok
-        // 히스토리 처리할 때는 session에서 팀원 목록 꺼내도 조으다
+        // 히스토리 처리할 때는 session에서 팀원 목록 꺼내도 조으다  // That's Good!!!
+
+        List<String> hateList = new ArrayList<>(Arrays.asList(hateTags.split(",")));
+        hateList.remove("");  // 빈 스트링 넘어올 경우 처리
+        teamSession.setSelectedTags(hateList);
+
         List<String> members = new ArrayList<>(Arrays.asList(selectedMember.split(",")));
         List<Users> memberList = new ArrayList<>();
         for (String member : members) {
             memberList.add(frogBanchan.findUserByUsername(member));
         }
         teamSession.setSelectedMembers(memberList);
-        mav.addObject("memberList", memberList);
 
-        // 여기에서 hateList 사용하믄 될가나
+        for (Users member : memberList) {
+            Integer placeMenuId = frogBanchan.getHistoryMenu(member.getUsername());
+            if(placeMenuId!=null)
+                hateList.add(frogBanchan.findMenuByPlaceMenuId(placeMenuId));
+        }
 
+        Map<String, List<String>> tagList = new HashMap<>();
 
+        if(!hateList.isEmpty())
+            tagList.put("dislike", hateList);
+        else tagList.put("dislike", null);
+        tagList.put("like", null);  // "like"키에 널값 넣어주기
 
+        // 태그리스트로 메뉴 리스트 찾아와서 랜덤 추천
+        List<Menu> menu = frogBanchan.findMenuListByTagList(tagList);
+        System.out.println(menu);
 
+        Random random = new Random();
+        int randomIndex = random.nextInt(menu.size());
+        System.out.println(menu.get(randomIndex));
+
+        mav.addObject(menu.get(randomIndex));
 
 
         return mav;

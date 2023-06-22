@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=EUC-KR"
          pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -25,7 +26,7 @@
 </head>
 <body>
 <div style="width:80%;margin: 0 auto;padding:30px;">
-    <span style="font-size: 50px;margin: 2% 0;"><b>MENU</b> 맛집 검색</span>
+    <span style="font-size: 50px;margin: 2% 0;"><b>${menuName}</b> 맛집 검색</span>
     <br>
     <span style="font-size: 20px;float:right;">위치 : <span style="text-decoration: underline;">동덕여자대학교</span></span>
 </div>
@@ -33,7 +34,7 @@
 <br>
 <div style="text-align: center;">
     <button style="height: 50px;width: 15%;border: 1px solid #000000;border-radius: 15px;font-size: 30px;background-color: white"
-            type="button" onClick="">다른 메뉴 추천해줘!</button></div>
+            type="button" onClick="history.back()">다른 메뉴 추천해줘!</button></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1edbbc68addc788e67cef306ea562f13"></script>
 <script>
@@ -57,6 +58,13 @@
             latlng: new kakao.maps.LatLng(37.6038873, 127.042740)
         }
     ];
+
+    var geocoder = new kakao.maps.services.Geocoder();
+    var coords;
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch(positions[0].address, function(result, status) {
+        coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    });
 
     for(let i=0; i < positions.length; i++){
         var data = positions[i];
@@ -98,114 +106,16 @@
             overlay.setMap(map);
         });
     }
-
-
-    // for (var i = 0; i < positions.length; i ++) {
-    //     // 마커를 생성합니다
-    //     var marker = new kakao.maps.Marker({
-    //         map: map, // 마커를 표시할 지도
-    //         position: positions[i].latlng, // 마커를 표시할 위치
-    //         title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-    //     });
-    //     var content = '<div class="wrap">' +
-    //         '    <div class="info">' +
-    //         '        <div class="title">' +
-    //                     positions[i].title +
-    //         '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-    //         '        </div>' +
-    //         '        <div class="body">' +
-    //         '            <div class="ellipsis">' +
-    //                         positions[i].latlng +
-    //         '               </div>' +
-    //         '            <div><a href="" target="_blank" class="link">가게 상세</a></div>' +
-    //         '        </div>' +
-    //         '    </div>' +
-    //         '</div>';
-    //     var overlay = new kakao.maps.CustomOverlay({
-    //             content: content,
-    //             map: map,
-    //             position: marker.getPosition()
-    //         });
-    //     kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, overlay));
-    //     kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(overlay));
-    // }
-    // kakao.maps.event.addListener(marker, 'click', function() {
-    //     overlay.setMap(map);
-    // });
-    // function closeOverlay() {
-    //     overlay.setMap(null);
-    // }
-
-    // // 지도에 마커를 표시합니다
-    // var marker = new kakao.maps.Marker({
-    //     map: map,
-    //     position: new kakao.maps.LatLng(37.6044911, 127.042321)
-    // });
-    // var marker2 = new kakao.maps.Marker({
-    //     map: map,
-    //     position: new kakao.maps.LatLng(37.6038873, 127.042740)
-    // });
-    //
-    // // 커스텀 오버레이에 표시할 컨텐츠 입니다
-    // // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
-    // // 별도의 이벤트 메소드를 제공하지 않습니다
-    // var content = '<div class="wrap">' +
-    //     '    <div class="info">' +
-    //     '        <div class="title">' +
-    //     '            토리 돈까스' +
-    //     '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-    //     '        </div>' +
-    //     '        <div class="body">' +
-    // '                <div class="ellipsis">서울 성북구 화랑로13길 24 2층 토리돈까스</div>' +
-    // '                <div class="jibun ellipsis">(우) 02748 (지번) 하월곡동 21-77</div>' +
-    // '                <div><a href="" target="_blank" class="link">가게 상세</a></div>' +
-    //     '        </div>' +
-    //     '    </div>' +
-    //     '</div>';
-    // var content2 = '<div class="wrap">' +
-    //     '    <div class="info">' +
-    //     '        <div class="title">' +
-    //     '            송송식탁' +
-    //     '            <div class="close" onclick="closeOverlay2()" title="닫기"></div>' +
-    //     '        </div>' +
-    //     '        <div class="body">' +
-    //     '            <div class="desc">' +
-    //     '                <div class="ellipsis">서울 성북구 화랑로13길 10</div>' +
-    //     '                <div class="jibun ellipsis">(우) 02752 (지번) 하월곡동 17-10</div>' +
-    //     '                <div><a href="" target="_blank" class="link">가게 상세</a></div>' +
-    //     '            </div>' +
-    //     '        </div>' +
-    //     '    </div>' +
-    //     '</div>';
-    //
-    // // 마커 위에 커스텀오버레이를 표시합니다
-    // // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-    // var overlay = new kakao.maps.CustomOverlay({
-    //     content: content,
-    //     map: map,
-    //     position: marker.getPosition()
-    // });
-    // var overlay2 = new kakao.maps.CustomOverlay({
-    //     content: content2,
-    //     map: map,
-    //     position: marker2.getPosition()
-    // });
-    //
-    // // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-    // kakao.maps.event.addListener(marker, 'click', function() {
-    //     overlay.setMap(map);
-    // });
-    // kakao.maps.event.addListener(marker2, 'click', function() {
-    //     overlay2.setMap(map);
-    // });
-    //
-    // // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-    // function closeOverlay() {
-    //     overlay.setMap(null);
-    // }
-    // function closeOverlay2() {
-    //     overlay2.setMap(null);
-    // }
 </script>
+<table style="width:70%">
+    <tr><th>가게이름</th><th>위치</th></tr>
+    <c:forEach var="place" items="${placeList}" varStatus="status">
+        <tr>
+            <td>${place.name}</td>
+            <td>${place.address}</td>
+            <td><a href='<c:url value="/place/view"><c:param name="placeId" value="${place.placeId}"/></c:url>'>가게 보기</a></td>
+        </tr>
+    </c:forEach>
+</table>
 </body>
 </html>

@@ -48,7 +48,7 @@
         WHERE USERNAME = #{username}
     </delete>
 
-    <select id="getHistoryMenu" resultType="_int">
+    <select id="getHistoryMenu" resultType="int">
         SELECT *
         FROM (SELECT PLACE_MENU_ID AS placeMenuId
               FROM HISTORY

@@ -38,8 +38,13 @@
 			<label for="address" class="inputTitle">가게</label>
 			<div class="line2">- - - - - - - -</div>
 		    <div class="inputWrap">
-			<form:input path="party.placeId" class="input"/>
-			<form:errors path="party.placeId" class="error"/> <br/>
+			<form:select path="party.placeId" class="input">
+	        <option value="">-- 가게 선택 --</option>
+		        <c:forEach var="place" items="${placeList}">
+		            <option value="${place.placeId}">${place.name}</option>
+		        </c:forEach>
+	    	</form:select>
+    		<form:errors path="party.placeId" class="error"/> <br/>
 			</div>
 			<label for="content" class="inputTitle">내용</label>
 			<div class="contentWrap2">
