@@ -1,5 +1,6 @@
 package com.frog.frogbanchan.controller.placemenu;
 import com.frog.frogbanchan.controller.PlaceSession;
+import com.frog.frogbanchan.domain.Menu;
 import com.frog.frogbanchan.domain.PlaceMenu;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 import javax.servlet.http.HttpServletRequest;
@@ -8,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Value;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 @Controller
 @RequestMapping("/placemenu/create")
 public class CreatePlaceMenuController {
@@ -60,5 +63,18 @@ public class CreatePlaceMenuController {
 
         return "redirect:/placemenu/list";
     }
+
+    @GetMapping("search")
+    @ResponseBody
+    public String handleRequest3(@RequestParam("keyword") String keyword) {
+        List<Menu> menuList = frogBanchan.findMenuList();
+        for (Menu menu : menuList) {
+            if (keyword.equals(menu.getName())) {
+                return String.valueOf(menu.getMenuId());
+            }
+        }
+        return "false";
+    }
+
 
 }
