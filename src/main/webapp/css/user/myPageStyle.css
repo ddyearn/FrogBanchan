@@ -42,6 +42,17 @@ html, body {
     color: black;
 }
 
+.upsetFrogIcon {
+    width: 200px;
+    margin-top: 30px;
+    margin-left: 150px;
+}
+.noListText {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
 .userInfoBox {
     position: absolute;
     width: 500px;

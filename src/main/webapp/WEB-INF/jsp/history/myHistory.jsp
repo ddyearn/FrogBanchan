@@ -6,28 +6,27 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>히스토리</title>
+    <title>히스토리 목록</title>
 	<link rel="stylesheet" type="text/css" href="../../css/history/myHistoryStyle.css">
 </head>
 <body>
-    <div class="testBox">
-        historyList 출력 test <br/>
-        <table style="width:70%">
-            <tr><th>날짜</th><th>가게 이름</th><th>별점</th></tr>
-            <c:forEach var="history" items="${historyList}" varStatus="status">
-                <tr>
-                    <td>${history.recordedDate}</td>
-                    <td>${history.placeId}</td>
-                    <td>${history.score}</td>
-                    <td><a href='<c:url value="/history/update"><c:param name="historyId" value="${history.historyId}"/></c:url>'>수정</a></td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
-    <div class="historyBox">
-        <c:import url="./history.jsp">
-            <c:param name="historyList" value="${historyList}" />
-        </c:import>
+    <div class="historyBox1">
+        <div class="titleBox">
+            나의 히스토리
+        </div>
+        <div class="historyBox2">
+            <div class="historyBox3">
+                <c:import url="./history.jsp">
+                    <c:param name="historyList" value="${historyList}" />
+                </c:import>
+            </div>
+        </div>
+
+        <div class="horizonLine"></div>
+
+        <div class="btnGroup">
+            <button class="btn btn-secondary backBtn me-4" type="button" value="뒤로가기" onclick="location.href='/user/myPage'">뒤로가기</button>
+        </div>
     </div>
 </body>
 </html>
