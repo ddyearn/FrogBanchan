@@ -22,7 +22,7 @@ public class CreatePlaceController {
 
     @Value("/place/placeJoinForm")
     private String FORM_VIEW;
-    @Value("/place/placeCreateResult")
+    @Value("redirect:/login")
     private String RESULT_VIEW;
 
     private FrogBanchanFacade frogBanchan;
@@ -75,8 +75,9 @@ public class CreatePlaceController {
     @ResponseBody
     public String isExistUsername(@PathVariable("placeId") String placeId) {
         String result;
-        List<String> placeList = frogBanchan.findAllPlaceIdList();
-        if (!placeList.contains(placeId)) {
+        List<String> idList = frogBanchan.findAllPlaceIdList();
+        idList.addAll(frogBanchan.findUsernameList());
+        if (!idList.contains(placeId)) {
             result = "true";
         } else {
             result = "false";

@@ -52,9 +52,9 @@
   <div class="horizonLine">
   </div>
 
-  <div class="tagListBox">
-	<p class="tagListText">나의 불호 태그</p>
-	<button type="button" onClick="location.href='/user/tag'">태그 관리하기</button>
+  <div class="placeListBox">
+	<p class="placeListText">가게 둘러보기</p>
+    <button type="button" onClick="location.href='/user/place/list'">가게 목록 보기</button>
 	(list view 추가 예정)
   </div>
   <div class="partyListBox">

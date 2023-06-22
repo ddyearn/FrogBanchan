@@ -91,6 +91,9 @@ public class MainUserController {
         mav.addObject("reservationDateList", reservationDateList);
         mav.addObject("reservationNameList", reservationNameList);
         mav.addObject("reservationIDList", reservationIDList);
+      
+        mav.addObject("historyList", frogBanchan.findHistoryList(user));
+        mav.addObject("reservationList", frogBanchan.findHistoryList(user));
 
         return mav;
     }

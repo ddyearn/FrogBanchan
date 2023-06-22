@@ -22,7 +22,7 @@ public class RegistUserController {
 
     @Value("/user/userJoinForm")
     private String FORM_VIEW;
-    @Value("/user/userRegistResult")
+    @Value("redirect:/login")
     private String RESULT_VIEW;
 
     private FrogBanchanFacade frogBanchan;
@@ -81,8 +81,9 @@ public class RegistUserController {
     @ResponseBody
     public String isExistUsername(@PathVariable("username") String username) {
         String result;
-        List<String> userList = frogBanchan.findUsernameList();
-        if (!userList.contains(username)) {
+        List<String> idList = frogBanchan.findUsernameList();
+        idList.addAll(frogBanchan.findAllPlaceIdList());
+        if (!idList.contains(username)) {
             result = "true";
         } else {
             result = "false";

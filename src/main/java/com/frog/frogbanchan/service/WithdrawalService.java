@@ -33,26 +33,41 @@ public class WithdrawalService {
         // team 처리
         List<Team> teamList = teamDao.findTeamList(username);
         for (Team team : teamList) {
-            List<Users> memberList = teamDao.findTeamMembers(team.getTeamId());
-            if (memberList.size() == 1) {
-                teamDao.deleteTeam(team.getTeamId());
-            } else {
-                if (username.equals(team.getCreator())) {
-                    team.setCreator("deleted");
-                    teamDao.updateTeam(team);
+            teamDao.deleteTeamMember(team.getTeamId(), username);
+            if (username.equals(team.getCreator())) {
+                List<Users> memberList = teamDao.findTeamMembers(team.getTeamId());
+                for (Users member : memberList) {
+                    teamDao.deleteTeamMember(team.getTeamId(), member.getUsername());
                 }
-                teamDao.deleteTeamMember(team.getTeamId(), username);
+                teamDao.deleteTeam(team.getTeamId());
             }
         }
 
+        // Apply 처리
+        List<Apply> applyList = partyDao.findApplyByWriter(username);
+        for (Apply apply : applyList) {
+            partyDao.deleteApply(apply.getApplyId());
+        }
+
         // party 처리
-//        partyDao.findPartyByCreator()
+        List<Party> partyList = partyDao.findPartyByCreator(username);
+        for (Party party : partyList) {
+            partyDao.deleteApplyByPartyId(party.getPartyId());
+            partyDao.deleteParty(party.getPartyId());
+        }
 
         // reservation 처리
-        reservationDao.findReservationByUsername(username);
+        List<Reservation> reservationList = reservationDao.findReservationByUsername(username);
+        for (Reservation reservation : reservationList) {
+            reservationDao.deleteReservation(reservation.getReservationId());
+        }
+        System.out.println(reservationDao.findReservationByUsername(username));
 
         // history 처리
         historyDao.deleteHistoryByUsername(username);
+
+        // tag 처리
+        usersDao.deleteHateTagsByUsername(username);
 
         // 회원 탈퇴
         usersDao.deleteUser(username);

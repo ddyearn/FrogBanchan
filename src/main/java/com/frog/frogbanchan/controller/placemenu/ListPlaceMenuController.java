@@ -27,7 +27,7 @@ public class ListPlaceMenuController {
             @ModelAttribute("placeSession") PlaceSession placeSession) throws Exception {
         String placeId = placeSession.getPlace().getPlaceId();
 
-        return new ModelAndView("/placemenu/list", "placemenuList", frogbanchan.findMenuListByPlaceId(placeId));
+        return new ModelAndView("/placemenu/placeMenuList", "placemenuList", frogbanchan.findMenuListByPlaceId(placeId));
     }
 
 }

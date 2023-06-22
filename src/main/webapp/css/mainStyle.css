@@ -127,14 +127,14 @@ html, body {
     color: black;
 }
 
-.tagListBox {
+.placeListBox {
     position: absolute;
     margin-top: 70px;
     margin-left: 50px;
     white-space: nowrap;
     z-index: 0;
 }
-.tagListText {
+.placeListText {
     margin-left: 150px;
     margin-top: 250px;
     font-size: 22px;
