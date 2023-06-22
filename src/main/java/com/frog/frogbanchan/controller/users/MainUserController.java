@@ -2,10 +2,7 @@ package com.frog.frogbanchan.controller.users;
 
 import com.frog.frogbanchan.controller.TeamSession;
 import com.frog.frogbanchan.controller.UserSession;
-import com.frog.frogbanchan.domain.Party;
-import com.frog.frogbanchan.domain.Place;
-import com.frog.frogbanchan.domain.Reservation;
-import com.frog.frogbanchan.domain.Team;
+import com.frog.frogbanchan.domain.*;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,8 +55,17 @@ public class MainUserController {
         ModelAndView mav = new ModelAndView("/user/myPageForCommon");
 
         String user = userSession.getUser().getUsername();
+        List<History> historyList = frogBanchan.findHistoryList(user);
+        for (History history : historyList) {
+            String placeAndMenu = frogBanchan.findPlaceById(history.getPlaceId()).getName();
+            placeAndMenu += "ANDMENU";
+            if (history.getPlaceMenuId() != 0) {
+                placeAndMenu += frogBanchan.findMenuByPlaceMenuId(history.getPlaceMenuId());
+            }
+            history.setPlaceId(placeAndMenu);
+        }
         mav.addObject("user", userSession.getUser());
-        mav.addObject("historyList", frogBanchan.findHistoryList(user));
+        mav.addObject("historyList", historyList);
         mav.addObject("reservationList", frogBanchan.findReservationByUsername(user));
 
         return mav;

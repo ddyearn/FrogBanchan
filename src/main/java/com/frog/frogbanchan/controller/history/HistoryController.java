@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.frog.frogbanchan.controller.UserSession;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -40,9 +41,22 @@ public class HistoryController {
     @RequestMapping("/history/list")
     public ModelAndView handleRequest(
             @SessionAttribute("userSession") UserSession userSession) throws Exception {
-        String username = userSession.getUser().getUsername();
+        ModelAndView mav = new ModelAndView("/history/myHistory");
 
-        return new ModelAndView("/history/myHistory", "historyList", frogBanchan.findHistoryList(username));
+        String username = userSession.getUser().getUsername();
+        List<History> historyList = frogBanchan.findHistoryList(username);
+        for (History history : historyList) {
+            String placeAndMenu = frogBanchan.findPlaceById(history.getPlaceId()).getName();
+            placeAndMenu += "ANDMENU";
+            if (history.getPlaceMenuId() != 0) {
+                placeAndMenu += frogBanchan.findMenuByPlaceMenuId(history.getPlaceMenuId());
+            }
+            history.setPlaceId(placeAndMenu);
+        }
+
+        mav.addObject("historyList", historyList);
+
+        return mav;
     }
 
     @ModelAttribute("historyForm")
