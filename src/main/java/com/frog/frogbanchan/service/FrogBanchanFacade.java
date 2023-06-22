@@ -157,4 +157,8 @@ public interface FrogBanchanFacade {
     
     public int getNextPartyId();
 
+    public List<Party> findPartyByCreator(String creator);
+
+    public List<Apply> findApplyByWriter(String writer);
+
 }

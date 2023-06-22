@@ -33,5 +33,9 @@ public interface PartyMapper {
     public List<Apply> findApplyByPartyId(int partyId);
 
     public List<Apply> findApplyList();
+
+    public List<Party> findPartyByCreator(String creator);
+
+    public List<Apply> findApplyByWriter(String writer);
   
 }
