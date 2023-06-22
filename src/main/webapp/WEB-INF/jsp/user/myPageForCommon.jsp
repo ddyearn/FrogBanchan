@@ -47,6 +47,10 @@
 
             <div class="tagBox">
                 <div class="row">
+                    <div class="col tagBox2">
+                        <c:import url="../user/tagList.jsp" >
+                        </c:import>
+                    </div>
                 </div>
                 <div class="row">
 	                <button class="btn btn-outline-warning tagBtn" type="button" onClick="location.href='/user/tag'">태그 관리하기</button>
@@ -56,7 +60,7 @@
             <div class="historyBox">
                 <div class="row">
                     <div class="col historyBox2">
-                        <c:import url="${request.getContextPath()}/WEB-INF/jsp/history/history.jsp" >
+                        <c:import url="../history/history.jsp" >
                         </c:import>
                     </div>
                 </div>

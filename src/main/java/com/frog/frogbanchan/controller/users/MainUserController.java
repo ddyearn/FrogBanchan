@@ -54,8 +54,9 @@ public class MainUserController {
             throws Exception {
         ModelAndView mav = new ModelAndView("/user/myPageForCommon");
 
-        String user = userSession.getUser().getUsername();
-        List<History> historyList = frogBanchan.findHistoryList(user);
+        String username = userSession.getUser().getUsername();
+        List<String> hateTagList = frogBanchan.findTagsByUsername(username);
+        List<History> historyList = frogBanchan.findHistoryList(username);
         for (History history : historyList) {
             String placeAndMenu = frogBanchan.findPlaceById(history.getPlaceId()).getName();
             placeAndMenu += "ANDMENU";
@@ -65,8 +66,9 @@ public class MainUserController {
             history.setPlaceId(placeAndMenu);
         }
         mav.addObject("user", userSession.getUser());
+        mav.addObject("hateTagList", hateTagList);
         mav.addObject("historyList", historyList);
-        mav.addObject("reservationList", frogBanchan.findReservationByUsername(user));
+        mav.addObject("reservationList", frogBanchan.findReservationByUsername(username));
 
         return mav;
     }
@@ -109,13 +111,6 @@ public class MainUserController {
         model.addAttribute("team", frogBanchan.findTeam(teamId));
 
         return "/team/teamPage";
-    }
-
-    @RequestMapping("/user/place/list")
-    public String handleRequest4(Model model) throws Exception {
-        model.addAttribute("placeList", frogBanchan.findAllPlaceList());
-
-        return "/user/placeList";
     }
 
     // 식구 리스트 조회

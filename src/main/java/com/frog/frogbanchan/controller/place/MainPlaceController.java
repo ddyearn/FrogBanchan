@@ -5,6 +5,7 @@ import com.frog.frogbanchan.domain.Place;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -51,6 +52,13 @@ public class MainPlaceController {
         mav.addObject("menuList", frogBanchan.findMenuListByPlaceId(placeId));
 
         return mav;
+    }
+
+    @RequestMapping("/place/list")
+    public String handleRequest4(Model model) throws Exception {
+        model.addAttribute("placeList", frogBanchan.findAllPlaceList());
+
+        return "/place/placeList";
     }
 
 
