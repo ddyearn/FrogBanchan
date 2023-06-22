@@ -117,7 +117,7 @@ public class ReservationController {
             frogBanchan.insertReservation(reservation);
             System.out.println(reservation);
 
-            return RESULT_VIEW;
+            return "redirect:/user/reservation";
         } catch (Exception e) {
             // Handle any parsing or conversion errors
             e.printStackTrace();
