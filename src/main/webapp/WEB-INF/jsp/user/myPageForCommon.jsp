@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../frogTop.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -48,6 +49,12 @@
             <div class="tagBox">
                 <div class="row">
                     <div class="col tagBox2">
+                        <c:if test="${fn:length(hateTagList) == 0}">
+                            <img class="surprisedFrogIcon" src="../../img/frog_surprised.jpg" />
+                            <div class="noTagListText">
+                                불호 태그가 없다구리 !
+                            </div>
+                        </c:if>
                         <c:import url="../user/tagList.jsp" >
                         </c:import>
                     </div>
@@ -71,9 +78,39 @@
 
             <div class="reservationBox">
                 <div class="row">
+                    <div class="col reservationBox2">
+                        <c:if test="${fn:length(reservationList) == 0}">
+                            <img class="frogFaceIcon" src="../../img/frog.jpg" />
+                            <div class="noRsvListText">
+                                예약이 없다구리
+                            </div>
+                        </c:if>
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item d-flex justify-content-between align-items-start historyItemBox">
+                            <div class="fw-bold ms-5">
+                                예약 날짜
+                            </div>
+                            <div class="fw-bold ms-5">
+                                가게
+                            </div>
+                          <span class="badge bg-success rounded-pill">인원</span>
+                        </li>
+                        <c:forEach var="reservation" items="${reservationList}" varStatus="status">
+                            <li class="list-group-item d-flex justify-content-between align-items-start reservationItemBox btn btn-outline-success">
+                                <div class="ms-2 mt-1">
+                                    ${reservation.reservationDate}
+                                </div>
+                                <div class="fw-bold mt-1">
+                                    ${reservation.placeId}
+                                </div>
+                              <span class="badge bg-success rounded-pill mt-1">${reservation.seat}</span>
+                            </li>
+                        </c:forEach>
+                      </ol>
+                    </div>
                 </div>
                 <div class="row">
-                    <button class="btn btn-outline-warning reservationBtn" type="button" onClick="location.href='/user/reservation'">나의 예약 관리</button>
+                    <button class="btn btn-outline-success reservationBtn" type="button" onClick="location.href='/user/reservation'">나의 예약 관리</button>
                 </div>
             </div>
 
