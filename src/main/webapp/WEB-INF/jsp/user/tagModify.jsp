@@ -16,13 +16,8 @@
 		<p>내가 싫어하는 것들</p>
     </div>
     <div class="hateListBox1">
-        <div class="hateListBox2">
-            <div class="hateListBox3">
-                <c:forEach var="tag" items="${hateTagList}" varStatus="status">
-                    <span class="hateTag" id="${tag}">${tag}</span>
-                </c:forEach>
-            </div>
-        </div>
+        <c:import url="../user/tagList.jsp" >
+        </c:import>
         <p class="hateListText2">
             추천에서 제외된다구리
         </p>
@@ -34,8 +29,8 @@
         <div class="hateAddBox2">
             <div class="hateAddBox3">
                 <form id="hateAddForm" action="/user/tag" method="POST">
-                    <input type="text" id="hateAddTag" value="" oninput="searchTag()" />
-                    <button id="addHateBtn" type="button">추가</button>
+                    <input type="text" id="hateAddTag" name="hateAddTag" value="" oninput="searchTag()" />
+                    <button class="btn btn-warning" id="addHateBtn" type="button">추가</button>
                     <button class="btn btn-outline-warning shadow-sm saveBtn" type="submit">
                         태그 저장
                     </button>
@@ -44,7 +39,7 @@
         </div>
     </div>
 
-    <button class="backBtn" type="button" onclick="location.href='/user/main'">뒤로가기</button>
+    <button class="btn btn-secondary backBtn" type="button" onclick="location.href='/user/main'">뒤로가기</button>
 
     <div class="searchBox">
         <div class="searchResult" ></div>

@@ -11,7 +11,7 @@ $(function() {
             return element === hateTag
         })) {
             hateTagList.push(hateTag);
-            $(".hateListBox3").append($("<span class='hateTag' id='" + hateTag + "'>" + hateTag + "</span>"));
+            $(".hateListBox3").append($("<span class='btn btn-outline-warning hateTag' id='" + hateTag + "'>" + hateTag + "</span>"));
         }
         $("input[name=hateAddTag]").val('');
     });

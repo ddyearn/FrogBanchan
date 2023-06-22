@@ -92,6 +92,7 @@ html, body {
     color: black;
 }
 
+
 .tagBox {
     position: absolute;
     width: 500px;
@@ -104,10 +105,27 @@ html, body {
     font-size: 25px;
     overflow: hidden;
 }
+.tagBox2 {
+    margin-top: 10px;
+    width: 400px;
+    height: 248px;
+    overflow: hidden;
+}
 .tagBtn {
+    margin-top: -10px;
     border: 1px solid black;
     color: black;
+    z-index: 3;
 }
+.hateTag {
+    margin: 15px; 15px 0px 0px;
+    padding-left: 11px;
+    font-size: 22px;
+    color: black;
+    --bs-btn-border-radius: 20px;
+    z-index: 2;
+}
+
 
 .reservationBox {
     position: absolute;
