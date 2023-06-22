@@ -40,16 +40,17 @@
                             List<Reservation> reservationNameList = (ArrayList<Reservation>)request.getAttribute("reservationNameList");
                             List<Reservation> reservationIDList = (ArrayList<Reservation>)request.getAttribute("reservationIDList");
                         %>
-                        <% for (int i = 1; i <= 7; i++) { %>
-                            <% int topValue = 20 + (i - 1) * 85; %>
-                            <% int lineValue = 90 + (i - 1) * 85; %>
-                            <h5 class="dateText" id="dateText<%= i %>" style="top: <%= topValue %>px;"><%= reservationDateList.get(i-1) %></h5>
-                            <h5 class="placenameText" id="nametext<%= i %>" style="top: <%= topValue %>px;"><%= reservationNameList.get(i-1) %></h5>
+                        <% for (int i = reservationDateList.size() - 1; i >= 0; i--) { %>
+                            <% int topValue = 20 + (reservationDateList.size()-i-1) * 85; %>
+                            <% int lineValue = 90 + (reservationDateList.size()-i-1) * 85; %>
+                            <h5 class="dateText" id="dateText<%= i %>" style="top: <%= topValue %>px;"><%= reservationDateList.get(i) %></h5>
+                            <h5 class="placenameText" id="nametext<%= i %>" style="top: <%= topValue %>px;"><%= reservationNameList.get(i) %></h5>
                             <h5 class="checkText" id="checktext<%= i %>" style="top: <%= topValue %>px;">보기</h5>
                             <button class="checkButton" id="checkButton<%= i %>" style="top: <%= topValue %>px;" onclick="location.href='/reservation/check?rsvId=${reservationIDList.get(i)}'"></button>
-                            <% if(i != 7) { %>
+                            <% if(reservationDateList.size() - i != 7) { %>
                             <p class="listLine" id="listLine<%= i %>" style="top: <%= lineValue %>px;"/>
                             <% } %>
+                            <% if(reservationDateList.size() - i == 7) {break;} %>
                         <% } %>
                     </div>
                 </div>
