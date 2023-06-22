@@ -24,6 +24,7 @@
                PLACE_MENU_ID AS placeMenuId
         FROM HISTORY
         WHERE USERNAME = #{username}
+        ORDER BY RECORDED_DATE DESC
     </select>
 
     <insert id="insertHistory" parameterType="History">

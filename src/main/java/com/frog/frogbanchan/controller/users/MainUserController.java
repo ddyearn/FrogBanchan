@@ -55,8 +55,8 @@ public class MainUserController {
 
         String user = userSession.getUser().getUsername();
         mav.addObject("user", userSession.getUser());
-        mav.addObject("history", frogBanchan.findHistoryList(user));
-//        mav.addObject("reservation", frogBanchan.findHistoryList(user));
+        mav.addObject("historyList", frogBanchan.findHistoryList(user));
+        mav.addObject("reservationList", frogBanchan.findHistoryList(user));
 
         return mav;
     }
