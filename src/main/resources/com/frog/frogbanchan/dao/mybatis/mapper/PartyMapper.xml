@@ -28,6 +28,17 @@
         ORDER BY MEET_DATE
     </select>
 
+    <select id="findPartyByCreator" resultType="Party">
+        SELECT PARTY_ID AS partyId,
+            CREATOR,
+            MEET_DATE AS meetDate,
+            PLACE_ID AS placeId,
+            CONTENT
+        FROM PARTY
+        WHERE CREATOR = #{creator}
+        ORDER BY MEET_DATE
+    </select>
+
     <insert id="insertParty" parameterType="Party">
         INSERT INTO PARTY (PARTY_ID, CREATOR, MEET_DATE, PLACE_ID, CONTENT)
         VALUES (SEQUENCE_Party.nextval, #{creator}, #{meetDate}, #{placeId}, #{content})
@@ -74,6 +85,16 @@
             WRITTEN_DATE AS writtenDate,
             CONTENT
         FROM APPLY
+    </select>
+
+    <select id="findApplyByWriter" resultType="Apply">
+        SELECT APPLY_ID AS applyId,
+            PARTY_ID AS partyId,
+            WRITER,
+            WRITTEN_DATE AS writtenDate,
+            CONTENT
+        FROM APPLY
+        WHERE WRITER = #{writer}
     </select>
 
     <insert id="insertApply" parameterType="Apply">

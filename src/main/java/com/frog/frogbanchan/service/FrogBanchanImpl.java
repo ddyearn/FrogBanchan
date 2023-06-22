@@ -314,4 +314,12 @@ public class FrogBanchanImpl implements FrogBanchanFacade {
         return partyDao.findApplyList();
     }
 
+    public List<Party> findPartyByCreator(String creator) {
+        return partyDao.findPartyByCreator(creator);
+    }
+
+    public List<Apply> findApplyByWriter(String writer) {
+        return partyDao.findApplyByWriter(writer);
+    }
+
 }

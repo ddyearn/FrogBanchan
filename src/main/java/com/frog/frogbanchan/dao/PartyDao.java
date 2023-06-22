@@ -20,7 +20,7 @@ public interface PartyDao {
     Party findParty(int partyId) throws DataAccessException;
     
     // 식구 모집 리스트 조회
-    List<Party> findPartyList() throws DataAccessException; 
+    List<Party> findPartyList() throws DataAccessException;
     
     //식구 아이디 사전 조회
     int getNextPartyId() throws DataAccessException;
@@ -42,4 +42,13 @@ public interface PartyDao {
 
  	// 전체 apply 가져오기
  	List<Apply> findApplyList() throws DataAccessException;
+
+
+    // username으로 식구 조회
+    List<Party> findPartyByCreator(String creator) throws DataAccessException;
+
+    // username으로 apply 조회
+    List<Apply> findApplyByWriter(String writer) throws DataAccessException;
+
+
 }

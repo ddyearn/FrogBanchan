@@ -64,4 +64,13 @@ public class MybatisPartyDao implements PartyDao {
  		return partyMapper.findApplyList();
  	}
 
+
+	public List<Party> findPartyByCreator(String creator) throws DataAccessException {
+		return partyMapper.findPartyByCreator(creator);
+	}
+
+	public List<Apply> findApplyByWriter(String writer) throws DataAccessException {
+		return partyMapper.findApplyByWriter(writer);
+	}
+
 }
