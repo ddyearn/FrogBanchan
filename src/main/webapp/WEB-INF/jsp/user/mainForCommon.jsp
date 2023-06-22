@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../frogTop.jsp"%>
 
@@ -18,6 +19,12 @@
 </head>
 
 <body>
+    <%!
+        String getDate(String meetDate) {
+            return meetDate.split(" ")[0];
+        }
+    %>
+
 	<img class="frogLogoIcon" src="../../img/logo.jpg" />
 
 	<div class="recommendBox1">
@@ -53,14 +60,61 @@
   </div>
 
   <div class="placeListBox">
-	<p class="placeListText">가게 둘러보기</p>
-    <button type="button" onClick="location.href='/place/list'">가게 목록 보기</button>
-	(list view 추가 예정)
-  </div>
-  <div class="partyListBox">
-	<p class="partyListText">파티</p>
-	<button type="button" onClick="location.href='/party/list'">파티 모집 보기</button>
-	(list view 추가 예정)
+	<p class="placeListText">
+	    <button class="btn btn-dark" type="button" onClick="location.href='/place/list'">가게 둘러보기</button>
+	</p>
+    <div class="placeBox">
+        <div class="row">
+            <div class="col placeBox2">
+                <ol class="list-group list-group-numbered">
+                    <li class="list-group-item d-flex justify-content-between align-items-start placeItemBox">
+                        <div class="fw-bold ms-5">가게</div>
+                        <div class="fw-bold ms-5">내용</div>
+                        <div class="fw-bold ms-5">평가</div>
+                    </li>
+                    <c:forEach var="place" items="${placeList}" varStatus="status">
+                        <li class="list-group-item d-flex justify-content-between align-items-start placeItemBox btn btn-outline-success">
+                            <div class="ms-2 mt-1">
+                                ${fn:substring(place.address,0,7)}...
+                            </div>
+                            <span class="badge bg-success rounded-pill mt-1">${place.name}</span>
+                            <div class="fw-bold mt-1">
+                                ${place.totalScore}
+                            </div>
+                        </li>
+                    </c:forEach>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="partyListBox">
+    <p class="partyListText">
+        <button class="btn btn-dark" type="button" onClick="location.href='/party/list'">파티 모집 보기</button>
+    </p>
+    <div class="partyBox">
+        <div class="row">
+            <div class="col partyBox2">
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item d-flex justify-content-between align-items-start partyItemBox">
+                    <div class="fw-bold ms-5">날짜</div>
+                    <div class="fw-bold ms-5">내용</div>
+                    <div class="fw-bold ms-5">가게</div>
+                </li>
+                <c:forEach var="party" items="${partyList}" varStatus="status">
+                    <c:set value="${party.meetDate}" var="meetDate" />
+                    <li class="list-group-item d-flex justify-content-between align-items-start partyItemBox btn btn-outline-success">
+                        <div class="ms-2 mt-1">
+                            <%= getDate(pageContext.getAttribute("meetDate").toString()) %>
+                        </div>
+                        <span class="badge bg-success rounded-pill mt-1">${fn:substring(party.content,0,7)}...</span>
+                        <div class="fw-bold mt-1">
+                            ${fn:substring(party.placeId,0,3)}...
+                        </div>
+                    </li>
+                </c:forEach>
+              </ol>
+            </div>
+        </div>
   </div>
 
 

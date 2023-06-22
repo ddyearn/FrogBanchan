@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <button class="btn btn-secondary backBtn" type="button" onclick="location.href='/user/main'">뒤로가기</button>
+    <button class="btn btn-secondary backBtn" type="button" onclick="location.href='/user/myPage'">뒤로가기</button>
 
     <div class="searchBox">
         <div class="searchResult" ></div>

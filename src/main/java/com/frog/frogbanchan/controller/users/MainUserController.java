@@ -43,8 +43,24 @@ public class MainUserController {
         mav.addObject("teamList", teamList);
         mav.addObject("teamMap", teamMap);
 
-        List<String> hateTagList = frogBanchan.findTagsByUsername(user);
-        mav.addObject("hateTagList", hateTagList);
+        List<Place> placeList = frogBanchan.findAllPlaceList();
+        int size = placeList.size();
+        if (size > 7) {
+            size = 7;
+        }
+        placeList = placeList.subList(0, size);
+        List<Party> partyList = frogBanchan.findPartyList();
+        size = partyList.size();
+        if (size > 7) {
+            size = 7;
+        }
+        partyList = partyList.subList(0, size);
+        for (Party party : partyList) {
+            party.setPlaceId(frogBanchan.findPlaceById(party.getPlaceId()).getName());
+        }
+
+        mav.addObject("placeList", placeList);
+        mav.addObject("partyList", partyList);
 
         return mav;
     }
