@@ -5,9 +5,15 @@
 <html>
 <head>
     <title>회원 가입</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/joinStyle.css">
 </head>
 <body>
-    <button type="button" onClick="location.href='/join/user'">일반 회원</button>
-    <button type="button" onClick="location.href='/join/place'">사업자 회원</button>
+    <div class="btnGroup">
+        <button class="button button1" type="button" onClick="location.href='/join/user'"><span>일반 회원</span></button><br/><br/>
+        <button class="button button2" type="button" onClick="location.href='/join/place'"><span>사업자 회원</span></button>
+        <br/><br/><br/>
+        <button class="btn btn-outline-dark" type="button" onClick="location.href='/login'">로그인 화면으로</button>
+    </div>
 </body>
 </html>
