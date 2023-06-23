@@ -1,71 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../frogTop.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reservation Form</title>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            background-color: #69c956;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            width: 400px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .form-group select {
-            width: 100%;
-            padding: 5px;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .button {
-            background-color: #49a03e;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin: 0 10px;
-            cursor: pointer;
-        }
-
-        .button:hover {
-            background-color: #52c34d;
-        }
-    </style>
+    <title>예약 폼</title>
+	<link rel="stylesheet" type="text/css" href="../../css/reservation/reservationFormStyle.css">
 </head>
 
 <body>
     <form action="/reservation/result?placeId=${placeId}" method="post">
     <div class="container">
-        <h2>Reservation</h2>
+        <h1 class="title">예약</h1>
         <div class="form-group">
             <label>Date:</label>
             <span><%= request.getAttribute("selectedDay") %></span>
@@ -92,8 +37,8 @@
         <div class="button-container">
             <input type="hidden" name="selectedDay" value="${selectedDay}"">
             <input type="hidden" name="selectedTime" value="${selectedTime}"">
-            <input type="submit" class="button" value="예약하기"></button>
-            <button class="button" type="button" onclick="location.href='/reservation/time?placeId=${placeId}'">Back</button>
+            <button class="button mt-3" type="button" onclick="location.href='/reservation/time?placeId=${placeId}&selectedDay=${selectedDay}'">뒤로가기</button>
+            <input type="submit" class="button mt-3" value="예약하기"></button>
         </div>
     </div>
     </form>

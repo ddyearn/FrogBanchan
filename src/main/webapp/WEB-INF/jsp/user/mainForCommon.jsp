@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>mainForCommon</title>
+	<title>메인 화면</title>
 	<link rel="stylesheet" type="text/css" href="../../css/mainStyle.css">
 
 	<style>

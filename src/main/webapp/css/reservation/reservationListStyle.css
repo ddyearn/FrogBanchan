@@ -1,54 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
-
+html, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 /* Rectangle 1 */
 #rectangle1 {
-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 1220px;
+    height: 750px;
+    left: 150px;
+    top: 233px;
 
-position: absolute;
-width: 1220px;
-height: 750px;
-left: 150px;
-top: 233px;
-
-background: #FFFFFF;
-border: 1px solid #000000;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 30px;
-
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
 }
 
 /* Group 3 */
 #listWrapper {
-position: absolute;
-width: 950px;
-height: 610px;
-left: 60px;
-top: 30px;
+    position: absolute;
+    width: 950px;
+    height: 610px;
+    margin-left: 60px;
+    margin-top: 30px;
 }
 
 /* Rectangle 2 */
 #rectangle2 {
-box-sizing: border-box;
+    box-sizing: border-box;
 
-position: absolute;
-width: 950px;
-height: 610px;
-left: 80px;
-top: 80px;
+    position: absolute;
+    width: 950px;
+    height: 610px;
+    left: 80px;
+    top: 80px;
 
-background: #FFFFFF;
-border: 1px solid #000000;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 30px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
 }
 
-
-
 .listLine {
-border: 1px solid #000000;
-transform: matrix(1, 0, 0, 1, 0, 0);
-position: absolute;
+    border: 1px solid #000000;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    position: absolute;
     width: 949.88px;
     height: 3px;
     left: 0px;
@@ -68,6 +71,7 @@ position: absolute;
     height: 60px;
     left: 700px;
     top: 344px;
+    font-size: 33px;
 }
 
 
@@ -76,7 +80,7 @@ position: absolute;
     font-family: 'Poor Story';
     font-style: normal;
     font-weight: 400;
-    font-size: 48px;
+    font-size: 25px;
     line-height: 60px;
     display: inline;
     align-items: center;
@@ -99,7 +103,7 @@ position: absolute;
     font-family: 'Poor Story';
     font-style: normal;
     font-weight: 400;
-    font-size: 48px;
+    font-size: 33px;
     line-height: 60px;
     display: inline;
     align-items: center;
@@ -119,7 +123,7 @@ position: absolute;
     font-family: 'Poor Story' !important;
     font-style: normal !important;
     font-weight: 400 !important;
-    font-size: 48px !important;
+    font-size: 33px !important;
     line-height: 60px !important;
     display: inline !important;
     align-items: center !important;
@@ -138,27 +142,27 @@ position: absolute;
 
 /* 예약 조회 */
 #titleWrap {
-position: absolute;
-width: 569px;
-height: 87px;
-left: 600px;
-top: 102px;
+    position: absolute;
+    width: 569px;
+    height: 87px;
+    left: 700px;
+    top: 102px;
 
-font-family: 'Poor Story';
-font-style: normal;
-font-weight: 400;
-font-size: 80px;
-line-height: 120px;
-display: flex;
-align-items: center;
+    font-family: 'Poor Story';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 70px;
+    line-height: 120px;
+    display: flex;
+    align-items: center;
 
-color: #000000;
+    color: #000000;
 }
 
 #bttnWrapper {
     height: 20px;
     width: 20px;
-    left: 1200px;
+    left: 700px;
     top: 50px;
     overflow: hidden;
     position: absolute;
@@ -166,33 +170,34 @@ color: #000000;
 /* Logout */
 #backbutton {
     position: relative;
-    left: 350px;
-    top: 20px;
+    left: 150px;
 
     background-color: whitesmoke;
 
     font-family: 'Poor Story';
     font-style: normal;
+    color: black;
     font-weight: 400;
-    font-size: 40px;
+    font-size: 25px;
+    z-index: 5;
 }
 
 /* 최근 6개의 예약만 보여집니다. */
 #explain {
-position: absolute;
-width: 608px;
-height: 49px;
-left: 300px;
-top: 20px;
+    position: absolute;
+    width: 608px;
+    height: 49px;
+    left: 20%;
+    top: 140px;
 
-font-family: 'Poor Story';
-font-style: normal;
-font-weight: 400;
-font-size: 40px;
-line-height: 60px;
-display: flex;
-align-items: center;
-text-align: center;
+    font-family: 'Poor Story';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 60px;
+    display: flex;
+    align-items: center;
+    text-align: center;
 
-color: #000000;
+    color: #000000;
 }
