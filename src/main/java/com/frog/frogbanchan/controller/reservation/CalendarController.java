@@ -98,8 +98,6 @@ public class CalendarController {
         System.out.println("reservedDays: " + reservedDays);
         System.out.println("---------");
 
-        String[] selectedDays = new String[100];
-
         Calendar cal = java.util.Calendar.getInstance();
         int currentMonth = cal.get(java.util.Calendar.MONTH);
 

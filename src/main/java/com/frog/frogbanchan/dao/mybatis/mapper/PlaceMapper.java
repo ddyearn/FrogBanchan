@@ -2,13 +2,11 @@ package com.frog.frogbanchan.dao.mybatis.mapper;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.frog.frogbanchan.domain.Place;
-import org.springframework.dao.DataAccessException;
 
 @Mapper
 public interface PlaceMapper {

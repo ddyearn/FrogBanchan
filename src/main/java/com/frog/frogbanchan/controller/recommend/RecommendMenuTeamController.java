@@ -1,7 +1,6 @@
 package com.frog.frogbanchan.controller.recommend;
 
 import com.frog.frogbanchan.controller.TeamSession;
-import com.frog.frogbanchan.controller.UserSession;
 import com.frog.frogbanchan.domain.Menu;
 import com.frog.frogbanchan.domain.Team;
 import com.frog.frogbanchan.domain.Users;

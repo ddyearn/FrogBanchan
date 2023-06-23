@@ -1,8 +1,6 @@
 package com.frog.frogbanchan.controller.users;
 
 import com.frog.frogbanchan.controller.UserSession;
-//import com.frog.frogbanchan.service.FrogBanchanFacade;
-import com.frog.frogbanchan.domain.Users;
 import com.frog.frogbanchan.service.WithdrawalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,13 +11,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class DeleteUserController {
-
-//    private FrogBanchanFacade frogBanchan;
-//    @Autowired
-//    public void setFrogBanchan(FrogBanchanFacade frogBanchan) {
-//        this.frogBanchan = frogBanchan;
-//    }
-
+	
     private WithdrawalService withdrawalService;
     @Autowired
     public void setWithdrawalService(WithdrawalService withdrawalService) {
@@ -31,7 +23,7 @@ public class DeleteUserController {
                                 HttpSession session) throws Exception {
 
         String user = userSession.getUser().getUsername();
-        Users users = withdrawalService.withdrawalUser(user);
+        withdrawalService.withdrawalUser(user);
         session.removeAttribute("userSession");
 
         return "redirect:/login";

@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 
 import com.frog.frogbanchan.controller.TeamSession;
 import com.frog.frogbanchan.domain.History;
-import com.frog.frogbanchan.domain.Place;
 import com.frog.frogbanchan.domain.PlaceMenu;
 import com.frog.frogbanchan.domain.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.frog.frogbanchan.controller.UserSession;
 import com.frog.frogbanchan.service.FrogBanchanFacade;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller

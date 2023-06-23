@@ -1,7 +1,6 @@
 package com.frog.frogbanchan.dao.mybatis.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.dao.DataAccessException;
 
 import java.sql.Timestamp;
 import java.util.List;

@@ -50,9 +50,5 @@
         </div>
         </div>
     </div>
-
-    <div class="reservListBox">
-        <p class="reservListText">최근 예약 신청</p>
-    </div>
 </body>
 </html>

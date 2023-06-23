@@ -111,7 +111,7 @@
         <div id="titleWrap">
         마이페이지
         <br/>
-            <h6 id="backbutton" onclick="location.href='/user/myPage'">뒤로가기</h6>
+            <h6 id="backbutton" onclick="location.href='/place/main'">뒤로가기</h6>
         </div>
     <div id="rectangle1">
         <div id="content">
