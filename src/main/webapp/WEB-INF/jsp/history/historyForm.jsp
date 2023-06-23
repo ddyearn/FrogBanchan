@@ -32,7 +32,6 @@
             <div class="contentWrap">
                 <div>의 음식은 어떠셨나구리? 별점을 남겨주시구리~!</div>
                 <label for="score">별점</label>:
-                <form:input path="history.score" value="${history.score}" readonly="false"/> <br/>
                 <div class="starpoint_wrap">
                     <div class="starpoint_box">
                         <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5점</span></label>
@@ -45,39 +44,36 @@
                         <label for="starpoint_8" class="label_star" title="4"><span class="blind">4점</span></label>
                         <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
                         <label for="starpoint_10" class="label_star" title="5"><span class="blind">5점</span></label>
-                        <input type="radio" name="starpoint" id="starpoint_1" class="star_radio">
-                        <input type="radio" name="starpoint" id="starpoint_2" class="star_radio">
-                        <input type="radio" name="starpoint" id="starpoint_3" class="star_radio">
-                        <input type="radio" name="starpoint" id="starpoint_4" class="star_radio">
-                        <input type="radio" name="starpoint" id="starpoint_5" class="star_radio">
-                        <input type="radio" name="starpoint" id="starpoint_6" class="star_radio">
-                        <input type="radio" name="starpoint" id="starpoint_7" class="star_radio">
-                        <input type="radio" name="starpoint" id="starpoint_8" class="star_radio">
-                        <input type="radio" name="starpoint" id="starpoint_9" class="star_radio">
-                        <input type="radio" name="starpoint" id="starpoint_10" class="star_radio">
+                        <form:radiobutton path="history.score" name="starpoint" id="starpoint_1" class="star_radio" value="1"/>
+                        <form:radiobutton path="history.score" name="starpoint" id="starpoint_2" class="star_radio" value="1"/>
+                        <form:radiobutton path="history.score" name="starpoint" id="starpoint_3" class="star_radio" value="2"/>
+                        <form:radiobutton path="history.score" name="starpoint" id="starpoint_4" class="star_radio" value="2"/>
+                        <form:radiobutton path="history.score" name="starpoint" id="starpoint_5" class="star_radio" value="3"/>
+                        <form:radiobutton path="history.score" name="starpoint" id="starpoint_6" class="star_radio" value="3"/>
+                        <form:radiobutton path="history.score" name="starpoint" id="starpoint_7" class="star_radio" value="4"/>
+                        <form:radiobutton path="history.score" name="starpoint" id="starpoint_8" class="star_radio" value="4"/>
+                        <form:radiobutton path="history.score" name="starpoint" id="starpoint_9" class="star_radio" value="5"/>
+                        <form:radiobutton path="history.score" name="starpoint" id="starpoint_10" class="star_radio" value="5"/>
                         <span class="starpoint_bg"></span>
                     </div>
                 </div>
 
+
                 <div>무슨 메뉴를 먹었는지 알려주시구리~!</div>
-
-                <form:label path="history.placeMenuId">메뉴</form:label>:
-                <c:forEach var="placeMenu" items="${placeMenuList}" varStatus="status">
-                <label class="btn btn-outline-success form-check">
-                    <form:radiobutton path="history.placeMenuId" name="history.placeMenuId" value="${placeMenu.placeMenuId}" label="${placeMenu.name}" class="btn-check"  autocomplete="off"/>
-                </label>
-                            <%--                    <form:label path="history.placeMenuId" class="" for="${placeMenu.placeMenuId}">${placeMenu.name}</form:label>id="${placeMenu.placeMenuId}"--%>
-                </c:forEach>
-<%--                <form:input path="history.placeMenuId" value="${history.placeMenuId}" readonly="false" type="hidden" id="${history.placeMenuId}" name="${history.placeMenuId}"/>--%>
-
-
+                <form:select path="history.placeMenuId">
+                    <option value="">-- 메뉴 선택 --</option>
+                    <c:forEach var="placeMenu" items="${placeMenuList}">
+                        <option value="${placeMenu.placeMenuId}">${placeMenu.name}</option>
+                    </c:forEach>
+                </form:select>
+                <form:errors path="history.placeMenuId" class="error"/> <br/>
 
                 <br/>
             </div>
             <div class="bttnWrapper">
                 <!--폼 입력받는 부분에서는 history.back이나 history.go(-1) 동작 이상 있을 수 있음-->
                 <button class="backButton" type="button" onclick="location.href ='/history/list'">뒤로가기</button>
-                <button class="createButton" type="submit">저장하기</button>
+                <button class="saveButton" type="submit">저장하기</button>
                 <button class="deleteButton" type="button" onclick="location.href='/placemenu/delete?placeMenuId=${placeMenuId}'">삭제하기</button>
             </div>
         </form:form>
