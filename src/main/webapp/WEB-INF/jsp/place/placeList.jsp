@@ -6,18 +6,33 @@
 <html>
 <head>
     <title>가게목록</title>
+	<link rel="stylesheet" type="text/css" href="../css/place/placeListStyle.css">
 </head>
 <body>
-    <br/><br/><br/><br/>
-    <c:forEach var="place" items="${placeList}" varStatus="status">
-        <div>
-            ${place.placeId}&nbsp;
-            ${place.name}&nbsp;
-            <button type="button" onClick="location.href='/place/view?placeId=${place.placeId}'">가게 정보 조회</button>
-            <button type="button" onClick="location.href='/reservation/calendar?placeId=${place.placeId}'">이 가게 예약하러 가기</button>
-        </div><br/>
-    </c:forEach>
-    <br/><br/>
-    <button type="button" onClick="history.go(-1)">뒤로가기</button>
+    <div class="titleBox">
+        가게목록
+    </div>
+    <div class="placeFormBox1">
+        <div class="placeFormBox2 text-center">
+            <c:forEach var="place" items="${placeList}" varStatus="status">
+            <div class="row">
+                <div class="col col-3">
+                    ${place.placeId}
+                </div>
+                <div class="inputBox col col-5">
+                    ${place.name}
+                </div>
+                <div class="col col-2">
+                    <button class="btn btn-outline-success" type="button" onClick="location.href='/place/view?placeId=${place.placeId}'">가게 정보 조회</button>
+                </div>
+            </div>
+            </c:forEach>
+
+            </br>
+        </div>
+    </div>
+    <div class="btnGroup">
+        <button class="btn btn-secondary backBtn type="button" onClick="history.go(-1)">뒤로가기</button>
+    </div>
 </body>
 </html>
