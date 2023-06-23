@@ -204,10 +204,16 @@ public class TestContoller {
         return mav;
     }
 
-    @RequestMapping("/test/map")
-    public ModelAndView mapTest() {
-        return new ModelAndView("recommend/map");
-    }
+//    @RequestMapping("/test/map")
+//    public ModelAndView mapTest() {
+//        return new ModelAndView("recommend/relocate");
+//    }
+//
+//    @RequestMapping("/test/reloc")
+//    public ModelAndView locationTest() {
+//
+//        return new ModelAndView("recommend/relocate");
+//    }
 
     @RequestMapping("/react")
     public String reactTest() {
