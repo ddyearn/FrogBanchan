@@ -67,7 +67,7 @@
 
     <div class="recommendBox">
         <form id="recommendForm" action="<c:url value='/recommend/team/recommendMenu' />" method="POST">
-            <button type="submit" >추천 go</button>
+            <button class="btn btn-warning recommendBtn" type="submit" >추천 go !!</button>
         </form>
     </div>
 </body>

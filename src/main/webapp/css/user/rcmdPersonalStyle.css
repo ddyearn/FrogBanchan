@@ -22,7 +22,7 @@ html, body {
     height: 150px;
     position: absolute;
     margin-top: 150px;
-    margin-left: 100px;
+    margin-left: 300px;
     background: #fff;
 }
 .likeListBox2 {
@@ -48,7 +48,7 @@ html, body {
 }
 .likeListText1 {
     position: absolute;
-    margin-left: 250px;
+    margin-left: 550px;
     margin-top: 125px;
     padding: 10px;
     background: #fff;
@@ -67,7 +67,7 @@ html, body {
     height: 150px;
     position: absolute;
     margin-top: 150px;
-    margin-left: 950px;
+    margin-left: 1150px;
     background: #fff;
 }
 .likeAddBox2 {
@@ -83,7 +83,7 @@ html, body {
 }
 .likeAddText1 {
     position: absolute;
-    margin-left: 1100px;
+    margin-left: 1300px;
     margin-top: 125px;
     padding: 10px;
     background: #fff;
@@ -96,7 +96,7 @@ html, body {
     height: 150px;
     position: absolute;
     margin-top: 570px;
-    margin-left: 100px;
+    margin-left: 300px;
     background: #fff;
 }
 .hateListBox2 {
@@ -118,7 +118,7 @@ html, body {
 }
 .hateListText1 {
     position: absolute;
-    margin-left: 250px;
+    margin-left: 550px;
     margin-top: 545px;
     padding: 10px;
     background: #fff;
@@ -164,6 +164,9 @@ html, body {
 
 .recommendBox {
     position: absolute;
-    margin-left: 500px;
-    margin-top: 390px;
+    margin-left: 830px;
+    margin-top: 370px;
+}
+.recommendBtn {
+    font-size: 30px;
 }

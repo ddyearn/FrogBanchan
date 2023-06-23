@@ -32,7 +32,7 @@
                 <form id="likeAddForm">
                     <input type="text" style="display:none;" />
                     <input type="text" name="likeAddTag" value="" />
-                    <button id="addLikeBtn" type="button">추가</button>
+                    <button class="btn btn-outline-warning" id="addLikeBtn" type="button">추가</button>
                 </form>
             </div>
         </div>
@@ -65,7 +65,7 @@
                     <form id="hateAddForm">
                         <input type="text" style="display:none;" />
                         <input type="text" name="hateAddTag" value="" />
-                        <button id="addHateBtn" type="button">추가</button>
+                        <button class="btn btn-outline-warning" id="addHateBtn" type="button">추가</button>
                     </form>
                 </div>
             </div>
@@ -77,7 +77,7 @@
             <c:forEach var="tag" items="${hateList}" varStatus="status">
                 <input type="hidden" name="hateTags" value="${tag}" />
             </c:forEach>
-            <button type="submit" >추천 go</button>
+            <button class="btn btn-warning recommendBtn" type="submit" >추천 go !!</button>
         </form>
     </div>
 </body>
