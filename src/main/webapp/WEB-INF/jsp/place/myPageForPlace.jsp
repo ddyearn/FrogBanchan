@@ -19,16 +19,30 @@
             display: flex;
             justify-content: center;
             margin-top: 50px;
+            
         }
 
         #bulletin-board {
-            width: 300px;
-            height: 400px;
-            background-color: whitesmoke;
+            width: 450px;
+            height: 500px;
+            background-color: rgb(244, 255, 237);
             padding: 20px;
             margin-right: 20px;
-            font-weight: bold;
-            font-size:17px;
+            left: -20px;
+            position: relative;
+
+            font-family: 'Poor Story';
+            font-style: normal;
+            font-weight: 200;
+            font-size: 30px;
+            line-height: 30px;
+            display: flex;
+            align-items: center;
+            
+            color: #000000;
+
+            border: 1px solid #000000;
+            border-radius: 30px;
         }
 
         #info {
@@ -51,11 +65,21 @@
         #modify-btn, #calendar-btn {
             font-weight: bold;
             padding: 40px 30px;
-            background-color: greenyellow;
+            background-color: rgb(196, 250, 114);
             border: none;
             margin-right: 10px;
             cursor: pointer;
             font-size: 16px;
+            border: 2px solid black;
+            border-radius: 20px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            font-family: 'Poor Story';
+            font-style: normal;
+            font-weight: 200;
+            font-size: 30px;
+            line-height: 30px;
+            display: flex;
+            align-items: center;
         }
 
         #actions {
@@ -71,36 +95,42 @@
             justify-content: center;
             align-items: flex-start;
             height: 100%;
-            margin: 10px 0;
             border-bottom: 2px solid black;
             padding-bottom: 5px;
-            width: 200px; 
+            width: 400px; 
+            position: relative;
+            top: 50px;
         }        
         
     </style>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../../css/place/placeMyPage.css">
 </head>
 <body>
-    <div id="header">
-        <h1>MYPAGE</h1>
-        <a href="#"><img src="back_icon.png" alt="Back" width="30" height="30"></a>
-    </div>
-
-    <div id="content">
-        <div id="bulletin-board">
-            <div id="info">
-                INFO
-            </div>
-            <div id="info-details">
-                <p>ID    ${place.placeId}</p><p/><p/>
-                <p>상호명   <span/>  ${place.name}</p><p/><p/>
-                <p>주소  <span/>   ${place.address}</p><p/><p/>
-            </div>
+    <div id="mainbox">
+        <div id="titleWrap">
+        마이페이지
+        <br/>
+            <h6 id="backbutton" onclick="location.href='/user/myPage'">뒤로가기</h6>
         </div>
+    <div id="rectangle1">
+        <div id="content">
+            <div id="bulletin-board">
+                <div id="info">
+                    INFO
+                </div>
+                <div id="info-details">
+                    <p>&nbsp;ID &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  <span/>   - - - - - -    &nbsp; &nbsp; ${place.placeId}</p>
+                    <p>&nbsp;상호명 &nbsp;&nbsp; <span/>  - - - - - -   &nbsp; ${place.name}</p>
+                    <p>&nbsp;주소 &nbsp;&nbsp; </p><p> &nbsp; ${place.address}</p>
+                </div>
+            </div>
 
-        <div>
-            <div id="actions">
-                <button id="modify-btn" onclick="location.href='/place/modify'">정보 수정</button>
-                <button id="calendar-btn" onclick="location.href='/reservation/calendar/forplace'">예약 현황(캘린더)</button>
+            <div>
+                <div id="actions">
+                    <button id="modify-btn" onclick="location.href='/place/modify'">정보 수정</button>
+                    <button id="calendar-btn" onclick="location.href='/reservation/calendar/forplace'">예약 현황(캘린더)</button>
+                </div>
             </div>
         </div>
     </div>

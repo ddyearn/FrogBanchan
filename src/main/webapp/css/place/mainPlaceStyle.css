@@ -38,7 +38,7 @@ html, body {
 .reservTodayText {
     margin-top: 250px;
     margin-left: 30%;
-    font-size: 22px;
+    font-size: 30px;
 }
 
 .reservListBox {
@@ -111,3 +111,132 @@ html, body {
 {
     transform: translatey(100%) rotatex(90deg);
 }
+
+/* 20230314 */
+.dateText {
+    font-family: 'Poor Story' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 24px;
+    line-height: 30px;
+    display: inline !important;
+    align-items: center !important;
+    text-align: center !important;
+    
+    color: white;
+
+
+    position: absolute !important;
+    width: 252px !important;
+    height: 44px !important;
+    left: -40px !important;
+    top: 20px;
+}
+
+
+.nameText{
+    font-family: 'Poor Story';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    display: inline;
+    align-items: center;
+    text-align: center;
+    
+    color: white;
+
+    position: absolute;
+    width: 326.41px;
+    height: 60.08px;
+    left: 20px;
+    top: 343.86px;
+}
+
+.seatText{
+    font-family: 'Poor Story';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    display: inline;
+    align-items: center;
+    text-align: center;
+    
+    color: white;
+    position: absolute;
+    width: 86.72px;
+    height: 43.44px;
+    left: 250px;
+    top: 353px;
+    bottom: 70px;
+    z-index: 1;
+}
+
+/* 최근 6개의 예약만 보여집니다. */
+#explain {
+    position: absolute;
+    width: 60px;
+    height: 49px;
+    left: 40px;
+    top: 10px;
+    
+    font-family: 'Poor Story';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 60px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+    color: #000000;
+}
+
+#todayText {
+    position: absolute;
+    width: 60px;
+    height: 49px;
+    left: -30px;
+    top: 5px;
+    margin-top: 290px;
+    
+    font-family: 'Poor Story';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 60px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+    color: #000000;
+}
+
+#rectangle1 {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 380px;
+    height: 351px;
+    left: -80px;
+    top: 350px;
+    background: #8ae044;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+}
+
+
+.listLine {
+    border: 1px solid #000000;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    position: absolute;
+        width: 380px;
+        height: 3px;
+        left: 0px;
+        top: 100px;
+        display: block;
+    }
+
+
