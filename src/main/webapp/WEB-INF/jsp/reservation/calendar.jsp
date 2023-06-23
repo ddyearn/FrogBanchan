@@ -2,94 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.Calendar" %>
+<%@ include file="../frogTop.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Calendar</title>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            background-color: rgb(206, 246, 199);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            width: 800px; /* 달력의 가로 크기 조정 */
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid white;
-            color: white;
-            font-weight: bold;
-        }
-
-        th {
-            background-color: #49a03e;
-        }
-
-        td:hover {
-            background-color: #52c34d;
-            cursor: pointer;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .button {
-            background-color: #49a03e;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin: 0 10px;
-            cursor: pointer;
-        }
-
-        .button:hover {
-            background-color: #52c34d;
-        }
-
-        .transparent {
-            opacity: 0.5; /* 투명도 설정 */
-        }
-
-        .transparent-day {
-            opacity: 1; /* 투명도 설정 */
-        }
-    
-        .reserved {
-            background-color: gray;
-            cursor: not-allowed;
-        }
-    
-        .selected {
-            background-color: green !important;
-            color: white !important;
-        }
-     
-    </style>
+    <title>예약 캘린더</title>
+	<link rel="stylesheet" type="text/css" href="../../css/reservation/calendarStyle.css">
 </head>
 
 <body>

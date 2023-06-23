@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../../../css/user/reservationListStyle.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/reservation/reservationListStyle.css">
     <title>reservations</title>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -30,7 +30,7 @@
             <div id="titleWrap">
             예약 조회
             <br/>
-                <h6 id="backbutton" onclick="location.href='/user/myPage'">뒤로가기</h6>
+                <button class="btn btn-secondary" id="backbutton" onclick="location.href='/user/myPage'">뒤로가기</button>
             </div>
             <div id="rectangle1">
                 <h3 id="explain">최근 7개의 예약만 보여집니다. (예약순)</h3>
@@ -45,8 +45,7 @@
                             <% int lineValue = 90 + (reservationDateList.size()-i-1) * 85; %>
                             <h5 class="dateText" id="dateText<%= i %>" style="top: <%= topValue %>px;"><%= reservationDateList.get(i) %></h5>
                             <h5 class="placenameText" id="nametext<%= i %>" style="top: <%= topValue %>px;"><%= reservationNameList.get(i) %></h5>
-                            <h5 class="checkText" id="checktext<%= i %>" style="top: <%= topValue %>px;">보기</h5>
-                            <button class="checkButton" id="checkButton<%= i %>" style="top: <%= topValue %>px;" onclick="location.href='/reservation/check?rsvId=${reservationIDList.get(i)}'"></button>
+                            <button class="checkButton" id="checkButton<%= i %>" style="top: <%= topValue %>px;" onclick="location.href='/reservation/check?rsvId=${reservationIDList.get(i)}'">보기</button>
                             <% if(reservationDateList.size() - i != 7) { %>
                             <p class="listLine" id="listLine<%= i %>" style="top: <%= lineValue %>px;"/>
                             <% } %>

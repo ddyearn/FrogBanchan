@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../../../css/reservation/resultStyle.css">
-    <title>Reservation Form</title>
+    <title>예약 상세 정보</title>
 </head>
 
 <body>
