@@ -4,6 +4,18 @@
 **< Spring Boot 기반 프로젝트 >**
 <br/><br/>
 
+**개구리반찬 : 메뉴 추천 서비스**
+
+![image](https://github.com/2023-DDWU-Frog/FrogBanchan/assets/112995965/dfa1a711-f764-446a-ba20-32e0d3b8733e)
+
+
+```
+테스트 회원
+username: nameco
+password: 20200982
+```
+
+
 **[Rules]**
 
 **1. 작업 전 Pull**<br/>
@@ -12,15 +24,3 @@
 **4. Pull request 생성**<br/>
 **5. 충돌이 없으면 Merge**<br/>
 **6. Branch 삭제**
-
-    
-    - 브랜치명 예시) feature/users (권장)
-    
-    - 커밋 메시지 예시) [feat] login 구현 (권장)
-    
-    - 일단 프로그램 켰으면 pull부터 하고 작업해주세요.
-      작업 영역 겹치면 다른 사람의 코드와 충돌이 발생합니다.
-    
-    - commit 전 changed files 목록에 본인이 수정한 코드만 있는지 확인 부탁드립니다.
-    
-    - error 있는 코드 올려놓으실 경우 로그 확인해서 연락 드리겠습니다.
