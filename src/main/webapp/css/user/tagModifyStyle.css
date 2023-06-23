@@ -13,7 +13,7 @@ html, body {
     height: 150px;
     position: absolute;
     margin-top: 150px;
-    margin-left: 100px;
+    margin-left: 400px;
     background: #fff;
 }
 .hateListBox2 {
@@ -45,7 +45,7 @@ html, body {
 }
 .hateListText1 {
     position: absolute;
-    margin-left: 250px;
+    margin-left: 550px;
     margin-top: 125px;
     padding: 10px;
     background: #fff;
@@ -64,7 +64,7 @@ html, body {
     height: 150px;
     position: absolute;
     margin-top: 150px;
-    margin-left: 950px;
+    margin-left: 1250px;
     background: #fff;
 }
 .hateAddBox2 {
@@ -80,7 +80,7 @@ html, body {
 }
 .hateAddText1 {
     position: absolute;
-    margin-left: 1100px;
+    margin-left: 1400px;
     margin-top: 125px;
     padding: 10px;
     background: #fff;
@@ -102,13 +102,13 @@ html, body {
 
 .backBtn {
     position: absolute;
-    margin-left: 100px;
+    margin-left: 400px;
     margin-top: 300px;
 }
 
 .searchBox {
     position: absolute;
-    margin-left: 300px;
+    margin-left: 600px;
     margin-top: 400px;
 }
 .searchedTag {

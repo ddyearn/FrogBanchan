@@ -143,9 +143,7 @@ html, body {
 /* 예약 조회 */
 #titleWrap {
     position: absolute;
-    width: 569px;
-    height: 87px;
-    left: 700px;
+    left: 830px;
     top: 102px;
 
     font-family: 'Poor Story';
@@ -185,9 +183,7 @@ html, body {
 /* 최근 6개의 예약만 보여집니다. */
 #explain {
     position: absolute;
-    width: 608px;
-    height: 49px;
-    left: 20%;
+    left: 500px;
     top: 140px;
 
     font-family: 'Poor Story';

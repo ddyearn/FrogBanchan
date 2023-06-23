@@ -33,7 +33,7 @@ html, body {
 }
 
 .memberSelectBox {
-    max-width: 800px;
+    max-width: 1100px;
     height: 140px;
     position: absolute;
     display: inline-block;
@@ -56,7 +56,7 @@ html, body {
     border: 1px solid black;
 }
 .memberSelectedBox1 {
-    width: 800px;
+    width: 1100px;
     height: 140px;
     position: absolute;
     margin-top: 330px;
@@ -65,7 +65,7 @@ html, body {
     background: #fff;
 }
 .memberSelectedBox2 {
-    width: 800px;
+    width: 1100px;
     height: 140px;
     border-radius: 30px;
     padding-left: 30px;
@@ -106,15 +106,15 @@ html, body {
 }
 
 .hateListBox1 {
-    width: 800px;
+    width: 1200px;
     height: 150px;
     position: absolute;
     margin-top: 570px;
-    margin-left: 100px;
+    margin-left: 500px;
     background: #fff;
 }
 .hateListBox2 {
-    width: 800px;
+    width: 1200px;
     height: 120px;
     background: #fff;
     border: 1px solid black;
@@ -132,7 +132,7 @@ html, body {
 }
 .hateListText1 {
     position: absolute;
-    margin-left: 250px;
+    margin-left: 1050px;
     margin-top: 545px;
     padding: 10px;
     background: #fff;
@@ -146,38 +146,11 @@ html, body {
     text-align: center;
 }
 
-.hateAddBox1 {
-    width: 400px;
-    height: 150px;
-    position: absolute;
-    margin-top: -157px;
-    margin-left: 850px;
-    background: #fff;
-}
-.hateAddBox2 {
-    width: 400px;
-    height: 120px;
-    background: #fff;
-    border: 1px solid black;
-}
-.hateAddBox3 {
-    display: flex;
-    margin-top: 45px;
-    justify-content: center;
-}
-.hateAddText1 {
-    position: absolute;
-    margin-top: -185px;
-    margin-left: 1000px;
-    padding: 10px;
-    background: #fff;
-    font-size: 20px;
-    z-index: 1;
-    white-space: nowrap;
-}
-
 .recommendBox {
     position: absolute;
     margin-left: 200px;
     margin-top: 190px;
+}
+.recommendBtn {
+    font-size: 30px;
 }
