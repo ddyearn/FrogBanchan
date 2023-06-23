@@ -1,7 +1,6 @@
 package com.frog.frogbanchan.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 import java.sql.Timestamp;

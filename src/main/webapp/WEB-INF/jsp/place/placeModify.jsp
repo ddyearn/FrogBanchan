@@ -69,7 +69,7 @@
 
                 </br>
                 <div class="btnGroup">
-                    <button class="btn btn-secondary backBtn me-5" type="button" onclick="location.href='/join'">취소하기</button>
+                    <button class="btn btn-secondary backBtn me-5" type="button" onclick="history.go(-1)">취소하기</button>
                     <button class="btn btn-success registBtn ms-5" type="submit">수정하기</button>
                 </div>
             </form:form>

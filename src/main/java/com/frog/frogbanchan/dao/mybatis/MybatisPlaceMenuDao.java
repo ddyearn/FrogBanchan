@@ -1,7 +1,6 @@
 package com.frog.frogbanchan.dao.mybatis;
 
 import com.frog.frogbanchan.dao.PlaceMenuDao;
-import com.frog.frogbanchan.dao.mybatis.mapper.MenuMapper;
 import com.frog.frogbanchan.dao.mybatis.mapper.PlaceMenuMapper;
 import com.frog.frogbanchan.domain.Place;
 import com.frog.frogbanchan.domain.PlaceMenu;

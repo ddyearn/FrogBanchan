@@ -78,9 +78,6 @@ public class WithdrawalService {
     public Place withdrawalPlace(String placeId) {
         Place place = placeDao.findPlaceById(placeId);
 
-        // history 처리
-//        List<History> historyList = historyDao.findHistoryByPlaceId()
-
         // reservation 처리
         List<Reservation> reservationList = reservationDao.findReservationByPlaceId(placeId);
         for (Reservation reservation : reservationList) {

@@ -5,13 +5,9 @@ import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter @Setter @ToString
-@SuppressWarnings("serial")
 public class Menu {
     @Id
     private int menuId;

@@ -1,7 +1,6 @@
 package com.frog.frogbanchan.controller.place;
 
 import com.frog.frogbanchan.controller.PlaceSession;
-import com.frog.frogbanchan.domain.Place;
 import com.frog.frogbanchan.service.WithdrawalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +23,7 @@ public class DeletePlaceController {
                                 HttpSession session) throws Exception {
 
         String placeId = placeSession.getPlace().getPlaceId();
-        Place place = withdrawalService.withdrawalPlace(placeId);
+        withdrawalService.withdrawalPlace(placeId);
         session.removeAttribute("placeSession");
 
         return "redirect:/login";

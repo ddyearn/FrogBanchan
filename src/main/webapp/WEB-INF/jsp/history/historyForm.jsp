@@ -74,7 +74,7 @@
                 <!--폼 입력받는 부분에서는 history.back이나 history.go(-1) 동작 이상 있을 수 있음-->
                 <button class="backButton" type="button" onclick="location.href ='/history/list'">뒤로가기</button>
                 <button class="saveButton" type="submit">저장하기</button>
-                <button class="deleteButton" type="button" onclick="location.href='/placemenu/delete?placeMenuId=${placeMenuId}'">삭제하기</button>
+                <button class="deleteButton" type="button" onclick="location.href='/history/delete?historyId=${history.historyId}'">삭제하기</button>
             </div>
         </form:form>
     </div>

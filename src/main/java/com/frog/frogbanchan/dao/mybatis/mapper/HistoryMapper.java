@@ -2,7 +2,6 @@ package com.frog.frogbanchan.dao.mybatis.mapper;
 
 import com.frog.frogbanchan.domain.History;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 
